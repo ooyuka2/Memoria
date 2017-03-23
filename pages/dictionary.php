@@ -25,7 +25,7 @@
 	          <table class="table table-striped table-hover " id="dictionary">
 	            <thead>
 	              <tr>
-	                <th>メモ</th>
+	                <th>メモタイトル</th>
 	                <th>内容</th>
 	              </tr>
 	            </thead>

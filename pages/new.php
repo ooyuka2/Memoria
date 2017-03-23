@@ -39,7 +39,7 @@
             <fieldset>
               <legend>入力欄</legend>
               <div class="form-group">
-                <label for="inputEmail" class="col-lg-2 control-label">メモ</label>
+                <label for="inputEmail" class="col-lg-2 control-label">メモタイトル</label>
                 <div class="col-lg-10">
                   <input type="text" class="form-control" id="" name="name" placeholder="メモ">
                 </div>

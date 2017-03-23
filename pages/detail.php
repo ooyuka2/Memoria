@@ -4,19 +4,51 @@
 <body>
 <?php
 	include('navigation.php');
+	$dictionary = readCsvFile('../data/dictionary.csv');
+	if(!isset($_GET['page']) || $_GET['page']>=count($dictionary)) {
+		header( "Location: ./dictionary.php" );
+		exit();
+	}
 ?>
 
+<!-- jumbotron special -->
+<section class="section section-inverse japanese-font">
+	<div class="container">
+	    <!-- Tables
+	  ================================================== -->
+	  <div class="bs-docs-section" style="margin:0">
 
-<div class="jumbotron special">
-  <div class="honoka"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 outline">
-        <h1>詳細ページ</h1>
-        <p>未実装！！</p>
-        <div class="download">
-          <a href="./todo.php" class="btn btn-warning btn-lg last-release-download-link"><i class="fa fa-github-alt"></i> Go to ToDo List</a>
-          <a href="./dictionary.php" class="btn btn-primary btn-lg"><i class="fa fa-play"></i> Watch Dictionary</a>
+	    <div class="row">
+	      <div class="col-lg-12">
+	        <div class="page-header">
+	          <h1 id="tables"><?php echo $dictionary[$_GET['page']][0]; ?></h1>
+	        </div>
+			
+	        <div class="bs-component">
+				<h2>要約</h2>
+				<?php echo $dictionary[$_GET['page']][1]; ?>
+	        <div class="bs-component">
+				<h2>詳細</h2>
+				<?php echo $dictionary[$_GET['page']][2]; ?>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</section>
+
+
+<?php
+	include('footer.php');
+?>
+<script>
+	window.onload = function(){
+	    document.getElementsByClassName('dictionary')[0].classList.add('active');
+	}
+</script>
+</body>
+</html>
+
         </div>
       </div>
     </div>
