@@ -17,6 +17,7 @@
           <li class="todo"><a href="./todo.php">ToDo</a></li>
           <li class="dictionary"><a href="./dictionary.php">Dictionary</a></li>
           <li class="setting"><a href="./settings.php">Setting</a></li>
+          
         </ul>
       </div>
     </div>

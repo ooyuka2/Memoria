@@ -1,31 +1,28 @@
+
 <?php
-	include('hedder.php');
-?>
-<body>
-<?php
-	include('navigation.php');
+
 	$dictionary = readCsvFile('../data/dictionary.csv');
 	
-	if(isset($_GET['toroku'])) {//id,artwork,author,year,commentary,floor,place,img
+	if(isset($_GET['toroku'])) {
 		$dictionary[$_GET['toroku']][0] = $_POST['name'];
-		$dictionary[$_GET['toroku']][1] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary']);
-		$dictionary[$_GET['toroku']][2] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail']);
+		$dictionary[$_GET['toroku']][1] = $_POST['furi'];
+		$dictionary[$_GET['toroku']][2] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary']);
+		$dictionary[$_GET['toroku']][3] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail']);
+		$dictionary[$_GET['toroku']][4] = 0;
+		$dictionary[$_GET['toroku']][5] = date('Y/m/d H:i:s');
 		writeCsvFile("../data/dictionary.csv", $dictionary);
 		header( "Location: ./dictionary.php" );
 		exit();
 	}
 ?>
 
-<!-- jumbotron special -->
-<section class="section section-inverse japanese-font">
-	<div class="container">
   <!-- Forms
   ================================================== -->
   <div class="bs-docs-section" style="margin:0">
     <div class="row">
       <div class="col-lg-12">
         <div class="page-header">
-          <h1 id="forms">新規登録</h1>
+          <h1 id="forms">編集登録</h1>
         </div>
       </div>
     </div>
@@ -33,27 +30,40 @@
     <div class="row">
         <div class="well bs-component">
           <?php
-          	  $id=count($dictionary); 
-	          echo "<form class='form-horizontal' method='post' action='new.php?&toroku={$id}'>";
+          	  $id=$_GET['p']; 
+	          echo "<form class='form-horizontal' method='post' action='dictionary.php?page=change&toroku={$id}'>";
 	      ?>
             <fieldset>
               <legend>入力欄</legend>
               <div class="form-group">
                 <label for="inputEmail" class="col-lg-2 control-label">メモタイトル</label>
                 <div class="col-lg-10">
-                  <input type="text" class="form-control" id="" name="name" placeholder="メモ">
+                    <?php
+                		echo "<input type='text' class='form-control' id='name' name='name' placeholder='メモ' value='{$dictionary[$_GET['p']][0]}' onBlur='check_furi()'>";//
+                	?>
                 </div>
+
               </div>
+              <div class="form-group">
+                <label for="inputEmail" class="col-lg-2 control-label">ふりがな</label>
+                <div class="col-lg-10">
+                    <?php
+                		echo "<input type='text' class='form-control' id='furi' name='furi' placeholder='メモ' value='{$dictionary[$_GET['p']][0]}'>";//
+                	?>
+                </div>
+
+              </div>
+
               <div class="form-group">
                 <label for="textArea" class="col-lg-2 control-label">要点</label>
                 <div class="col-lg-10">
-                  <textarea class="form-control" rows="3" id="textArea" name="summary"></textarea>
+                  <textarea class="form-control" rows="3" id="textArea" name="summary"><?php echo $dictionary[$_GET['p']][2]; ?></textarea>
                 </div>
               </div>
               <div class="form-group">
                 <label for="textArea" class="col-lg-2 control-label">詳細</label>
                 <div class="col-lg-10">
-                  <textarea class="form-control" rows="3" id="textArea" name="detail"></textarea>
+                  <textarea class="form-control" rows="3" id="textArea" name="detail"><?php echo $dictionary[$_GET['p']][3]; ?></textarea>
                 </div>
               </div>
 
@@ -68,17 +78,3 @@
         </div>
       </div>
     </div>
-	</div>
-</section>
-
-
-<?php
-	include('footer.php');
-?>
-<script>
-	window.onload = function(){
-	    document.getElementsByClassName('dictionary')[0].classList.add('active');
-	}
-</script>
-</body>
-</html>

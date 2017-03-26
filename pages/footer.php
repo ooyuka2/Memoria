@@ -4,7 +4,8 @@
   //$('.bs-component [data-toggle="popover"]').popover();
   //$('.bs-component [data-toggle="tooltip"]').tooltip();
 </script>
-<script type="text/javascript" src="../DataTables/datatables.min.js"></script>
+
 <?php
+	include('setting.php');
 	echo '<script src="../'.$color.'/js/bootstrap.min.js"></script>';
 ?>
