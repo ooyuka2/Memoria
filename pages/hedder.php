@@ -14,10 +14,10 @@
   <title>Memoria</title>
 	<link rel="stylesheet" type="text/css" href="../DataTables/datatables.min.css"/>
 	<?php
-	echo '<link rel="stylesheet" type="text/css" href="../'.$color.'/css/bootstrap.css">';
-	echo '<link rel="stylesheet" type="text/css" href="../'.$color.'/css/example.css">';
+	echo '<link id="sampleLink" rel="stylesheet" type="text/css" href="../'.$color.'/css/bootstrap.css">';
+	echo '<link id="sampleLink2" rel="stylesheet" type="text/css" href="../'.$color.'/css/example.css">';
 	?>
-  
+
 
   <style type="text/css">
   @font-face {

@@ -202,7 +202,7 @@ body {
   left: 0;
   width: 400px;
   height: 530px;
-  background-image: url("../img/umi.png");
+  /*background-image: url("../img/umi.png");*/
   background-repeat: no-repeat;
 }
 .jumbotron.special .outline {
