@@ -38,25 +38,25 @@
               <div class="form-group">
                 <label for="inputEmail" class="col-lg-2 control-label">メモタイトル</label>
                 <div class="col-lg-10">
-                  <input type="text" class="form-control" id="name" name="name" placeholder="メモ" onBlur="check_furi()">
+                  <input type="text" class="form-control" id="name" name="name" placeholder="メモ" onBlur="check_furi()" style='font-size:50%;'>
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail" class="col-lg-2 control-label">ふりがな</label>
                 <div class="col-lg-10">
-                  <input type="text" class="form-control" id="furi" name="furi" placeholder="ふりがな">
+                  <input type="text" class="form-control" id="furi" name="furi" placeholder="ふりがな" style='font-size:50%;'>
                 </div>
               </div>
               <div class="form-group">
                 <label for="textArea" class="col-lg-2 control-label">要点</label>
                 <div class="col-lg-10">
-                  <textarea class="form-control" rows="3" id="textArea" name="summary"></textarea>
+                  <textarea class="form-control" rows="3" id="textArea" name="summary" style='font-size:50%;'></textarea>
                 </div>
               </div>
               <div class="form-group">
                 <label for="textArea" class="col-lg-2 control-label">詳細</label>
                 <div class="col-lg-10">
-                  <textarea class="form-control" rows="3" id="textArea" name="detail"></textarea>
+                  <textarea class="form-control" rows="3" id="textArea" name="detail" style='font-size:50%;'></textarea>
                 </div>
               </div>
 

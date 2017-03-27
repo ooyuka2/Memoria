@@ -6,6 +6,14 @@
 	    });
 	});
 	
+/*  $(function(){
+    $.fn.autoKana2('#name', '#furi');
+  });*/
+function check_furi() {
+	if(document.getElementById("furi").value=="")
+	document.getElementById("furi").value=document.getElementById("name").value;
+}
+
 document.onkeydown = 
    function (e) {
       if (event.ctrlKey ){
@@ -26,8 +34,5 @@ function (e) {
          }
       }
    }
-function check_furi() {
-	if(document.getElementById("furi").value=="")
-	document.getElementById("furi").value=document.getElementById("name").value;
-}
+
 </script>

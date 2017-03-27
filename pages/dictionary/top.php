@@ -71,7 +71,7 @@
 	
 	
 	
-    <div class="bs-component">
+    <div class="bs-component table-responsive">
       <table class="table table-striped table-hover " id="dictionary">
         <thead>
           <tr>
@@ -85,7 +85,7 @@
         <tbody>
         	<?php
         		$dictionary = readCsvFile('../data/dictionary.csv');
-        		for($i = 0; $i<count($dictionary); $i++) {
+        		for($i = 1; $i<count($dictionary); $i++) {
         			if(!isset($_GET['search']) || search_array($abc, $abc2, $abcl, $hiragana, $hiragana2, mb_substr($dictionary[$i][1], 0, 1))) {
 	    				echo "<tr><td>";
 	    				echo $dictionary[$i][0];
@@ -93,6 +93,7 @@
 	    				echo $dictionary[$i][2];
 	    				if($dictionary[$i][3]!="")
 	    				echo "<span style='float: right;'><a href='./dictionary.php?page=detail&p=".$i."'>詳細</span></td><td>";
+	    				else { echo "</td><td>"; }
 	    				echo $dictionary[$i][5];
 	    				echo "</td><td><a href='./dictionary.php?page=change&p=".$i."' class='btn btn-info'>編集</a>";
 	    				echo "</td><td><a href='./dictionary.php?page=delete&p=".$i."' class='btn btn-danger'>削除</a>";

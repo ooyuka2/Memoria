@@ -16,7 +16,6 @@
 	  ?>
 	</div>
 </section>
-<script>
 
 <?php
 	

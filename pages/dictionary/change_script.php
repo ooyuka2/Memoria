@@ -5,6 +5,9 @@
 	        katakana : false  //true：カタカナ、false：ひらがな（デフォルト）
 	    });
 	});
+/*  $(function(){
+    $.fn.autoKana2('#name', '#furi');
+  });*/
 document.onkeydown = 
    function (e) {
       if (event.ctrlKey ){
