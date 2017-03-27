@@ -14,9 +14,9 @@
 			stateSave: true,
 			columnDefs: [
 		        // 2列目を消す(visibleをfalseにすると消えます)
-		        { targets: 2, visible: false },
+		        { targets: 3, visible: false },
 		    ],
-		    responsive: true, order: [[2, 'asc']],
+		    responsive: true, order: [[3, 'asc']],
         });
     });
     

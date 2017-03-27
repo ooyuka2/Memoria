@@ -75,6 +75,7 @@
       <table class="table table-striped table-hover " id="dictionary">
         <thead>
           <tr>
+          	<th>ジャンル</th>
             <th>メモ</th>
             <th>内容</th>
             <th>登録日時</th>
@@ -85,9 +86,13 @@
         <tbody>
         	<?php
         		$dictionary = readCsvFile('../data/dictionary.csv');
+        		$group = readCsvFile('../data/dictionary_group.csv');
         		for($i = 1; $i<count($dictionary); $i++) {
         			if(!isset($_GET['search']) || search_array($abc, $abc2, $abcl, $hiragana, $hiragana2, mb_substr($dictionary[$i][1], 0, 1))) {
 	    				echo "<tr><td>";
+	    				if($dictionary[$i][4]==0) echo "";
+	    				else echo $group[$dictionary[$i][4]][0];
+	    				echo "</td><td>";
 	    				echo $dictionary[$i][0];
 	    				echo "</td><td>";
 	    				echo $dictionary[$i][2];
