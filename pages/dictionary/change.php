@@ -10,8 +10,10 @@
 		$dictionary[$_GET['toroku']][2] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary']);
 		$dictionary[$_GET['toroku']][3] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail']);
 		$dictionary[$_GET['toroku']][4] = $_POST['genre'];
-		$dictionary[$_GET['toroku']][5] = date('Y/m/d H:i:s');
+		//$dictionary[$_GET['toroku']][5] = date('Y/m/d H:i:s');
 		writeCsvFile("../data/dictionary.csv", $dictionary);
+		$name = $dictionary[$_GET['toroku']][0];
+		$_SESSION['change'] = "{$name}を変更しました。";
 		header( "Location: ./dictionary.php" );
 		exit();
 	}
@@ -49,7 +51,7 @@
                 <label for="inputEmail" class="col-lg-2 control-label">ふりがな</label>
                 <div class="col-lg-10">
                     <?php
-                		echo "<input type='text' class='form-control' id='furi' name='furi' placeholder='メモ' value='{$dictionary[$_GET['p']][0]}'>";//
+                		echo "<input type='text' class='form-control' id='furi' name='furi' placeholder='メモ' value='{$dictionary[$_GET['p']][1]}'>";//
                 	?>
                 </div>
 
@@ -59,7 +61,7 @@
 			                  <select class="form-control input-normal input-sm" id="genre" name="genre" style='font-size:50%;'>
 			                  	
 			                  	<?php
-			                  		echo "<option value='0'></option>";
+			                  		//echo "<option value='0'></option>";
 			                  		for($i=1;$i<count($group);$i++) {
 			                  			if($dictionary[$_GET['p']][4]==$i)
 			                  				echo "<option value='{$i}'selected>{$group[$i][0]}</option>";

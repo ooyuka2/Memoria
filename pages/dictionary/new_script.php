@@ -1,9 +1,11 @@
 <script type="text/javascript" src="../js/jquery.autoKana.js"></script>
 <script>
 	$(function() {
-	    $.fn.autoKana('#name', '#furi', {
-	        katakana : false  //true：カタカナ、false：ひらがな（デフォルト）
-	    });
+		for(var i=0; i<document.getElementsByClassName("name").length; i++) {
+		    $.fn.autoKana('.name:eq('+i+')', '.furi:eq('+i+')', {
+		        katakana : false  //true：カタカナ、false：ひらがな（デフォルト）
+	    	});
+	    }
 	});
 	
 /*  $(function(){

@@ -12,7 +12,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 outline">
-        <h1>THis is Todo List.</h1>
+        <h1>This is Todo List.</h1>
         <p>未実装！！</p>
         <div class="download">
           <a href="./todo.php" class="btn btn-warning btn-lg last-release-download-link"><i class="fa fa-github-alt"></i> Go to ToDo List</a>

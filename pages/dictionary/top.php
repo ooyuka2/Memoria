@@ -1,118 +1,61 @@
-
-<!-- Tables
-================================================== -->
-<div class="bs-docs-section" style="margin:0">
-
-<div class="row">
-  <div class="col-lg-12">
-    <div class="page-header">
-      <h1 id="tables">お仕事メモ帳単語集</h1>
-      <a href="./dictionary.php?page=new" class="btn btn-primary">新規</a>
-      <?php
-		//削除動作についての文章。
-		//print_r($_SESSION);
-		if(isset($_SESSION['delete'])) {
-			echo "<p class='bg-danger'>{$_SESSION['delete']}</p>";
-			unset($_SESSION['delete']);
-		}
-	?>
-    </div>
-	
-        <div class="bs-component" style="margin: 0 auto 15px auto;">
-          <div class="btn-toolbar" style="text-align: center;">
+<?php
+	$group = readCsvFile('../data/dictionary_group.csv');
+?>
+<?php include('dictionary/table.php'); ?>
+    <div class="row">
+      <div class="col-lg-12">
+        <p id="nav-tabs"></p>
+        <div class="bs-component">
+          <ul class="nav nav-tabs">
           	<?php
-          		$abc = array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
-          		$abcl = array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","g");
-          		$abc2 = array("S_A","S_B","S_C","S_D","S_E","S_F","S_G","S_H","S_I","S_J","S_K","S_L","S_M","S_N","S_O","S_P","S_Q","S_R","S_S","S_T","S_U","S_V","S_W","S_X","S_Y","S_Z");
-          		$abc3 = array("G_A","G_A","G_A","G_A","G_A","G_F","G_F","G_F","G_F","G_F","G_K","G_K","G_K","G_K","G_K","G_P","G_P","G_P","G_P","G_P","G_U","G_U","G_U","G_U","G_U","G_Z");
-          		$hiragana = array("あ","い","う","え","お","か","き","く","け","こ","さ","し","す","せ","そ","た","ち","つ","て","と","な","に","ぬ","ね","の","は","ひ","ふ","へ","ほ","ま","み","む","め","も","や","ゆ","よ","","","ら","り","る","れ","ろ","わ","を","ん","","");
-          		$hiragana2 = array("S_a","S_i","S_u","S_e","S_o","S_ka","S_ki","S_ku","S_ke","S_ko","S_sa","S_si","S_su","S_se","S_so","S_ta","S_ti","S_tu","S_te","S_to","S_na","S_ni","S_nu","S_ne","S_no","S_ha","S_hi","S_hu","S_he","S_ho","S_ma","S_mi","S_mu","S_me","S_mo","S_ya","S_yi","S_yu","S_ye","S_yo","S_ra","S_ri","S_ru","S_re","S_ro","S_wa","S_wi","S_wu","S_we","S_wo");
-          		$hiragana3 = array("G_a","G_a","G_a","G_a","G_a","G_ka","G_ka","G_ka","G_ka","G_ka","G_sa","G_sa","G_sa","G_sa","G_sa","G_ta","G_ta","G_ta","G_ta","G_ta","G_na","G_na","G_na","G_na","G_na","G_ha","G_ha","G_ha","G_ha","G_ha","G_ma","G_ma","G_ma","G_ma","G_ma","G_ya","G_ya","G_ya","G_ya","G_ya","G_ra","G_ra","G_ra","G_ra","G_ra","G_wa","G_wa","G_wa","G_wa","G_wa");
-          		
-          		if(!isset($_GET['search'])) {
-          			echo "<div class='btn-group'><a href='./dictionary.php' class='btn btn-primary'>すべて</a></div>";
-          		} else {
-          			echo "<div class='btn-group'><a href='./dictionary.php' class='btn btn-default'>すべて</a></div>";
-          		}
-          		
-      		?>
-      		<?php
-          		for($i=0; $i<count($abc); $i++) {
-          			if($i%5==0) { echo "<div class='btn-group' onMouseLeave=\"hihyouzi('{$abc3[$i]}')\">";}//
-          			echo "<a href='./dictionary.php?search=".$abc2[$i]."' class='{$abc3[$i]} btn ";
-          			if(isset($_GET['search']) && $_GET['search']==$abc2[$i]) { echo "btn-primary"; }
-          			else { echo "btn-default"; }
-          			echo "' id=".$abc2[$i];
-          			if($i%5!=0 && !(isset($_GET['search']) && $_GET['search']==$abc2[$i])) { echo " style='display:none'";}
-          			else { echo " style='display:block'";}
-          			if($i%5==0) echo " onMouseOver=\"hyouzi('{$abc3[$i]}')\"";
-          			echo ">";
-          			echo $abc[$i]."</a>";
-          			if($i%5==4) { echo "</div>";}
-          		}
-          		echo "</div>";
-          		for($i=0; $i<count($hiragana); $i++) {
-          			if($i%5==0) { echo "<div class='btn-group' onMouseLeave=\"hihyouzi('{$hiragana3[$i]}')\">";}//
-          			if($hiragana[$i]!="") {
-	          			echo "<a href='./dictionary.php?search=".$hiragana2[$i]."' class='{$hiragana3[$i]} btn ";
-	          			if(isset($_GET['search']) && $_GET['search']==$hiragana2[$i]) { echo "btn-primary'"; }
-	          			else { echo "btn-default'"; }
-	          			if($i%5!=0 && !(isset($_GET['search']) && $_GET['search']==$hiragana2[$i])) { echo " style='display:none'";}
-	          			if($i%5==0) echo " onMouseOver=\"hyouzi('{$hiragana3[$i]}')\"";
-	          			echo " id='".$hiragana2[$i]."'>".$hiragana[$i]."</a>";
-          			}
-          			if($i%5==4) { echo "</div>";}
-          		}
+          		if(!isset($_GET['d']) || $_GET['d']=="home") echo "<li class='active'><a href='#home' data-toggle='tab'>home</a></li>";
+          		else echo "<li><a href='#home' data-toggle='tab'>home</a></li>";
+	        	for($i=1; $i<count($group); $i++) {
+	        		$tab = "tab_".$group[$i][1];
+	          		if(!isset($_GET['d']) || $_GET['d']!=$group[$i][1])
+	          			echo "<li><a href='#tab_{$group[$i][1]}' data-toggle='tab'>{$group[$i][0]}</a></li>";
+	          		else if(isset($_GET['d']) && $_GET['d']==$group[$i][1])
+	          			echo "<li class='active'><a href='#tab_{$group[$i][1]}' data-toggle='tab'>{$group[$i][0]}</a></li>";
+	        	}
+            
+            ?>
+		  </ul>
+			<?php
+				//削除動作についての文章。
+				if(isset($_SESSION['change'])) {
+					echo "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><p>{$_SESSION['change']}</p></div>";
+					unset($_SESSION['change']);
+				}
+				//削除動作についての文章。
+				//print_r($_SESSION);
+				if(isset($_SESSION['delete'])) {
+					echo "<div class='alert alert-dismissible alert-warning'><button type='button' class='close' data-dismiss='alert'>&times;</button><p class='text-danger'>{$_SESSION['delete']}</p></div>";
+					unset($_SESSION['delete']);
+				}
+			?>
+			
+          <div id="myTabContent" class="tab-content">
+          	<?php
+	            
+				if(!isset($_GET['d']) || $_GET['d']=="home") echo "<div class='tab-pane fade active in' id='home'>";
+          		else echo "<div class='tab-pane fade' id='home'>";
           	?>
+          		<?php read_table('home', 0); ?>
+	            </div>
+          	<?php
+	        	for($i=1; $i<count($group); $i++) {
+	        		$tab = "tab_".$group[$i][1];
+	          			if(!isset($_GET['d']) || $_GET['d']!=$group[$i][1])
+	          				echo "<div class='tab-pane fade' id='{$tab}'>";
+	          			else if(isset($_GET['d']) && $_GET['d']==$group[$i][1])
+	          				echo "<div class='tab-pane fade active in' id='{$tab}'>";
+	          			read_table($group[$i][1], $i);
+	          			echo "</div>";
+	        	}
+            
+            ?>
           </div>
         </div>
-	
-	
-	
-	
-	
-    <div class="bs-component table-responsive">
-      <table class="table table-striped table-hover " id="dictionary">
-        <thead>
-          <tr>
-          	<th>ジャンル</th>
-            <th>メモ</th>
-            <th>内容</th>
-            <th>登録日時</th>
-            <th>編集</th>
-            <th>削除</th>
-          </tr>
-        </thead>
-        <tbody>
-        	<?php
-        		$dictionary = readCsvFile('../data/dictionary.csv');
-        		$group = readCsvFile('../data/dictionary_group.csv');
-        		for($i = 1; $i<count($dictionary); $i++) {
-        			if(!isset($_GET['search']) || search_array($abc, $abc2, $abcl, $hiragana, $hiragana2, mb_substr($dictionary[$i][1], 0, 1))) {
-	    				echo "<tr><td>";
-	    				if($dictionary[$i][4]==0) echo "";
-	    				else echo $group[$dictionary[$i][4]][0];
-	    				echo "</td><td>";
-	    				echo $dictionary[$i][0];
-	    				echo "</td><td>";
-	    				echo $dictionary[$i][2];
-	    				if($dictionary[$i][3]!="")
-	    				echo "<span style='float: right;'><a href='./dictionary.php?page=detail&p=".$i."'>詳細</span></td><td>";
-	    				else { echo "</td><td>"; }
-	    				echo $dictionary[$i][5];
-	    				echo "</td><td><a href='./dictionary.php?page=change&p=".$i."' class='btn btn-info'>編集</a>";
-	    				echo "</td><td><a href='./dictionary.php?page=delete&p=".$i."' class='btn btn-danger'>削除</a>";
-	    				echo "</td></tr>";
-    				}
-        		}
-        		
-        	?>
-        </tbody>
-      </table>
-    </div><!-- /example -->
-  </div>
-</div>
-</div>
-
-
+      </div>
+    </div>
 	  
