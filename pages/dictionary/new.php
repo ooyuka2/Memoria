@@ -4,7 +4,7 @@
 	$dictionary = readCsvFile('../data/dictionary.csv');
 	$group = readCsvFile('../data/dictionary_group.csv');
 	if(isset($_GET['toroku'])) {
-		for($j=0; $j<5;$j++) {
+		for($j=0; $j<count($_POST['name']);$j++) {
 			if($_POST['name'][$j]!="") {
 				$dictionary[$_POST['id'][$j]][0] = $_POST['name'][$j];
 				$dictionary[$_POST['id'][$j]][1] = $_POST['furi'][$j];
@@ -12,6 +12,7 @@
 				$dictionary[$_POST['id'][$j]][3] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail'][$j]);
 				$dictionary[$_POST['id'][$j]][4] = $_POST['genre'][$j];
 				$dictionary[$_POST['id'][$j]][5] = date('Y/m/d H:i:s');
+				//echo $_POST['id'][$j];
 			}
 		}
 		writeCsvFile("../data/dictionary.csv", $dictionary);
@@ -34,7 +35,7 @@
 	          <?php
 	          	  $id=count($dictionary); 
 		          echo "<form class='form-horizontal ' method='post' action='dictionary.php?page=new&toroku={$id}' name='form_back'>";//form-inline
-			    for($j=0; $j<5;$j++) {
+			    for($j=0; $j<10;$j++) {
 		      ?>
 			      <div class="well bs-component">
 			        <div class="form-group" style="margin-bottom:0;">
@@ -43,7 +44,7 @@
 								<input type="text" class="form-control input-normal input-sm name" id="name" name="name[]" placeholder="メモ" onBlur="check_furi()">
 								<?php
 									$id=count($dictionary)+$j;
-									echo "<input type='hidden' name='id' value='{$id}'>";
+									echo "<input type='hidden' name='id[]' value='{$id}'>";
 								?>
 							</div>
 							<div class="col-xs-12" style="padding-right:0;">
@@ -62,7 +63,7 @@
 			            </div>
 			            <div class="col-xs-9" style="padding-right:0; padding-left:0;">
 							<div class="col-xs-12" style="padding-left:0;">
-								<textarea class="form-control input-normal input-sm" rows="1" id="textArea" name="summary[]"></textarea>
+								<textarea class="form-control input-normal input-sm" rows="2" id="textArea" name="summary[]"></textarea>
 							</div>
 							<div class="col-xs-12" style="padding-left:0;">
 								<textarea class="form-control input-normal input-sm" rows="3" id="textArea" name="detail[]"></textarea>
@@ -77,7 +78,7 @@
 			    
 			    
 
-		        <div class="form-group" style="margin-bottom:0;">
+		        <div class="form-group" style="margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;">
 		            <div class="col-xs-offset-3 col-xs-3">
 		                <button type="reset" class="btn btn-default btn-block">Cancel</button>
 		            </div>
@@ -85,6 +86,7 @@
 		                <button type="submit" class="btn btn-primary btn-block">Submit</button>
 		            </div>
 		        </div>
+		        <div style="height: 100px"></div>
 		    </form>
 		</fieldset>
     </div>

@@ -58,7 +58,7 @@
               </div>
               <div class="form-group">
               	<div class="col-xs-offset-2 col-xs-3">
-			                  <select class="form-control input-normal input-sm" id="genre" name="genre" style='font-size:50%;'>
+			                  <select class="form-control input-normal input-sm" id="genre" name="genre">
 			                  	
 			                  	<?php
 			                  		//echo "<option value='0'></option>";

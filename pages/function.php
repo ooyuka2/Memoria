@@ -15,6 +15,27 @@ if (is_readable($filepath)) {
 	return $records;
 }
 
+//ファイル読み込んで配列に入れる
+function readCsvFile2($filepath) {
+if (is_readable($filepath)) {
+		$file = new SplFileObject($filepath); 
+		$file->setFlags(SplFileObject::READ_CSV); 
+		foreach ($file as $line) {
+			if(!is_null($line[0])){
+				$records[] = $line;
+			}
+		}
+		for($i=1;$i<count($records);$i++) {
+			for($j=0;$j<count($records[0]);$j++) {
+				$ary[($i-1)][$records[0][$j]] = $records[$i][$j];
+			}
+		}
+	}else {
+		$ary = null;
+	}
+	return $ary;
+}
+
 //csvファイル書き込み
 function writeCsvFile($filepath, $records) {
 	$fp = fopen($filepath, 'w');

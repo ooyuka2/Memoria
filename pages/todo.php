@@ -1,35 +1,32 @@
 <?php
 	include('hedder.php');
 ?>
-<body>
+<body style='font-size:100%;'>
 <?php
 	include('navigation.php');
+	//$dictionary = readCsvFile('../data/dictionary.csv');
+	if(!isset($_GET['page'])) $_GET['page'] = "top";
 ?>
 
-
-<div class="jumbotron special">
-  <div class="honoka"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 outline">
-        <h1>This is Todo List.</h1>
-        <p>未実装！！</p>
-        <div class="download">
-          <a href="./todo.php" class="btn btn-warning btn-lg last-release-download-link"><i class="fa fa-github-alt"></i> Go to ToDo List</a>
-          <a href="./dictionary.php" class="btn btn-primary btn-lg"><i class="fa fa-play"></i> Watch Dictionary</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- jumbotron special -->
+<section class="section section-inverse japanese-font">
+	<div class="container" style="padding:0 0 50px 0">
+	  <?php
+	  	select_page("todo", $_GET['page']);
+	  ?>
+	</div>
+</section>
 
 <?php
-	include('footer.php');
+	
+	include_once('footer.php');
+	select_script_page("todo", $_GET['page']);
 ?>
 <script>
 	window.onload = function(){
 	    document.getElementsByClassName('todo')[0].classList.add('active');
 	}
+	//document.body.style.fontSize = '60%';
 </script>
 </body>
 </html>
