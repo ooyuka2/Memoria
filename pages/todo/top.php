@@ -15,11 +15,12 @@
 						echo "</div>";
 						echo "<div class='panel-body'>";
 						echo "{$todo[$i]['作業内容']}<br>";
-						echo "<div class='progress'><div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' style='width: {$todo[$i]['パーセンテージ']}%;'>";
+						echo "<div class='col-xs-11'><div class='progress'><div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' style='width: {$todo[$i]['パーセンテージ']}%;'>";
 						echo "{$todo[$i]['パーセンテージ']}%";
-						echo "</div></div>";
+						echo "</div></div></div>";
+						echo "<div class='col-xs-1'><a href='#' class='btn btn-primary'>完了</a></div>";//todo.php?page=finish
 						echo "</div>";
-						echo "<div class='panel-footer'>{$todo[$i]['納期']}</div>";
+						echo "<div class='panel-footer'>{$todo[$i]['開始予定日']}　～　{$todo[$i]['納期']}</div>";
 						echo "</div>";
 					}
 				}

@@ -1,6 +1,7 @@
 <?php
 //ファイル読み込んで配列に入れる
 function readCsvFile($filepath) {
+mb_internal_encoding("UTF-8");
 if (is_readable($filepath)) {
 		$file = new SplFileObject($filepath); 
 		$file->setFlags(SplFileObject::READ_CSV); 
@@ -12,6 +13,8 @@ if (is_readable($filepath)) {
 	}else {
 		$records = null;
 	}
+	mb_convert_variables('UTF-8',"SJIS-win, UTF-8",$records);
+	//print_r($records);
 	return $records;
 }
 
@@ -33,17 +36,20 @@ if (is_readable($filepath)) {
 	}else {
 		$ary = null;
 	}
+	//print_r($ary);
+	mb_convert_variables('UTF-8',"SJIS-win, UTF-8",$ary);
 	return $ary;
 }
 
 //csvファイル書き込み
 function writeCsvFile($filepath, $records) {
+	mb_convert_variables('SJIS-win','UTF-8',$records);
 	$fp = fopen($filepath, 'w');
 	foreach ($records as $fields) {
 		fputcsv($fp, $fields);
 	}
 	fclose($fp);
-}
+}//mb_convert_encoding($str, "JIS", "auto");
 
 function json_safe_encode($data){
     return json_encode($data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
