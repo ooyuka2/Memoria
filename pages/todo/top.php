@@ -1,5 +1,7 @@
 <?php
+	//mb_internal_encoding("UTF-8");
 	$todo = readCsvFile2('../data/todo.csv');
+	//print_r($todo);
 ?>
 
 <div class="row">

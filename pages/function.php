@@ -28,6 +28,7 @@ if (is_readable($filepath)) {
 				$records[] = $line;
 			}
 		}
+		mb_convert_variables('UTF-8',"SJIS-win, UTF-8",$records);
 		for($i=1;$i<count($records);$i++) {
 			for($j=0;$j<count($records[0]);$j++) {
 				$ary[($i-1)][$records[0][$j]] = $records[$i][$j];
