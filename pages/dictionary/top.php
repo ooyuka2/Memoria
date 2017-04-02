@@ -21,7 +21,7 @@
             ?>
 		  </ul>
 			<?php
-				//削除動作についての文章。
+				//変更動作についての文章。
 				if(isset($_SESSION['change'])) {
 					echo "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><p>{$_SESSION['change']}</p></div>";
 					unset($_SESSION['change']);

@@ -50,7 +50,26 @@ function writeCsvFile($filepath, $records) {
 		fputcsv($fp, $fields);
 	}
 	fclose($fp);
-}//mb_convert_encoding($str, "JIS", "auto");
+}
+//csvファイル書き込み
+function writeCsvFile2($filepath, $records) {
+	//print_r($records);
+	//echo "<br><br>";
+	$line[] = array_keys($records[0]);
+	//echo "line<br>";
+	//print_r($line);
+	for($i=0;$i<count($records);$i++) {
+		//echo "line[{$i}]<br>";
+		//print_r($records[$i]);
+		$line[] = $records[$i];
+	}
+	mb_convert_variables('SJIS-win','UTF-8',$line);
+	$fp = fopen($filepath, 'w');
+	foreach ($line as $fields) {
+		fputcsv($fp, $fields);
+	}
+	fclose($fp);
+}
 
 function json_safe_encode($data){
     return json_encode($data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
@@ -64,7 +83,7 @@ function select_page($folder, $page) {
 function select_script_page($folder, $page) {
 	$script_file = $folder."/".$page."_script.php";
 	if(file_exists($script_file)) {
-		select_page("dictionary", $page."_script");
+		select_page($folder, $page."_script");
 	}
 }
 
@@ -128,4 +147,36 @@ function search_array($abc, $abc2, $abcl, $hiragana, $hiragana2, $word) {
 	}
 	return 0;
 }
+
+function panel_child($todo, $parent) {
+	//echo $todo[12]['child'];
+	if($todo[($parent-1)]['child'] != 0) {
+		for($i=0; $i<count($todo); $i++) {
+			if($todo[$i]['parent']==$parent) {
+				if($todo[$i]['完了']==1) { echo "<div class='panel panel-success'>"; }
+				else echo "<div class='panel panel-danger'>";
+				echo "<div class='panel-heading'>";
+				echo "<h3 class='panel-title'>{$todo[$i]['タイトル']}</h3>";
+				echo "</div>";
+				echo "<div class='panel-body'>";
+				echo "<div class='alert alert-dismissible alert-success' style='margin-bottom:0'>{$todo[$i]['作業内容']}</div>";
+				if($todo[$i]['成果物']!="") {
+					echo "<div class='alert alert-dismissible alert-info'><!--<strong style='font-size:150%'>成果物</strong>-->{$todo[$i]['成果物']}</div>";
+				} else echo "<div style='height:20px;'></div>";
+				echo "<div class='col-xs-11'><div class='progress'><div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' style='width: {$todo[$i]['パーセンテージ']}%;'>";
+				echo "{$todo[$i]['パーセンテージ']}%";
+				echo "</div></div></div>";
+				echo "<div class='col-xs-1'><a href='todo.php?page=finish&p={$i}' class='btn btn-success'>完了</a></div>";//todo.php?page=finish
+				echo "<div style='height:50px;'></div>";
+				panel_child($todo, $todo[$i]['id']);
+				echo "</div>";
+				echo "<div class='panel-footer'>{$todo[$i]['開始予定日']}　～　{$todo[$i]['納期']} {$todo[$i]['納期時間']}</div>";
+				echo "</div>";
+				
+			}
+		}
+	}
+	return $todo;
+}
+
 ?>

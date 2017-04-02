@@ -74,19 +74,27 @@
               <div class="form-group">
                 <label for="textArea" class="col-lg-2 control-label">要点</label>
                 <div class="col-lg-10">
-                  <textarea class="form-control" rows="3" id="textArea" name="summary"><?php echo $dictionary[$_GET['p']][2]; ?></textarea>
+                  <textarea class="form-control" rows="3" id="textArea" name="summary"><?php 
+                  	$summary = str_replace('<br>', '&#13;',$dictionary[$_GET['p']][2]); 
+                  	echo $summary;
+                  	
+                  	?></textarea>
                 </div>
               </div>
               <div class="form-group">
                 <label for="textArea" class="col-lg-2 control-label">詳細</label>
                 <div class="col-lg-10">
-                  <textarea class="form-control" rows="3" id="textArea" name="detail"><?php echo $dictionary[$_GET['p']][3]; ?></textarea>
+                  <textarea class="form-control" rows="3" id="textArea" name="detail"><?php 
+                  	$detail = str_replace('<br>', '&#13;',$dictionary[$_GET['p']][3]); 
+                  	echo $detail;
+                  	
+                  	?></textarea>
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-2">
-                  <button type="reset" class="btn btn-default">Cancel</button>
+                  <button type="reset" class="btn btn-default">Reset</button>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
               </div>

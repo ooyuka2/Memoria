@@ -1,7 +1,7 @@
 <?php
 	include('hedder.php');
 ?>
-<body style='font-size:100%;'>
+<body>
 <?php
 	include('navigation.php');
 	//$dictionary = readCsvFile('../data/dictionary.csv');

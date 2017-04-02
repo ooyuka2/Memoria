@@ -41,8 +41,8 @@
 			        <div class="form-group" style="margin-bottom:0;">
 			            <div class="col-xs-3" style="padding-right:0;">
 							<div class="col-xs-12" style="padding-right:0;">
-								<input type="text" class="form-control input-normal input-sm name" id="name" name="name[]" placeholder="メモ" onBlur="check_furi()">
 								<?php
+									echo "<input type='text' class='form-control input-normal input-sm name' id='name' name='name[]' placeholder='メモ' onBlur='check_furi({$j})'>";
 									$id=count($dictionary)+$j;
 									echo "<input type='hidden' name='id[]' value='{$id}'>";
 								?>
@@ -66,7 +66,7 @@
 								<textarea class="form-control input-normal input-sm" rows="2" id="textArea" name="summary[]"></textarea>
 							</div>
 							<div class="col-xs-12" style="padding-left:0;">
-								<textarea class="form-control input-normal input-sm" rows="3" id="textArea" name="detail[]"></textarea>
+								<textarea class="form-control input-normal input-sm" rows="3" id="textArea" name="detail[]"><?php echo "\n\n&lt;a href='' target='_blank'&gt;参考WEBサイト&lt;/a&gt;"; ?></textarea>
 							</div>
 			            </div>
 			        </div>
@@ -80,7 +80,7 @@
 
 		        <div class="form-group" style="margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;">
 		            <div class="col-xs-offset-3 col-xs-3">
-		                <button type="reset" class="btn btn-default btn-block">Cancel</button>
+		                <button type="reset" class="btn btn-default btn-block">Reset</button>
 		            </div>
 					<div class="col-xs-3">
 		                <button type="submit" class="btn btn-primary btn-block">Submit</button>

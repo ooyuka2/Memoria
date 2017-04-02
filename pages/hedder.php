@@ -60,5 +60,8 @@
       margin-bottom: 10px;
     }
   }
+  body {
+  	font-size:100%;
+  }
   </style>
 </head>

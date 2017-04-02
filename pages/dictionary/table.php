@@ -1,4 +1,5 @@
 <?php
+	//<a class='btn btn-default' href="javascript:document.form_back.submit();">戻る</a>
 	function read_table($what_table, $d) {
 ?>
 <?php

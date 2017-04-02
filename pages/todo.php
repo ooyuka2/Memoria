@@ -1,7 +1,7 @@
 <?php
 	include('hedder.php');
 ?>
-<body style='font-size:100%;'>
+<body>
 <?php
 	include('navigation.php');
 	//$dictionary = readCsvFile('../data/dictionary.csv');
@@ -26,7 +26,6 @@
 	window.onload = function(){
 	    document.getElementsByClassName('todo')[0].classList.add('active');
 	}
-	//document.body.style.fontSize = '60%';
 </script>
 </body>
 </html>

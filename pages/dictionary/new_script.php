@@ -11,9 +11,9 @@
 /*  $(function(){
     $.fn.autoKana2('#name', '#furi');
   });*/
-function check_furi() {
-	if(document.getElementById("furi").value=="")
-	document.getElementById("furi").value=document.getElementById("name").value;
+function check_furi(i) {
+	if(document.getElementsByClassName("furi")[i].value=="")
+	document.getElementsByClassName("furi")[i].value=document.getElementsByClassName("name")[i].value;
 }
 
 document.onkeydown = 
