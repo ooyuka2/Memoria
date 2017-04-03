@@ -15,7 +15,7 @@
 			else {
 				$b = $todo[$i]['top']-1;
 				echo "<a href='./todo.php?page=detail&p={$b}' style='color:#ffffff;'>";
-				echo "<h3 class='panel-title'>{$todo[$i]['タイトル']}<span class='pull-right'>:{$todo[$todo[$i]['top']]['タイトル']}</span></h3>";
+				echo "<h3 class='panel-title'>{$todo[$i]['タイトル']}<span class='pull-right'>:{$todo[($todo[$i]['top']-1)]['タイトル']}</span></h3>";
 			}
 			echo "</a></div>";
 			echo "<div class='panel-body'>";

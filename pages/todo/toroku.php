@@ -34,15 +34,19 @@
 	for($j=0; $j<count($_POST['name']);$j++) {
 		if($_POST['name'][$j]!="") {
 			if($todo[$id]['level']==1) $todo[$id]['parent'] = 0;
-			else if($todo[$id]['level']<$todo[($id-1)]['level']) $todo[$id]['parent'] = $todo[($id-1)]['id'];
+			else if(($todo[$id]['level']-$todo[($id-1)]['level'])==1) $todo[$id]['parent'] = $todo[($id-1)]['id'];
 			else if($todo[$id]['level']==$todo[($id-1)]['level']) $todo[$id]['parent'] = $todo[($id-1)]['parent'];
 			else {
-				//for()
-				$todo[$id]['parent'] = $number;
+				for($k=$id-1; $k>=0; $k--) {
+					if($todo[$id]['level']==($todo[$k]['level'])+1) {
+						$todo[$id]['parent'] = $todo[$k]['id'];
+						break;
+					}
+				}
 			}
 			$child = 0;
 			$i=$j+1;
-			while($i<count($_POST['name']) && $_POST['level'][$j]>$_POST['level'][$i]) {
+			while($i<count($_POST['name']) && $_POST['level'][$j]<$_POST['level'][$i]) {
 				if(($_POST['level'][$j]+1)==$_POST['level'][$i]) {
 					$child++;
 				}
