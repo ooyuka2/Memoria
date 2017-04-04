@@ -18,91 +18,93 @@
 <div class="bs-docs-section" style="margin:0">
 <a href="./dictionary.php?page=new" class="btn btn-info">新規</a>
 <p></p>
-<div class="row">
-  <div class="col-lg-12">
-    <!-- <div class="page-header"> -->
-    <!-- </div> -->
-        <div class="bs-component" id="tables" style="margin: 0 auto 5px auto;text-align: center;">
-          <div class="btn-toolbar" style="text-align: center;">
-          	<?php
-          		if(!isset($_GET['search']) && $what_table=="home") {
-          			echo "<div class='btn-group'><a href='./dictionary.php' class='btn btn-primary'>すべて</a></div>";
-          		} else {
-          			echo "<div class='btn-group'><a href='./dictionary.php?d=".$what_table."' class='btn btn-default'>すべて</a></div>";
-          		}
-          		
-      		?>
-      		<?php
-          		for($i=0; $i<count($abc); $i++) {
-          			if($i%5==0) { echo "<div class='btn-group' onMouseLeave=\"hihyouzi('{$abc3[$i]}')\">";}//
-          			echo "<a href='./dictionary.php?search=".$abc2[$i]."&d=".$what_table."' class='{$abc3[$i]} btn ";
-          			if(isset($_GET['search']) && $_GET['search']==$abc2[$i]) { echo "btn-primary"; }
-          			else { echo "btn-default"; }
-          			echo "' id=".$abc2[$i];
-          			if($i%5!=0 && !(isset($_GET['search']) && $_GET['search']==$abc2[$i])) { echo " style='display:none'";}
-          			else { echo " style='display:block'";}
-          			if($i%5==0) echo " onMouseOver=\"hyouzi('{$abc3[$i]}')\"";
-          			echo ">";
-          			echo $abc[$i]."</a>";
-          			if($i%5==4) { echo "</div>";}
-          		}
-          		echo "</div>";
-          		for($i=0; $i<count($hiragana); $i++) {
-          			if($i%5==0) { echo "<div class='btn-group' onMouseLeave=\"hihyouzi('{$hiragana3[$i]}')\">";}//
-          			if($hiragana[$i]!="") {
-	          			echo "<a href='./dictionary.php?search=".$hiragana2[$i]."&d=".$what_table."' class='{$hiragana3[$i]} btn ";
-	          			if(isset($_GET['search']) && $_GET['search']==$hiragana2[$i]) { echo "btn-primary'"; }
-	          			else { echo "btn-default'"; }
-	          			if($i%5!=0 && !(isset($_GET['search']) && $_GET['search']==$hiragana2[$i])) { echo " style='display:none'";}
-	          			if($i%5==0) echo " onMouseOver=\"hyouzi('{$hiragana3[$i]}')\"";
-	          			echo " id='".$hiragana2[$i]."'>".$hiragana[$i]."</a>";
-          			}
-          			if($i%5==4) { echo "</div>";}
-          		}
-          	?>
-          </div>
-        </div>
-    <div class="bs-component table-responsive">
-      <?php
-      	if($what_table=="home") echo "<table class='table table-striped table-hover ' id='dictionary'>";
-      	else echo "<table class='table table-striped table-hover ' id='dictionary_{$what_table}'>";
-      ?>
-        <thead>
-          <tr>
-            <th>メモ</th>
-            <th>内容</th>
-            <th>登録日時</th>
-            <th>編集</th>
-            <th>削除</th>
-          </tr>
-        </thead>
-        <tbody>
-        	<?php
+<div class='container-fluid'>
+	<div class="row">
+	  <div class="col-lg-12">
+	    <!-- <div class="page-header"> -->
+	    <!-- </div> -->
+	        <div class="bs-component " id="tables" style="margin: 0 auto 5px auto;text-align: center;">
+	          <div class="btn-toolbar" style="text-align: center;">
+	          	<?php
+	          		if(!isset($_GET['search']) && $what_table=="home") {
+	          			echo "<div class='btn-group'><a href='./dictionary.php' class='btn btn-primary'>すべて</a></div>";
+	          		} else {
+	          			echo "<div class='btn-group'><a href='./dictionary.php?d=".$what_table."' class='btn btn-default'>すべて</a></div>";
+	          		}
+	          		
+	      		?>
+	      		<?php
+	          		for($i=0; $i<count($abc); $i++) {
+	          			if($i%5==0) { echo "<div class='btn-group' onMouseLeave=\"hihyouzi('{$abc3[$i]}')\">";}//
+	          			echo "<a href='./dictionary.php?search=".$abc2[$i]."&d=".$what_table."' class='{$abc3[$i]} btn ";
+	          			if(isset($_GET['search']) && $_GET['search']==$abc2[$i]) { echo "btn-primary"; }
+	          			else { echo "btn-default"; }
+	          			echo "' id=".$abc2[$i];
+	          			if($i%5!=0 && !(isset($_GET['search']) && $_GET['search']==$abc2[$i])) { echo " style='display:none'";}
+	          			else { echo " style='display:block'";}
+	          			if($i%5==0) echo " onMouseOver=\"hyouzi('{$abc3[$i]}')\"";
+	          			echo ">";
+	          			echo $abc[$i]."</a>";
+	          			if($i%5==4) { echo "</div>";}
+	          		}
+	          		echo "</div>";
+	          		for($i=0; $i<count($hiragana); $i++) {
+	          			if($i%5==0) { echo "<div class='btn-group' onMouseLeave=\"hihyouzi('{$hiragana3[$i]}')\">";}//
+	          			if($hiragana[$i]!="") {
+		          			echo "<a href='./dictionary.php?search=".$hiragana2[$i]."&d=".$what_table."' class='{$hiragana3[$i]} btn ";
+		          			if(isset($_GET['search']) && $_GET['search']==$hiragana2[$i]) { echo "btn-primary'"; }
+		          			else { echo "btn-default'"; }
+		          			if($i%5!=0 && !(isset($_GET['search']) && $_GET['search']==$hiragana2[$i])) { echo " style='display:none'";}
+		          			if($i%5==0) echo " onMouseOver=\"hyouzi('{$hiragana3[$i]}')\"";
+		          			echo " id='".$hiragana2[$i]."'>".$hiragana[$i]."</a>";
+	          			}
+	          			if($i%5==4) { echo "</div>";}
+	          		}
+	          	?>
+	          </div>
+	        </div>
+	    <div class="bs-component table-responsive">
+	      <?php
+	      	if($what_table=="home") echo "<table class='table table-striped table-hover ' id='dictionary'>";
+	      	else echo "<table class='table table-striped table-hover ' id='dictionary_{$what_table}'>";
+	      ?>
+	        <thead>
+	          <tr>
+	            <th>メモ</th>
+	            <th>内容</th>
+	            <th>登録日時</th>
+	            <th>編集</th>
+	            <th>削除</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	        	<?php
 
-        		for($i = 1; $i<count($dictionary); $i++) {
-        			if(!isset($_GET['search']) || search_array($abc, $abc2, $abcl, $hiragana, $hiragana2, mb_substr($dictionary[$i][1], 0, 1))) {
-        				if($d==0 || $d==$dictionary[$i][4]) {
-		    				echo "<tr><td>";
-		    				echo $dictionary[$i][0];
-		    				echo "</td><td>";
-		    				echo $dictionary[$i][2];
-		    				if($dictionary[$i][3]!="")
-		    				echo "<span style='float: right;'><a href='./dictionary.php?page=detail&p=".$i."'>詳細</span></td><td>";
-		    				else { echo "</td><td>"; }
-		    				echo $dictionary[$i][5];
-		    				echo "</td><td><a href='./dictionary.php?page=change&p=".$i."' class='btn btn-info'>編集</a>";
-		    				echo "</td><td><a href='./dictionary.php?page=delete&p=".$i."' class='btn btn-danger'>削除</a>";
-		    				echo "</td></tr>";
-		    			}
-    				}
-        		}
-        		
-        	?>
-        </tbody>
-      </table>
-    </div><!-- /example -->
-  </div>
-</div>
+	        		for($i = 1; $i<count($dictionary); $i++) {
+	        			if(!isset($_GET['search']) || search_array($abc, $abc2, $abcl, $hiragana, $hiragana2, mb_substr($dictionary[$i][1], 0, 1))) {
+	        				if($d==0 || $d==$dictionary[$i][4]) {
+			    				echo "<tr><td>";
+			    				echo $dictionary[$i][0];
+			    				echo "</td><td>";
+			    				echo $dictionary[$i][2];
+			    				if($dictionary[$i][3]!="")
+			    				echo "<span style='float: right;'><a href='./dictionary.php?page=detail&p=".$i."'>詳細</span></td><td>";
+			    				else { echo "</td><td>"; }
+			    				echo $dictionary[$i][5];
+			    				echo "</td><td><a href='./dictionary.php?page=change&p=".$i."' class='btn btn-info'>編集</a>";
+			    				echo "</td><td><a href='./dictionary.php?page=delete&p=".$i."' class='btn btn-danger'>削除</a>";
+			    				echo "</td></tr>";
+			    			}
+	    				}
+	        		}
+	        		
+	        	?>
+	        </tbody>
+	      </table>
+	    </div><!-- /example -->
+	  </div>
+	</div>
+	</div>
 </div>
 
 <?php

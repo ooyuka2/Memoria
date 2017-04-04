@@ -29,9 +29,9 @@ if (is_readable($filepath)) {
 			}
 		}
 		mb_convert_variables('UTF-8',"SJIS-win, UTF-8",$records);
-		for($i=1;$i<count($records);$i++) {
+		for($i=0;$i<count($records);$i++) {
 			for($j=0;$j<count($records[0]);$j++) {
-				$ary[($i-1)][$records[0][$j]] = $records[$i][$j];
+				$ary[$i][$records[0][$j]] = $records[$i][$j];
 			}
 		}
 	}else {
@@ -55,7 +55,7 @@ function writeCsvFile($filepath, $records) {
 function writeCsvFile2($filepath, $records) {
 	//print_r($records);
 	//echo "<br><br>";
-	$line[] = array_keys($records[0]);
+	//$line[] = array_keys($records[0]);
 	//echo "line<br>";
 	//print_r($line);
 	for($i=0;$i<count($records);$i++) {
@@ -150,8 +150,8 @@ function search_array($abc, $abc2, $abcl, $hiragana, $hiragana2, $word) {
 
 function panel_child($todo, $parent) {
 	//echo $todo[12]['child'];
-	if($todo[($parent-1)]['child'] != 0) {
-		for($i=0; $i<count($todo); $i++) {
+	if($todo[$parent]['child'] != 0) {
+		for($i=1; $i<count($todo); $i++) {
 			if($todo[$i]['parent']==$parent) {
 				if($todo[$i]['完了']==1) { echo "<div class='panel panel-success'>"; }
 				else echo "<div class='panel panel-danger'>";

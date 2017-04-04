@@ -1,5 +1,5 @@
 <?php
-	for($i=0; $i<count($todo); $i++) {
+	for($i=1; $i<count($todo); $i++) {
 		if($todo[$i]['level'] == 1 && $todo[$i]['完了']==0) {
 			
 			echo "<div class='panel panel-primary'>";

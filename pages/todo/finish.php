@@ -7,7 +7,7 @@
 		echo "<pre>";
 		print_r($todo[($parent-1)]);
 		echo "</pre>";*/
-		if($todo[($parent-1)]['child'] != 0) {
+		if($todo[$parent]['child'] != 0) {
 			//echo "\$todo[\$parent]['child'] != 0<br>";
 			for($i=0; $i<count($todo); $i++) {
 				if($todo[$i]['parent']==$parent && $todo[$i]['完了']==0) {
@@ -34,12 +34,12 @@
 	
 	function check_parent_finish($todo, $child) {
 		if($todo[$child]['level'] != 1) {
-			$parent = $todo[$child]['parent']-1;
+			$parent = $todo[$child]['parent'];
 			$todo[$parent]['パーセンテージ'] += $todo[$child]['パーセンテージ']/$todo[$parent]['child'];
 			//echo $todo[$parent]['id'];
 			if($todo[$parent]['パーセンテージ']>95) {
 				$chk = 0;
-				for($i=0; $i<count($todo); $i++) {
+				for($i=1; $i<count($todo); $i++) {
 					if($todo[$i]['parent']==$parent && $todo[$i]['完了'] == 0) {
 						$chk++;
 					}
@@ -72,7 +72,7 @@
 			//echo $todo[$parent]['id'];
 			if($todo[$parent]['パーセンテージ']>95) {
 				$chk = 0;
-				for($i=0; $i<count($todo); $i++) {
+				for($i=1; $i<count($todo); $i++) {
 					if($todo[$i]['parent']==$parent && $todo[$i]['完了'] == 0) {
 						$chk++;
 					}
