@@ -166,7 +166,9 @@ function panel_child($todo, $parent) {
 				echo "<div class='col-xs-11'><div class='progress'><div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' style='width: {$todo[$i]['パーセンテージ']}%;'>";
 				echo "{$todo[$i]['パーセンテージ']}%";
 				echo "</div></div></div>";
-				echo "<div class='col-xs-1'><a href='todo.php?page=finish&p={$i}' class='btn btn-success'>完了</a></div>";//todo.php?page=finish
+				if($todo[$i]['パーセンテージ']!=100) {
+					echo "<div class='col-xs-1'><a href='todo.php?page=finish&p={$i}' class='btn btn-success'>完了</a></div>";
+				}//todo.php?page=finish
 				echo "<div style='height:50px;'></div>";
 				panel_child($todo, $todo[$i]['id']);
 				echo "</div>";

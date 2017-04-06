@@ -6,7 +6,7 @@
 			echo "<div class='panel panel-primary'>";
 			
 			echo "<div class='panel-heading'>";
-			echo "<a href='./todo.php?page=detail&p={$i}' style='color:#ffffff;'>";
+			echo "<a href='./todo.php?d=detail&p={$i}' style='color:#ffffff;'>";
 			echo "<h3 class='panel-title'>{$todo[$i]['タイトル']}</h3>";
 			echo "</a></div>";
 			echo "<div class='panel-body'>";

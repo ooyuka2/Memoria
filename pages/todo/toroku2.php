@@ -7,6 +7,7 @@
 	$todo = readCsvFile2('../../data/todo.csv');
 	$id=$_POST['id'][0];
 	$number = $id;
+	date_default_timezone_set('Asia/Tokyo');
 	for($j=0; $j<count($_POST['name']);$j++) {
 		if($_POST['name'][$j]!="") {
 			if(isset($_POST['id'][$j])) {

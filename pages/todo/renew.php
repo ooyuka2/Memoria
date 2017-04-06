@@ -4,12 +4,11 @@
 		header( "Location: Error.php" );
 		exit();
 	}
+	date_default_timezone_set('Asia/Tokyo');
 ?>
   <!-- Forms
   ================================================== -->
 
-
-</form>
 <div class="col-xs-1"></div>
 <div class="col-xs-10">
       <?php

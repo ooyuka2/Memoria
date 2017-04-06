@@ -3,7 +3,7 @@
   ================================================== -->
 
 
-</form>
+
 <div class="col-xs-1"></div>
 <div class="col-xs-10">
       <?php
@@ -53,6 +53,7 @@
 						<div class="col-xs-12" style="margin-bottom:5px">
 						<label class="control-label">納期</label>
 						<?php
+							date_default_timezone_set('Asia/Tokyo');
 							$today=date('Y-m-d');
 							echo "<input type='date' class='form-control input-normal input-sm noki' name='noki[]' value='{$today}'>";
 						?>

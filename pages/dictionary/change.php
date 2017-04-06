@@ -3,7 +3,7 @@
 
 	$dictionary = readCsvFile('../data/dictionary.csv');
 	$group = readCsvFile('../data/dictionary_group.csv');
-	
+	date_default_timezone_set('Asia/Tokyo');
 	if(isset($_GET['toroku'])) {
 		$dictionary[$_GET['toroku']][0] = $_POST['name'];
 		$dictionary[$_GET['toroku']][1] = $_POST['furi'];
