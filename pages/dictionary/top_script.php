@@ -21,7 +21,7 @@
 		    lengthMenu: [ 50, 100, 150, 200, 250, 300, 500, 750, 1000 ],
 		    // 件数のデフォルトの値を50にする
 		    displayLength: 250,  
-			stateSave: true,
+			//stateSave: true,
 			columnDefs: [
 		        // 2列目を消す(visibleをfalseにすると消えます)
 		        { targets: 2, visible: false },

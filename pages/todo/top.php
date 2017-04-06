@@ -21,6 +21,7 @@
 				if(isset($_GET['d']) && $_GET['d']=="finish") echo "<li class='active'><a href='#finish' data-toggle='tab'>終了</a></li>";
 				else echo "<li><a href='#finish' data-toggle='tab'>終了</a></li>";
 				if(isset($_GET['d']) && $_GET['d']=="new") echo "<li class='active'><a href='#new' data-toggle='tab'>追加</a></li>";
+				else if(isset($_GET['d']) && $_GET['d']=="renew" && isset($_GET['p'])) echo "<li class='active'><a href='#new' data-toggle='tab'>追加</a></li>";
 				else echo "<li><a href='#new' data-toggle='tab'>追加</a></li>";
             ?>
 		  </ul>
@@ -51,8 +52,10 @@
 				include('todo/finishlist.php');
 				echo "</div>";
 				if(isset($_GET['d']) && $_GET['d']=="new") echo "<div class='tab-pane fade active in' id='new'>";
+				else if(isset($_GET['d']) && $_GET['d']=="renew" && isset($_GET['p'])) echo "<div class='tab-pane fade active in' id='new'>";
 				else echo "<div class='tab-pane fade' id='new'>";
-				include('todo/new.php');
+				if(isset($_GET['d']) && $_GET['d']=="renew" && isset($_GET['p'])) include('todo/renew.php');
+				else include('todo/new.php');
 				echo "</div>";
 				?>
 			</div>
