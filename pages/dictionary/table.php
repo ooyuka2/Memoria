@@ -82,7 +82,7 @@
 
 	        		for($i = 1; $i<count($dictionary); $i++) {
 	        			if(!isset($_GET['search']) || search_array($abc, $abc2, $abcl, $hiragana, $hiragana2, mb_substr($dictionary[$i][1], 0, 1))) {
-	        				if($d==0 || $d==$dictionary[$i][4]) {
+	        				if(($d==0 || $d==$dictionary[$i][4]) && $dictionary[$i][6]!=1) {
 			    				echo "<tr><td>";
 			    				echo $dictionary[$i][0];
 			    				echo "</td><td>";
