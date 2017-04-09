@@ -152,14 +152,14 @@ function panel_child($todo, $parent) {
 	//echo $todo[12]['child'];
 	if($todo[$parent]['child'] != 0) {
 		for($i=1; $i<count($todo); $i++) {
-			if($todo[$i]['parent']==$parent) {
+			if($todo[$i]['parent']==$parent && $todo[$i]['削除']==0) {
 				if($todo[$i]['完了']==1) { echo "<div class='panel panel-success'>"; }
 				else echo "<div class='panel panel-danger'>";
 				echo "<div class='panel-heading'>";
 				echo "<h3 class='panel-title'>{$todo[$i]['タイトル']}</h3>";
 				echo "</div>";
 				echo "<div class='panel-body'>";
-				echo "<div class='alert alert-dismissible alert-success' style='margin-bottom:0'>{$todo[$i]['作業内容']}</div>";
+				echo "<div class='alert alert-dismissible alert-warning' style='margin-bottom:0'>{$todo[$i]['作業内容']}</div>";
 				if($todo[$i]['成果物']!="") {
 					echo "<div class='alert alert-dismissible alert-info'><!--<strong style='font-size:150%'>成果物</strong>-->{$todo[$i]['成果物']}</div>";
 				} else echo "<div style='height:20px;'></div>";

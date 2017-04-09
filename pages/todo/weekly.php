@@ -24,12 +24,13 @@
 					$c = 0;
 					$ary = array();
 					for($i=1; $i<count($working); $i++) {
-						$workday = new DateTime($working[$i]['日付']);
+						$workday = new DateTime($working[$i]['day']);
 						//$date2->diff($date1)->format('%R%a');
 						if(($workday->diff($today)) <= $workday->diff($today->modify('last friday')) && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
 							$ary[$c] = $todo[$working[$i]['id']]['top'];
 							//echo $ary[$c];
 							echo "　◆{$todo[$ary[$c]]['タイトル']}<br>";
+							echo "　　→{$todo[$ary[$c]]['作業内容']}<br>";
 							for($j=1; $j<count($todo); $j++) {
 								if($todo[$j]['parent'] == $ary[$c]) {
 									echo "　               ・{$todo[$j]['タイトル']}";
@@ -68,22 +69,6 @@
 </div>
 
 <?php
-/*
-
-４）次週の主な予定
-（月）
-　　　なし
-　　　・○○○○
-（水）
-　　　なし
-（木）
-　　　・○○○○
-（金）
-　　　なし
-
-
-
-*/
 function week_do($week, $week2, $todo, $working) {
 	$today = new DateTime();
 	/*if($week2<$today->format('w')) $weekday = "last ".$week;
@@ -92,14 +77,15 @@ function week_do($week, $week2, $todo, $working) {
 	
 	$weekday = $week." this week";
 	
-	$day = $today->modify($weekday);
+	$day = $today->modify($weekday)->setTime(0,0,0);
 	//echo $day->format('m/d');
 	$c = 0;
 	$ary = array();
 	$week_str_list = array( '日', '月', '火', '水', '木', '金', '土');
 	echo "（{$week_str_list[$day->format('w')]}）<br>";
 	for($i=1; $i<count($working); $i++) {
-		$workday = new DateTime($working[$i]['日付']);
+		$workday = new DateTime($working[$i]['day']);
+		$workday = $workday->setTime(0,0,0);
 		//echo $workday->format('m/d');
 		if($workday->diff($day)->format('%R%a') == 0 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
 			$ary[$c] = $todo[$working[$i]['id']]['top'];
@@ -116,13 +102,14 @@ function next_week_do($week, $week2, $todo, $working) {
 	$today = new DateTime();
 	$weekday = $week." next week";
 	
-	$day = $today->modify($weekday);
+	$day = $today->modify($weekday)->setTime(0,0,0);
 	$c = 0;
 	$ary = array();
 	$week_str_list = array( '日', '月', '火', '水', '木', '金', '土');
 	echo "（{$week_str_list[$day->format('w')]}）<br>";
 	for($i=1; $i<count($todo); $i++) {
 		$workday = new DateTime($todo[$i]['開始予定日']);
+		$workday = $workday->setTime(0,0,0);
 		//echo $workday->format('m/d');
 		if($workday->diff($day)->format('%R%a') == 0 && serch_word($todo[$i]['top'], $ary)==0) {
 			$ary[$c] = $todo[$i]['top'];

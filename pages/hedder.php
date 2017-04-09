@@ -20,10 +20,6 @@
 
 
   <style type="text/css">
-  @font-face {
-	font-family: 'MyFont';
-	src: url(../niko/font/Apples Script-TTF.ttf);
-}
   @media ( min-width: 768px ) {
     #banner {
       min-height: 300px;

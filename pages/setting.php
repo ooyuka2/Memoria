@@ -1,4 +1,4 @@
 <?php
 	//honoka, niko, rin, umi
-	$color = 'rin';
+	$color = 'honoka';
 ?>

@@ -30,7 +30,7 @@
 			}
 			$todo[$id]['id'] = $id;
 			$todo[$id]['タイトル'] = $_POST['name'][$j];
-			$todo[$id]['作業内容'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail'][$j]);
+			$todo[$id]['作業内容'] = str_replace(array("\r\n", "\r", "\n","[EOF]"), '<br>', $_POST['detail'][$j]);
 			$todo[$id]['納期'] = $_POST['noki'][$j];
 			$todo[$id]['納期時間'] = $_POST['time'][$j];
 			$todo[$id]['開始予定日'] = $_POST['kaisi'][$j];

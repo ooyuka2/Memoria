@@ -1,8 +1,13 @@
-
+<datalist id="keywords">
 <?php
-
 	$dictionary = readCsvFile('../data/dictionary.csv');
 	$group = readCsvFile('../data/dictionary_group.csv');
+	for($i=1;$i<count($dictionary);$i++) {
+		echo "<option value='{$dictionary[$i][0]}'>";
+	}
+?>
+</datalist>
+<?php
 	date_default_timezone_set('Asia/Tokyo');
 	if(isset($_GET['toroku'])) {
 		for($j=0; $j<count($_POST['name']);$j++) {
@@ -43,7 +48,7 @@
 			            <div class="col-xs-3" style="padding-right:0;">
 							<div class="col-xs-12" style="padding-right:0;">
 								<?php
-									echo "<input type='text' class='form-control input-normal input-sm name' id='name' name='name[]' placeholder='メモ' onBlur='check_furi({$j})'>";
+									echo "<input type='search' autocomplete='on' list='keywords' class='form-control input-normal input-sm name' id='name' name='name[]' placeholder='メモ' onBlur='check_furi({$j})'>";
 									$id=count($dictionary)+$j;
 									echo "<input type='hidden' name='id[]' value='{$id}'>";
 								?>

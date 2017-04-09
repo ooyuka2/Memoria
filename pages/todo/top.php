@@ -29,7 +29,7 @@
 				else echo "<li><a href='#weekly' data-toggle='tab'>週報</a></li>";
             ?>
 		  </ul>
-			
+		<div style='width:90%; margin: auto'><!-- class='col-md-offset-1 col-md-10 col-sm-12' -->
           <div id="myTabContent" class="tab-content">
           	<?php
 	            
@@ -45,13 +45,12 @@
 				}
 				if(isset($_GET['d']) && $_GET['d']=="tomorrow") echo "<div class='tab-pane fade active in' id='tomorrow'>";
 				else echo "<div class='tab-pane fade' id='tomorrow'>";
-				//include('todo/tomorrow.php');
-				echo "<p class='text-success'>未実装</p>";
+				include('todo/tomorrow.php');
 				echo "</div>";
 				if(isset($_GET['d']) && $_GET['d']=="week") echo "<div class='tab-pane fade active in' id='week'>";
 				else echo "<div class='tab-pane fade' id='week'>";
-				//include('todo/week.php');
-				echo "<p class='text-info'>未実装</p>";
+				include('todo/week.php');
+				//echo "<p class='text-info'>未実装</p>";
 				echo "</div>";
 				if(isset($_GET['d']) && $_GET['d']=="todo") echo "<div class='tab-pane fade active in' id='todo'>";
 				else echo "<div class='tab-pane fade' id='todo'>";
@@ -71,7 +70,8 @@
 				else echo "<div class='tab-pane fade' id='weekly'>";
 				include('todo/weekly.php');
 				echo "</div>";
-				?>
+			?>
+				</div>
 			</div>
 		</div>
 	</div>

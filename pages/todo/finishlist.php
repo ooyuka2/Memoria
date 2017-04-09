@@ -1,7 +1,7 @@
 <?php
 	//$todo = readCsvFile2('../data/todo.csv');
 	for($i=count($todo)-1; $i>0; $i--) {
-		if($todo[$i]['level'] == 1 && $todo[$i]['完了']==1) {
+		if($todo[$i]['level'] == 1 && $todo[$i]['完了']==1 && $todo[$i]['削除']==0) {
 			
 			echo "<div class='panel panel-primary'>";
 			

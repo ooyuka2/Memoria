@@ -1,9 +1,10 @@
-
+<?php//$day2 = $day2->modify('friday this week'); ?>
 <?php
 	for($i=1; $i<count($todo); $i++) {
 		date_default_timezone_set('Asia/Tokyo');
 		$day1 = new DateTime($todo[$i]['開始予定日']);
 		$day2 = new DateTime(date('Y/m/d'));
+		$day2 = $day2->modify('friday this week'); 
 		$interval = $day1->diff($day2);
 		if($todo[$i]['完了']==0 && $interval->format('%r%a 日')>=0 && $todo[$i]['保留']==0 && $todo[$i]['child']==0 && $todo[$i]['削除']==0) { //$todo[$i]['level'] == 1 && 
 			

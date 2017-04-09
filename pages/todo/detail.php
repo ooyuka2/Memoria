@@ -3,14 +3,14 @@
 ?>
 
 <?php
-	echo "<div class='clearfix'><a href='todo.php?page=change&p={$_GET['p']}' class='btn btn-info pull-right'>編集</a><a href='todo.php?d=renew&p={$_GET['p']}' class='btn btn-warning pull-right'>流用</a></div>";
+	echo "<div class='clearfix'><a href='todo.php?page=change&p={$_GET['p']}' class='btn btn-info pull-right'>編集</a><a href='todo.php?d=renew&p={$_GET['p']}' class='btn btn-warning pull-right' style='margin:0 10px'>流用</a></div>";
 	echo "<div class='panel panel-primary'>";
 	
 	echo "<div class='panel-heading'>";
 	echo "<h3 class='panel-title'>{$todo[$_GET['p']]['タイトル']}</h3>";
 	echo "</div>";
 	echo "<div class='panel-body'>";
-	echo "<div class='alert alert-dismissible alert-success' style='margin-bottom:0'>{$todo[$_GET['p']]['作業内容']}</div>";
+	echo "<div class='alert alert-dismissible alert-warning' style='margin-bottom:0'>{$todo[$_GET['p']]['作業内容']}</div>";
 	if($todo[$_GET['p']]['成果物']!="") {
 		echo "<div class='alert alert-dismissible alert-info'><!--<strong style='font-size:150%'>成果物</strong>-->{$todo[$_GET['p']]['成果物']}</div>";
 	} else echo "<div style='height:20px;'></div>";
