@@ -20,13 +20,13 @@
 					echo $weeklyTo."<br><br>";
 					echo "お世話になっております。{$myname}です。<br>週報を提出致します。<br><br><br>１）テーマ進捗<br>なし<br><br>";
 					echo "２）今週の業務のトピックス<br>";
-					$monday = $today->modify('last monday');
+					$monday = $today->modify('monday this week');
 					$c = 0;
 					$ary = array();
-					for($i=1; $i<count($working); $i++) {
+					for($i=count($working)-1; $i>0; $i--) {
 						$workday = new DateTime($working[$i]['day']);
 						//$date2->diff($date1)->format('%R%a');
-						if(($workday->diff($today)) <= $workday->diff($today->modify('last friday')) && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
+						if(($workday->diff($monday)->format('%R%a')) <= 0 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
 							$ary[$c] = $todo[$working[$i]['id']]['top'];
 							//echo $ary[$c];
 							echo "　◆{$todo[$ary[$c]]['タイトル']}<br>";

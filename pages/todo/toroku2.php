@@ -18,6 +18,7 @@
 				$commnet = $todo[$id]['所感'];
 				$toroku = $todo[$id]['登録日'];
 				$wait = $todo[$id]['保留'];
+				$deletekey = $todo[$id]['削除'];
 			}
 			else {
 				$id = count($todo);
@@ -27,6 +28,7 @@
 				$commnet = "no comment";
 				$toroku = date('Y/m/d H:i:s');
 				$wait = 0;
+				$deletekey = 0;
 			}
 			$todo[$id]['id'] = $id;
 			$todo[$id]['タイトル'] = $_POST['name'][$j];
@@ -48,6 +50,7 @@
 			$todo[$id]['優先度'] = $_POST['priority'][$j];
 			$todo[$id]['登録日'] = $toroku;
 			$todo[$id]['保留'] = $wait;
+			$todo[$id]['削除'] = 0;
 		}
 	}
 

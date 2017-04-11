@@ -1,4 +1,4 @@
-<?php//$day2 = $day2->modify('friday this week'); ?>
+<?php //$day2 = $day2->modify('friday this week'); ?>
 <?php
 	for($i=1; $i<count($todo); $i++) {
 		date_default_timezone_set('Asia/Tokyo');

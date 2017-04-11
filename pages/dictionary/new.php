@@ -18,6 +18,7 @@
 				$dictionary[$_POST['id'][$j]][3] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail'][$j]);
 				$dictionary[$_POST['id'][$j]][4] = $_POST['genre'][$j];
 				$dictionary[$_POST['id'][$j]][5] = date('Y/m/d H:i:s');
+				$dictionary[$_POST['id'][$j]][6] = 0;
 				//echo $_POST['id'][$j];
 			}
 		}

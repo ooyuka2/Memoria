@@ -29,6 +29,7 @@
 			$todo[$id]['優先度'] = $_POST['priority'][$j];
 			$todo[$id]['登録日'] = date('Y/m/d H:i:s');
 			$todo[$id]['保留'] = 0;
+			$todo[$id]['削除'] = 0;
 			$id++;
 		}
 	}

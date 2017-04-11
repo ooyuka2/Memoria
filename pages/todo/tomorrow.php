@@ -1,4 +1,4 @@
-<?php//$day2 = $day2->modify('+1 day'); ?>
+<?php //$day2 = $day2->modify('+1 day'); ?>
 <?php
 	for($i=1; $i<count($todo); $i++) {
 		date_default_timezone_set('Asia/Tokyo');

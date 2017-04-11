@@ -24,7 +24,8 @@
 				else echo "<li><a href='#finish' data-toggle='tab'>終了</a></li>";
 				if(isset($_GET['d']) && $_GET['d']=="new") echo "<li class='active'><a href='#new' data-toggle='tab'>追加</a></li>";
 				else if(isset($_GET['d']) && $_GET['d']=="renew" && isset($_GET['p'])) echo "<li class='active'><a href='#new' data-toggle='tab'>追加</a></li>";
-				else echo "<li><a href='#new' data-toggle='tab'>追加</a></li>";
+				else if(!(isset($_GET['d']) && $_GET['d']=="change")) echo "<li><a href='#new' data-toggle='tab'>追加</a></li>";
+				if(isset($_GET['d']) && $_GET['d']=="change") echo "<li class='active'><a href='#change' data-toggle='tab'>編集</a></li>";
 				if(isset($_GET['d']) && $_GET['d']=="weekly") echo "<li class='active'><a href='#weekly' data-toggle='tab'>週報</a></li>";
 				else echo "<li><a href='#weekly' data-toggle='tab'>週報</a></li>";
             ?>
@@ -62,10 +63,15 @@
 				echo "</div>";
 				if(isset($_GET['d']) && $_GET['d']=="new") echo "<div class='tab-pane fade active in' id='new'>";
 				else if(isset($_GET['d']) && $_GET['d']=="renew" && isset($_GET['p'])) echo "<div class='tab-pane fade active in' id='new'>";
-				else echo "<div class='tab-pane fade' id='new'>";
+				else if(!(isset($_GET['d']) && $_GET['d']=="change")) echo "<div class='tab-pane fade' id='new'>";
 				if(isset($_GET['d']) && $_GET['d']=="renew" && isset($_GET['p'])) include('todo/renew.php');
-				else include('todo/new.php');
-				echo "</div>";
+				else if(!(isset($_GET['d']) && $_GET['d']=="change"))include('todo/new.php');
+				if(!(isset($_GET['d']) && $_GET['d']=="change")) echo "</div>";
+				if(isset($_GET['d']) && $_GET['d']=="change") {
+					echo "<div class='tab-pane fade active in' id='change'>";
+					include('todo/change.php');
+					echo "</div>";
+				}
 				if(isset($_GET['d']) && $_GET['d']=="weekly") echo "<div class='tab-pane fade active in' id='weekly'>";
 				else echo "<div class='tab-pane fade' id='weekly'>";
 				include('todo/weekly.php');

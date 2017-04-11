@@ -30,6 +30,9 @@ if (is_readable($filepath)) {
 		}
 		mb_convert_variables('UTF-8',"SJIS-win, UTF-8",$records);
 		for($i=0;$i<count($records);$i++) {
+			/*echo "<pre>";
+			print_r($records[$i]);
+			echo "</pre>";*/
 			for($j=0;$j<count($records[0]);$j++) {
 				$ary[$i][$records[0][$j]] = $records[$i][$j];
 			}

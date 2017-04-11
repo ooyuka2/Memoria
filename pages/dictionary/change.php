@@ -11,6 +11,7 @@
 		$dictionary[$_GET['toroku']][3] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail']);
 		$dictionary[$_GET['toroku']][4] = $_POST['genre'];
 		//$dictionary[$_GET['toroku']][5] = date('Y/m/d H:i:s');
+		$dictionary[$_GET['toroku']][6] = 0;
 		writeCsvFile("../data/dictionary.csv", $dictionary);
 		$name = $dictionary[$_GET['toroku']][0];
 		$_SESSION['change'] = "{$name}を変更しました。";

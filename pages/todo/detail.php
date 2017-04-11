@@ -3,7 +3,7 @@
 ?>
 
 <?php
-	echo "<div class='clearfix'><a href='todo.php?page=change&p={$_GET['p']}' class='btn btn-info pull-right'>編集</a><a href='todo.php?d=renew&p={$_GET['p']}' class='btn btn-warning pull-right' style='margin:0 10px'>流用</a></div>";
+	echo "<div class='clearfix'><a href='todo.php?d=change&p={$_GET['p']}' class='btn btn-info pull-right'>編集</a><a href='todo.php?d=renew&p={$_GET['p']}' class='btn btn-warning pull-right' style='margin:0 10px'>流用</a></div>";
 	echo "<div class='panel panel-primary'>";
 	
 	echo "<div class='panel-heading'>";

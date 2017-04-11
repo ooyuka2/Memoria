@@ -10,6 +10,7 @@
 			$navTodoCount++;
 		}
 	}
+	//$navTodoCount = 0;
 ?>
 <header>
   <div class="navbar navbar-default navbar-fixed-top">
