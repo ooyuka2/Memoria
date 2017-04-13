@@ -3,7 +3,7 @@
 	
 	
 	//<button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>×</span></button>
-	var new_id = 1;
+	var new_id = document.getElementsByClassName("name").length;
 	function read_form() {
 		var array = new Array();
 		for(var i=0; i<document.getElementsByClassName("name").length; i++) {

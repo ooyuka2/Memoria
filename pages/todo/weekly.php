@@ -23,7 +23,7 @@
 					$monday = $today->modify('monday this week');
 					$c = 0;
 					$ary = array();
-					for($i=count($working)-1; $i>0; $i--) {
+					for($i=1; $i<count($working); $i++) {
 						$workday = new DateTime($working[$i]['day']);
 						//$date2->diff($date1)->format('%R%a');
 						if(($workday->diff($monday)->format('%R%a')) <= 0 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {

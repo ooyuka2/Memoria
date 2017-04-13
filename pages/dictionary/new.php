@@ -1,12 +1,9 @@
-<datalist id="keywords">
+
 <?php
 	$dictionary = readCsvFile('../data/dictionary.csv');
 	$group = readCsvFile('../data/dictionary_group.csv');
-	for($i=1;$i<count($dictionary);$i++) {
-		echo "<option value='{$dictionary[$i][0]}'>";
-	}
 ?>
-</datalist>
+
 <?php
 	date_default_timezone_set('Asia/Tokyo');
 	if(isset($_GET['toroku'])) {
@@ -26,6 +23,7 @@
 		header( "Location: ./dictionary.php" );
 		exit();
 	}	
+	
 ?>
 <div class="row">
   <div class="col-lg-12">
@@ -34,6 +32,13 @@
     </div>
   </div>
 </div>
+<datalist id="keywords">
+<?php
+	/*for($i=1;$i<count($dictionary);$i++) {
+		echo "<option value='{$dictionary[$i][0]}'>";
+	}*/
+?>
+</datalist>
   <!-- Forms
   ================================================== -->
   <div class="bs-docs-section" style="margin:0">

@@ -96,6 +96,7 @@
 		        </div>
 			</div>
 	    </fieldset>
+	    <div class='new'>
 	    <?php
 	    	$count=1;
 		    for($i=1; $i<count($todo);$i++) {
@@ -109,10 +110,7 @@
 		    	}
 		    }
 	    ?>
-	    
-	    
-	    
-	    <div class="new"></div>
+	    </div>
 	    <div class="form-group">
 	    	<button class="btn btn-success center-block" type="button" onClick='plus();'><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>　追加</button>
 	    </div>
