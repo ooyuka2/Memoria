@@ -184,4 +184,66 @@ function panel_child($todo, $parent) {
 	return $todo;
 }
 
+function last_todo_panel($todo, $i, $pattern) {
+			echo "<div class='panel panel-{$pattern}'>";
+			
+			echo "<div class='panel-heading'>";
+			if($todo[$i]['level'] == 1) {
+				echo "<a href='./todo.php?d=detail&p={$i}' ";
+				if($pattern=='primary') echo "style='color:#ffffff;'";
+				echo ">";
+				echo "<h3 class='panel-title'>{$todo[$i]['タイトル']}</h3>";
+			}
+			else {
+				$b = $todo[$i]['top'];
+				echo "<a href='./todo.php?d=detail&p={$b}'";
+				if($pattern=='primary') echo "style='color:#ffffff;'";
+				echo ">";
+				echo "<h3 class='panel-title'>{$todo[$i]['タイトル']}<span class='pull-right'>{$todo[$todo[$i]['top']]['タイトル']}</span></h3>";
+			}
+			echo "</a></div>";
+			echo "<div class='panel-body'>";
+			echo "";
+			echo "<div class='col-md-9 col-xs-6'><strong>作業内容　: </strong>{$todo[$i]['作業内容']}<br><strong>成果物　　: </strong>{$todo[$i]['成果物']}<br><strong>期間　　　: </strong>{$todo[$i]['開始予定日']}　～　{$todo[$i]['納期']}</div>";
+			//echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=do&p={$i}' class='btn btn-default'>作業</a></div>";
+			echo "<div class='col-md-1 col-xs-2'><button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown' aria-expanded='false'>作業 <span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
+			for($j=ceil($todo[$i]['パーセンテージ']/10)*10; $j<100; $j+=10) 
+			echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=do&p={$i}&f={$j}'>{$j}％まで完了</a></li>";
+			echo "</ul></div>";
+			echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=wait&p={$i}' class='btn btn-warning'>保留</a></div>";
+			echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=finish&p={$i}' class='btn btn-success'>完了</a></div>";
+			echo "</div>";
+			echo "</div>";
+	
+}
+
+function sort_by_noki_priority($todo) {
+	$array = array();
+	for($i=1; $i<count($todo); $i++) {
+		$array[$i-1] = $todo[$i]['id'];
+	}
+	for($i=0; $i<count($array); $i++) {
+		for($j=$i+1; $j<count($array); $j++) {
+			$date1 = $todo[$array[$i]]['納期']. " ".$todo[$array[$i]]['納期時間'];
+			$date1 = new DateTime($date1);
+			$date2 = $todo[$array[$j]]['納期']. " ".$todo[$array[$j]]['納期時間'];
+			$date2 = new DateTime($date2);
+			if($date1 > $date2) {
+				$x = $array[$i];
+				$array[$i] = $array[$j];
+				$array[$j] = $x;
+			} else if($date1 == $date2) {
+				if($array[$i]>$array[$j]) {
+					$x = $array[$i];
+					$array[$i] = $array[$j];
+					$array[$j] = $x;
+				}
+			}
+		}
+	}/*
+	echo "<pre>";
+	print_r($array);
+	echo "</pre>";*/
+	return $array;
+}
 ?>

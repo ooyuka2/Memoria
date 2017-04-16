@@ -349,3 +349,14 @@ footer .copyright {
 .v4-pre:hover {
   color: #fff;
 }
+
+.bkcolor {
+  position: relative;
+  min-height: 530px;
+  margin-bottom: 0;
+  overflow: hidden;
+  background-color: #fffacd;
+  background-position: -35% center;
+  -webkit-background-size: 70% 70%;
+          background-size: 70%;
+}

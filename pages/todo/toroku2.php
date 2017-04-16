@@ -63,7 +63,7 @@
 			else if(($todo[$idarray[$j]]['level']-$todo[$idarray[$j-1]]['level'])==1) $todo[$idarray[$j]]['parent'] = $todo[$idarray[$j-1]]['id'];
 			else if($todo[$idarray[$j]]['level']==$todo[$idarray[$j-1]]['level']) $todo[$idarray[$j]]['parent'] = $todo[$idarray[$j-1]]['parent'];
 			else {
-				for($k=j-1; $k>=0; $k--) {
+				for($k=$j-1; $k>=0; $k--) {
 					if($todo[$idarray[$j]]['level']==($todo[$idarray[$k]]['level'])+1) {
 						$todo[$idarray[$j]]['parent'] = $todo[$idarray[$k]]['id'];
 						break;
@@ -81,9 +81,24 @@
 			$todo[$idarray[$j]]['child'] = $child;
 		}
 	}
-	/*echo "<pre>";
+	//削除対象がないかの確認
+	$id=$_POST['id'][0];
+	for($i=1; $i<count($todo); $i++) {
+		if($todo[$i]['top'] == $id) {
+			$check = 0;
+			for($j=0; $j<count($_POST['id']);$j++) {
+				if($todo[$i]['id'] == $_POST['id'][$j]) $check++;
+			}
+			if($check==0) $todo[$i]['削除'] == 1;
+		}
+	}
+	/*
+	echo "<pre>";
+	print_r($_POST['id']);
 	print_r($todo);
-	echo "</pre>";*/
+	
+	echo "</pre>";
+	*/
 	writeCsvFile2("../../data/todo.csv", $todo);
 	
 	header( "Location: ../todo.php" );

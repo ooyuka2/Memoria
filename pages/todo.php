@@ -10,10 +10,12 @@
 
 <!-- jumbotron special -->
 <section class="section section-inverse japanese-font">
+	<div class='bkcolor'>
 	<div class="container" style="padding:0 0 50px 0">
 	  <?php
 	  	select_page("todo", $_GET['page']);
 	  ?>
+	</div>
 	</div>
 </section>
 

@@ -337,3 +337,13 @@ footer .copyright {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 24px;
 }
+.bkcolor {
+  position: relative;
+  min-height: 530px;
+  margin-bottom: 0;
+  overflow: hidden;
+  background-color: #ffefff;/*ffadff*/
+  background-position: -35% center;
+  -webkit-background-size: 70% 70%;
+          background-size: 70%;
+}
