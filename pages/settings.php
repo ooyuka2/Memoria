@@ -32,6 +32,7 @@
           </div>
           <form class='form-horizontal' method='post' action='./settings.php'>
           	<button type='submit' value='niko' class="btn btn-danger btn-lg" id="kakutei" name="kakutei">確定</button>
+          	<br><br><a href="./xxx.php" class="btn">xxx.php</a>
           </form>
         </div>
       </div>
