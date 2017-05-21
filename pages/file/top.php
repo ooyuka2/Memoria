@@ -11,14 +11,14 @@
         <div class="bs-component">
           <ul class="nav nav-tabs">
           	<?php
-          		if(!isset($_GET['d']) || $_GET['d']=="home") echo "<li class='active'><a href='#home' data-toggle='tab'>home</a></li>";
-          		else echo "<li><a href='#home' data-toggle='tab'>home</a></li>";
+          		if(!isset($_GET['d']) || $_GET['d']=="home") echo "<li class='active'><a href='#home'>home</a></li>";
+          		else echo "<li><a href='./file.php?d=home'>home</a></li>";
 	        	for($i=1; $i<count($group); $i++) {
 	        		$tab = "tab_".$group[$i]['abc'];
 	          		if(!isset($_GET['d']) || $_GET['d']!=$group[$i]['abc'])
-	          			echo "<li><a href='#tab_{$group[$i]['abc']}' data-toggle='tab'>{$group[$i]['group']}</a></li>";
+	          			echo "<li><a href='./file.php?d={$group[$i]['abc']}'>{$group[$i]['group']}</a></li>";
 	          		else if(isset($_GET['d']) && $_GET['d']==$group[$i]['abc'])
-	          			echo "<li class='active'><a href='#tab_{$group[$i]['abc']}' data-toggle='tab'>{$group[$i]['group']}</a></li>";
+	          			echo "<li class='active'><a href='./file.php?d={$group[$i]['abc']}'>{$group[$i]['group']}</a></li>";
 	        	}
             
             ?>

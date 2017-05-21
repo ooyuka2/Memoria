@@ -8,14 +8,14 @@
         <div class="bs-component">
           <ul class="nav nav-tabs">
           	<?php
-          		if(!isset($_GET['d']) || $_GET['d']=="home") echo "<li class='active'><a href='#home' data-toggle='tab'>home</a></li>";
-          		else echo "<li><a href='#home' data-toggle='tab'>home</a></li>";
+          		if(!isset($_GET['d']) || $_GET['d']=="home") echo "<li class='active'><a href='#home'>home</a></li>";
+          		else echo "<li><a href='./dictionary.php?d=home'>home</a></li>";
 	        	for($i=1; $i<count($group); $i++) {
 	        		$tab = "tab_".$group[$i][1];
 	          		if(!isset($_GET['d']) || $_GET['d']!=$group[$i][1])
-	          			echo "<li><a href='#tab_{$group[$i][1]}' data-toggle='tab'>{$group[$i][0]}</a></li>";
+	          			echo "<li><a href='./dictionary.php?d={$group[$i][1]}'>{$group[$i][0]}</a></li>";
 	          		else if(isset($_GET['d']) && $_GET['d']==$group[$i][1])
-	          			echo "<li class='active'><a href='#tab_{$group[$i][1]}' data-toggle='tab'>{$group[$i][0]}</a></li>";
+	          			echo "<li class='active'><a href='./dictionary.php?d={$group[$i][1]}'>{$group[$i][0]}</a></li>";
 	        	}
             
             ?>
