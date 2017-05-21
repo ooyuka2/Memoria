@@ -92,16 +92,16 @@
 			if($check==0) $todo[$i]['削除'] == 1;
 		}
 	}
-	/*
+	
 	echo "<pre>";
-	print_r($_POST['id']);
+	print_r($_POST);
 	print_r($todo);
 	
 	echo "</pre>";
-	*/
+	
 	writeCsvFile2("../../data/todo.csv", $todo);
 	
-	header( "Location: ../todo.php" );
-	exit();
+	//header( "Location: ../todo.php" );
+	//exit();
 
 ?>

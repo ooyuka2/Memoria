@@ -17,7 +17,7 @@
     <div class="container">
       <div class="navbar-header">
         <a href="./"class="navbar-brand">
-        	<img src='../img/logo.png' alt='Memoria' style="width:auto;height:500%;position:relative;bottom:45px;">
+        	<img src='../img/logo.png' alt='Memoria' style="width:auto;height:300%;position:relative;bottom:25px;">
         </a>
         <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
           <span class="icon-bar"></span>

@@ -1,19 +1,24 @@
 
 <?php
 
-	$file = readCsvFile('../data/file.csv');
-	$group = readCsvFile('../data/file_group.csv');
+	$file = readCsvFile2('../data/file.csv');
+	//name,furi,summary,detail,count,syurui,date,delete
+	$group = readCsvFile2('../data/file_group.csv');
+	//group,abc,detail
+	
 	date_default_timezone_set('Asia/Tokyo');
 	if(isset($_GET['toroku'])) {
-		$file[$_GET['toroku']][0] = $_POST['name'];
-		$file[$_GET['toroku']][1] = $_POST['furi'];
-		$file[$_GET['toroku']][2] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary']);
-		$file[$_GET['toroku']][3] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail']);
-		$file[$_GET['toroku']][4] = $_POST['genre'];
-		//$file[$_GET['toroku']][5] = date('Y/m/d H:i:s');
-		$file[$_GET['toroku']][6] = 0;
+		$file[$_GET['toroku']]['name'] = $_POST['name'];
+		$file[$_GET['toroku']]['furi'] = $_POST['furi'];
+		$file[$_GET['toroku']]['summary'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary']);
+		$file[$_GET['toroku']]['detail'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail']);
+		$file[$_GET['toroku']]['syurui'] = $_POST['genre'];
+		//$file[$_GET['toroku']]['date'] = date('Y/m/d H:i:s');
+		$file[$_GET['toroku']]['count'] = 0;
+		$file[$_GET['toroku']]['delete'] = 0;
+		
 		writeCsvFile("../data/file.csv", $file);
-		$name = $file[$_GET['toroku']][0];
+		$name = $file[$_GET['toroku']]['name'];
 		$_SESSION['change'] = "{$name}を変更しました。";
 		header( "Location: ./file.php" );
 		exit();
@@ -43,7 +48,7 @@
                 <label for="inputEmail" class="col-lg-2 control-label">メモタイトル</label>
                 <div class="col-lg-10">
                     <?php
-                		echo "<input type='text' class='form-control' id='name' name='name' placeholder='メモ' value='{$file[$_GET['p']][0]}' onBlur='check_furi()'>";//
+                		echo "<input type='text' class='form-control' id='name' name='name' placeholder='メモ' value='{$file[$_GET['p']]['name']}' onBlur='check_furi()'>";//
                 	?>
                 </div>
 
@@ -52,7 +57,7 @@
                 <label for="inputEmail" class="col-lg-2 control-label">ふりがな</label>
                 <div class="col-lg-10">
                     <?php
-                		echo "<input type='text' class='form-control' id='furi' name='furi' placeholder='メモ' value='{$file[$_GET['p']][1]}'>";//
+                		echo "<input type='text' class='form-control' id='furi' name='furi' placeholder='メモ' value='{$file[$_GET['p']]['furi']}'>";//
                 	?>
                 </div>
 
@@ -64,9 +69,9 @@
 			                  	<?php
 			                  		//echo "<option value='0'></option>";
 			                  		for($i=1;$i<count($group);$i++) {
-			                  			if($file[$_GET['p']][4]==$i)
-			                  				echo "<option value='{$i}'selected>{$group[$i][0]}</option>";
-			                  			else echo "<option value='{$i}'>{$group[$i][0]}</option>";
+			                  			if($file[$_GET['p']]['syurui']==$i)
+			                  				echo "<option value='{$i}'selected>{$group[$i]['group']}</option>";
+			                  			else echo "<option value='{$i}'>{$group[$i]['group']}</option>";
 			                  		}
 			                  	?>
 			                    
@@ -76,7 +81,7 @@
                 <label for="textArea" class="col-lg-2 control-label">要点</label>
                 <div class="col-lg-10">
                   <textarea class="form-control" rows="3" id="textArea" name="summary"><?php 
-                  	$summary = str_replace('<br>', '&#13;',$file[$_GET['p']][2]); 
+                  	$summary = str_replace('<br>', '&#13;',$file[$_GET['p']]['summary']); 
                   	echo $summary;
                   	
                   	?></textarea>
@@ -86,7 +91,7 @@
                 <label for="textArea" class="col-lg-2 control-label">詳細</label>
                 <div class="col-lg-10">
                   <textarea class="form-control" rows="3" id="textArea" name="detail"><?php 
-                  	$detail = str_replace('<br>', '&#13;',$file[$_GET['p']][3]); 
+                  	$detail = str_replace('<br>', '&#13;',$file[$_GET['p']]['detail']); 
                   	echo $detail;
                   	
                   	?></textarea>

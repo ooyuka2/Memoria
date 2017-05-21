@@ -59,13 +59,13 @@
 	for($j=0; $j<count($_POST['name']);$j++) {
 		$id = $idarray[$j];
 		if($_POST['name'][$j]!="") {
-			if($todo[$idarray[$j]]['level']==1) $todo[$idarray[$j]]['parent'] = 0;
-			else if(($todo[$idarray[$j]]['level']-$todo[$idarray[$j-1]]['level'])==1) $todo[$idarray[$j]]['parent'] = $todo[$idarray[$j-1]]['id'];
-			else if($todo[$idarray[$j]]['level']==$todo[$idarray[$j-1]]['level']) $todo[$idarray[$j]]['parent'] = $todo[$idarray[$j-1]]['parent'];
+			if($todo[$id]['level']==1) $todo[$id]['parent'] = 0;
+			else if(($todo[$id]['level']-$todo[($id-1)]['level'])==1) $todo[$id]['parent'] = $todo[($id-1)]['id'];
+			else if($todo[$id]['level']==$todo[($id-1)]['level']) $todo[$id]['parent'] = $todo[($id-1)]['parent'];
 			else {
-				for($k=$j-1; $k>=0; $k--) {
-					if($todo[$idarray[$j]]['level']==($todo[$idarray[$k]]['level'])+1) {
-						$todo[$idarray[$j]]['parent'] = $todo[$idarray[$k]]['id'];
+				for($k=$id-1; $k>=0; $k--) {
+					if($todo[$id]['level']==($todo[$k]['level'])+1) {
+						$todo[$id]['parent'] = $todo[$k]['id'];
 						break;
 					}
 				}
@@ -78,30 +78,15 @@
 				}
 				$i++;
 			}
-			$todo[$idarray[$j]]['child'] = $child;
+			$todo[$id]['child'] = $child;
 		}
 	}
-	//削除対象がないかの確認
-	$id=$_POST['id'][0];
-	for($i=1; $i<count($todo); $i++) {
-		if($todo[$i]['top'] == $id) {
-			$check = 0;
-			for($j=0; $j<count($_POST['id']);$j++) {
-				if($todo[$i]['id'] == $_POST['id'][$j]) $check++;
-			}
-			if($check==0) $todo[$i]['削除'] == 1;
-		}
-	}
-	/*
 	echo "<pre>";
-	print_r($_POST['id']);
 	print_r($todo);
-	
 	echo "</pre>";
-	*/
-	writeCsvFile2("../../data/todo.csv", $todo);
+	//writeCsvFile2("../../data/todo.csv", $todo);
 	
-	header( "Location: ../todo.php" );
-	exit();
+	//header( "Location: ../todo.php" );
+	//exit();
 
 ?>

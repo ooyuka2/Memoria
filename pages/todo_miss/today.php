@@ -1,5 +1,5 @@
-<?php //$day2 = $day2->modify('friday this week'); ?>
 <?php
+	$sa = sort_by_noki_priority($todo);
 	for($i=0; $i<count($sa); $i++) {
 		date_default_timezone_set('Asia/Tokyo');
 		$day1 = new DateTime($todo[$sa[$i]]['開始予定日']);

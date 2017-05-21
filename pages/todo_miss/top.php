@@ -10,24 +10,24 @@
         <div class="bs-component">
           <ul class="nav nav-tabs">
           	<?php
-          		if(!isset($_GET['d']) || $_GET['d']=="today") echo "<li class='active'><a href='todo.php?d=today'>今日</a></li>";
-          		else echo "<li><a href='todo.php?d=today'>今日</a></li>";
-          		if((isset($_GET['d']) && $_GET['d']=="detail") && (isset($_GET['p']) && $_GET['p']<count($todo))) echo "<li class='active'><a href='todo.php?d=detail'>詳細</a></li>";
-          		else if(isset($_GET['p']) && $_GET['p']<count($todo)) echo "<li><a href='todo.php?d=detail'>詳細</a></li>";
-				if(isset($_GET['d']) && $_GET['d']=="tomorrow") echo "<li class='active'><a href='todo.php?d=tomorrow'>明日</a></li>";
-				else echo "<li><a href='todo.php?d=tomorrow'>明日</a></li>";
-				if(isset($_GET['d']) && $_GET['d']=="week") echo "<li class='active'><a href='todo.php?d=week'>1週間</a></li>";
-				else echo "<li><a href='todo.php?d=week'>1週間</a></li>";
-				if(isset($_GET['d']) && $_GET['d']=="todo") echo "<li class='active'><a href='todo.php?d=todo'>やること</a></li>";
-				else echo "<li><a href='todo.php?d=todo'>リスト</a></li>";
-				if(isset($_GET['d']) && $_GET['d']=="finish") echo "<li class='active'><a href='todo.php?d=finish'>終了</a></li>";
-				else echo "<li><a href='todo.php?d=finish'>終了</a></li>";
-				if(isset($_GET['d']) && $_GET['d']=="new") echo "<li class='active'><a href='todo.php?d=new'>追加</a></li>";
-				else if(isset($_GET['d']) && $_GET['d']=="renew" && isset($_GET['p'])) echo "<li class='active'><a href='todo.php?d=new'>追加</a></li>";
-				else if(!(isset($_GET['d']) && $_GET['d']=="change")) echo "<li><a href='todo.php?d=new'>追加</a></li>";
-				if(isset($_GET['d']) && $_GET['d']=="change") echo "<li class='active'><a href='todo.php?d=change'>編集</a></li>";
-				if(isset($_GET['d']) && $_GET['d']=="weekly") echo "<li class='active'><a href='todo.php?d=weekly'>週報</a></li>";
-				else echo "<li><a href='todo.php?d=weekly'>週報</a></li>";
+          		if(!isset($_GET['d']) || $_GET['d']=="today") echo "<li class='active'><a href='#today' data-toggle='tab'>今日</a></li>";
+          		else echo "<li><a href='#today' data-toggle='tab'>今日</a></li>";
+          		if((isset($_GET['d']) && $_GET['d']=="detail") && (isset($_GET['p']) && $_GET['p']<count($todo))) echo "<li class='active'><a href='#detail' data-toggle='tab'>詳細</a></li>";
+          		else if(isset($_GET['p']) && $_GET['p']<count($todo)) echo "<li><a href='#detail' data-toggle='tab'>詳細</a></li>";
+				if(isset($_GET['d']) && $_GET['d']=="tomorrow") echo "<li class='active'><a href='#tomorrow' data-toggle='tab'>明日</a></li>";
+				else echo "<li><a href='#tomorrow' data-toggle='tab'>明日</a></li>";
+				if(isset($_GET['d']) && $_GET['d']=="week") echo "<li class='active'><a href='#week' data-toggle='tab'>1週間</a></li>";
+				else echo "<li><a href='#week' data-toggle='tab'>1週間</a></li>";
+				if(isset($_GET['d']) && $_GET['d']=="todo") echo "<li class='active'><a href='#todo' data-toggle='tab'>やること</a></li>";
+				else echo "<li><a href='#todo' data-toggle='tab'>リスト</a></li>";
+				if(isset($_GET['d']) && $_GET['d']=="finish") echo "<li class='active'><a href='#finish' data-toggle='tab'>終了</a></li>";
+				else echo "<li><a href='#finish' data-toggle='tab'>終了</a></li>";
+				if(isset($_GET['d']) && $_GET['d']=="new") echo "<li class='active'><a href='#new' data-toggle='tab'>追加</a></li>";
+				else if(isset($_GET['d']) && $_GET['d']=="renew" && isset($_GET['p'])) echo "<li class='active'><a href='#new' data-toggle='tab'>追加</a></li>";
+				else if(!(isset($_GET['d']) && $_GET['d']=="change")) echo "<li><a href='#new' data-toggle='tab'>追加</a></li>";
+				if(isset($_GET['d']) && $_GET['d']=="change") echo "<li class='active'><a href='#change' data-toggle='tab'>編集</a></li>";
+				if(isset($_GET['d']) && $_GET['d']=="weekly") echo "<li class='active'><a href='#weekly' data-toggle='tab'>週報</a></li>";
+				else echo "<li><a href='#weekly' data-toggle='tab'>週報</a></li>";
             ?>
 		  </ul>
 		<div style='width:90%; margin: auto'><!-- class='col-md-offset-1 col-md-10 col-sm-12' -->

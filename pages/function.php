@@ -20,6 +20,7 @@ if (is_readable($filepath)) {
 
 //ファイル読み込んで配列に入れる
 function readCsvFile2($filepath) {
+mb_internal_encoding("UTF-8");
 if (is_readable($filepath)) {
 		$file = new SplFileObject($filepath); 
 		$file->setFlags(SplFileObject::READ_CSV); 

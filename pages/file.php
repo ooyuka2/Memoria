@@ -13,6 +13,10 @@
 	<div class='bkcolor'>
 	<div class="container" style="padding:0 0 50px 0">
 	  <?php
+	  		$file = readCsvFile2('../data/file.csv');
+			//name,furi,summary,detail,count,syurui,date,delete
+			$group = readCsvFile2('../data/file_group.csv');
+			//group,abc,detail
 	  	select_page("file", $_GET['page']);
 	  ?>
 	</div>

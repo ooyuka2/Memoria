@@ -1,7 +1,7 @@
 
 <?php
-	$file = readCsvFile('../data/file.csv');
-	$group = readCsvFile('../data/file_group.csv');
+	$file = readCsvFile2('../data/file.csv');
+	$group = readCsvFile2('../data/file_group.csv');
 ?>
 
 <?php
@@ -9,13 +9,14 @@
 	if(isset($_GET['toroku'])) {
 		for($j=0; $j<count($_POST['name']);$j++) {
 			if($_POST['name'][$j]!="") {
-				$file[$_POST['id'][$j]][0] = $_POST['name'][$j];
-				$file[$_POST['id'][$j]][1] = $_POST['furi'][$j];
-				$file[$_POST['id'][$j]][2] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary'][$j]);
-				$file[$_POST['id'][$j]][3] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail'][$j]);
-				$file[$_POST['id'][$j]][4] = $_POST['genre'][$j];
-				$file[$_POST['id'][$j]][5] = date('Y/m/d H:i:s');
-				$file[$_POST['id'][$j]][6] = 0;
+				$file[$_POST['id'][$j]]['name'] = $_POST['name'][$j];
+				$file[$_POST['id'][$j]]['furi'] = $_POST['furi'][$j];
+				$file[$_POST['id'][$j]]['summary'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary'][$j]);
+				$file[$_POST['id'][$j]]['detail'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail'][$j]);
+				$file[$_POST['id'][$j]]['syurui'] = $_POST['genre'][$j];
+				$file[$_POST['id'][$j]]['count'] = 0;
+				$file[$_POST['id'][$j]]['date'] = date('Y/m/d H:i:s');
+				$file[$_POST['id'][$j]]['delete'] = 0;
 				//echo $_POST['id'][$j];
 			}
 		}
@@ -67,7 +68,7 @@
 			                  	<?php
 			                  		
 			                  		for($i=1;$i<count($group);$i++) {
-			                  			echo "<option value='{$i}'>{$group[$i][0]}</option>";
+			                  			echo "<option value='{$i}'>{$group[$i]['group']}</option>";
 			                  		}
 			                  	?>
 			                  </select>
@@ -78,7 +79,7 @@
 								<textarea class="form-control input-normal input-sm" rows="2" id="textArea" name="summary[]"></textarea>
 							</div>
 							<div class="col-xs-12" style="padding-left:0;">
-								<textarea class="form-control input-normal input-sm" rows="3" id="textArea" name="detail[]"><?php echo "\n\n&lt;a href='' target='_blank'&gt;参考WEBサイト&lt;/a&gt;"; ?></textarea>
+								<textarea class="form-control input-normal input-sm" rows="3" id="textArea" name="detail[]"></textarea>
 							</div>
 			            </div>
 			        </div>

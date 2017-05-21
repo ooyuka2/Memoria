@@ -10,8 +10,10 @@
 	$hiragana = array("あ","い","う","え","お","か","き","く","け","こ","さ","し","す","せ","そ","た","ち","つ","て","と","な","に","ぬ","ね","の","は","ひ","ふ","へ","ほ","ま","み","む","め","も","や","ゆ","よ","","","ら","り","る","れ","ろ","わ","を","ん","","");
 	$hiragana2 = array("S_a","S_i","S_u","S_e","S_o","S_ka","S_ki","S_ku","S_ke","S_ko","S_sa","S_si","S_su","S_se","S_so","S_ta","S_ti","S_tu","S_te","S_to","S_na","S_ni","S_nu","S_ne","S_no","S_ha","S_hi","S_hu","S_he","S_ho","S_ma","S_mi","S_mu","S_me","S_mo","S_ya","S_yi","S_yu","S_ye","S_yo","S_ra","S_ri","S_ru","S_re","S_ro","S_wa","S_wi","S_wu","S_we","S_wo");
 	$hiragana3 = array("G_a","G_a","G_a","G_a","G_a","G_ka","G_ka","G_ka","G_ka","G_ka","G_sa","G_sa","G_sa","G_sa","G_sa","G_ta","G_ta","G_ta","G_ta","G_ta","G_na","G_na","G_na","G_na","G_na","G_ha","G_ha","G_ha","G_ha","G_ha","G_ma","G_ma","G_ma","G_ma","G_ma","G_ya","G_ya","G_ya","G_ya","G_ya","G_ra","G_ra","G_ra","G_ra","G_ra","G_wa","G_wa","G_wa","G_wa","G_wa");
-	$dictionary = readCsvFile('../data/file.csv');
-	$group = readCsvFile('../data/file_group.csv');
+	$file = readCsvFile2('../data/file.csv');
+	//name,furi,summary,detail,count,syurui,date,delete
+	$group = readCsvFile2('../data/file_group.csv');
+	//group,abc,detail
 ?>
 <!-- Tables
 ================================================== -->
@@ -80,17 +82,19 @@
 	        <tbody>
 	        	<?php
 
-	        		for($i = 1; $i<count($dictionary); $i++) {
-	        			if(!isset($_GET['search']) || search_array($abc, $abc2, $abcl, $hiragana, $hiragana2, mb_substr($dictionary[$i][1], 0, 1))) {
-	        				if(($d==0 || $d==$dictionary[$i][4]) && $dictionary[$i][6]!=1) {
+	        		for($i = 1; $i<count($file); $i++) {
+	        			if(!isset($_GET['search']) || search_array($abc, $abc2, $abcl, $hiragana, $hiragana2, mb_substr($file[$i]['furi'], 0, 1))) {
+	        				if(($d==0 || $d==$file[$i]['syurui']) && $file[$i]['delete']!=1) {
+	        				//name,furi,summary,detail,count,syurui,date,delete
 			    				echo "<tr><td>";
-			    				echo $dictionary[$i][0];
+			    				echo $file[$i]['name'];
 			    				echo "</td><td>";
-			    				echo "<a href='".$dictionary[$i][2]."' target='_blank'>".$dictionary[$i][2]."</a>";
-			    				if($dictionary[$i][3]!="")
-			    				echo "<span style='float: right;'><a href='./dictionary.php?page=detail&p=".$i."'>詳細</span></td><td>";
+			    				echo "<a href='".$file[$i]['summary']."' target='_blank' onClick='move(".$i.")'>".$file[$i]['summary']."</a>";
+			    			
+			    				if($file[$i]['detail']!="")
+			    				echo "<span style='float: right;'><a href='./file.php?page=detail&p=".$i."'>詳細</span></td><td>";
 			    				else { echo "</td><td>"; }
-			    				echo $dictionary[$i][5];
+			    				echo $file[$i]['count'];
 			    				echo "</td><td><a href='./file.php?page=change&p=".$i."' class='btn btn-info'>編集</a>";
 			    				echo "</td><td><a href='./file.php?page=delete&p=".$i."' class='btn btn-danger'>削除</a>";
 			    				echo "</td></tr>";

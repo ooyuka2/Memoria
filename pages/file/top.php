@@ -1,5 +1,8 @@
 <?php
-	$group = readCsvFile('../data/file_group.csv');
+	$file = readCsvFile2('../data/file.csv');
+	//name,furi,summary,detail,count,syurui,date,delete
+	$group = readCsvFile2('../data/file_group.csv');
+	//group,abc,detail
 ?>
 <?php include('file/table.php'); ?>
     <div class="row">
@@ -11,11 +14,11 @@
           		if(!isset($_GET['d']) || $_GET['d']=="home") echo "<li class='active'><a href='#home' data-toggle='tab'>home</a></li>";
           		else echo "<li><a href='#home' data-toggle='tab'>home</a></li>";
 	        	for($i=1; $i<count($group); $i++) {
-	        		$tab = "tab_".$group[$i][1];
-	          		if(!isset($_GET['d']) || $_GET['d']!=$group[$i][1])
-	          			echo "<li><a href='#tab_{$group[$i][1]}' data-toggle='tab'>{$group[$i][0]}</a></li>";
-	          		else if(isset($_GET['d']) && $_GET['d']==$group[$i][1])
-	          			echo "<li class='active'><a href='#tab_{$group[$i][1]}' data-toggle='tab'>{$group[$i][0]}</a></li>";
+	        		$tab = "tab_".$group[$i]['abc'];
+	          		if(!isset($_GET['d']) || $_GET['d']!=$group[$i]['abc'])
+	          			echo "<li><a href='#tab_{$group[$i]['abc']}' data-toggle='tab'>{$group[$i]['group']}</a></li>";
+	          		else if(isset($_GET['d']) && $_GET['d']==$group[$i]['abc'])
+	          			echo "<li class='active'><a href='#tab_{$group[$i]['abc']}' data-toggle='tab'>{$group[$i]['group']}</a></li>";
 	        	}
             
             ?>
@@ -44,12 +47,12 @@
 	            </div>
           	<?php
 	        	for($i=1; $i<count($group); $i++) {
-	        		$tab = "tab_".$group[$i][1];
-	          			if(!isset($_GET['d']) || $_GET['d']!=$group[$i][1])
+	        		$tab = "tab_".$group[$i]['abc'];
+	          			if(!isset($_GET['d']) || $_GET['d']!=$group[$i]['abc'])
 	          				echo "<div class='tab-pane fade' id='{$tab}'>";
-	          			else if(isset($_GET['d']) && $_GET['d']==$group[$i][1])
+	          			else if(isset($_GET['d']) && $_GET['d']==$group[$i]['abc'])
 	          				echo "<div class='tab-pane fade active in' id='{$tab}'>";
-	          			read_table($group[$i][1], $i);
+	          			read_table($group[$i]['abc'], $i);
 	          			echo "</div>";
 	        	}
             

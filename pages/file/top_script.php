@@ -26,7 +26,7 @@
 		        // 2列目を消す(visibleをfalseにすると消えます)
 		        { targets: 2, visible: false },
 		    ],
-		    responsive: true, order: [[2, 'asc']],
+		    responsive: true, order: [[2, 'desc']],
         });
 
     });
@@ -57,5 +57,9 @@
     	//document.getElementsByClassName(cls)[2].style.display="none";
     	//document.getElementsByClassName(cls)[3].style.display="none";
     	//document.getElementsByClassName(cls)[4].style.display="none";
+    }
+    
+    function move(page) {
+    	location.href = 'http://localhost:81/Memoria/pages/file.php?page=count&p=' + page;
     }
 </script>
