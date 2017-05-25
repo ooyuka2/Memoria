@@ -18,7 +18,8 @@
 <!-- Tables
 ================================================== -->
 <div class="bs-docs-section" style="margin:0">
-<a href="./file.php?page=new" class="btn btn-info">新規</a>
+<a href="./file.php?page=new" class="btn btn-info">新規</a>　
+<a href="./file.php?page=reset" class="btn btn-primary">再読み込み</a>
 <p></p>
 <div class='container-fluid'>
 	<div class="row">
