@@ -41,7 +41,7 @@
 								if($todo[$j]['parent'] == $ary[$c]) {
 									echo "　　　・{$todo[$j]['タイトル']}";
 									if($todo[$j]['完了']==1) echo "　（完了）<br>";
-									else echo "　（作業中）<br>";
+									else echo "　（未完了or未着手）<br>";
 									
 								}
 							}

@@ -60,6 +60,6 @@
     }
     
     function move(page) {
-    	location.href = 'http://localhost:81/Memoria/pages/file.php?page=count&p=' + page;
+    	location.href = '/Memoria/pages/file.php?page=count&p=' + page;
     }
 </script>

@@ -247,4 +247,96 @@ function sort_by_noki_priority($todo) {
 	echo "</pre>";*/
 	return $array;
 }
+
+?>
+
+<?php
+// 現在の年月を取得
+function calendar($year, $month) {
+	// 月末日を取得
+	$last_day = date('j', mktime(0, 0, 0, $month + 1, 0, $year));
+	$calendar = array();
+	$j = 0;
+	// 月末日までループ
+	for ($i = 1; $i < $last_day + 1; $i++) {
+		// 曜日を取得
+	    $week = date('w', mktime(0, 0, 0, $month, $i, $year));
+	    // 1日の場合
+	    if ($i == 1) {
+	        // 1日目の曜日までをループ
+	        for ($s = 1; $s <= $week; $s++) {
+	            // 前半に空文字をセット
+	            $calendar[$j]['day'] = '';
+	            $j++;
+	        }
+	    }
+	    // 配列に日付をセット
+	    $calendar[$j]['day'] = $i;
+	    $j++;
+	    // 月末日の場合
+	    if ($i == $last_day) {
+	        // 月末日から残りをループ
+	        for ($e = 1; $e <= 6 - $week; $e++) {
+	            // 後半に空文字をセット
+	            $calendar[$j]['day'] = '';
+	            $j++;
+	        }
+	    }
+	}
+?>
+	<div class='calendar'>
+	<?php echo $year; ?>年<?php echo $month; ?>月
+	<?php
+		$thisyear = date('Y');
+		$thismonth = date('n');
+		$thisday = date('d');
+	?>
+	<br>
+	<br>
+	<table>
+	    <tr>
+	        <th style='background: #e73562;'>日</th>
+	        <th>月</th>
+	        <th>火</th>
+	        <th>水</th>
+	        <th>木</th>
+	        <th>金</th>
+	        <th style='background: #009b9f;'>土</th>
+	    </tr>
+	 
+	    <tr>
+	    <?php $cnt = 0; ?>
+	    <?php foreach ($calendar as $key => $value): ?>
+	 
+	        <?php
+	        	if($value['day']!="") {
+		        	if($thisyear == $year && $thismonth == $month && $thisday == $value['day'])
+		        		echo "<td style='background: #fff352;'>";
+		        	else if($cnt == 0 && $value['day']!="") echo "<td style='background: #ffc0cb;'>";
+		        	else if($cnt == 6 && $value['day']!="") echo "<td style='background: #afeeee;'>";
+		        	else echo "<td>";
+			?>
+	        <?php 
+
+	        		echo "<a href='todo.php?d=calendar";
+	        		echo "&year={$year}&mounth={$month}&day={$value['day']}'";
+	        		echo "style='display:block; width:100%; height:100%'>".$value['day']."</a>";
+	        	}
+	        	else echo "<td>";
+	        	$cnt++;
+	         ?>
+	        </td>
+	 
+	    <?php if ($cnt == 7): ?>
+	    </tr>
+	    <tr>
+	    <?php $cnt = 0; ?>
+	    <?php endif; ?>
+	 
+	    <?php endforeach; ?>
+	    </tr>
+	</table>
+	</div>
+<?php
+}
 ?>

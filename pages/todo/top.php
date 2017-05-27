@@ -18,7 +18,9 @@
 				else echo "<li><a href='todo.php?d=tomorrow'>明日</a></li>";
 				if(isset($_GET['d']) && $_GET['d']=="week") echo "<li class='active'><a href='todo.php?d=week'>1週間</a></li>";
 				else echo "<li><a href='todo.php?d=week'>1週間</a></li>";
-				if(isset($_GET['d']) && $_GET['d']=="todo") echo "<li class='active'><a href='todo.php?d=todo'>やること</a></li>";
+				if(isset($_GET['d']) && $_GET['d']=="calendar") echo "<li class='active'><a href='todo.php?d=calendar'>カレンダー</a></li>";
+				else echo "<li><a href='todo.php?d=calendar'>カレンダー</a></li>";
+				if(isset($_GET['d']) && $_GET['d']=="todo") echo "<li class='active'><a href='todo.php?d=todo'>リスト</a></li>";
 				else echo "<li><a href='todo.php?d=todo'>リスト</a></li>";
 				if(isset($_GET['d']) && $_GET['d']=="finish") echo "<li class='active'><a href='todo.php?d=finish'>終了</a></li>";
 				else echo "<li><a href='todo.php?d=finish'>終了</a></li>";
@@ -52,6 +54,10 @@
 				else echo "<div class='tab-pane fade' id='week'>";
 				include('todo/week.php');
 				//echo "<p class='text-info'>未実装</p>";
+				echo "</div>";
+				if(isset($_GET['d']) && $_GET['d']=="calendar") echo "<div class='tab-pane fade active in' id='calendar'>";
+				else echo "<div class='tab-pane fade' id='calendar'>";
+				include('todo/calendar.php');
 				echo "</div>";
 				if(isset($_GET['d']) && $_GET['d']=="todo") echo "<div class='tab-pane fade active in' id='todo'>";
 				else echo "<div class='tab-pane fade' id='todo'>";

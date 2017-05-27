@@ -1,6 +1,23 @@
 <?php
 	include('hedder.php');
 ?>
+<style type="text/css">
+table {
+    width: 100%;
+}
+table th {
+    background: #87cefa;
+}
+table th,
+table td {
+    border: 1px solid #CCCCCC;
+    text-align: center;
+    padding: 5px;
+}
+.calendar {
+	margin: 30px 10px;
+}
+</style>
 <body>
 <?php
 	include('navigation.php');
