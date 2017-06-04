@@ -13,7 +13,8 @@ if (is_readable($filepath)) {
 	}else {
 		$records = null;
 	}
-	mb_convert_variables('UTF-8',"SJIS-win, UTF-8",$records);
+	mb_convert_variables('UTF-8',"SJIS-win, UTF-8, Unicode",$records);
+	//mb_convert_variables('UTF-8',"auto",$records);
 	//print_r($records);
 	return $records;
 }
@@ -29,7 +30,8 @@ if (is_readable($filepath)) {
 				$records[] = $line;
 			}
 		}
-		mb_convert_variables('UTF-8',"SJIS-win, UTF-8",$records);
+		mb_convert_variables('UTF-8',"SJIS-win, UTF-8, Unicode",$records);
+		//mb_convert_variables('UTF-8',"auto",$records);
 		for($i=0;$i<count($records);$i++) {
 			/*echo "<pre>";
 			print_r($records[$i]);
@@ -42,7 +44,7 @@ if (is_readable($filepath)) {
 		$ary = null;
 	}
 	//print_r($ary);
-	mb_convert_variables('UTF-8',"SJIS-win, UTF-8",$ary);
+	mb_convert_variables('UTF-8',"SJIS-win, UTF-8, Unicode",$ary);
 	return $ary;
 }
 
