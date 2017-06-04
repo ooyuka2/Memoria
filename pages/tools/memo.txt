@@ -1,0 +1,140 @@
+Sub test()
+    Dim 文字コード As String
+    Dim FilePass As String
+    Dim FoldaPass As String
+    Dim FileName As String
+    
+    FileName = "working2.csv"
+    FoldaPass = "C:\Users\yukako\Desktop\data"
+    
+    文字コード = GetCharSetOfText(FoldaPass, FileName)
+    FilePass = FoldaPass & "\" & FileName
+    Stop
+    Call Cnv_CCode(FilePass, 文字コード, "shift_jis")
+    文字コード = GetCharSetOfText(FoldaPass, FileName)
+    Stop
+    
+End Sub
+
+' ************************************************************
+'  Excel2003：VBAで､テキストファイルの文字コードを自動判定
+'  参照設定：Microsoft Scripting Runtime
+' ************************************************************
+Function GetCharSetOfText(ByVal argFolderPath As String, _
+                          ByVal argFileName As String) As String
+                           
+    ' リネーム用拡張子
+    Const textExt = ".csv"
+     
+    Dim objFSO      As Object
+    Dim objFile     As Object
+    Dim objHtmlFile As Object
+     
+    Dim charSet     As String
+    Dim resultValue As String
+     
+    Dim tmpVbName   As String
+    Dim tmpTextName As String
+     
+    Set objFSO = CreateObject("Scripting.FileSystemObject")
+    Set objFile = objFSO.GetFile(argFolderPath & "\" & argFileName)
+     
+    ' TEMPフォルダにコピー後、htmlファイルとして
+    ' ファイル情報を再取得
+    tmpVbName = Environ("TEMP") & "\" & argFileName
+    tmpTextName = tmpVbName & textExt
+     
+    ' 万が一の残存ファイル削除
+    If objFSO.FileExists(tmpVbName) Then
+        Call objFSO.DeleteFile(tmpVbName, True)
+    End If
+    If objFSO.FileExists(tmpTextName) Then
+        Call objFSO.DeleteFile(tmpTextName, True)
+    End If
+     
+    ' 作業用ファイル複写
+    objFile.Copy (tmpVbName)
+    Set objFile = objFSO.GetFile(tmpVbName)
+     
+    ' リネームし、ファイル情報を再取得
+    objFile.Name = objFile.Name & textExt
+    Set objHtmlFile = GetObject(objFile.Path, "htmlfile")
+     
+    Do While objHtmlFile.readyState <> "complete"
+        Application.Wait Now + TimeSerial(0, 0, 1)
+        DoEvents
+    Loop
+     
+    ' 文字コード取得
+    charSet = LCase(objHtmlFile.charSet)
+     
+    Select Case charSet
+     
+        Case "utf-8", "euc-jp", "shift_jis", "unicode"
+         
+            ' ツールで想定している文字コード
+            resultValue = charSet
+         
+        Case Else
+         
+            ' 上記以外は弾いておく
+            resultValue = ""
+         
+    End Select
+     
+    ' 作業用ファイル削除
+    objFile.Delete
+    Set objFSO = Nothing
+     
+    GetCharSetOfText = resultValue
+ 
+End Function
+
+Public Sub Cnv_CCode(fConvFileName As String, strBeforeCode As String, strAfterCode As String)
+Dim BeforeStream  As New ADODB.Stream, AfterStream As New ADODB.Stream
+Dim CheckStream As New ADODB.Stream, fAfterFileName As String
+     
+fAfterFileName = fConvFileName
+    
+    Set BeforeStream = CreateObject("ADODB.Stream")
+    BeforeStream.charSet = strBeforeCode
+    Call BeforeStream.Open
+     
+    Set AfterStream = CreateObject("ADODB.Stream")
+    AfterStream.charSet = strAfterCode
+    Call AfterStream.Open
+     
+    Call BeforeStream.LoadFromFile(fAfterFileName)
+    Call BeforeStream.CopyTo(AfterStream)
+     
+     
+    Call AfterStream.SaveToFile(fAfterFileName, adSaveCreateOverWrite)
+     
+    Call AfterStream.Close
+    Call BeforeStream.Close
+    Set AfterStream = Nothing
+    Set BeforeStream = Nothing
+     
+End Sub
+
+Sub sample()
+Dim iFile As String
+Dim oFile As String
+iFile = "C:\Users\yukako\Desktop\data\test.csv" 'UTF-8の読み込むファイル名
+oFile = "C:\Users\yukako\Desktop\data\test2.csv" 'Shift-JISで書き出すファイル名
+'
+Dim csv As String 'CSVを読み書きする文字列変数
+'UTF-8を読み込む
+With CreateObject("ADODB.Stream")
+.charSet = "UTF-8"
+.Open
+.LoadFromFile iFile
+csv = .ReadText
+.Close
+End With
+'テキストファイルで書き出す(普通にShift-JISになる)
+With CreateObject("Scripting.FileSystemObject").CreateTextFile(oFile, True)
+.Write csv
+.Close
+End With
+End Sub
