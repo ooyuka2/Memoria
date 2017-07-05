@@ -60,7 +60,7 @@
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
 							<label class="control-label">納期の時間</label>
-							<?php echo "<input type='time' class='form-control input-normal input-sm time' name='time[]' value='18:00' step='900'>"; ?>
+							<?php echo "<input type='time' class='form-control input-normal input-sm time' name='time[]' value='18:00' step='900' id='alarm'>"; ?>
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
 							<label class="control-label">開始予定時刻</label>

@@ -12,6 +12,8 @@
   <link rel="shortcut icon" href="../favicon.ico">
 
   <title>Memoria</title>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/cupertino/jquery-ui.css" >
+	<link rel="stylesheet" type="text/css" href="http://felicegattuso.com/projects/timedropper/js/timedropper/timedropper.css">
 	<link rel="stylesheet" type="text/css" href="../DataTables/datatables.min.css"/>
 	<?php
 	echo '<link id="sampleLink" rel="stylesheet" type="text/css" href="../'.$color.'/css/bootstrap.css">';
