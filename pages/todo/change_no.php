@@ -40,7 +40,6 @@
 							<?php
 								echo "<input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='タイトル' value='{$todo[$_GET['p']]['タイトル']}'>";
 								$id=count($todo);
-								echo "<input type='hidden' name='id[]' value='{$_GET['p']}' class='id'>";
 							?>
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
@@ -55,14 +54,17 @@
 							?>
 						</div>
 						<label class="col-sm-2 control-label" style="margin-bottom:5px">レベル</label>
-						<div class="col-xs-4" style="margin-bottom:5px">
+						<div class="col-xs-3" style="margin-bottom:5px">
 							<input type='number' class='form-control input-normal input-sm level' name='level[]' value='1' min='1' max='10' readonly>
 						</div>
 						<label class="col-sm-2 control-label" style="margin-bottom:5px">優先度</label>
-						<div class="col-xs-4" style="margin-bottom:5px">
+						<div class="col-xs-3" style="margin-bottom:5px">
 							<?php
 								echo "<input type='number' class='form-control input-normal input-sm priority' name='priority[]' value='{$todo[$_GET['p']]['優先度']}' min='1' max='10'>";
 							?>
+						</div>
+						<div class="col-xs-2" style="margin-bottom:5px">
+							<input type='text' class='form-control input-normal input-sm' name='ids[]' value='<?php echo $_GET['p']; ?>' readonly>
 						</div>
 		            </div>
 		            <div class="col-xs-4">
@@ -106,7 +108,7 @@
 		    		$nokidate = date('Y-m-d',  strtotime($todo[$_GET['p']]['納期']));
 		    		$startdate = date('Y-m-d',  strtotime($todo[$_GET['p']]['開始予定日']));
 		    		$finishdate = date('Y-m-d',  strtotime($todo[$_GET['p']]['終了予定日']));
-		    		echo "<fieldset><div class='well bs-component'><div class='clearfix'><span class='pull-right close' onClick='minus({$count});'>&times;</span><span class='pull-right close'>　</span><span class='pull-right close' onClick='plus2({$count});'>+</span></div><div class='form-group'><div class='col-xs-8'><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='タイトル' value='{$todo[$i]['タイトル']}'></div><input type='hidden' name='id[]' value='{$i}' class='id'><div class='col-xs-12' style='margin-bottom:5px'><textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'>{$detail}</textarea></div><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='成果物' value={$todo[$i]['成果物']}></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>レベル</label><div class='col-xs-4' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm level' name='level[]' value='{$todo[$i]['level']}' min='2' max='10'></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>優先度</label><div class='col-xs-4' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm priority' name='priority[]' min='1' max='10' value='{$todo[$i]['優先度']}'></div></div><div class='col-xs-4'><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期</label><input type='date' class='form-control input-normal input-sm noki' name='noki[]' value='{$nokidate}'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期の時間</label><input type='time' class='form-control input-normal input-sm time' name='time[]' step='900' value='{$todo[$i]['納期時間']}'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>開始予定時刻</label><input type='date' class='form-control input-normal input-sm kaisi' name='kaisi[]' value='{$startdate}'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>終了予定日時</label><input type='date' class='form-control input-normal input-sm syuryo' name='syuryo[]' value='{$finishdate}'></div></div></div></div><div class='form-group' style='margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;'></div></fieldset>";
+		    		echo "<fieldset><div class='well bs-component'><div class='clearfix'><span class='pull-right close' onClick='minus({$count});'>&times;</span><span class='pull-right close'>　</span><span class='pull-right close' onClick='plus2({$count});'>+</span></div><div class='form-group'><div class='col-xs-8'><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='タイトル' value='{$todo[$i]['タイトル']}'></div><div class='col-xs-12' style='margin-bottom:5px'><textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'>{$detail}</textarea></div><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='成果物' value={$todo[$i]['成果物']}></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>レベル</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm level' name='level[]' value='{$todo[$i]['level']}' min='2' max='10'></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>優先度</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm priority' name='priority[]' min='1' max='10' value='{$todo[$i]['優先度']}'></div><div class='col-xs-2' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm ' name='ids[]' value='{$todo[$i]['id']}' readonly></div></div><div class='col-xs-4'><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期</label><input type='date' class='form-control input-normal input-sm noki' name='noki[]' value='{$nokidate}'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期の時間</label><input type='time' class='form-control input-normal input-sm time' name='time[]' step='900' value='{$todo[$i]['納期時間']}'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>開始予定時刻</label><input type='date' class='form-control input-normal input-sm kaisi' name='kaisi[]' value='{$startdate}'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>終了予定日時</label><input type='date' class='form-control input-normal input-sm syuryo' name='syuryo[]' value='{$finishdate}'></div></div></div></div><div class='form-group' style='margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;'></div></fieldset>";
 		    		$count++;
 		    	}
 		    }

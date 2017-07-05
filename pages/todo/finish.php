@@ -44,7 +44,7 @@
 		if($todo[$parent]['パーセンテージ']>90) {
 			$chk = 0;
 			for($i=1; $i<count($todo); $i++) {
-				if($todo[$i]['parent']==$parent && $todo[$i]['完了'] == 0) {
+				if($todo[$i]['parent']==$parent && $todo[$i]['完了'] == 0 && $todo[$i]['削除'] == 0) {
 					$chk++;
 				}
 			}
@@ -76,7 +76,7 @@
 			if($todo[$parent]['パーセンテージ']>90) {
 				$chk = 0;
 				for($i=1; $i<count($todo); $i++) {
-					if($todo[$i]['parent']==$parent && $todo[$i]['完了'] == 0) {
+					if($todo[$i]['parent']==$parent && $todo[$i]['完了'] == 0 && $todo[$i]['削除'] == 0) {
 						$chk++;
 					}
 				}

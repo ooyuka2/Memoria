@@ -1,5 +1,5 @@
 <?php
-	//$sa = sort_by_noki_priority($todo);
+	$sa = sort_by_noki_priority($todo);
 	for($i=0; $i<count($sa); $i++) {
 		if($todo[$sa[$i]]['level'] == 1 && $todo[$sa[$i]]['完了']==0 && $todo[$sa[$i]]['削除']==0) {
 			

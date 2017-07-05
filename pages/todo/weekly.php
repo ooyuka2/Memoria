@@ -2,7 +2,7 @@
       <?php
       	//$todo = readCsvFile2('../data/todo.csv');
 		$todo_theme = readCsvFile2('../data/todo_theme.csv');
-		//$working = readCsvFile2('../data/working.csv');
+		$working = readCsvFile2('../data/working.csv');
 		
 		date_default_timezone_set('Asia/Tokyo');
 		//$week_str_list = array( '日', '月', '火', '水', '木', '金', '土');//$week_str = $week_str_list[ $datetime->format('w') ];

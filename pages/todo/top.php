@@ -36,9 +36,12 @@
           <div id="myTabContent" class="tab-content">
           	<?php
 	            
-				if(!isset($_GET['d']) || $_GET['d']=="today") echo "<div class='tab-pane fade active in' id='today'>";
+				if(!isset($_GET['d']) || $_GET['d']=="today") {
+					echo "<div class='tab-pane fade active in' id='today'>";
+					include('todo/today.php');
+				}
 				else echo "<div class='tab-pane fade' id='today'>";
-				include('todo/today.php');
+				
 				echo "</div>";
 				if((isset($_GET['d']) && $_GET['d']=="detail") && (isset($_GET['p']) && $_GET['p']<count($todo))) echo "<div class='tab-pane fade active in' id='detail'>";
 				else if(isset($_GET['p']) && $_GET['p']<count($todo)) echo "<div class='tab-pane fade' id='detail'>";
@@ -46,26 +49,41 @@
 					include('todo/detail.php');
 					echo "</div>";
 				}
-				if(isset($_GET['d']) && $_GET['d']=="tomorrow") echo "<div class='tab-pane fade active in' id='tomorrow'>";
+				if(isset($_GET['d']) && $_GET['d']=="tomorrow") { 
+					echo "<div class='tab-pane fade active in' id='tomorrow'>";
+					include('todo/tomorrow.php');
+				}
 				else echo "<div class='tab-pane fade' id='tomorrow'>";
-				include('todo/tomorrow.php');
+				
 				echo "</div>";
-				if(isset($_GET['d']) && $_GET['d']=="week") echo "<div class='tab-pane fade active in' id='week'>";
+				if(isset($_GET['d']) && $_GET['d']=="week") {
+					echo "<div class='tab-pane fade active in' id='week'>";
+					include('todo/week.php');
+				}
 				else echo "<div class='tab-pane fade' id='week'>";
-				include('todo/week.php');
+				
 				//echo "<p class='text-info'>未実装</p>";
 				echo "</div>";
-				if(isset($_GET['d']) && $_GET['d']=="calendar") echo "<div class='tab-pane fade active in' id='calendar'>";
+				if(isset($_GET['d']) && $_GET['d']=="calendar") {
+					echo "<div class='tab-pane fade active in' id='calendar'>";
+					include('todo/calendar.php');
+				}
 				else echo "<div class='tab-pane fade' id='calendar'>";
-				include('todo/calendar.php');
+				
 				echo "</div>";
-				if(isset($_GET['d']) && $_GET['d']=="todo") echo "<div class='tab-pane fade active in' id='todo'>";
+				if(isset($_GET['d']) && $_GET['d']=="todo") {
+					echo "<div class='tab-pane fade active in' id='todo'>";
+					include('todo/todo.php');
+				}
 				else echo "<div class='tab-pane fade' id='todo'>";
-				include('todo/todo.php');
+				
 				echo "</div>";
-				if(isset($_GET['d']) && $_GET['d']=="finish") echo "<div class='tab-pane fade active in' id='finish'>";
+				if(isset($_GET['d']) && $_GET['d']=="finish") {
+					echo "<div class='tab-pane fade active in' id='finish'>";
+					include('todo/finishlist.php');
+					}
 				else echo "<div class='tab-pane fade' id='finish'>";
-				include('todo/finishlist.php');
+				
 				echo "</div>";
 				if(isset($_GET['d']) && $_GET['d']=="new") echo "<div class='tab-pane fade active in' id='new'>";
 				else if(isset($_GET['d']) && $_GET['d']=="renew" && isset($_GET['p'])) echo "<div class='tab-pane fade active in' id='new'>";
@@ -78,9 +96,12 @@
 					include('todo/change.php');
 					echo "</div>";
 				}
-				if(isset($_GET['d']) && $_GET['d']=="weekly") echo "<div class='tab-pane fade active in' id='weekly'>";
+				if(isset($_GET['d']) && $_GET['d']=="weekly") {
+					echo "<div class='tab-pane fade active in' id='weekly'>";
+					include('todo/weekly.php');
+				}
 				else echo "<div class='tab-pane fade' id='weekly'>";
-				include('todo/weekly.php');
+				
 				echo "</div>";
 			?>
 				</div>

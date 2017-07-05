@@ -31,7 +31,7 @@
 							<?php
 								echo "<input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='タイトル'>";
 								$id=count($todo);
-								echo "<input type='hidden' name='id[]' value='{$id}'>";
+								echo "<input type='hidden' name='id[]' value='{$id}' class='id'>";
 							?>
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
