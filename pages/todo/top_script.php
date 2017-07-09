@@ -152,6 +152,11 @@
 		write_form_plus(array, pluskey);
 	}
 	
+	function select_theme(theme) {
+		location.href = '/Memoria/pages/todo.php?page=select_theme&theme='+theme;
+	}
+	
+	
 document.onkeydown = 
    function (e) {
       if (event.ctrlKey ){

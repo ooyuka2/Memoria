@@ -16,13 +16,16 @@
 		        <div class="form-group">
 		            <div class="col-xs-8">
 		            	<div class="col-xs-12" style="margin-bottom:5px">
-							<select class="form-control input-normal input-sm theme" name="theme[]">
+							<select class="form-control input-normal input-sm theme" name="theme[]" onChange="select_theme(this.options[this.options.selectedIndex].value)">
 								<?php
 									$todo_theme = readCsvFile2('../data/todo_theme.csv');
 									echo "<option value='0'>テーマの選択</option>";
-									for($i=0;$i<count($todo_theme);$i++) {
-										$j = $i+1;
-										echo "<option value='{$j}'>{$todo_theme[$i]['テーマ']}</option>";//col-sm-2
+									for($i=1;$i<count($todo_theme);$i++) {
+										if(isset($_GET['theme']) && $_GET['theme']==$i) {
+											echo "<option value='{$i}' selected>{$todo_theme[$i]['テーマ']}</option>";
+										} else {
+											echo "<option value='{$i}'>{$todo_theme[$i]['テーマ']}</option>";//col-sm-2
+										}
 									}
 								?>
 							</select>

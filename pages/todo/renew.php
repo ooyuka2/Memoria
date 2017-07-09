@@ -21,7 +21,7 @@
 		        <div class="form-group">
 		            <div class="col-xs-8">
 		            	<div class="col-xs-12" style="margin-bottom:5px">
-							<select class="form-control input-normal input-sm theme" name="theme[]">
+							<select class="form-control input-normal input-sm theme" name="theme[]" onChange="select_theme(this.options[this.options.selectedIndex].value)">
 								<?php
 									$todo_theme = readCsvFile2('../data/todo_theme.csv');
 									echo "<option value='0'>テーマの選択</option>";

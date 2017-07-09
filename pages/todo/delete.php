@@ -27,7 +27,8 @@
 	}
 	echo "</pre>";*/
 		writeCsvFile2("../data/todo.csv", $todo);
-		header( "Location: ./todo.php" );
+		if($_GET['id'] == $top) header( "Location: ./todo.php" );
+		else header( "Location: /Memoria/pages/todo.php?d=detail&p=".$top );
 		exit();
 	} else {
 		echo "削除に失敗しました。プログラムを確認してください。";
