@@ -4,10 +4,16 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
 <script src="http://felicegattuso.com/projects/timedropper/js/timedropper/timedropper.js"></script>
+<script src="/Memoria/js/modernizr-custom.js"></script>
 <script type="text/javascript">
 $(function () {
   $('[data-toggle="popover"]').popover();
   $('[data-toggle="tooltip"]').tooltip();
+  if (!Modernizr.inputtypes.date) {
+	  $(".noki").datepicker();
+	  $(".kaisi").datepicker();
+	  $(".syuryo").datepicker();
+  }
 });
 $( ".time" ).timeDropper({
   //機能オプション
@@ -24,12 +30,13 @@ $( ".time" ).timeDropper({
   backgroundColor: "#ffffff", //背景
   borderColor: "#1977cc"      //枠線
 });
-
-$(document).on("click",document, function() {
-		$(".noki").datepicker();
-		$(".kaisi").datepicker();
-		$(".syuryo").datepicker();
-    });
+if (!Modernizr.inputtypes.date) { //HTML5のinput要素に対応しているか判定
+	$(document).on("click",document, function() {
+			$(".noki").datepicker();
+			$(".kaisi").datepicker();
+			$(".syuryo").datepicker();
+	    });
+}
 
 </script>
 <?php

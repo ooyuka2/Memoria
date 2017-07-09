@@ -152,6 +152,15 @@
 		write_form_plus(array, pluskey);
 	}
 	
+	function setDateTime(){
+		for(var i=1; i<document.getElementsByClassName("name").length; i++) {
+			document.getElementsByClassName("noki")[i].value = document.getElementsByClassName("noki")[0].value;
+			document.getElementsByClassName("time")[i].value = document.getElementsByClassName("time")[0].value;
+			document.getElementsByClassName("kaisi")[i].value = document.getElementsByClassName("kaisi")[0].value;
+			document.getElementsByClassName("syuryo")[i].value = document.getElementsByClassName("syuryo")[0].value;
+		}
+	}
+	
 	function select_theme(theme) {
 		location.href = '/Memoria/pages/todo.php?page=select_theme&theme='+theme;
 	}
