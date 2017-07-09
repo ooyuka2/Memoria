@@ -173,5 +173,28 @@ function (e) {
       }
    }
 
+function todo_delete_check(tilte, id){
+  ret = confirm(tilte + "を本当に削除しますか？よろしいですか？");
+  if (ret == true){
+    location.href = '/Memoria/pages/todo.php?page=delete&delete=OK&id='+id;
+  }
+}
+
+function finisflist_search(searchtext) {
+	if(searchtext.value != "") {
+		location.href = '/Memoria/pages/todo.php?d=finish&finisflist_search='+searchtext.value;
+	} else {
+		location.href = '/Memoria/pages/todo.php?d=finish';
+	}
+}
+
+if(document.getElementById("finisflist_search")) {
+	var elm = document.getElementById('finisflist_search');
+	var val = elm.value;
+	elm.value = '';
+	elm.focus();
+	elm.value = val;
+}
+
 
 </script>

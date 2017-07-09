@@ -7,7 +7,7 @@
 	echo "<div class='panel panel-primary'>";
 	
 	echo "<div class='panel-heading'>";
-	echo "<h3 class='panel-title'>{$todo[$_GET['p']]['タイトル']}</h3>";
+	echo "<div class='clearfix'><span class='pull-right close' onClick='todo_delete_check(&quot;{$todo[$_GET['p']]['タイトル']}&quot;, &quot;{$_GET['p']}&quot;)'>&times;</span><h3 class='panel-title'>{$todo[$_GET['p']]['タイトル']}</h3></div>";
 	echo "</div>";
 	echo "<div class='panel-body'>";
 	echo "<div class='alert alert-dismissible alert-warning' style='margin-bottom:0'>{$todo[$_GET['p']]['作業内容']}</div>";

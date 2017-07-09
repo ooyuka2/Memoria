@@ -101,8 +101,11 @@
 					include('todo/weekly.php');
 				}
 				else echo "<div class='tab-pane fade' id='weekly'>";
-				
 				echo "</div>";
+				if(isset($_GET['d']) && $_GET['d']=="delete") {
+					echo "<div>";
+					include('todo/delete.php');
+				}
 			?>
 				</div>
 			</div>

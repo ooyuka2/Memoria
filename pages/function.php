@@ -162,7 +162,7 @@ function panel_child($todo, $parent) {
 				if($todo[$i]['完了']==1) { echo "<div class='panel panel-success'>"; }
 				else echo "<div class='panel panel-danger'>";
 				echo "<div class='panel-heading'>";
-				echo "<h3 class='panel-title'>{$todo[$i]['タイトル']}</h3>";
+				echo "<div class='clearfix'><span class='pull-right close' onClick='todo_delete_check(&quot;{$todo[$i]['タイトル']}&quot;, &quot;{$i}&quot;)'>&times;</span><h3 class='panel-title'>{$todo[$i]['タイトル']}</h3></div>";
 				echo "</div>";
 				echo "<div class='panel-body'>";
 				echo "<div class='alert alert-dismissible alert-warning' style='margin-bottom:0'>{$todo[$i]['作業内容']}</div>";

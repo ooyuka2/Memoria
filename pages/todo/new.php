@@ -49,7 +49,7 @@
 							<input type='number' class='form-control input-normal input-sm priority' name='priority[]' value='1' min='1' max='10'>
 						</div>
 		            </div>
-		            <div class="col-xs-4">
+		            <div class="col-xs-4 date_and_time">
 						<div class="col-xs-12" style="margin-bottom:5px">
 						<label class="control-label">納期</label>
 						<?php
@@ -58,9 +58,9 @@
 							echo "<input type='date' class='form-control input-normal input-sm noki' name='noki[]' value='{$today}'>";
 						?>
 						</div>
-						<div class="col-xs-12" style="margin-bottom:5px">
+						<div class="col-xs-12 " style="margin-bottom:5px">
 							<label class="control-label">納期の時間</label>
-							<?php echo "<input type='time' class='form-control input-normal input-sm time' name='time[]' value='18:00' step='900' id='alarm'>"; ?>
+							<?php echo "<input type='time' class='form-control input-normal input-sm time' name='time[]' value='18:00' step='900'>"; ?>
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
 							<label class="control-label">開始予定時刻</label>

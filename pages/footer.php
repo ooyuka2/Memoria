@@ -9,13 +9,7 @@ $(function () {
   $('[data-toggle="popover"]').popover();
   $('[data-toggle="tooltip"]').tooltip();
 });
-$(function() {
-	$(".noki").datepicker();
-	$(".kaisi").datepicker();
-	$(".syuryo").datepicker();
-	
-});
-$( "#alarm" ).timeDropper({
+$( ".time" ).timeDropper({
   //機能オプション
   autoswitch: false,          //クリック位置移動
   meridians: false,           //12時間 / 24時間表示
@@ -30,6 +24,13 @@ $( "#alarm" ).timeDropper({
   backgroundColor: "#ffffff", //背景
   borderColor: "#1977cc"      //枠線
 });
+
+$(document).on("click",document, function() {
+		$(".noki").datepicker();
+		$(".kaisi").datepicker();
+		$(".syuryo").datepicker();
+    });
+
 </script>
 <?php
 	include('setting.php');
