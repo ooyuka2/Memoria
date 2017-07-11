@@ -194,6 +194,8 @@ function last_todo_panel($todo, $i, $pattern) {
 			if($todo[$i]['level'] == 1) {
 				echo "<a href='./todo.php?d=detail&p={$i}' ";
 				if($pattern=='primary') echo "style='color:#ffffff;'";
+				if($pattern=='warning') echo "style='color:#fa8072;'";
+				else if($pattern=='info') echo "style='color:#87ceeb;'";
 				echo ">";
 				echo "<h3 class='panel-title'>{$todo[$i]['タイトル']}</h3>";
 			}
@@ -201,11 +203,14 @@ function last_todo_panel($todo, $i, $pattern) {
 				$b = $todo[$i]['top'];
 				echo "<a href='./todo.php?d=detail&p={$b}'";
 				if($pattern=='primary') echo "style='color:#ffffff;'";
+				if($pattern=='warning') echo "style='color:#fa8072;'";
+				else if($pattern=='info') echo "style='color:#87ceeb;'";
 				echo ">";
 				echo "<h3 class='panel-title'>{$todo[$i]['タイトル']}<span class='pull-right'>{$todo[$todo[$i]['top']]['タイトル']}</span></h3>";
 			}
 			echo "</a></div>";
 			echo "<div class='panel-body'>";
+			if($pattern=='warning') echo "style='color:#fa8072;'";
 			echo "";
 			echo "<div class='col-md-9 col-xs-6'><strong>作業内容　: </strong>{$todo[$i]['作業内容']}<br><strong>成果物　　: </strong>{$todo[$i]['成果物']}<br><strong>期間　　　: </strong>{$todo[$i]['開始予定日']}　～　{$todo[$i]['納期']}</div>";
 			//echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=do&p={$i}' class='btn btn-default'>作業</a></div>";
