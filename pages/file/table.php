@@ -1,5 +1,5 @@
 <?php
-	//<a class='btn btn-default' href="javascript:document.form_back.submit();">æˆ»ã‚‹</a>
+	//<a class='btn btn-default' href="javascript:document.form_back.submit();">–ß‚é</a>
 	function read_table($what_table, $d) {
 ?>
 <?php
@@ -7,7 +7,7 @@
 	$abcl = array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","g");
 	$abc2 = array("S_A","S_B","S_C","S_D","S_E","S_F","S_G","S_H","S_I","S_J","S_K","S_L","S_M","S_N","S_O","S_P","S_Q","S_R","S_S","S_T","S_U","S_V","S_W","S_X","S_Y","S_Z");
 	$abc3 = array("G_A","G_A","G_A","G_A","G_A","G_F","G_F","G_F","G_F","G_F","G_K","G_K","G_K","G_K","G_K","G_P","G_P","G_P","G_P","G_P","G_U","G_U","G_U","G_U","G_U","G_Z");
-	$hiragana = array("ã‚","ã„","ã†","ãˆ","ãŠ","ã‹","ã","ã","ã‘","ã“","ã•","ã—","ã™","ã›","ã","ãŸ","ã¡","ã¤","ã¦","ã¨","ãª","ã«","ã¬","ã­","ã®","ã¯","ã²","ãµ","ã¸","ã»","ã¾","ã¿","ã‚€","ã‚","ã‚‚","ã‚„","ã‚†","ã‚ˆ","","","ã‚‰","ã‚Š","ã‚‹","ã‚Œ","ã‚","ã‚","ã‚’","ã‚“","","");
+	$hiragana = array("‚ ","‚¢","‚¤","‚¦","‚¨","‚©","‚«","‚­","‚¯","‚±","‚³","‚µ","‚·","‚¹","‚»","‚½","‚¿","‚Â","‚Ä","‚Æ","‚È","‚É","‚Ê","‚Ë","‚Ì","‚Í","‚Ð","‚Ó","‚Ö","‚Ù","‚Ü","‚Ý","‚Þ","‚ß","‚à","‚â","‚ä","‚æ","","","‚ç","‚è","‚é","‚ê","‚ë","‚í","‚ð","‚ñ","","");
 	$hiragana2 = array("S_a","S_i","S_u","S_e","S_o","S_ka","S_ki","S_ku","S_ke","S_ko","S_sa","S_si","S_su","S_se","S_so","S_ta","S_ti","S_tu","S_te","S_to","S_na","S_ni","S_nu","S_ne","S_no","S_ha","S_hi","S_hu","S_he","S_ho","S_ma","S_mi","S_mu","S_me","S_mo","S_ya","S_yi","S_yu","S_ye","S_yo","S_ra","S_ri","S_ru","S_re","S_ro","S_wa","S_wi","S_wu","S_we","S_wo");
 	$hiragana3 = array("G_a","G_a","G_a","G_a","G_a","G_ka","G_ka","G_ka","G_ka","G_ka","G_sa","G_sa","G_sa","G_sa","G_sa","G_ta","G_ta","G_ta","G_ta","G_ta","G_na","G_na","G_na","G_na","G_na","G_ha","G_ha","G_ha","G_ha","G_ha","G_ma","G_ma","G_ma","G_ma","G_ma","G_ya","G_ya","G_ya","G_ya","G_ya","G_ra","G_ra","G_ra","G_ra","G_ra","G_wa","G_wa","G_wa","G_wa","G_wa");
 	$file = readCsvFile2('../data/file.csv');
@@ -18,8 +18,8 @@
 <!-- Tables
 ================================================== -->
 <div class="bs-docs-section" style="margin:0">
-<a href="./file.php?page=new" class="btn btn-info">æ–°è¦</a>ã€€
-<a href="./file.php?page=reset" class="btn btn-primary">å†èª­ã¿è¾¼ã¿</a>
+<a href="./file.php?page=new" class="btn btn-info">V‹K</a>@
+<a href="./file.php?page=reset" class="btn btn-primary">Ä“Ç‚Ýž‚Ý</a>
 <p></p>
 <div class='container-fluid'>
 	<div class="row">
@@ -30,9 +30,9 @@
 	          <div class="btn-toolbar" style="text-align: center;">
 	          	<?php
 	          		if(!isset($_GET['search']) && $what_table=="home") {
-	          			echo "<div class='btn-group'><a href='./file.php' class='btn btn-primary'>ã™ã¹ã¦</a></div>";
+	          			echo "<div class='btn-group'><a href='./file.php' class='btn btn-primary'>‚·‚×‚Ä</a></div>";
 	          		} else {
-	          			echo "<div class='btn-group'><a href='./file.php?d=".$what_table."' class='btn btn-default'>ã™ã¹ã¦</a></div>";
+	          			echo "<div class='btn-group'><a href='./file.php?d=".$what_table."' class='btn btn-default'>‚·‚×‚Ä</a></div>";
 	          		}
 	          		
 	      		?>
@@ -73,11 +73,11 @@
 	      ?>
 	        <thead>
 	          <tr>
-	            <th>ãƒ¡ãƒ¢</th>
-	            <th>å†…å®¹</th>
-	            <th>ç™»éŒ²æ—¥æ™‚</th>
-	            <th>ç·¨é›†</th>
-	            <th>å‰Šé™¤</th>
+	            <th>ƒƒ‚</th>
+	            <th>“à—e</th>
+	            <th>“o˜^“úŽž</th>
+	            <th>•ÒW</th>
+	            <th>íœ</th>
 	          </tr>
 	        </thead>
 	        <tbody>
@@ -93,11 +93,11 @@
 			    				echo "<a href='".$file[$i]['summary']."' target='_blank' onClick='move(".$i.")'>".$file[$i]['summary']."</a>";
 			    			
 			    				if($file[$i]['detail']!="")
-			    				echo "<span style='float: right;'><a href='./file.php?page=detail&p=".$i."'>è©³ç´°</span></td><td>";
+			    				echo "<span style='float: right;'><a href='./file.php?page=detail&p=".$i."'>Ú×</span></td><td>";
 			    				else { echo "</td><td>"; }
 			    				echo $file[$i]['count'];
-			    				echo "</td><td><a href='./file.php?page=change&p=".$i."' class='btn btn-info'>ç·¨é›†</a>";
-			    				echo "</td><td><a href='./file.php?page=delete&p=".$i."' class='btn btn-danger'>å‰Šé™¤</a>";
+			    				echo "</td><td><a href='./file.php?page=change&p=".$i."' class='btn btn-info'>•ÒW</a>";
+			    				echo "</td><td><a href='./file.php?page=delete&p=".$i."' class='btn btn-danger'>íœ</a>";
 			    				echo "</td></tr>";
 			    			}
 	    				}

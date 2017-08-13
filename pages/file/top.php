@@ -24,12 +24,12 @@
             ?>
 		  </ul>
 			<?php
-				//変更動作についての文章。
+				//�ύX����ɂ��Ă̕��́B
 				if(isset($_SESSION['change'])) {
 					echo "<div class='alert alert-dismissible alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><p>{$_SESSION['change']}</p></div>";
 					unset($_SESSION['change']);
 				}
-				//削除動作についての文章。
+				//�폜����ɂ��Ă̕��́B
 				//print_r($_SESSION);
 				if(isset($_SESSION['delete'])) {
 					echo "<div class='alert alert-dismissible alert-warning'><button type='button' class='close' data-dismiss='alert'>&times;</button><p class='text-danger'>{$_SESSION['delete']}</p></div>";

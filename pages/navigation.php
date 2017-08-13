@@ -3,10 +3,10 @@
 	$navTodoCount = 0;
 	for($i=1; $i<count($todo); $i++) {
 		date_default_timezone_set('Asia/Tokyo');
-		$day1 = new DateTime($todo[$i]['ÈñãÂßã‰∫àÂÆöÊó•']);
+		$day1 = new DateTime($todo[$i]['äJénó\íËì˙']);
 		$day2 = new DateTime(date('Y/m/d'));
 		$interval = $day1->diff($day2);
-		if($todo[$i]['ÂÆå‰∫Ü']==0 && $interval->format('%r%a Êó•')>=0 && $todo[$i]['‰øùÁïô']==0 && $todo[$i]['child']==0 && $todo[$i]['ÂâäÈô§']==0) {
+		if($todo[$i]['äÆóπ']==0 && $interval->format('%r%a ì˙')>=0 && $todo[$i]['ï€óØ']==0 && $todo[$i]['child']==0 && $todo[$i]['çÌèú']==0) {
 			$navTodoCount++;
 		}
 	}
@@ -28,7 +28,7 @@
       <div class="navbar-collapse collapse" id="navbar-main">
         <ul class="nav navbar-nav">
           <li class="top"><a href="./">	<span class="glyphicon glyphicon-home" aria-hidden="true" style='font-size:120%;'></span></a></li>
-          <li class="todo"><a href="./todo.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true" style='font-size:120%;'></span> ToDo„ÄÄ<span class="badge"><?php echo $navTodoCount; ?></span></a></li>
+          <li class="todo"><a href="./todo.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true" style='font-size:120%;'></span> ToDoÅ@<span class="badge"><?php echo $navTodoCount; ?></span></a></li>
           <li class="file"><a href="./file.php"><span class="glyphicon glyphicon-file" aria-hidden="true" style='font-size:120%;'></span> file</a></li>
           <li class="dictionary"><a href="./dictionary.php"><span class="glyphicon glyphicon-book" aria-hidden="true" style='font-size:120%;'></span> Dictionary</a></li>
           <li class="setting"><a href="./tools.php"><span class="glyphicon glyphicon-cog" aria-hidden="true" style='font-size:120%;'></span> tools</a></li>

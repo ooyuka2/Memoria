@@ -2,7 +2,7 @@
 <script>
 	$(function() {
 	    $.fn.autoKana('#name', '#furi', {
-	        katakana : false  //trueï¼šã‚«ã‚¿ã‚«ãƒŠã€falseï¼šã²ã‚‰ãŒãªï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼‰
+	        katakana : false  //trueFƒJƒ^ƒJƒiAfalseF‚Ğ‚ç‚ª‚ÈiƒfƒtƒHƒ‹ƒgj
 	    });
 	});
 /*  $(function(){

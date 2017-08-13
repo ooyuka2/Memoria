@@ -22,7 +22,7 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="page-header">
-          <h1 id="forms">新規登録</h1>
+          <h1 id="forms">�V�K�o�^</h1>
         </div>
       </div>
     </div>
@@ -34,27 +34,27 @@
 	          echo "<form class='form-horizontal' method='post' action='dictionary.php?page=new&toroku={$id}' name='form_back'>";
 	      ?>
             <fieldset>
-              <legend>入力欄</legend>
+              <legend>���͗�</legend>
               <div class="form-group">
-                <label for="inputEmail" class="col-lg-2 control-label">メモタイトル</label>
+                <label for="inputEmail" class="col-lg-2 control-label">�����^�C�g��</label>
                 <div class="col-lg-10">
-                  <input type="text" class="form-control" id="name" name="name" placeholder="メモ" onBlur="check_furi()" style='font-size:50%;'>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="����" onBlur="check_furi()" style='font-size:50%;'>
                 </div>
               </div>
               <div class="form-group">
-                <label for="inputEmail" class="col-lg-2 control-label">ふりがな</label>
+                <label for="inputEmail" class="col-lg-2 control-label">�ӂ肪��</label>
                 <div class="col-lg-10">
-                  <input type="text" class="form-control" id="furi" name="furi" placeholder="ふりがな" style='font-size:50%;'>
+                  <input type="text" class="form-control" id="furi" name="furi" placeholder="�ӂ肪��" style='font-size:50%;'>
                 </div>
               </div>
               <div class="form-group">
-                <label for="textArea" class="col-lg-2 control-label">要点</label>
+                <label for="textArea" class="col-lg-2 control-label">�v�_</label>
                 <div class="col-lg-10">
                   <textarea class="form-control" rows="3" id="textArea" name="summary" style='font-size:50%;'></textarea>
                 </div>
               </div>
               <div class="form-group">
-                <label for="textArea" class="col-lg-2 control-label">詳細</label>
+                <label for="textArea" class="col-lg-2 control-label">�ڍ�</label>
                 <div class="col-lg-10">
                   <textarea class="form-control" rows="3" id="textArea" name="detail" style='font-size:50%;'></textarea>
                 </div>

@@ -14,9 +14,9 @@
     <div class="row">
       <div class="col-xs-12 outline">
         <h1>Memoria Error</h1>
-		<h3>ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ</h3>
-		ï¼•ç§’å¾Œã«ã‚¸ãƒ£ãƒ³ãƒ—ã—ã¾ã™ã€‚<br>
-		ã‚¸ãƒ£ãƒ³ãƒ—ã—ãªã„å ´åˆã¯ã€ä¸‹è¨˜ã®ãƒªãƒ³ã‚¯ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ãã ã•ã„ã€‚<br>
+		<h3>ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½</h3>
+		‚T•bŒã‚ÉƒWƒƒƒ“ƒv‚µ‚Ü‚·B<br>
+		ƒWƒƒƒ“ƒv‚µ‚È‚¢ê‡‚ÍA‰º‹L‚ÌƒŠƒ“ƒN‚ðƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B<br>
 		<br>
 		<a href="./index.php">Memoria</a>
         <div class="download">

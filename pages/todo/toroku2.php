@@ -1,6 +1,6 @@
 <?php
-//id,ã‚¿ã‚¤ãƒˆãƒ«,ä½œæ¥­å†…å®¹,ç´æœŸ,ç´æœŸæ™‚é–“,é–‹å§‹äºˆå®šæ—¥,çµ‚äº†äºˆå®šæ—¥,ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸,
-//å®Œäº†,æ‰€æ„Ÿ,level,top,parent,child,æˆæœç‰©,ãƒ†ãƒ¼ãƒ,å„ªå…ˆåº¦,ç™»éŒ²æ—¥
+//id,ƒ^ƒCƒgƒ‹,ì‹Æ“à—e,”[Šú,”[ŠúŠÔ,ŠJn—\’è“ú,I—¹—\’è“ú,ƒp[ƒZƒ“ƒe[ƒW,
+//Š®—¹,ŠŠ´,level,top,parent,child,¬‰Ê•¨,ƒe[ƒ},—Dæ“x,“o˜^“ú
 
 	
 	include('../function.php');
@@ -9,17 +9,18 @@
 	$number = $id;
 	date_default_timezone_set('Asia/Tokyo');
 	$idarray = array();
+	$newflug = false;
 	for($j=0; $j<count($_POST['name']);$j++) {
 		if($_POST['name'][$j]!="") {
 			if(isset($_POST['id'][$j]) && $_POST['id'][$j]<count($todo)) {
 				$id = $_POST['id'][$j];
 				
-				$persentage = $todo[$id]['ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸'];
-				$finish = $todo[$id]['å®Œäº†'];
-				$commnet = $todo[$id]['æ‰€æ„Ÿ'];
-				$toroku = $todo[$id]['ç™»éŒ²æ—¥'];
-				$wait = $todo[$id]['ä¿ç•™'];
-				$deletekey = $todo[$id]['å‰Šé™¤'];
+				$persentage = $todo[$id]['ƒp[ƒZƒ“ƒe[ƒW'];
+				$finish = $todo[$id]['Š®—¹'];
+				$commnet = $todo[$id]['ŠŠ´'];
+				$toroku = $todo[$id]['“o˜^“ú'];
+				$wait = $todo[$id]['•Û—¯'];
+				$deletekey = $todo[$id]['íœ'];
 			} else if(isset($_POST['id'][$j])) {
 				$id = $_POST['id'][$j];
 				$persentage = 0;
@@ -28,6 +29,7 @@
 				$toroku = date('Y/m/d H:i:s');
 				$wait = 0;
 				$deletekey = 0;
+				$newflug = true;
 			} else {
 				$id = count($todo);
 				$persentage = 0;
@@ -39,26 +41,27 @@
 			}
 			$idarray[$j] = $id;
 			$todo[$id]['id'] = $id;
-			$todo[$id]['ã‚¿ã‚¤ãƒˆãƒ«'] = $_POST['name'][$j];
-			$todo[$id]['ä½œæ¥­å†…å®¹'] = str_replace(array("\r\n", "\r", "\n","[EOF]"), '<br>', $_POST['detail'][$j]);
-			$todo[$id]['ç´æœŸ'] = $_POST['noki'][$j];
-			$todo[$id]['ç´æœŸæ™‚é–“'] = $_POST['time'][$j];
-			$todo[$id]['é–‹å§‹äºˆå®šæ—¥'] = $_POST['kaisi'][$j];
-			$todo[$id]['çµ‚äº†äºˆå®šæ—¥'] = $_POST['syuryo'][$j];
-			$todo[$id]['ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸'] = $persentage;
-			$todo[$id]['å®Œäº†'] = $finish;
-			$todo[$id]['æ‰€æ„Ÿ'] = $commnet;
+			$todo[$id]['ƒ^ƒCƒgƒ‹'] = $_POST['name'][$j];
+			$todo[$id]['ì‹Æ“à—e'] = str_replace(array("\r\n", "\r", "\n","[EOF]"), '<br>', $_POST['detail'][$j]);
+			$todo[$id]['”[Šú'] = $_POST['noki'][$j];
+			$todo[$id]['”[ŠúŠÔ'] = $_POST['time'][$j];
+			$todo[$id]['ŠJn—\’è“ú'] = $_POST['kaisi'][$j];
+			$todo[$id]['I—¹—\’è“ú'] = $_POST['syuryo'][$j];
+			$todo[$id]['ƒp[ƒZƒ“ƒe[ƒW'] = $persentage;
+			$todo[$id]['Š®—¹'] = $finish;
+			$todo[$id]['ŠŠ´'] = $commnet;
 			$todo[$id]['level'] = $_POST['level'][$j];
 			$todo[$id]['top'] = $number;
 			$todo[$id]['parent'] = 0;
 			$todo[$id]['child'] = 0;
-			$todo[$id]['æˆæœç‰©'] = $_POST['mono'][$j];
-			if($j==0) $todo[$id]['ãƒ†ãƒ¼ãƒ'] = $_POST['theme'][$j];
-			else $todo[$id]['ãƒ†ãƒ¼ãƒ'] = 0;
-			$todo[$id]['å„ªå…ˆåº¦'] = $_POST['priority'][$j];
-			$todo[$id]['ç™»éŒ²æ—¥'] = $toroku;
-			$todo[$id]['ä¿ç•™'] = $wait;
-			$todo[$id]['å‰Šé™¤'] = 0;
+			$todo[$id]['¬‰Ê•¨'] = $_POST['mono'][$j];
+			if($j==0) $todo[$id]['ƒe[ƒ}'] = $_POST['theme'][$j];
+			else $todo[$id]['ƒe[ƒ}'] = 0;
+			$todo[$id]['—Dæ“x'] = $_POST['priority'][$j];
+			$todo[$id]['“o˜^“ú'] = $toroku;
+			$todo[$id]['•Û—¯'] = $wait;
+			$todo[$id]['íœ'] = 0;
+			$todo[$id]['ŠÔŠÇ—ƒe[ƒ}'] = $_POST['theme2'][$j];
 		}
 	}
 
@@ -90,8 +93,8 @@
 			}
 		}
 	}
-	//å‰Šé™¤å¯¾è±¡ãŒãªã„ã‹ã®ç¢ºèª
 	$id=$_POST['id'][0];
+	//íœ‘ÎÛ‚ª‚È‚¢‚©‚ÌŠm”F
 	for($i=1; $i<count($todo); $i++) {
 		if($todo[$i]['top'] == $id) {
 			$check = 0;
@@ -100,14 +103,33 @@
 				//echo $_POST['id'][$j] ."* ";
 			}
 			if($check==0) {
-				$todo[$i]['å‰Šé™¤'] = 1;
+				$todo[$i]['íœ'] = 1;
 				//echo $todo[$todo[$i]['parent']]['child']. ":::" .$todo[$i]['parent'];
 				//$todo[$todo[$i]['parent']]['child'] -= 1;
-				//echo "<hr>â—‹";
+				//echo "<hr>›";
 				//echo $todo[$todo[$i]['parent']]['child'] ." : " .$todo[$i]['parent'] ."<hr>";
 			}
 		}
 	}
+	
+	//V‚µ‚¢—ñ‚ª‚ ‚éê‡‚Ìƒp[ƒZƒ“ƒe[ƒW‚ÌC³
+	if($newflug) {
+		for($i=1; $i<count($todo); $i++) {
+			if($todo[$i]['top'] == $id && $todo[$i]['child']!=0) {
+				$todo[$i]['ƒp[ƒZƒ“ƒe[ƒW'] = 0;
+				$todo[$i]['Š®—¹'] = 0;
+			}
+		}
+		for($i=1; $i<count($todo); $i++) {
+			if($todo[$i]['top'] == $id && $todo[$i]['child']==0) {
+				$todo = check_parent_finish($todo, $i, $todo[$i]['ƒp[ƒZƒ“ƒe[ƒW']);
+			}
+		}
+		
+		//check_parent_finish($todo, $child, $fdo)
+	}
+	
+	
 	/*
 	print_r($_POST['id']);
 	

@@ -12,7 +12,7 @@
 		//unset($file[$_GET['p']]);
 		//array_values($file);
 		writeCsvFile("../data/file.csv", $file);
-		$_SESSION['delete'] = "{$name}ã‚’å‰Šé™¤ã—ã¾ã—ãŸã€‚";
+		$_SESSION['delete'] = "{$name}‚ğíœ‚µ‚Ü‚µ‚½B";
 	}
 	header( "Location: ./file.php" );
 	exit();

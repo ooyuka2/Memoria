@@ -347,3 +347,11 @@ footer .copyright {
   -webkit-background-size: 70% 70%;
           background-size: 70%;
 }
+
+.bg-warning {
+	background-color: #ffe4ce !important;
+}
+
+.bg-info {
+	background-color: #f2e5ff !important;
+}

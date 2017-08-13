@@ -1,35 +1,46 @@
 <?php
-	$todo = readCsvFile2('../data/todo.csv');
+	if(!isset($todo)) $todo = readCsvFile2('../data/todo.csv');
 ?>
 
 <?php
-	echo "<div class='clearfix'><a href='todo.php?d=change&p={$_GET['p']}' class='btn btn-info pull-right'>ç·¨é›†</a><a href='todo.php?d=renew&p={$_GET['p']}' class='btn btn-warning pull-right' style='margin:0 10px'>æµç”¨</a></div>";
+	if($todo[$_GET['p']]['level'] == 1) {
+		echo "<div class='clearfix'><a href='todo.php?d=change&p={$_GET['p']}' class='btn btn-info pull-right btn-sm'>•ÒW</a><a href='todo.php?d=renew&p={$_GET['p']}' class='btn btn-warning pull-right btn-sm' style='margin:0 10px'>—¬—p</a>";
+		if(!(isset($_GET['d']) && $_GET['d']=="detail")) echo "<a href='todo.php?d=detail&p={$_GET['p']}' class='btn btn-primary pull-right btn-sm'>Ú×</a>";
+		echo "</div>";
+	}
 	echo "<div class='panel panel-primary'>";
 	
 	echo "<div class='panel-heading'>";
-	echo "<div class='clearfix'><span class='pull-right close' onClick='todo_delete_check(&quot;{$todo[$_GET['p']]['ã‚¿ã‚¤ãƒˆãƒ«']}&quot;, &quot;{$_GET['p']}&quot;)'>&times;</span><h3 class='panel-title'>{$todo[$_GET['p']]['ã‚¿ã‚¤ãƒˆãƒ«']}</h3></div>";
+	echo "<div class='clearfix'><span class='pull-right close' onClick='todo_delete_check(&quot;{$todo[$_GET['p']]['ƒ^ƒCƒgƒ‹']}&quot;, &quot;{$_GET['p']}&quot;)'>&times;</span><h3 class='panel-title'>{$todo[$_GET['p']]['ƒ^ƒCƒgƒ‹']}</h3></div>";
 	echo "</div>";
 	echo "<div class='panel-body'>";
-	echo "<div class='alert alert-dismissible alert-warning' style='margin-bottom:0'>{$todo[$_GET['p']]['ä½œæ¥­å†…å®¹']}</div>";
-	if($todo[$_GET['p']]['æˆæžœç‰©']!="") {
-		echo "<div class='alert alert-dismissible alert-info'><!--<strong style='font-size:150%'>æˆæžœç‰©</strong>-->{$todo[$_GET['p']]['æˆæžœç‰©']}</div>";
+	echo "<div class='alert alert-dismissible alert-warning' style='margin-bottom:0'>{$todo[$_GET['p']]['ì‹Æ“à—e']}</div>";
+	if($todo[$_GET['p']]['¬‰Ê•¨']!="") {
+		echo "<div class='alert alert-dismissible alert-info'><!--<strong style='font-size:150%'>¬‰Ê•¨</strong>-->{$todo[$_GET['p']]['¬‰Ê•¨']}</div>";
 	} else echo "<div style='height:20px;'></div>";
-	echo "<div class='col-xs-11'><div class='progress'><div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' style='width: {$todo[$_GET['p']]['ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸']}%;'>";
-	echo "{$todo[$_GET['p']]['ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸']}%";
+	echo "<div class='col-xs-9'><div class='progress'><div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' style='width: {$todo[$_GET['p']]['ƒp[ƒZƒ“ƒe[ƒW']}%;'>";
+	echo "{$todo[$_GET['p']]['ƒp[ƒZƒ“ƒe[ƒW']}%";
 	echo "</div></div></div>";
-	if($todo[$_GET['p']]['ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸']!=100) 
-	echo "<div class='col-xs-1'><a href='todo.php?page=finish&p={$_GET['p']}' class='btn btn-success'>å®Œäº†</a></div>";//todo.php?page=finish
-	echo "<div style='height:50px;'></div>";
+	if($todo[$_GET['p']]['ƒp[ƒZƒ“ƒe[ƒW']!=100) {
+		echo "<div class='col-xs-1'><button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown' aria-expanded='false'>ì‹Æ<span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
+		for($j=ceil($todo[$_GET['p']]['ƒp[ƒZƒ“ƒe[ƒW']/10)*10; $j<100; $j+=10) 
+		echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=do&p={$_GET['p']}&f={$j}'>{$j}“‚Ü‚ÅŠ®—¹</a></li>";
+		echo "</ul></div>";
+		if($todo[$_GET['p']]['•Û—¯'] == 0) echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$_GET['p']}' class='btn btn-info btn-sm'>•Û—¯</a></div>";
+			else echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$_GET['p']}' class='btn btn-link btn-sm'>‰ðœ</a></div>";
+		echo "<div class='col-xs-1'><a href='todo.php?page=finish&p={$_GET['p']}' class='btn btn-success btn-sm'>Š®—¹</a></div>";//todo.php?page=finish
+	}
+		echo "<div style='height:50px;'></div>";
 	panel_child($todo, $todo[$_GET['p']]['id']);
 	//echo "panel_child(\$todo, {$todo[$_GET['p']]['id']});";
 	echo "</div>";
-	echo "<div class='panel-footer'>{$todo[$_GET['p']]['é–‹å§‹äºˆå®šæ—¥']}ã€€ï½žã€€{$todo[$_GET['p']]['ç´æœŸ']} {$todo[$_GET['p']]['ç´æœŸæ™‚é–“']}</div>";
+	echo "<div class='panel-footer'>{$todo[$_GET['p']]['ŠJŽn—\’è“ú']}@`@{$todo[$_GET['p']]['”[Šú']} {$todo[$_GET['p']]['”[ŠúŽžŠÔ']}</div>";
 	/*
-	$day1 = new DateTime($todo[$_GET['p']]['é–‹å§‹äºˆå®šæ—¥']);
+	$day1 = new DateTime($todo[$_GET['p']]['ŠJŽn—\’è“ú']);
 	$day2 = new DateTime(date('Y/m/d'));
 	$interval = $day1->diff($day2);
-	echo $interval->format('%r%a æ—¥');
-	$week_str_list = array( 'æ—¥', 'æœˆ', 'ç«', 'æ°´', 'æœ¨', 'é‡‘', 'åœŸ');
+	echo $interval->format('%r%a “ú');
+	$week_str_list = array( '“ú', 'ŒŽ', '‰Î', '…', '–Ø', '‹à', '“y');
 	$week_str = $week_str_list[ $day1->format('w') ];
 	print_r($week_str);*/
 	echo "</div>";

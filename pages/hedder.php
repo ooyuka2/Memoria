@@ -5,8 +5,9 @@
 		session_start();
 		include_once('setting.php');
 		include_once('function.php');
+		header("Content-type: text/html; charset=SJIS-win");
 	?>
-  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="../favicon.ico">
@@ -16,50 +17,9 @@
 	<link rel="stylesheet" type="text/css" href="http://felicegattuso.com/projects/timedropper/js/timedropper/timedropper.css">
 	<link rel="stylesheet" type="text/css" href="../DataTables/datatables.min.css"/>
 	<?php
-	echo '<link id="sampleLink" rel="stylesheet" type="text/css" href="../'.$color.'/css/bootstrap.css">';
-	echo '<link id="sampleLink2" rel="stylesheet" type="text/css" href="../'.$color.'/css/example.css">';
+		include('../data/update.php');
+		echo '<link id="sampleLink" rel="stylesheet" type="text/css" href="../'.$color.'/css/bootstrap.css?'.$updatefiletime.'">';
+		echo '<link id="sampleLink2" rel="stylesheet" type="text/css" href="../'.$color.'/css/example.css?'.$updatefiletime.'">';
 	?>
-
-
-  <style type="text/css">
-  @media ( min-width: 768px ) {
-    #banner {
-      min-height: 300px;
-      border-bottom: none;
-    }
-    .bs-docs-section {
-      margin-top: 8em;
-    }
-    .bs-component {
-      position: relative;
-    }
-    .bs-component .modal {
-      position: relative;
-      top: auto;
-      right: auto;
-      left: auto;
-      bottom: auto;
-      z-index: 1;
-      display: block;
-    }
-    .bs-component .modal-dialog {
-      width: 90%;
-    }
-    .bs-component .popover {
-      position: relative;
-      display: inline-block;
-      width: 220px;
-      margin: 20px;
-    }
-    .nav-tabs {
-      margin-bottom: 15px;
-    }
-    .progress {
-      margin-bottom: 10px;
-    }
-  }
-  body {
-  	font-size:100%;
-  }
-  </style>
+	<link rel="stylesheet" type="text/css" href="../style.css?<?php echo $updatefiletime; ?>"/>
 </head>

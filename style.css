@@ -1,0 +1,85 @@
+@media ( min-width: 768px ) {
+#banner {
+	min-height: 300px;
+	border-bottom: none;
+}
+.bs-docs-section {
+	margin-top: 8em;
+}
+.bs-component {
+	position: relative;
+}
+.bs-component .modal {
+	position: relative;
+	top: auto;
+	right: auto;
+	left: auto;
+	bottom: auto;
+	z-index: 1;
+	display: block;
+}
+.bs-component .modal-dialog {
+	width: 90%;
+}
+.bs-component .popover {
+	position: relative;
+	display: inline-block;
+	width: 220px;
+	margin: 20px;
+}
+.nav-tabs {
+	margin-bottom: 15px;
+}
+.progress {
+	margin-bottom: 10px;
+}
+body {
+	font-size:100%;
+}
+
+
+/*	todoのリスト構造用	*/
+.tree-child-space {
+	border-left: solid 2px #a4d5bd;
+}
+
+.tree-mark {
+	color: #00947a;
+}
+
+.text-future {
+	color: #f19ca7;
+}
+
+/*	作業ボタンや完了ボタンの先のラジオボタン	*/
+.keeper-btn input {
+	display: none;
+}
+.keeper-btn label{
+	display: block;
+	float: left;
+	cursor: pointer;
+	width: 100px;
+	margin: 0;
+	padding: 10px;
+	background: #bdc3c7;
+	color: #869198;
+	font-size: 16px;
+	text-align: center;
+	line-height: 1;
+	transition: .2s;
+}
+.keeper-btn label:first-of-type{
+	border-radius: 3px 0 0 3px;
+}
+.keeper-btn label:last-of-type{
+	border-radius: 0 3px 3px 0;
+}
+.keeper-btn input[type="radio"]:checked + .switch-on {
+	background-color: #a1b91d;
+	color: #fff;
+}
+.keeper-btn input[type="radio"]:checked + .switch-off {
+	background-color: #e67168;
+	color: #fff;
+}

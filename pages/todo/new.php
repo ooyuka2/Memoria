@@ -19,12 +19,27 @@
 							<select class="form-control input-normal input-sm theme" name="theme[]" onChange="select_theme(this.options[this.options.selectedIndex].value)">
 								<?php
 									$todo_theme = readCsvFile2('../data/todo_theme.csv');
-									echo "<option value='0'>ãƒ†ãƒ¼ãƒžã®é¸æŠž</option>";
+									echo "<option value='0'>ƒe[ƒ}‚Ì‘I‘ð</option>";
 									for($i=1;$i<count($todo_theme);$i++) {
 										if(isset($_GET['theme']) && $_GET['theme']==$i) {
-											echo "<option value='{$i}' selected>{$todo_theme[$i]['ãƒ†ãƒ¼ãƒž']}</option>";
+											echo "<option value='{$i}' selected>{$todo_theme[$i]['ƒe[ƒ}']}</option>";
 										} else {
-											echo "<option value='{$i}'>{$todo_theme[$i]['ãƒ†ãƒ¼ãƒž']}</option>";//col-sm-2
+											echo "<option value='{$i}'>{$todo_theme[$i]['ƒe[ƒ}']}</option>";//col-sm-2
+										}
+									}
+								?>
+							</select>
+						</div>
+						<div class="col-xs-12" style="margin-bottom:5px">
+							<select class="form-control input-normal input-sm theme" name="theme2[]">
+								<?php
+									$todo_keeper_theme = readCsvFile2('../data/todo_keeper_theme.csv');
+									echo "<option value='0'>ŽžŠÔŠÇ—ƒe[ƒ}‚Ì‘I‘ð</option>";
+									for($i=1;$i<count($todo_keeper_theme);$i++) {
+										if($todo[$_GET['p']]['ŽžŠÔŠÇ—ƒe[ƒ}']==$todo_keeper_theme[$i]['id']) {
+											echo "<option value='{$todo_keeper_theme[$i]['id']}' selected>{$todo_keeper_theme[$i]['ƒe[ƒ}']}</option>";
+										} else {
+											echo "<option value='{$todo_keeper_theme[$i]['id']}'>{$todo_keeper_theme[$i]['ƒe[ƒ}']}</option>";//col-sm-2
 										}
 									}
 								?>
@@ -32,7 +47,7 @@
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
 							<?php
-								echo "<input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='ã‚¿ã‚¤ãƒˆãƒ«'>";
+								echo "<input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='ƒ^ƒCƒgƒ‹'>";
 								$id=count($todo);
 								echo "<input type='hidden' name='id[]' value='{$id}' class='id'>";
 							?>
@@ -41,36 +56,36 @@
 							<textarea class="form-control input-normal input-sm detail" rows="3" name="detail[]"></textarea>
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
-							<input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='æˆæžœç‰©'>
+							<input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='¬‰Ê•¨'>
 						</div>
-						<label class="col-sm-2 control-label" style="margin-bottom:5px">ãƒ¬ãƒ™ãƒ«</label>
+						<label class="col-sm-2 control-label" style="margin-bottom:5px">ƒŒƒxƒ‹</label>
 						<div class="col-xs-4" style="margin-bottom:5px">
 							<input type='number' class='form-control input-normal input-sm level' name='level[]' value='1' min='1' max='10' readonly>
 						</div>
-						<label class="col-sm-2 control-label" style="margin-bottom:5px">å„ªå…ˆåº¦</label>
+						<label class="col-sm-2 control-label" style="margin-bottom:5px">—Dæ“x</label>
 						<div class="col-xs-4" style="margin-bottom:5px">
 							<input type='number' class='form-control input-normal input-sm priority' name='priority[]' value='1' min='1' max='10'>
 						</div>
 		            </div>
 		            <div class="col-xs-4 date_and_time">
 						<div class="col-xs-12" style="margin-bottom:5px">
-						<label class="control-label">ç´æœŸ</label>
+						<label class="control-label">”[Šú</label>
 						<?php
 							date_default_timezone_set('Asia/Tokyo');
-							$today=date('Y-m-d');
+							$today=date('Y/m/d');
 							echo "<input type='date' class='form-control input-normal input-sm noki' name='noki[]' value='{$today}'>";
 						?>
 						</div>
 						<div class="col-xs-12 " style="margin-bottom:5px">
-							<label class="control-label">ç´æœŸã®æ™‚é–“</label>
+							<label class="control-label">”[Šú‚ÌŽžŠÔ</label>
 							<?php echo "<input type='time' class='form-control input-normal input-sm time' name='time[]' value='18:00' step='900'>"; ?>
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
-							<label class="control-label">é–‹å§‹äºˆå®šæ™‚åˆ»</label>
+							<label class="control-label">ŠJŽn—\’èŽž</label>
 							<?php echo "<input type='date' class='form-control input-normal input-sm kaisi' name='kaisi[]' value='{$today}'>"; ?>
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
-							<label class="control-label">çµ‚äº†äºˆå®šæ—¥æ™‚</label>
+							<label class="control-label">I—¹—\’è“úŽž</label>
 							<?php echo "<input type='date' class='form-control input-normal input-sm syuryo' name='syuryo[]' value='{$today}'>"; ?>
 						</div>
 		            </div>
@@ -79,7 +94,7 @@
 	    </fieldset>
 	    <div class="new"></div>
 	    <div class="form-group">
-	    	<button class="btn btn-success center-block" type="button" onClick='plus();'><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>ã€€è¿½åŠ </button>
+	    	<button class="btn btn-success center-block" type="button" onClick='plus();'><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>@’Ç‰Á</button>
 	    </div>
 	    
         <div class="form-group" style="margin-bottom:0; position: fixed; bottom: 20px;right:0;width:500px;">

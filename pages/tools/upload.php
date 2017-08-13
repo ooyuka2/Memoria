@@ -1,19 +1,19 @@
-ï»¿<?php
+<?php
  
 if (is_uploaded_file($_FILES["file"]["tmp_name"])) {
 	$_FILES["file"]["name"] = mb_convert_encoding($_FILES["file"]["name"],'SJIS-win','UTF-8');
   if (move_uploaded_file($_FILES["file"]["tmp_name"], "C:Users/yukako/Desktop/data/" . $_FILES["file"]["name"])) {
-    echo $_FILES["file"]["name"] . "ã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸã€‚";
+    echo $_FILES["file"]["name"] . "‚ðƒAƒbƒvƒ[ƒh‚µ‚Ü‚µ‚½B";
     $filepath = "C:Users/yukako/Desktop/data/" . $_FILES["file"]["name"];
     $file = readCsvFile($filepath);
     writeCsvFile($filepath, $file);
     
     
   } else {
-    echo "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã§ãã¾ã›ã‚“ã€‚";
+    echo "ƒtƒ@ƒCƒ‹‚ðƒAƒbƒvƒ[ƒh‚Å‚«‚Ü‚¹‚ñB";
   }
 } else {
-  echo "ãƒ•ã‚¡ã‚¤ãƒ«ãŒé¸æŠžã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚";
+  echo "ƒtƒ@ƒCƒ‹‚ª‘I‘ð‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB";
 }
  
 ?>
@@ -26,15 +26,15 @@ if (is_uploaded_file($_FILES["file"]["tmp_name"])) {
 	$_FILES["file"]["name"] = mb_convert_encoding($_FILES["file"]["name"],'SJIS-win','Unicode');
 	file_put_contents( $_FILES["file"]["tmp_name"], $file, LOCK_EX );
   if (move_uploaded_file($_FILES["file"]["tmp_name"], "C:Users/yukako/Desktop/data/" . $_FILES["file"]["name"])) {
-    echo $_FILES["file"]["name"] . "ã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸã€‚";
+    echo $_FILES["file"]["name"] . "‚ðƒAƒbƒvƒ[ƒh‚µ‚Ü‚µ‚½B";
     //mb_convert_variables('SJIS-win',"auto",$file);
    // mb_convert_variables('SJIS-win',"auto",$file);
     
   } else {
-    echo "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã§ãã¾ã›ã‚“ã€‚";
+    echo "ƒtƒ@ƒCƒ‹‚ðƒAƒbƒvƒ[ƒh‚Å‚«‚Ü‚¹‚ñB";
   }
 } else {
-  echo "ãƒ•ã‚¡ã‚¤ãƒ«ãŒé¸æŠžã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚";
+  echo "ƒtƒ@ƒCƒ‹‚ª‘I‘ð‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB";
 }
  */
 ?>

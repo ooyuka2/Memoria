@@ -2,15 +2,15 @@
 	$sa = sort_by_noki_priority($todo);
 	for($i=0; $i<count($sa); $i++) {
 		date_default_timezone_set('Asia/Tokyo');
-		$day1 = new DateTime($todo[$sa[$i]]['ÈñãÂßã‰∫àÂÆöÊó•']);
+		$day1 = new DateTime($todo[$sa[$i]]['äJénó\íËì˙']);
 		$day2 = new DateTime(date('Y/m/d'));
 		$interval = $day1->diff($day2);
-		if($todo[$sa[$i]]['ÂÆå‰∫Ü']==0 && $interval->format('%r%a Êó•')>=0 && $todo[$sa[$i]]['‰øùÁïô']==0 && $todo[$sa[$i]]['child']==0 && $todo[$sa[$i]]['ÂâäÈô§']==0) { //$todo[$i]['level'] == 1 && 
-			$finishday = new DateTime($todo[$sa[$i]]['Á¥çÊúü']);
+		if($todo[$sa[$i]]['äÆóπ']==0 && $interval->format('%r%a ì˙')>=0 && $todo[$sa[$i]]['ï€óØ']==0 && $todo[$sa[$i]]['child']==0 && $todo[$sa[$i]]['çÌèú']==0) { //$todo[$i]['level'] == 1 && 
+			$finishday = new DateTime($todo[$sa[$i]]['î[ä˙']);
 			$today = new DateTime(date('Y/m/d'));
-			if($finishday->diff($day2->modify('+1 day'))->format('%r%a Êó•') >= 0) {
+			if($finishday->diff($day2->modify('+1 day'))->format('%r%a ì˙') >= 0) {
 				last_todo_panel($todo, $sa[$i],'primary');
-			}else if($finishday->diff($today->modify('+3 day'))->format('%r%a Êó•') >= 0) {
+			}else if($finishday->diff($today->modify('+3 day'))->format('%r%a ì˙') >= 0) {
 				last_todo_panel($todo, $sa[$i],'warning');
 			} else {
 				last_todo_panel($todo, $sa[$i],'danger');
@@ -18,10 +18,10 @@
 		}
 	}
 	for($i=0; $i<count($sa); $i++) {
-		$day1 = new DateTime($todo[$sa[$i]]['ÈñãÂßã‰∫àÂÆöÊó•']);
+		$day1 = new DateTime($todo[$sa[$i]]['äJénó\íËì˙']);
 		$day2 = new DateTime(date('Y/m/d'));
 		$interval = $day1->diff($day2);
-		if ($todo[$sa[$i]]['ÂÆå‰∫Ü']==0 && $interval->format('%r%a Êó•')>=0 && $todo[$sa[$i]]['‰øùÁïô']==1 && $todo[$sa[$i]]['child']==0 && $todo[$sa[$i]]['ÂâäÈô§']==0) {
+		if ($todo[$sa[$i]]['äÆóπ']==0 && $interval->format('%r%a ì˙')>=0 && $todo[$sa[$i]]['ï€óØ']==1 && $todo[$sa[$i]]['child']==0 && $todo[$sa[$i]]['çÌèú']==0) {
 			last_todo_panel($todo, $sa[$i], 'info');
 		}
 	}

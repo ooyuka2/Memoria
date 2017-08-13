@@ -37,18 +37,18 @@
 		if($today->diff($whatday)->format('%R%a') >= 0) {
 			for($i=0; $i<count($sa); $i++) {
 				date_default_timezone_set('Asia/Tokyo');
-				$day1 = new DateTime($todo[$sa[$i]]['é–‹å§‹äºˆå®šæ—¥']);
+				$day1 = new DateTime($todo[$sa[$i]]['ŠJŽn—\’è“ú']);
 				$day2 = new DateTime($day);
 				$interval = $day1->diff($day2);
-				if($todo[$sa[$i]]['å®Œäº†']==0 && $interval->format('%r%a æ—¥')>=0 && $todo[$sa[$i]]['ä¿ç•™']==0 && $todo[$sa[$i]]['child']==0 && $todo[$sa[$i]]['å‰Šé™¤']==0) { //$todo[$i]['level'] == 1 && 
+				if($todo[$sa[$i]]['Š®—¹']==0 && $interval->format('%r%a “ú')>=0 && $todo[$sa[$i]]['•Û—¯']==0 && $todo[$sa[$i]]['child']==0 && $todo[$sa[$i]]['íœ']==0) { //$todo[$i]['level'] == 1 && 
 					last_todo_panel($todo, $sa[$i],'primary');
 				}
 			}
 			for($i=0; $i<count($sa); $i++) {
-				$day1 = new DateTime($todo[$sa[$i]]['é–‹å§‹äºˆå®šæ—¥']);
+				$day1 = new DateTime($todo[$sa[$i]]['ŠJŽn—\’è“ú']);
 				$day2 = new DateTime($day);
 				$interval = $day1->diff($day2);
-				if ($todo[$sa[$i]]['å®Œäº†']==0 && $interval->format('%r%a æ—¥')>=0 && $todo[$sa[$i]]['ä¿ç•™']==1 && $todo[$sa[$i]]['child']==0 && $todo[$sa[$i]]['å‰Šé™¤']==0) {
+				if ($todo[$sa[$i]]['Š®—¹']==0 && $interval->format('%r%a “ú')>=0 && $todo[$sa[$i]]['•Û—¯']==1 && $todo[$sa[$i]]['child']==0 && $todo[$sa[$i]]['íœ']==0) {
 					last_todo_panel($todo, $sa[$i], 'info');
 				}
 			}
@@ -69,16 +69,16 @@
 					
 					echo "<div class='panel-heading'>";
 					echo "<a href='./todo.php?d=detail&p={$top}' style='color:#ffffff;'>";
-					//echo "<h3 class='panel-title'>{$todo[$top]['ã‚¿ã‚¤ãƒˆãƒ«']}</h3>";
-					echo "<h3 class='panel-title'>{$todo[$ary[$c]]['ã‚¿ã‚¤ãƒˆãƒ«']}<span class='pull-right'>{$todo[$todo[$ary[$c]]['top']]['ã‚¿ã‚¤ãƒˆãƒ«']}</span></h3>";
+					//echo "<h3 class='panel-title'>{$todo[$top]['ƒ^ƒCƒgƒ‹']}</h3>";
+					echo "<h3 class='panel-title'>{$todo[$ary[$c]]['ƒ^ƒCƒgƒ‹']}<span class='pull-right'>{$todo[$todo[$ary[$c]]['top']]['ƒ^ƒCƒgƒ‹']}</span></h3>";
 					echo "</a></div>";
 					echo "<div class='panel-body'>";
-					echo "{$todo[$top]['ä½œæ¥­å†…å®¹']}<br>";
+					echo "{$todo[$top]['ì‹Æ“à—e']}<br>";
 					echo "<div class='col-xs-12'><div class='progress'><div class='progress-bar progress-bar-success progress-bar-striped active' role='progressbar' style='width: {$working[$i]['per']}%;'>";
 					echo "{$working[$i]['per']}%";
 					echo "</div></div></div>";
 					echo "</div>";
-					echo "<div class='panel-footer'>{$todo[$top]['é–‹å§‹äºˆå®šæ—¥']}ã€€ï½žã€€{$todo[$top]['ç´æœŸ']}</div>";
+					echo "<div class='panel-footer'>{$todo[$top]['ŠJŽn—\’è“ú']}@`@{$todo[$top]['”[Šú']}</div>";
 					echo "</div>";
 					
 					

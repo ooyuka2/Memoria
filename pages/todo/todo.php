@@ -1,24 +1,20 @@
+<div class="row">
+	<div class="col-xs-4">
+		<?php
+			include('todo/todo_tree.php');
+		?>
+	</div>
+	<div class="col-xs-8">
 <?php
-	$sa = sort_by_noki_priority($todo);
-	for($i=0; $i<count($sa); $i++) {
-		if($todo[$sa[$i]]['level'] == 1 && $todo[$sa[$i]]['完了']==0 && $todo[$sa[$i]]['削除']==0) {
-			
-			echo "<div class='panel panel-primary'>";
-			
-			echo "<div class='panel-heading'>";
-			echo "<a href='./todo.php?d=detail&p={$sa[$i]}' style='color:#ffffff;'>";
-			echo "<h3 class='panel-title'>{$todo[$sa[$i]]['タイトル']}</h3>";
-			echo "</a></div>";
-			echo "<div class='panel-body'>";
-			echo "{$todo[$sa[$i]]['作業内容']}<br>";
-			echo "<div class='col-xs-11'><div class='progress'><div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' style='width: {$todo[$sa[$i]]['パーセンテージ']}%;'>";
-			echo "{$todo[$sa[$i]]['パーセンテージ']}%";
-			echo "</div></div></div>";
-			if($todo[$sa[$i]]['パーセンテージ']!=100) 
-			echo "<div class='col-xs-1'><a href='todo.php?page=finish&p={$sa[$i]}' class='btn btn-success'>完了</a></div>";//todo.php?page=finish
-			echo "</div>";
-			echo "<div class='panel-footer'>{$todo[$sa[$i]]['開始予定日']}　～　{$todo[$sa[$i]]['納期']} {$todo[$sa[$i]]['納期時間']}</div>";
-			echo "</div>";
-		}
+	if(isset($_GET['p']) && $_GET['p']<count($todo)) {
+		include('todo/detail.php');
+	} else {
+		if(!isset($_GET['list'])) include('todo/today.php');
+		else if(isset($_GET['list']) && $_GET['list']=="tomorrow") include('todo/tomorrow.php');
+		else if(isset($_GET['list']) && $_GET['list']=="week") include('todo/week.php');
+		else if(isset($_GET['list']) && $_GET['list']=="todo_all") include('todo/todo_all.php');
+		else if(isset($_GET['list']) && $_GET['list']=="finishlist") include('todo/finishlist.php');
 	}
 ?>
+	</div>
+</div>

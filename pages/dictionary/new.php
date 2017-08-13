@@ -54,13 +54,13 @@
 			            <div class="col-xs-3" style="padding-right:0;">
 							<div class="col-xs-12" style="padding-right:0;">
 								<?php
-									echo "<input type='search' autocomplete='on' list='keywords' class='form-control input-normal input-sm name' id='name' name='name[]' placeholder='ãƒ¡ãƒ¢' onBlur='check_furi({$j})'>";
+									echo "<input type='search' autocomplete='on' list='keywords' class='form-control input-normal input-sm name' id='name' name='name[]' placeholder='ƒƒ‚' onBlur='check_furi({$j})'>";
 									$id=count($dictionary)+$j;
 									echo "<input type='hidden' name='id[]' value='{$id}'>";
 								?>
 							</div>
 							<div class="col-xs-12" style="padding-right:0;">
-								<input type="text" class="form-control input-normal input-sm furi" id="furi" name="furi[]" placeholder="ãµã‚ŠãŒãª">
+								<input type="text" class="form-control input-normal input-sm furi" id="furi" name="furi[]" placeholder="‚Ó‚è‚ª‚È">
 							</div>
 			            	<div class="col-xs-12" style="padding-right:0;">
 			                  <select class="form-control input-normal input-sm" id="genre" name="genre[]">
@@ -78,7 +78,7 @@
 								<textarea class="form-control input-normal input-sm" rows="2" id="textArea" name="summary[]"></textarea>
 							</div>
 							<div class="col-xs-12" style="padding-left:0;">
-								<textarea class="form-control input-normal input-sm" rows="3" id="textArea" name="detail[]"><?php echo "\n\n&lt;a href='' target='_blank'&gt;å‚è€ƒWEBã‚µã‚¤ãƒˆ&lt;/a&gt;"; ?></textarea>
+								<textarea class="form-control input-normal input-sm" rows="3" id="textArea" name="detail[]"><?php echo "\n\n&lt;a href='' target='_blank'&gt;ŽQlWEBƒTƒCƒg&lt;/a&gt;"; ?></textarea>
 							</div>
 			            </div>
 			        </div>

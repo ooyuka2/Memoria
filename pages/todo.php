@@ -2,20 +2,25 @@
 	include('hedder.php');
 ?>
 <style type="text/css">
-table {
+.calendar table {
     width: 100%;
 }
-table th {
+.calendar table th {
     background: #87cefa;
 }
-table th,
-table td {
+.calendar table th,
+.calendar table td {
     border: 1px solid #CCCCCC;
     text-align: center;
     padding: 5px;
 }
 .calendar {
 	margin: 30px 10px;
+}
+
+#keeper {
+	background: #ffffff;
+	padding: 0 20px;
 }
 </style>
 <body>

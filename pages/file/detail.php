@@ -18,10 +18,10 @@
     </div>
 	
     <div class="bs-component">
-		<h3>è¦ç´„</h3>
+		<h3>—v–ñ</h3>
 		<?php echo $file[$_GET['p']]['summary']; ?>
     <div class="bs-component">
-		<h3>è©³ç´°</h3>
+		<h3>Ú×</h3>
 		<?php echo $file[$_GET['p']]['detail']; ?>
     </div>
   </div>

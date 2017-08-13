@@ -3,7 +3,7 @@
 	$(function() {
 		for(var i=0; i<document.getElementsByClassName("name").length; i++) {
 		    $.fn.autoKana('.name:eq('+i+')', '.furi:eq('+i+')', {
-		        katakana : false  //trueï¼šã‚«ã‚¿ã‚«ãƒŠã€falseï¼šã²ã‚‰ãŒãªï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼‰
+		        katakana : false  //trueFƒJƒ^ƒJƒiAfalseF‚Ð‚ç‚ª‚ÈiƒfƒtƒHƒ‹ƒgj
 	    	});
 	    }
 	});

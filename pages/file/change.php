@@ -19,7 +19,7 @@
 		
 		writeCsvFile("../data/file.csv", $file);
 		$name = $file[$_GET['toroku']]['name'];
-		$_SESSION['change'] = "{$name}ã‚’å¤‰æ›´ã—ã¾ã—ãŸã€‚";
+		$_SESSION['change'] = "{$name}‚ğ•ÏX‚µ‚Ü‚µ‚½B";
 		header( "Location: ./file.php" );
 		exit();
 	}
@@ -31,7 +31,7 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="page-header">
-          <h1 id="forms">ç·¨é›†ç™»éŒ²</h1>
+          <h1 id="forms">•ÒW“o˜^</h1>
         </div>
       </div>
     </div>
@@ -43,21 +43,21 @@
 	          echo "<form class='form-horizontal' method='post' action='file.php?page=change&toroku={$id}'>";
 	      ?>
             <fieldset>
-              <legend>å…¥åŠ›æ¬„</legend>
+              <legend>“ü—Í—“</legend>
               <div class="form-group">
-                <label for="inputEmail" class="col-lg-2 control-label">ãƒ¡ãƒ¢ã‚¿ã‚¤ãƒˆãƒ«</label>
+                <label for="inputEmail" class="col-lg-2 control-label">ƒƒ‚ƒ^ƒCƒgƒ‹</label>
                 <div class="col-lg-10">
                     <?php
-                		echo "<input type='text' class='form-control' id='name' name='name' placeholder='ãƒ¡ãƒ¢' value='{$file[$_GET['p']]['name']}' onBlur='check_furi()'>";//
+                		echo "<input type='text' class='form-control' id='name' name='name' placeholder='ƒƒ‚' value='{$file[$_GET['p']]['name']}' onBlur='check_furi()'>";//
                 	?>
                 </div>
 
               </div>
               <div class="form-group">
-                <label for="inputEmail" class="col-lg-2 control-label">ãµã‚ŠãŒãª</label>
+                <label for="inputEmail" class="col-lg-2 control-label">‚Ó‚è‚ª‚È</label>
                 <div class="col-lg-10">
                     <?php
-                		echo "<input type='text' class='form-control' id='furi' name='furi' placeholder='ãƒ¡ãƒ¢' value='{$file[$_GET['p']]['furi']}'>";//
+                		echo "<input type='text' class='form-control' id='furi' name='furi' placeholder='ƒƒ‚' value='{$file[$_GET['p']]['furi']}'>";//
                 	?>
                 </div>
 
@@ -78,7 +78,7 @@
 			                  </select>
 			                  </div></div>
               <div class="form-group">
-                <label for="textArea" class="col-lg-2 control-label">è¦ç‚¹</label>
+                <label for="textArea" class="col-lg-2 control-label">—v“_</label>
                 <div class="col-lg-10">
                   <textarea class="form-control" rows="3" id="textArea" name="summary"><?php 
                   	$summary = str_replace('<br>', '&#13;',$file[$_GET['p']]['summary']); 
@@ -88,7 +88,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="textArea" class="col-lg-2 control-label">è©³ç´°</label>
+                <label for="textArea" class="col-lg-2 control-label">Ú×</label>
                 <div class="col-lg-10">
                   <textarea class="form-control" rows="3" id="textArea" name="detail"><?php 
                   	$detail = str_replace('<br>', '&#13;',$file[$_GET['p']]['detail']); 

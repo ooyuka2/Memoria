@@ -3,12 +3,12 @@
 	$todo = readCsvFile2('../data/todo.csv');
  ?>
 <script language="javascript" type="text/javascript">
-	var new_field = "<fieldset><div class='well bs-component'><div class='clearfix'><span class='pull-right close' onClick='minus( minusnumber );'>&times;</span><span class='pull-right close'>ã€€</span><span class='pull-right close' onClick='plus2( plusnumber );'>+</span></div><div class='form-group'><div class='col-xs-8'><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='ã‚¿ã‚¤ãƒˆãƒ«'><input type='hidden' name='id[]' class='id'></div><div class='col-xs-12' style='margin-bottom:5px'><textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'></textarea></div><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='æˆæœç‰©'></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>ãƒ¬ãƒ™ãƒ«</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm level' name='level[]' value='2' min='2' max='10'></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>å„ªå…ˆåº¦</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm priority' name='priority[]' min='1' max='10'></div></div><div class='col-xs-4'><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>ç´æœŸ</label><input type='date' class='form-control input-normal input-sm noki' name='noki[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>ç´æœŸã®æ™‚é–“</label><input type='time' class='form-control input-normal input-sm time' name='time[]' step='900'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>é–‹å§‹äºˆå®šæ™‚åˆ»</label><input type='date' class='form-control input-normal input-sm kaisi' name='kaisi[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>çµ‚äº†äºˆå®šæ—¥æ™‚</label><input type='date' class='form-control input-normal input-sm syuryo' name='syuryo[]'></div></div></div></div><div class='form-group' style='margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;'><div class='col-xs-offset-3 col-xs-3'><button type='reset' class='btn btn-default btn-block'>Reset</button></div><div class='col-xs-3'><button type='submit' class='btn btn-primary btn-block'>Submit</button></div></div></fieldset>";
+	var new_field = "<fieldset><div class='well bs-component'><div class='clearfix'><span class='pull-right close' onClick='minus( minusnumber );'>&times;</span><span class='pull-right close'>@</span><span class='pull-right close' onClick='plus2( plusnumber );'>+</span></div><div class='form-group'><div class='col-xs-8'><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='ƒ^ƒCƒgƒ‹'><input type='hidden' name='id[]' class='id'></div><div class='col-xs-12' style='margin-bottom:5px'><textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'></textarea></div><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='¬‰Ê•¨'></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>ƒŒƒxƒ‹</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm level' name='level[]' value='2' min='2' max='10'></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>—Dæ“x</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm priority' name='priority[]' min='1' max='10'></div></div><div class='col-xs-4'><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>”[Šú</label><input type='date' class='form-control input-normal input-sm noki' name='noki[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>”[Šú‚ÌŠÔ</label><input type='time' class='form-control input-normal input-sm time' name='time[]' step='900'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>ŠJn—\’è</label><input type='date' class='form-control input-normal input-sm kaisi' name='kaisi[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>I—¹—\’è“ú</label><input type='date' class='form-control input-normal input-sm syuryo' name='syuryo[]'></div></div></div></div><div class='form-group' style='margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;'><div class='col-xs-offset-3 col-xs-3'><button type='reset' class='btn btn-default btn-block'>Reset</button></div><div class='col-xs-3'><button type='submit' class='btn btn-primary btn-block'>Submit</button></div></div></fieldset>";
 	
 
 	
 	
-	//<button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>Ã—</span></button>
+	//<button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>~</span></button>
 	var new_id = document.getElementsByClassName("name").length;
 	var last_id = <?php echo count($todo); ?>;
 	function read_form() {
@@ -188,7 +188,7 @@ function (e) {
    }
 
 function todo_delete_check(tilte, id){
-  ret = confirm(tilte + "ã‚’æœ¬å½“ã«å‰Šé™¤ã—ã¾ã™ã‹ï¼Ÿã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ");
+  ret = confirm(tilte + "‚ğ–{“–‚Éíœ‚µ‚Ü‚·‚©H‚æ‚ë‚µ‚¢‚Å‚·‚©H");
   if (ret == true){
     location.href = '/Memoria/pages/todo.php?page=delete&delete=OK&id='+id;
   }
@@ -202,6 +202,10 @@ function finisflist_search(searchtext) {
 	}
 }
 
+function goto_detail(id) {
+	location.href = '/Memoria/pages/todo.php?d=detail&p='+id;
+}
+
 if(document.getElementById("finisflist_search")) {
 	var elm = document.getElementById('finisflist_search');
 	var val = elm.value;
@@ -210,5 +214,27 @@ if(document.getElementById("finisflist_search")) {
 	elm.value = val;
 }
 
+function tree_operate(element) {
+	$(element).parent().children('div').stop().fadeToggle(1000);
+	element.classList.toggle("glyphicon-chevron-right");
+	element.classList.toggle("glyphicon-chevron-down");
+}
 
+function tree_open() {
+	while($(".glyphicon-chevron-right").length > 0) {
+		var element = document.getElementsByClassName("glyphicon-chevron-right")[0];
+		element.classList.toggle("glyphicon-chevron-down");
+		$(element).parent().children('div').fadeIn(1000);
+		element.classList.toggle("glyphicon-chevron-right");
+	}
+}
+
+function tree_close() {
+	while($(".glyphicon-chevron-down").length > 0) {
+		var element = document.getElementsByClassName("glyphicon-chevron-down")[0];
+		element.classList.toggle("glyphicon-chevron-right");
+		$(element).parent().children('div').fadeOut(1000);
+		element.classList.toggle("glyphicon-chevron-down");
+	}
+}
 </script>

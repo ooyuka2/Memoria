@@ -2,14 +2,12 @@
 	$todo = readCsvFile2('../data/todo.csv');
 	$id = 0;
 	for($i=count($todo)-1; $i>0; $i--) {
-		if($todo[$i]['ãƒ†ãƒ¼ãƒž'] == $_GET['theme']) {
+		if($todo[$i]['ƒe[ƒ}'] == $_GET['theme']) {
 			$id = $i;
+			header( "Location: /Memoria/pages/todo.php?d=renew&p=".$id );
+			exit();
 		}
 	}
-	if($id == 0 || $_GET['theme']==0) {
-		header( "Location: /Memoria/pages/todo.php?d=new&theme=".$_GET['theme'] );
-		exit();
-	}
-	header( "Location: /Memoria/pages/todo.php?d=renew&p=".$id );
+	header( "Location: /Memoria/pages/todo.php?d=new&theme=".$_GET['theme'] );
 	exit();
 ?>

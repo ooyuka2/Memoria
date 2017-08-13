@@ -1,4 +1,4 @@
-ï»¿<html>
+<html>
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <style>
@@ -73,7 +73,7 @@ margin-right:5px;
 </head>
   
 <body>
-<div id="dragandrophandler">ã“ã“ã«ãƒ‰ãƒ­ãƒƒãƒ—ã—ã¦ãã ã•ã„ã€‚</div>
+<div id="dragandrophandler">‚±‚±‚Éƒhƒƒbƒv‚µ‚Ä‚­‚¾‚³‚¢B</div>
 <br><br>
 <div id="status1"></div>
 <script>

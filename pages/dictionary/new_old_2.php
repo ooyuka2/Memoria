@@ -46,10 +46,10 @@
 			                  </select>
 			            </div>
 			            <div class="col-xs-5" style="padding-right:0; padding-left:0;">
-			                <input type="text" class="form-control input-normal input-sm" id="name" name="name" placeholder="ãƒ¡ãƒ¢" onBlur="check_furi()">
+			                <input type="text" class="form-control input-normal input-sm" id="name" name="name" placeholder="ƒƒ‚" onBlur="check_furi()">
 			            </div>
 			            <div class="col-xs-5" style="padding-left:0;">
-			                <input type="text" class="form-control input-normal input-sm" id="furi" name="furi" placeholder="ãµã‚ŠãŒãª">
+			                <input type="text" class="form-control input-normal input-sm" id="furi" name="furi" placeholder="‚Ó‚è‚ª‚È">
 			            </div>
 			        </div>
 			        <div class="form-group" style="margin-bottom:0;">

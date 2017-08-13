@@ -1,5 +1,5 @@
 <?php
-	//<a class='btn btn-default' href="javascript:document.form_back.submit();">ζ»γ‚‹</a>
+	//<a class='btn btn-default' href="javascript:document.form_back.submit();">–ί‚ι</a>
 	function read_table($what_table, $d) {
 ?>
 <?php
@@ -7,7 +7,7 @@
 	$abcl = array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","g");
 	$abc2 = array("S_A","S_B","S_C","S_D","S_E","S_F","S_G","S_H","S_I","S_J","S_K","S_L","S_M","S_N","S_O","S_P","S_Q","S_R","S_S","S_T","S_U","S_V","S_W","S_X","S_Y","S_Z");
 	$abc3 = array("G_A","G_A","G_A","G_A","G_A","G_F","G_F","G_F","G_F","G_F","G_K","G_K","G_K","G_K","G_K","G_P","G_P","G_P","G_P","G_P","G_U","G_U","G_U","G_U","G_U","G_Z");
-	$hiragana = array("γ‚","γ„","γ†","γ","γ","γ‹","γ","γ","γ‘","γ“","γ•","γ—","γ™","γ›","γ","γ","γ΅","γ¤","γ¦","γ¨","γª","γ«","γ¬","γ­","γ®","γ―","γ²","γµ","γΈ","γ»","γΎ","γΏ","γ‚€","γ‚","γ‚‚","γ‚„","γ‚†","γ‚","","","γ‚‰","γ‚","γ‚‹","γ‚","γ‚","γ‚","γ‚’","γ‚“","","");
+	$hiragana = array("‚ ","‚Ά","‚¤","‚¦","‚¨","‚©","‚«","‚­","‚―","‚±","‚³","‚µ","‚·","‚Ή","‚»","‚½","‚Ώ","‚Β","‚Δ","‚Ζ","‚Θ","‚Ι","‚Κ","‚Λ","‚Μ","‚Ν","‚Π","‚Σ","‚Φ","‚Ω","‚ά","‚έ","‚ή","‚ί","‚ΰ","‚β","‚δ","‚ζ","","","‚η","‚θ","‚ι","‚κ","‚λ","‚ν","‚π","‚ρ","","");
 	$hiragana2 = array("S_a","S_i","S_u","S_e","S_o","S_ka","S_ki","S_ku","S_ke","S_ko","S_sa","S_si","S_su","S_se","S_so","S_ta","S_ti","S_tu","S_te","S_to","S_na","S_ni","S_nu","S_ne","S_no","S_ha","S_hi","S_hu","S_he","S_ho","S_ma","S_mi","S_mu","S_me","S_mo","S_ya","S_yi","S_yu","S_ye","S_yo","S_ra","S_ri","S_ru","S_re","S_ro","S_wa","S_wi","S_wu","S_we","S_wo");
 	$hiragana3 = array("G_a","G_a","G_a","G_a","G_a","G_ka","G_ka","G_ka","G_ka","G_ka","G_sa","G_sa","G_sa","G_sa","G_sa","G_ta","G_ta","G_ta","G_ta","G_ta","G_na","G_na","G_na","G_na","G_na","G_ha","G_ha","G_ha","G_ha","G_ha","G_ma","G_ma","G_ma","G_ma","G_ma","G_ya","G_ya","G_ya","G_ya","G_ya","G_ra","G_ra","G_ra","G_ra","G_ra","G_wa","G_wa","G_wa","G_wa","G_wa");
 	$dictionary = readCsvFile('../data/dictionary.csv');
@@ -16,7 +16,7 @@
 <!-- Tables
 ================================================== -->
 <div class="bs-docs-section" style="margin:0">
-<a href="./dictionary.php?page=new" class="btn btn-info">ζ–°θ¦</a>
+<a href="./dictionary.php?page=new" class="btn btn-info">V‹K</a>
 <p></p>
 <div class='container-fluid'>
 	<div class="row">
@@ -27,9 +27,9 @@
 	          <div class="btn-toolbar" style="text-align: center;">
 	          	<?php
 	          		if(!isset($_GET['search']) && $what_table=="home") {
-	          			echo "<div class='btn-group'><a href='./dictionary.php' class='btn btn-primary'>γ™γΉγ¦</a></div>";
+	          			echo "<div class='btn-group'><a href='./dictionary.php' class='btn btn-primary'>‚·‚Χ‚Δ</a></div>";
 	          		} else {
-	          			echo "<div class='btn-group'><a href='./dictionary.php?d=".$what_table."' class='btn btn-default'>γ™γΉγ¦</a></div>";
+	          			echo "<div class='btn-group'><a href='./dictionary.php?d=".$what_table."' class='btn btn-default'>‚·‚Χ‚Δ</a></div>";
 	          		}
 	          		
 	      		?>
@@ -70,11 +70,11 @@
 	      ?>
 	        <thead>
 	          <tr>
-	            <th>γƒ΅γƒΆ</th>
-	            <th>ε†…ε®Ή</th>
-	            <th>η™»ι²ζ—¥ζ™‚</th>
-	            <th>η·¨ι›†</th>
-	            <th>ε‰ι™¤</th>
+	            <th>ƒƒ‚</th>
+	            <th>“ΰ—e</th>
+	            <th>“o^“ϊ</th>
+	            <th>•ÒW</th>
+	            <th>ν</th>
 	          </tr>
 	        </thead>
 	        <tbody>
@@ -88,11 +88,11 @@
 			    				echo "</td><td>";
 			    				echo $dictionary[$i][2];
 			    				if($dictionary[$i][3]!="")
-			    				echo "<span style='float: right;'><a href='./dictionary.php?page=detail&p=".$i."'>θ©³η΄°</span></td><td>";
+			    				echo "<span style='float: right;'><a href='./dictionary.php?page=detail&p=".$i."'>ΪΧ</span></td><td>";
 			    				else { echo "</td><td>"; }
 			    				echo $dictionary[$i][5];
-			    				echo "</td><td><a href='./dictionary.php?page=change&p=".$i."' class='btn btn-info'>η·¨ι›†</a>";
-			    				echo "</td><td><a href='./dictionary.php?page=delete&p=".$i."' class='btn btn-danger'>ε‰ι™¤</a>";
+			    				echo "</td><td><a href='./dictionary.php?page=change&p=".$i."' class='btn btn-info'>•ÒW</a>";
+			    				echo "</td><td><a href='./dictionary.php?page=delete&p=".$i."' class='btn btn-danger'>ν</a>";
 			    				echo "</td></tr>";
 			    			}
 	    				}

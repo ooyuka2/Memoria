@@ -1,46 +1,27 @@
 <?php
-		session_start();
-		include_once('../pages/function.php');
-		$dictionary = readCsvFile('../data/dictionary.csv');
-		$file[] = $dictionary[0];
-		for($i=0;$i<count($dictionary);$i++) {
-			if($dictionary[$i][4]==4) {
-				$links = explode("<br>", $dictionary[$i][2]);
-				for($j=0;$j<count($links);$j++) {
-					$file[] = array($dictionary[$i][0], $dictionary[$i][1], $links[$j], $dictionary[$i][3], $dictionary[$i][4], $dictionary[$i][5], $dictionary[$i][6]);
-				}
-				//unset($dictionary[$i]);
-				
+		//session_start();
+		include_once('./function.php');
+		
+		$todo = readCsvFile2('../data/todo.csv');
+
+		for($i=1; $i<count($todo); $i++) {
+			if($todo[$i]['child']!=0) {
+				$todo[$i]['パーセンテージ'] = 0;
+				$todo[$i]['完了'] = 0;
 			}
 		}
-		$limit = count($dictionary);
-		for($j=0;$j<$limit;$j++) {
-			for($i=0;$i<count($dictionary);$i++) {
-				if($dictionary[$i][4]==4) {
-					unset($dictionary[$i]);
-					$dictionary = array_values($dictionary);
-				}
+		for($i=1; $i<count($todo); $i++) {
+			if($todo[$i]['child']==0) {
+				$todo = check_parent_finish($todo, $i, $todo[$i]['パーセンテージ']);
 			}
 		}
-		$dictionary = array_values($dictionary);
-		writeCsvFile("../data/file_0.csv", $file);
-		writeCsvFile("data/dictionary.csv", $dictionary);
-		
-		$fileN[] = array("name","furi","summary","detail","count","syurui","date","delete");
-		
-		for($i=1;$i<count($file);$i++) {
-			$links = explode(" target='_blank'>", $file[$i][2]);
-			$links[1] = str_replace("</a>", "", "$links[1]");
-			$fileN[] = array($file[$i][0], $file[$i][1], $links[1], $file[$i][3], 0, 1, $file[$i][5], $file[$i][6]);
-		}
-		writeCsvFile("../data/file.csv", $fileN);
-		
-		
-		header( "Location: ./file.php" );
+
+		writeCsvFile2("../data/todo.csv", $todo);
+		header( "Location: ./todo.php" );
 		exit();
 		//echo "<pre>";
-		//print_r($dictionary);
-		//echo "<hr>".$dictionary[4]['name'];
+		//print_r($working);
+		//echo "<hr>".$working[4]['name'];
 		
 		
 		// target='_blank'>
@@ -52,5 +33,5 @@
 		
 		
 		
-		echo "</pre><br><br>finish!";
+		//echo "</pre><br><br>finish!";
 ?>

@@ -24,12 +24,27 @@
 							<select class="form-control input-normal input-sm theme" name="theme[]" onChange="select_theme(this.options[this.options.selectedIndex].value)">
 								<?php
 									$todo_theme = readCsvFile2('../data/todo_theme.csv');
-									echo "<option value='0'>ãƒ†ãƒ¼ãƒã®é¸æŠ</option>";
+									echo "<option value='0'>ƒe[ƒ}‚Ì‘I‘ğ</option>";
 									for($i=1;$i<count($todo_theme);$i++) {
-										if($todo[$_GET['p']]['ãƒ†ãƒ¼ãƒ']==$i) {
-											echo "<option value='{$i}' selected>{$todo_theme[$i]['ãƒ†ãƒ¼ãƒ']}</option>";
+										if($todo[$_GET['p']]['ƒe[ƒ}']==$i) {
+											echo "<option value='{$i}' selected>{$todo_theme[$i]['ƒe[ƒ}']}</option>";
 										} else {
-											echo "<option value='{$i}'>{$todo_theme[$i]['ãƒ†ãƒ¼ãƒ']}</option>";//col-sm-2
+											echo "<option value='{$i}'>{$todo_theme[$i]['ƒe[ƒ}']}</option>";//col-sm-2
+										}
+									}
+								?>
+							</select>
+						</div>
+						<div class="col-xs-12" style="margin-bottom:5px">
+							<select class="form-control input-normal input-sm theme" name="theme2[]">
+								<?php
+									$todo_keeper_theme = readCsvFile2('../data/todo_keeper_theme.csv');
+									echo "<option value='0'>ŠÔŠÇ—ƒe[ƒ}‚Ì‘I‘ğ</option>";
+									for($i=1;$i<count($todo_keeper_theme);$i++) {
+										if($todo[$_GET['p']]['ŠÔŠÇ—ƒe[ƒ}']==$todo_keeper_theme[$i]['id']) {
+											echo "<option value='{$todo_keeper_theme[$i]['id']}' selected>{$todo_keeper_theme[$i]['ƒe[ƒ}']}</option>";
+										} else {
+											echo "<option value='{$todo_keeper_theme[$i]['id']}'>{$todo_keeper_theme[$i]['ƒe[ƒ}']}</option>";//col-sm-2
 										}
 									}
 								?>
@@ -37,59 +52,59 @@
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
 							<?php
-								echo "<input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='ã‚¿ã‚¤ãƒˆãƒ«' value='{$todo[$_GET['p']]['ã‚¿ã‚¤ãƒˆãƒ«']}'>";
+								echo "<input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='ƒ^ƒCƒgƒ‹' value='{$todo[$_GET['p']]['ƒ^ƒCƒgƒ‹']}'>";
 								$id=count($todo);
 								echo "<input type='hidden' name='id[]' value='{$id}' class='id'>";
 							?>
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
 							<textarea class="form-control input-normal input-sm detail" rows="3" name="detail[]"><?php 
-			                  	$detail = str_replace('<br>', '&#13;',$todo[$_GET['p']]['ä½œæ¥­å†…å®¹']); 
+			                  	$detail = str_replace('<br>', '&#13;',$todo[$_GET['p']]['ì‹Æ“à—e']); 
 			                  	echo $detail;
 			                  	?></textarea>
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
 							<?php
-								echo "<input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='æˆæœç‰©' value={$todo[$_GET['p']]['æˆæœç‰©']}>";
+								echo "<input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='¬‰Ê•¨' value={$todo[$_GET['p']]['¬‰Ê•¨']}>";
 							?>
 						</div>
-						<label class="col-sm-2 control-label" style="margin-bottom:5px">ãƒ¬ãƒ™ãƒ«</label>
+						<label class="col-sm-2 control-label" style="margin-bottom:5px">ƒŒƒxƒ‹</label>
 						<div class="col-xs-4" style="margin-bottom:5px">
 							<input type='number' class='form-control input-normal input-sm level' name='level[]' value='1' min='1' max='10' readonly>
 						</div>
-						<label class="col-sm-2 control-label" style="margin-bottom:5px">å„ªå…ˆåº¦</label>
+						<label class="col-sm-2 control-label" style="margin-bottom:5px">—Dæ“x</label>
 						<div class="col-xs-4" style="margin-bottom:5px">
 							<?php
-								echo "<input type='number' class='form-control input-normal input-sm priority' name='priority[]' value='{$todo[$_GET['p']]['å„ªå…ˆåº¦']}' min='1' max='10'>";
+								echo "<input type='number' class='form-control input-normal input-sm priority' name='priority[]' value='{$todo[$_GET['p']]['—Dæ“x']}' min='1' max='10'>";
 							?>
 						</div>
 		            </div>
 		            <div class="col-xs-4">
 						<div class="col-xs-12" style="margin-bottom:5px">
-						<label class="control-label">ç´æœŸ</label>
+						<label class="control-label">”[Šú</label>
 						<?php
-							$date = date('Y-m-d');;
-							echo "<input type='date' class='form-control input-normal input-sm noki' name='noki[]' value='{$date}'>";
-							//{$todo[$_GET['p']]['ç´æœŸ']}
+							$date = date('Y/m/d');;
+							echo "<input type='text' class='form-control input-normal input-sm noki' name='noki[]' value='{$date}'>";
+							//{$todo[$_GET['p']]['”[Šú']}
 						?>
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
-							<label class="control-label">ç´æœŸã®æ™‚é–“</label>
-							<?php echo "<input type='time' class='form-control input-normal input-sm time' name='time[]' value='{$todo[$_GET['p']]['ç´æœŸæ™‚é–“']}' step='900'>"; ?>
+							<label class="control-label">”[Šú‚ÌŠÔ</label>
+							<?php echo "<input type='time' class='form-control input-normal input-sm time' name='time[]' value='{$todo[$_GET['p']]['”[ŠúŠÔ']}' step='900'>"; ?>
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
-							<label class="control-label">é–‹å§‹äºˆå®šæ™‚åˆ»</label>
+							<label class="control-label">ŠJn—\’è</label>
 							<?php 
-								$date = date('Y-m-d');
-								echo "<input type='date' class='form-control input-normal input-sm kaisi' name='kaisi[]' value='{$date}'>";
+								$date = date('Y/m/d');
+								echo "<input type='text' class='form-control input-normal input-sm kaisi' name='kaisi[]' value='{$date}'>";
 							
 							 ?>
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
-							<label class="control-label">çµ‚äº†äºˆå®šæ—¥æ™‚</label>
+							<label class="control-label">I—¹—\’è“ú</label>
 							<?php 
-								$date = date('Y-m-d');
-								echo "<input type='date' class='form-control input-normal input-sm syuryo' name='syuryo[]' value='{$date}'>";
+								$date = date('Y/m/d');
+								echo "<input type='text' class='form-control input-normal input-sm syuryo' name='syuryo[]' value='{$date}'>";
 							 ?>
 						</div>
 		            </div>
@@ -100,20 +115,20 @@
 	    <?php
 	    	$count=1;
 		    for($i=1; $i<count($todo);$i++) {
-		    	if($todo[$i]['top']==$_GET['p'] && $todo[$i]['level']!=1) {
-		    		$detail = str_replace('<br>', '&#13;',$todo[$i]['ä½œæ¥­å†…å®¹']);
-		    		$nokidate = date('Y-m-d');
-		    		$startdate = date('Y-m-d');
-		    		$finishdate = date('Y-m-d');
+		    	if($todo[$i]['top']==$_GET['p'] && $todo[$i]['level']!=1 && $todo[$i]['íœ']==0) {
+		    		$detail = str_replace('<br>', '&#13;',$todo[$i]['ì‹Æ“à—e']);
+		    		$nokidate = date('Y/m/d');
+		    		$startdate = date('Y/m/d');
+		    		$finishdate = date('Y/m/d');
 		    		$id +=1;
-		    		echo "<fieldset><div class='well bs-component'><div class='clearfix'><span class='pull-right close' onClick='minus({$count});'>&times;</span><span class='pull-right close'>ã€€</span><span class='pull-right close' onClick='plus2({$count});'>+</span></div><div class='form-group'><div class='col-xs-8'><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='ã‚¿ã‚¤ãƒˆãƒ«' value='{$todo[$i]['ã‚¿ã‚¤ãƒˆãƒ«']}'></div><input type='hidden' name='id[]' value='{$id}' class='id'><div class='col-xs-12' style='margin-bottom:5px'><textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'>{$detail}</textarea></div><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='æˆæœç‰©' value={$todo[$i]['æˆæœç‰©']}></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>ãƒ¬ãƒ™ãƒ«</label><div class='col-xs-4' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm level' name='level[]' value='{$todo[$i]['level']}' min='2' max='10'></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>å„ªå…ˆåº¦</label><div class='col-xs-4' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm priority' name='priority[]' min='1' max='10' value='{$todo[$i]['å„ªå…ˆåº¦']}'></div></div><div class='col-xs-4'><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>ç´æœŸ</label><input type='date' class='form-control input-normal input-sm noki' name='noki[]' value='{$nokidate}'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>ç´æœŸã®æ™‚é–“</label><input type='time' class='form-control input-normal input-sm time' name='time[]' step='900' value='{$todo[$i]['ç´æœŸæ™‚é–“']}'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>é–‹å§‹äºˆå®šæ™‚åˆ»</label><input type='date' class='form-control input-normal input-sm kaisi' name='kaisi[]' value='{$startdate}'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>çµ‚äº†äºˆå®šæ—¥æ™‚</label><input type='date' class='form-control input-normal input-sm syuryo' name='syuryo[]' value='{$finishdate}'></div></div></div></div><div class='form-group' style='margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;'></div></fieldset>";
+		    		echo "<fieldset><div class='well bs-component'><div class='clearfix'><span class='pull-right close' onClick='minus({$count});'>&times;</span><span class='pull-right close'>@</span><span class='pull-right close' onClick='plus2({$count});'>+</span></div><div class='form-group'><div class='col-xs-8'><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='ƒ^ƒCƒgƒ‹' value='{$todo[$i]['ƒ^ƒCƒgƒ‹']}'></div><input type='hidden' name='id[]' value='{$id}' class='id'><div class='col-xs-12' style='margin-bottom:5px'><textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'>{$detail}</textarea></div><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='¬‰Ê•¨' value={$todo[$i]['¬‰Ê•¨']}></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>ƒŒƒxƒ‹</label><div class='col-xs-4' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm level' name='level[]' value='{$todo[$i]['level']}' min='2' max='10'></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>—Dæ“x</label><div class='col-xs-4' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm priority' name='priority[]' min='1' max='10' value='{$todo[$i]['—Dæ“x']}'></div></div><div class='col-xs-4'><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>”[Šú</label><input type='text' class='form-control input-normal input-sm noki' name='noki[]' value='{$nokidate}'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>”[Šú‚ÌŠÔ</label><input type='time' class='form-control input-normal input-sm time' name='time[]' step='900' value='{$todo[$i]['”[ŠúŠÔ']}'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>ŠJn—\’è</label><input type='text' class='form-control input-normal input-sm kaisi' name='kaisi[]' value='{$startdate}'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>I—¹—\’è“ú</label><input type='text' class='form-control input-normal input-sm syuryo' name='syuryo[]' value='{$finishdate}'></div></div></div></div><div class='form-group' style='margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;'></div></fieldset>";
 		    		$count++;
 		    	}
 		    }
 	    ?>
 	    </div>
 	    <div class="form-group">
-	    	<button class="btn btn-success center-block" type="button" onClick='plus();'><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>ã€€è¿½åŠ </button>
+	    	<button class="btn btn-success center-block" type="button" onClick='plus();'><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>@’Ç‰Á</button>
 	    </div>
 	    
         <div class="form-group" style="margin-bottom:0; position: fixed; bottom: 20px;right:0;width:500px;">

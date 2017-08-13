@@ -16,10 +16,10 @@
     </div>
 	
     <div class="bs-component">
-		<h3>è¦ç´„</h3>
+		<h3>—v–ñ</h3>
 		<?php echo $dictionary[$_GET['p']][2]; ?>
     <div class="bs-component">
-		<h3>è©³ç´°</h3>
+		<h3>Ú×</h3>
 		<?php echo $dictionary[$_GET['p']][3]; ?>
     </div>
   </div>

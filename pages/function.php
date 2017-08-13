@@ -1,7 +1,7 @@
 <?php
-//ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã‚“ã§é…åˆ—ã«å…¥ã‚Œã‚‹
+//ƒtƒ@ƒCƒ‹“Ç‚İ‚ñ‚Å”z—ñ‚É“ü‚ê‚é
 function readCsvFile($filepath) {
-mb_internal_encoding("UTF-8");
+mb_internal_encoding("SJIS-win");
 if (is_readable($filepath)) {
 		$file = new SplFileObject($filepath); 
 		$file->setFlags(SplFileObject::READ_CSV); 
@@ -13,15 +13,15 @@ if (is_readable($filepath)) {
 	}else {
 		$records = null;
 	}
-	mb_convert_variables('UTF-8',"SJIS-win, UTF-8, Unicode",$records);
+	mb_convert_variables('SJIS-win',"SJIS, SJIS-win, UTF-8, Unicode",$records);
 	//mb_convert_variables('UTF-8',"auto",$records);
 	//print_r($records);
 	return $records;
 }
 
-//ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã‚“ã§é…åˆ—ã«å…¥ã‚Œã‚‹
+//ƒtƒ@ƒCƒ‹“Ç‚İ‚ñ‚Å”z—ñ‚É“ü‚ê‚é
 function readCsvFile2($filepath) {
-mb_internal_encoding("UTF-8");
+mb_internal_encoding("SJIS-win");
 if (is_readable($filepath)) {
 		$file = new SplFileObject($filepath); 
 		$file->setFlags(SplFileObject::READ_CSV); 
@@ -30,7 +30,7 @@ if (is_readable($filepath)) {
 				$records[] = $line;
 			}
 		}
-		mb_convert_variables('UTF-8',"SJIS-win, UTF-8, Unicode",$records);
+		mb_convert_variables('SJIS-win',"SJIS, SJIS-win, UTF-8, Unicode",$records);
 		//mb_convert_variables('UTF-8',"auto",$records);
 		for($i=0;$i<count($records);$i++) {
 			/*echo "<pre>";
@@ -44,20 +44,20 @@ if (is_readable($filepath)) {
 		$ary = null;
 	}
 	//print_r($ary);
-	mb_convert_variables('UTF-8',"SJIS-win, UTF-8, Unicode",$ary);
+	mb_convert_variables('SJIS-win',"SJIS, SJIS-win, UTF-8, Unicode",$ary);
 	return $ary;
 }
 
-//csvãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãè¾¼ã¿
+//csvƒtƒ@ƒCƒ‹‘‚«‚İ
 function writeCsvFile($filepath, $records) {
-	mb_convert_variables('SJIS-win','UTF-8',$records);
+	//mb_convert_variables('SJIS-win','UTF-8',$records);
 	$fp = fopen($filepath, 'w');
 	foreach ($records as $fields) {
 		fputcsv($fp, $fields);
 	}
 	fclose($fp);
 }
-//csvãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãè¾¼ã¿
+//csvƒtƒ@ƒCƒ‹‘‚«‚İ
 function writeCsvFile2($filepath, $records) {
 	//print_r($records);
 	//echo "<br><br>";
@@ -69,7 +69,7 @@ function writeCsvFile2($filepath, $records) {
 		//print_r($records[$i]);
 		$line[] = $records[$i];
 	}
-	mb_convert_variables('SJIS-win','UTF-8',$line);
+	//mb_convert_variables('SJIS-win','UTF-8',$line);
 	$fp = fopen($filepath, 'w');
 	foreach ($line as $fields) {
 		fputcsv($fp, $fields);
@@ -120,35 +120,35 @@ function search_array($abc, $abc2, $abcl, $hiragana, $hiragana2, $word) {
 	if(serch_word($_GET['search'], $hiragana2)) {
 		$i = serch_word_r($_GET['search'], $hiragana2);
 		if($word==$hiragana[$i]) return 1;
-		if($i==5 && $word=="ãŒ") return 1;
-		if($i==6 && $word=="ã") return 1;
-		if($i==7 && $word=="ã") return 1;
-		if($i==8 && $word=="ã’") return 1;
-		if($i==9 && $word=="ã”") return 1;
-		if($i==10 && $word=="ã–") return 1;
-		if($i==11 && $word=="ã˜") return 1;
-		if($i==12 && $word=="ãš") return 1;
-		if($i==13 && $word=="ãœ") return 1;
-		if($i==14 && $word=="ã") return 1;
-		if($i==15 && $word=="ã ") return 1;
-		if($i==16 && $word=="ã¢") return 1;
-		if($i==17 && $word=="ã¥") return 1;
-		if($i==17 && $word=="ã£") return 1;
-		if($i==18 && $word=="ã§") return 1;
-		if($i==19 && $word=="ã©") return 1;
-		if($i==25 && $word=="ã°") return 1;
-		if($i==25 && $word=="ã±") return 1;
-		if($i==26 && $word=="ã³") return 1;
-		if($i==26 && $word=="ã´") return 1;
-		if($i==27 && $word=="ã¶") return 1;
-		if($i==27 && $word=="ã·") return 1;
-		if($i==28 && $word=="ã¹") return 1;
-		if($i==28 && $word=="ãº") return 1;
-		if($i==29 && $word=="ã¼") return 1;
-		if($i==29 && $word=="ã½") return 1;
-		if($i==35 && $word=="ã‚ƒ") return 1;
-		if($i==36 && $word=="ã‚…") return 1;
-		if($i==37 && $word=="ã‚‡") return 1;
+		if($i==5 && $word=="‚ª") return 1;
+		if($i==6 && $word=="‚¬") return 1;
+		if($i==7 && $word=="‚®") return 1;
+		if($i==8 && $word=="‚°") return 1;
+		if($i==9 && $word=="‚²") return 1;
+		if($i==10 && $word=="‚´") return 1;
+		if($i==11 && $word=="‚¶") return 1;
+		if($i==12 && $word=="‚¸") return 1;
+		if($i==13 && $word=="‚º") return 1;
+		if($i==14 && $word=="‚¼") return 1;
+		if($i==15 && $word=="‚¾") return 1;
+		if($i==16 && $word=="‚À") return 1;
+		if($i==17 && $word=="‚Ã") return 1;
+		if($i==17 && $word=="‚Á") return 1;
+		if($i==18 && $word=="‚Å") return 1;
+		if($i==19 && $word=="‚Ç") return 1;
+		if($i==25 && $word=="‚Î") return 1;
+		if($i==25 && $word=="‚Ï") return 1;
+		if($i==26 && $word=="‚Ñ") return 1;
+		if($i==26 && $word=="‚Ò") return 1;
+		if($i==27 && $word=="‚Ô") return 1;
+		if($i==27 && $word=="‚Õ") return 1;
+		if($i==28 && $word=="‚×") return 1;
+		if($i==28 && $word=="‚Ø") return 1;
+		if($i==29 && $word=="‚Ú") return 1;
+		if($i==29 && $word=="‚Û") return 1;
+		if($i==35 && $word=="‚á") return 1;
+		if($i==36 && $word=="‚ã") return 1;
+		if($i==37 && $word=="‚å") return 1;
 		
 	}
 	return 0;
@@ -158,27 +158,33 @@ function panel_child($todo, $parent) {
 	//echo $todo[12]['child'];
 	if($todo[$parent]['child'] != 0) {
 		for($i=1; $i<count($todo); $i++) {
-			if($todo[$i]['parent']==$parent && $todo[$i]['å‰Šé™¤']==0) {
-				if($todo[$i]['å®Œäº†']==1) { echo "<div class='panel panel-success'>"; }
+			if($todo[$i]['parent']==$parent && $todo[$i]['íœ']==0) {
+				if($todo[$i]['Š®—¹']==1) { echo "<div class='panel panel-success'>"; }
 				else echo "<div class='panel panel-danger'>";
 				echo "<div class='panel-heading'>";
-				echo "<div class='clearfix'><span class='pull-right close' onClick='todo_delete_check(&quot;{$todo[$i]['ã‚¿ã‚¤ãƒˆãƒ«']}&quot;, &quot;{$i}&quot;)'>&times;</span><h3 class='panel-title'>{$todo[$i]['ã‚¿ã‚¤ãƒˆãƒ«']}</h3></div>";
+				echo "<div class='clearfix'><span class='pull-right close' onClick='todo_delete_check(&quot;{$todo[$i]['ƒ^ƒCƒgƒ‹']}&quot;, &quot;{$i}&quot;)'>&times;</span><h3 class='panel-title'>{$todo[$i]['ƒ^ƒCƒgƒ‹']}</h3></div>";
 				echo "</div>";
 				echo "<div class='panel-body'>";
-				echo "<div class='alert alert-dismissible alert-warning' style='margin-bottom:0'>{$todo[$i]['ä½œæ¥­å†…å®¹']}</div>";
-				if($todo[$i]['æˆæœç‰©']!="") {
-					echo "<div class='alert alert-dismissible alert-info'><!--<strong style='font-size:150%'>æˆæœç‰©</strong>-->{$todo[$i]['æˆæœç‰©']}</div>";
+				echo "<div class='alert alert-dismissible alert-warning' style='margin-bottom:0'>{$todo[$i]['ì‹Æ“à—e']}</div>";
+				if($todo[$i]['¬‰Ê•¨']!="") {
+					echo "<div class='alert alert-dismissible alert-info'><!--<strong style='font-size:150%'>¬‰Ê•¨</strong>-->{$todo[$i]['¬‰Ê•¨']}</div>";
 				} else echo "<div style='height:20px;'></div>";
-				echo "<div class='col-xs-11'><div class='progress'><div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' style='width: {$todo[$i]['ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸']}%;'>";
-				echo "{$todo[$i]['ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸']}%";
+				echo "<div class='col-xs-9'><div class='progress'><div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' style='width: {$todo[$i]['ƒp[ƒZƒ“ƒe[ƒW']}%;'>";
+				echo "{$todo[$i]['ƒp[ƒZƒ“ƒe[ƒW']}%";
 				echo "</div></div></div>";
-				if($todo[$i]['ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸']!=100) {
-					echo "<div class='col-xs-1'><a href='todo.php?page=finish&p={$i}' class='btn btn-success'>å®Œäº†</a></div>";
+				if($todo[$i]['ƒp[ƒZƒ“ƒe[ƒW']!=100) {
+					echo "<div class='col-xs-1'><button type='button' class='btn btn-default dropdown-toggle btn-xs' data-toggle='dropdown' aria-expanded='false'>ì‹Æ<span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
+					for($j=ceil($todo[$i]['ƒp[ƒZƒ“ƒe[ƒW']/10)*10; $j<100; $j+=10) 
+					echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=do&p={$i}&f={$j}'>{$j}“‚Ü‚ÅŠ®—¹</a></li>";
+					echo "</ul></div>";
+					if($todo[$i]['•Û—¯'] == 0) echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$i}' class='btn btn-info btn-xs'>•Û—¯</a></div>";
+					else echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$i}' class='btn btn-link btn-xs'>‰ğœ</a></div>";
+					echo "<div class='col-xs-1'><a href='todo.php?page=finish&p={$i}' class='btn btn-success btn-xs'>Š®—¹</a></div>";
 				}//todo.php?page=finish
 				echo "<div style='height:50px;'></div>";
 				panel_child($todo, $todo[$i]['id']);
 				echo "</div>";
-				echo "<div class='panel-footer'>{$todo[$i]['é–‹å§‹äºˆå®šæ—¥']}ã€€ï½ã€€{$todo[$i]['ç´æœŸ']} {$todo[$i]['ç´æœŸæ™‚é–“']}</div>";
+				echo "<div class='panel-footer'>{$todo[$i]['ŠJn—\’è“ú']}@`@{$todo[$i]['”[Šú']} {$todo[$i]['”[ŠúŠÔ']}</div>";
 				echo "</div>";
 				
 			}
@@ -197,29 +203,30 @@ function last_todo_panel($todo, $i, $pattern) {
 				if($pattern=='warning') echo "style='color:#fa8072;'";
 				else if($pattern=='info') echo "style='color:#87ceeb;'";
 				echo ">";
-				echo "<h3 class='panel-title'>{$todo[$i]['ã‚¿ã‚¤ãƒˆãƒ«']}</h3>";
+				echo "<h3 class='panel-title'>{$todo[$i]['ƒ^ƒCƒgƒ‹']}</h3>";
 			}
 			else {
-				$b = $todo[$i]['top'];
-				echo "<a href='./todo.php?d=detail&p={$b}'";
+				//$b = $todo[$i]['top'];
+				//echo "<a href='./todo.php?d=detail&p={$b}'";
+				echo "<a href='./todo.php?d=detail&p={$i}'";
 				if($pattern=='primary') echo "style='color:#ffffff;'";
 				if($pattern=='warning') echo "style='color:#fa8072;'";
 				else if($pattern=='info') echo "style='color:#87ceeb;'";
 				echo ">";
-				echo "<h3 class='panel-title'>{$todo[$i]['ã‚¿ã‚¤ãƒˆãƒ«']}<span class='pull-right'>{$todo[$todo[$i]['top']]['ã‚¿ã‚¤ãƒˆãƒ«']}</span></h3>";
+				echo "<h3 class='panel-title'>{$todo[$i]['ƒ^ƒCƒgƒ‹']}<span class='pull-right'>{$todo[$todo[$i]['top']]['ƒ^ƒCƒgƒ‹']}</span></h3>";
 			}
 			echo "</a></div>";
 			echo "<div class='panel-body'>";
-			if($pattern=='warning') echo "style='color:#fa8072;'";
 			echo "";
-			echo "<div class='col-md-9 col-xs-6'><strong>ä½œæ¥­å†…å®¹ã€€: </strong>{$todo[$i]['ä½œæ¥­å†…å®¹']}<br><strong>æˆæœç‰©ã€€ã€€: </strong>{$todo[$i]['æˆæœç‰©']}<br><strong>æœŸé–“ã€€ã€€ã€€: </strong>{$todo[$i]['é–‹å§‹äºˆå®šæ—¥']}ã€€ï½ã€€{$todo[$i]['ç´æœŸ']}</div>";
-			//echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=do&p={$i}' class='btn btn-default'>ä½œæ¥­</a></div>";
-			echo "<div class='col-md-1 col-xs-2'><button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown' aria-expanded='false'>ä½œæ¥­ <span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
-			for($j=ceil($todo[$i]['ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸']/10)*10; $j<100; $j+=10) 
-			echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=do&p={$i}&f={$j}'>{$j}ï¼…ã¾ã§å®Œäº†</a></li>";
+			echo "<div class='col-md-9 col-xs-6'><strong>ì‹Æ“à—e@: </strong>{$todo[$i]['ì‹Æ“à—e']}<br><strong>¬‰Ê•¨@@: </strong>{$todo[$i]['¬‰Ê•¨']}<br><strong>ŠúŠÔ@@@: </strong>{$todo[$i]['ŠJn—\’è“ú']}@`@{$todo[$i]['”[Šú']}</div>";
+			//echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=do&p={$i}' class='btn btn-default'>ì‹Æ</a></div>";
+			echo "<div class='col-md-1 col-xs-2'><button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown' aria-expanded='false'>ì‹Æ <span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
+			for($j=ceil($todo[$i]['ƒp[ƒZƒ“ƒe[ƒW']/10)*10; $j<100; $j+=10) 
+			echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=do&p={$i}&f={$j}'>{$j}“‚Ü‚ÅŠ®—¹</a></li>";
 			echo "</ul></div>";
-			echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=wait&p={$i}' class='btn btn-warning'>ä¿ç•™</a></div>";
-			echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=finish&p={$i}' class='btn btn-success'>å®Œäº†</a></div>";
+			if($todo[$i]['•Û—¯'] == 0) echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=wait&p={$i}' class='btn btn-info btn-sm'>•Û—¯</a></div>";
+			else echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=wait&p={$i}' class='btn btn-link btn-sm'>‰ğœ</a></div>";
+			echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=finish&p={$i}' class='btn btn-success btn-sm'>Š®—¹</a></div>";
 			echo "</div>";
 			echo "</div>";
 	
@@ -232,9 +239,9 @@ function sort_by_noki_priority($todo) {
 	}
 	for($i=0; $i<count($array); $i++) {
 		for($j=$i+1; $j<count($array); $j++) {
-			$date1 = $todo[$array[$i]]['ç´æœŸ']. " ".$todo[$array[$i]]['ç´æœŸæ™‚é–“'];
+			$date1 = $todo[$array[$i]]['”[Šú']. " ".$todo[$array[$i]]['”[ŠúŠÔ'];
 			$date1 = new DateTime($date1);
-			$date2 = $todo[$array[$j]]['ç´æœŸ']. " ".$todo[$array[$j]]['ç´æœŸæ™‚é–“'];
+			$date2 = $todo[$array[$j]]['”[Šú']. " ".$todo[$array[$j]]['”[ŠúŠÔ'];
 			$date2 = new DateTime($date2);
 			if($date1 > $date2) {
 				$x = $array[$i];
@@ -255,36 +262,307 @@ function sort_by_noki_priority($todo) {
 	return $array;
 }
 
+function sort_by_noki_todo_priority2($todo) {
+	$tmparray = array();
+	for($i=1; $i<count($todo); $i++) {
+		if($todo[$i]['level'] == 1 && $todo[$i]['Š®—¹'] == 0 && $todo[$i]['•Û—¯'] == 0) {
+			$tmparray[count($tmparray)] = $todo[$i]['id'];
+		}
+	}
+	for($i=0; $i<count($tmparray); $i++) {
+		for($j=$i+1; $j<count($tmparray); $j++) {
+			$date1 = $todo[$tmparray[$i]]['”[Šú']. " ".$todo[$tmparray[$i]]['”[ŠúŠÔ'];
+			$date1 = new DateTime($date1);
+			$date2 = $todo[$tmparray[$j]]['”[Šú']. " ".$todo[$tmparray[$j]]['”[ŠúŠÔ'];
+			$date2 = new DateTime($date2);
+			if($date1 > $date2) {
+				$x = $tmparray[$i];
+				$tmparray[$i] = $tmparray[$j];
+				$tmparray[$j] = $x;
+			} else if($date1 == $date2) {
+				if($tmparray[$i]<$tmparray[$j]) {
+					$x = $tmparray[$i];
+					$tmparray[$i] = $tmparray[$j];
+					$tmparray[$j] = $x;
+				}
+			}
+		}
+	}
+	$sortlist = array();
+	for($j=0; $j<count($tmparray); $j++) {
+		$sortlist[count($sortlist)] = $tmparray[$j];
+		for($i=1; $i<count($todo); $i++) {
+			if($todo[$i]['level'] != 1 && $todo[$i]['top'] == $tmparray[$j]) {
+				$sortlist[count($sortlist)] = $todo[$i]['id'];
+			}
+		}
+	}
+	return $sortlist;
+}
+
+function sort_by_noki_todo_priority($todo, $flag) {
+	$tmparray = array();
+	for($i=1; $i<count($todo); $i++) {
+		if($todo[$i]['Š®—¹'] == 0 && $todo[$i]['•Û—¯'] == 0 && $todo[$i]['íœ'] != 1 && $flag) {
+			$tmparray[count($tmparray)] = $todo[$i]['id'];
+		} else if($todo[$todo[$i]['top']]['Š®—¹'] == 1 && $todo[$i]['íœ'] != 1 && !$flag) {
+			$tmparray[count($tmparray)] = $todo[$i]['id'];
+		}
+	}
+	if($flag) $tmparray[count($tmparray)] = 0;
+	for($i=0; $i<count($tmparray); $i++) {
+		for($j=$i+1; $j<count($tmparray); $j++) {
+			if($tmparray[$i] == 0) {
+				$today =  new DateTime();
+				$date1 = $today->modify('+1 day')->setTime(0,0,0);
+			} else {
+				$date1 = $todo[$tmparray[$i]]['”[Šú']. " ".$todo[$tmparray[$i]]['”[ŠúŠÔ'];
+				$date1 = new DateTime($date1);
+			}
+			if($tmparray[$j] == 0) {
+				$today =  new DateTime();
+				$date2 = $today->modify('+1 day')->setTime(0,0,0);
+			} else {
+				$date2 = $todo[$tmparray[$j]]['”[Šú']. " ".$todo[$tmparray[$j]]['”[ŠúŠÔ'];
+				$date2 = new DateTime($date2);
+			}
+			if(($date1 > $date2 && $flag) || ($date1 < $date2 && !$flag)) {
+				$x = $tmparray[$i];
+				$tmparray[$i] = $tmparray[$j];
+				$tmparray[$j] = $x;
+			}else if($date1 == $date2) {
+				if($tmparray[$i]>$tmparray[$j]) {
+					$x = $tmparray[$i];
+					$tmparray[$i] = $tmparray[$j];
+					$tmparray[$j] = $x;
+				}
+			}
+		}
+	}
+	$tmpcount = count($tmparray);
+	for($i=1; $i<count($todo); $i++) {
+		if($todo[$i]['Š®—¹'] == 0 && $todo[$i]['•Û—¯'] == 1 && $todo[$i]['íœ'] != 1 && $flag) {
+			$tmparray[count($tmparray)] = $todo[$i]['id'];
+		}
+	}
+
+	$todayflug = false;
+	for($i=$tmpcount; $i<count($tmparray); $i++) {
+		for($j=$i+1; $j<count($tmparray); $j++) {
+			$date1 = $todo[$tmparray[$i]]['”[Šú']. " ".$todo[$tmparray[$i]]['”[ŠúŠÔ'];
+			$date1 = new DateTime($date1);
+			$date2 = $todo[$tmparray[$j]]['”[Šú']. " ".$todo[$tmparray[$j]]['”[ŠúŠÔ'];
+			$date2 = new DateTime($date2);
+
+			if(($date1 > $date2 && $flag) || ($date1 < $date2 && !$flag)) {
+				$x = $tmparray[$i];
+				$tmparray[$i] = $tmparray[$j];
+				$tmparray[$j] = $x;
+			}else if($date1 == $date2) {
+				if($tmparray[$i]>$tmparray[$j]) {
+					$x = $tmparray[$i];
+					$tmparray[$i] = $tmparray[$j];
+					$tmparray[$j] = $x;
+				}
+			}
+		}
+	}
+	$sortlist = array();
+	$checktop = array();
+	for($j=0; $j<count($tmparray); $j++) {
+		if($tmparray[$j] == 0) $sortlist[count($sortlist)] = 0;
+		else if(!check1array($checktop, $todo[$tmparray[$j]]['top'])) {
+			$sortlist[count($sortlist)] = $todo[$tmparray[$j]]['top'];
+			$checktop[count($checktop)] = $todo[$tmparray[$j]]['top'];
+		}
+		/*
+		for($i=0; $i<count($todo); $i++) {
+			if($todo[$i]['level'] != 1 && $todo[$i]['top'] == $tmparray[$j] && $todo[$i]['íœ'] != 1) {
+				$sortlist[count($sortlist)] = $todo[$i]['id'];
+			}
+		}*/
+	}
+	/*
+	echo "<pre>";
+	//print_r($todo[24]);
+	//print_r($todo[25]);
+	//print_r($sortlist);
+	print_r($tmparray);
+	echo "</pre>";*/
+	return $sortlist;
+}
+
+//ˆêŸŒ³”z—ñ‚Ì’†‚Éˆê’v‚·‚é‚à‚Ì‚ª‚ ‚é‚©”Û‚©
+function check1array($array, $text) {
+	$flug = false;
+	for($i=0; $i<count($array); $i++) {
+		if($array[$i] == $text) $flug = true;
+	}
+	return $flug;
+}
+
+function write_todo_tree($todo, $id, $date) {
+	$color = check_todo_tree($todo, $id, $date);
+	if($color != "") {
+		write_todo_tree_title($todo, $id, $color);
+		if($todo[$id]['child'] != 0) {
+			for($i=0; $i<count($todo); $i++) {
+				if($todo[$i]['parent'] == $todo[$id]['id'] && $todo[$i]['íœ'] == 0) write_todo_tree($todo, $i, $date);
+			}
+		}
+		echo "</div>";
+	}
+}
+
+function check_todo_tree($todo, $id , $date) {
+	date_default_timezone_set('Asia/Tokyo');
+	$day1 = new DateTime($todo[$id]['ŠJn—\’è“ú']);
+	$day2 = new DateTime($date);
+	$interval = $day1->diff($day2);
+	$color = "";
+	if($todo[$id]['íœ']==0) {
+		$finishday = new DateTime($todo[$id]['”[Šú']);
+		$today = new DateTime(date('Y/m/d'));
+		if($todo[$id]['Š®—¹'] == 1) {
+			//write_todo_tree($todo, $id, 'success');
+			$color = 'success';
+		} else if($todo[$id]['•Û—¯'] == 1) {
+			//write_todo_tree($todo, $id, 'muted');
+			$color = 'muted';
+		} else if($interval->format('%r%a “ú')<0) { //–¢—ˆ
+			$color = 'future';
+		} else if($finishday->diff($day2->modify('+1 day'))->format('%r%a “ú') >= 0) {
+			//write_todo_tree($todo, $id, 'danger');
+			$color = 'danger';
+		}else if($finishday->diff($today->modify('+3 day'))->format('%r%a “ú') >= 0) {
+			//write_todo_tree($todo, $id, 'warning');
+			$color = 'warning';
+		} else {
+			//write_todo_tree($todo, $id, 'primary');
+			$color = 'primary';
+		}
+	}
+	return $color;
+}
+
+function write_todo_tree_title($todo, $id, $color) {
+	
+	if(isset($_GET['p']) && $_GET['p'] == $todo[$id]['id']) echo "<div class='panel-tree-child bg-warning'>";
+	else echo "<div class='panel-tree-child'>";
+	
+	
+	
+	if($todo[$id]['level'] != 1) {
+		echo "&thinsp;";
+		for($j=1; $j<$todo[$id]['level']; $j++) echo " <span class='tree-child-space'>@</span>";
+	}
+	
+	if($todo[$id]['child'] != 0) echo "<span class='glyphicon glyphicon-chevron-down tree-mark' aria-hidden='true' onClick='tree_operate(this)'></span>";
+	else if($todo[$id]['Š®—¹'] == 0) echo "<span class='glyphicon glyphicon-edit tree-mark' aria-hidden='true'></span>";
+	else echo "<span class='glyphicon glyphicon-check tree-mark' aria-hidden='true'></span>";
+	if(!isset($_GET['d'])) $_GET['d'] = "todo";
+	echo "<span class='text-{$color}' onDblClick='location.href = \"/Memoria/pages/todo.php?d={$_GET['d']}&p={$todo[$id]['id']}\"'  onMouseOver='this.classList.add(\"bg-info\")' onMouseOut='this.classList.remove(\"bg-info\")'>{$todo[$id]['ƒ^ƒCƒgƒ‹']}</span>";
+}
+
+function check_child_finish($todo, $parent) {
+	/*
+	echo "check_child_finish(\$todo, {$parent})<br>";
+	echo $todo[($parent-1)]['child']."<br>";
+	echo "<pre>";
+	print_r($todo[($parent-1)]);
+	echo "</pre>";*/
+	if($todo[$parent]['child'] != 0) {
+		//echo "\$todo[\$parent]['child'] != 0<br>";
+		for($i=0; $i<count($todo); $i++) {
+			if($todo[$i]['parent']==$parent && $todo[$i]['Š®—¹']==0) {
+				//echo "ok{$todo[$i]['parent']} == \$parent<br>";
+				$todo[$i]['Š®—¹'] = 1;
+				$todo[$i]['ƒp[ƒZƒ“ƒe[ƒW'] = 100;
+				/*
+				$working = readCsvFile2('../data/working.csv');
+				$www = count($working);
+				$working[$www]['id'] = $todo[$i]['id'];
+				$working[$www]['day'] = date('Y/m/d H:i:s');
+				$working[$www]['startTime'] = "00:00";
+				$working[$www]['finishTime'] = "00:00";
+				$working[$www]['per'] = 100;
+				/*
+				echo "<pre>";
+				print_r($working);
+				echo "</pre>";
+				*/
+				//writeCsvFile2("../data/working.csv", $working);
+				$todo = check_child_finish($todo, $todo[$i]['id']);
+			}
+		}
+	}
+	return $todo;
+}
+
+function check_parent_finish($todo, $child, $fdo) {
+	if($todo[$child]['level'] != 1) {
+		$parent = $todo[$child]['parent'];
+		$pfdo = $todo[$parent]['ƒp[ƒZƒ“ƒe[ƒW'];
+		$todo[$parent]['ƒp[ƒZƒ“ƒe[ƒW'] += $fdo/$todo[$parent]['child'];
+		$pfdo = $todo[$parent]['ƒp[ƒZƒ“ƒe[ƒW'] - $pfdo;
+		//echo $todo[$parent]['id'];
+		if($todo[$parent]['ƒp[ƒZƒ“ƒe[ƒW']>90) {
+			$chk = 0;
+			for($i=1; $i<count($todo); $i++) {
+				if($todo[$i]['parent']==$parent && $todo[$i]['Š®—¹'] == 0 && $todo[$i]['íœ'] == 0) {
+					$chk++;
+				}
+			}
+			if($chk==0) {
+				$todo[$parent]['ƒp[ƒZƒ“ƒe[ƒW']=100;
+				$todo[$parent]['Š®—¹'] = 1;
+			}
+		}
+		if($todo[$parent]['level']!=1) $todo = check_parent_finish($todo, $parent, $pfdo);
+	}
+	return $todo;
+}
+
+function check_parent_do($todo, $child) {
+	if($todo[$child]['level'] != 1) {
+		$parent = $todo[$child]['parent'];
+		$todo[$parent]['ƒp[ƒZƒ“ƒe[ƒW'] += $todo[$child]['ƒp[ƒZƒ“ƒe[ƒW']/$todo[$parent]['child'];
+		writeCsvFile2("../../data/todo.csv", $todo);
+		if($todo[$parent]['level']!=1) $todo = check_parent_do($todo, $parent);
+	}
+	return $todo;
+}
+
 ?>
 
 <?php
-// ç¾åœ¨ã®å¹´æœˆã‚’å–å¾—
+// Œ»İ‚Ì”NŒ‚ğæ“¾
 function calendar($year, $month) {
-	// æœˆæœ«æ—¥ã‚’å–å¾—
+	// Œ––“ú‚ğæ“¾
 	$last_day = date('j', mktime(0, 0, 0, $month + 1, 0, $year));
 	$calendar = array();
 	$j = 0;
-	// æœˆæœ«æ—¥ã¾ã§ãƒ«ãƒ¼ãƒ—
+	// Œ––“ú‚Ü‚Åƒ‹[ƒv
 	for ($i = 1; $i < $last_day + 1; $i++) {
-		// æ›œæ—¥ã‚’å–å¾—
+		// —j“ú‚ğæ“¾
 	    $week = date('w', mktime(0, 0, 0, $month, $i, $year));
-	    // 1æ—¥ã®å ´åˆ
+	    // 1“ú‚Ìê‡
 	    if ($i == 1) {
-	        // 1æ—¥ç›®ã®æ›œæ—¥ã¾ã§ã‚’ãƒ«ãƒ¼ãƒ—
+	        // 1“ú–Ú‚Ì—j“ú‚Ü‚Å‚ğƒ‹[ƒv
 	        for ($s = 1; $s <= $week; $s++) {
-	            // å‰åŠã«ç©ºæ–‡å­—ã‚’ã‚»ãƒƒãƒˆ
+	            // ‘O”¼‚É‹ó•¶š‚ğƒZƒbƒg
 	            $calendar[$j]['day'] = '';
 	            $j++;
 	        }
 	    }
-	    // é…åˆ—ã«æ—¥ä»˜ã‚’ã‚»ãƒƒãƒˆ
+	    // ”z—ñ‚É“ú•t‚ğƒZƒbƒg
 	    $calendar[$j]['day'] = $i;
 	    $j++;
-	    // æœˆæœ«æ—¥ã®å ´åˆ
+	    // Œ––“ú‚Ìê‡
 	    if ($i == $last_day) {
-	        // æœˆæœ«æ—¥ã‹ã‚‰æ®‹ã‚Šã‚’ãƒ«ãƒ¼ãƒ—
+	        // Œ––“ú‚©‚çc‚è‚ğƒ‹[ƒv
 	        for ($e = 1; $e <= 6 - $week; $e++) {
-	            // å¾ŒåŠã«ç©ºæ–‡å­—ã‚’ã‚»ãƒƒãƒˆ
+	            // Œã”¼‚É‹ó•¶š‚ğƒZƒbƒg
 	            $calendar[$j]['day'] = '';
 	            $j++;
 	        }
@@ -292,7 +570,7 @@ function calendar($year, $month) {
 	}
 ?>
 	<div class='calendar'>
-	<?php echo $year; ?>å¹´<?php echo $month; ?>æœˆ
+	<?php echo $year; ?>”N<?php echo $month; ?>Œ
 	<?php
 		$thisyear = date('Y');
 		$thismonth = date('n');
@@ -302,13 +580,13 @@ function calendar($year, $month) {
 	<br>
 	<table>
 	    <tr>
-	        <th style='background: #e73562;'>æ—¥</th>
-	        <th>æœˆ</th>
-	        <th>ç«</th>
-	        <th>æ°´</th>
-	        <th>æœ¨</th>
-	        <th>é‡‘</th>
-	        <th style='background: #009b9f;'>åœŸ</th>
+	        <th style='background: #e73562;'>“ú</th>
+	        <th>Œ</th>
+	        <th>‰Î</th>
+	        <th>…</th>
+	        <th>–Ø</th>
+	        <th>‹à</th>
+	        <th style='background: #009b9f;'>“y</th>
 	    </tr>
 	 
 	    <tr>

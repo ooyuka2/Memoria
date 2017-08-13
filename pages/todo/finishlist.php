@@ -11,23 +11,23 @@
 	$c = 0;
 	$ary = array();
 	for($i=count($working)-1; $i>0; $i--) {
-		if($todo[$todo[$working[$i]['id']]['top']]['å®Œäº†'] == 1 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
+		if($working[$i]['id'] != "deskwork" && $todo[$todo[$working[$i]['id']]['top']]['Š®—¹'] == 1 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
 			$ary[$c] = $todo[$working[$i]['id']]['top'];
 			$c++;
 			$top = $todo[$working[$i]['id']]['top'];
-			if(!isset($_GET['finisflist_search']) || strpos($todo[$top]['ã‚¿ã‚¤ãƒˆãƒ«'],$_GET['finisflist_search']) !== false || strpos($todo[$top]['ä½œæ¥­å†…å®¹'],$_GET['finisflist_search']) !== false || strpos($todo[$working[$i]['id']]['ã‚¿ã‚¤ãƒˆãƒ«'],$_GET['finisflist_search']) !== false || strpos($todo[$working[$i]['id']]['ä½œæ¥­å†…å®¹'],$_GET['finisflist_search']) !== false) {
+			if(!isset($_GET['finisflist_search']) || strpos($todo[$top]['ƒ^ƒCƒgƒ‹'],$_GET['finisflist_search']) !== false || strpos($todo[$top]['ì‹Æ“à—e'],$_GET['finisflist_search']) !== false || strpos($todo[$working[$i]['id']]['ƒ^ƒCƒgƒ‹'],$_GET['finisflist_search']) !== false || strpos($todo[$working[$i]['id']]['ì‹Æ“à—e'],$_GET['finisflist_search']) !== false) {
 				echo "<div class='panel panel-primary'>";
 				echo "<div class='panel-heading'>";
 				echo "<a href='./todo.php?d=detail&p={$top}' style='color:#ffffff;'>";
-				echo "<h3 class='panel-title'>{$todo[$top]['ã‚¿ã‚¤ãƒˆãƒ«']}</h3>";
+				echo "<h3 class='panel-title'>{$todo[$top]['ƒ^ƒCƒgƒ‹']}</h3>";
 				echo "</a></div>";
 				echo "<div class='panel-body'>";
-				echo "{$todo[$top]['ä½œæ¥­å†…å®¹']}<br>";
-				echo "<div class='col-xs-12'><div class='progress'><div class='progress-bar progress-bar-success progress-bar-striped active' role='progressbar' style='width: {$todo[$top]['ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸']}%;'>";
-				echo "{$todo[$top]['ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸']}%";
+				echo "{$todo[$top]['ì‹Æ“à—e']}<br>";
+				echo "<div class='col-xs-12'><div class='progress'><div class='progress-bar progress-bar-success progress-bar-striped active' role='progressbar' style='width: {$todo[$top]['ƒp[ƒZƒ“ƒe[ƒW']}%;'>";
+				echo "{$todo[$top]['ƒp[ƒZƒ“ƒe[ƒW']}%";
 				echo "</div></div></div>";
 				echo "</div>";
-				echo "<div class='panel-footer'>{$todo[$top]['é–‹å§‹äºˆå®šæ—¥']}ã€€ï½žã€€{$todo[$top]['ç´æœŸ']}</div>";
+				echo "<div class='panel-footer'>{$todo[$top]['ŠJŽn—\’è“ú']}@`@{$todo[$top]['”[Šú']}</div>";
 				echo "</div>";
 			}
 		}

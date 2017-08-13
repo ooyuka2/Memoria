@@ -30,28 +30,28 @@ table td {
 	<div class='bkcolor'>
 	<div class="container" style="padding:25px 0 50px 0">
 <?php
-		// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ‘ã‚¹ã‚’è¨˜è¿°
+		// ƒfƒBƒŒƒNƒgƒŠ‚ÌƒpƒX‚ğ‹Lq
 		$dir = "./tools/" ;
 
-		// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å­˜åœ¨ã‚’ç¢ºèªã—ã€ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
+		// ƒfƒBƒŒƒNƒgƒŠ‚Ì‘¶İ‚ğŠm”F‚µAƒnƒ“ƒhƒ‹‚ğæ“¾
 		if( is_dir( $dir ) && $handle = opendir( $dir ) ) {
-			// [ul]ã‚¿ã‚°
+			// [ul]ƒ^ƒO
 			echo "<ul>" ;
 
-			// ãƒ«ãƒ¼ãƒ—å‡¦ç†
+			// ƒ‹[ƒvˆ—
 			while( ($file = readdir($handle)) !== false ) {
-				// ãƒ•ã‚¡ã‚¤ãƒ«ã®ã¿å–å¾—
+				// ƒtƒ@ƒCƒ‹‚Ì‚İæ“¾
 				if( filetype( $path = $dir . $file ) == "file" ) {
-					// [li]ã‚¿ã‚°
+					// [li]ƒ^ƒO
 					echo "<li>" ;
-					// ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å‡ºåŠ›ã™ã‚‹
+					// ƒtƒ@ƒCƒ‹–¼‚ğo—Í‚·‚é
 					echo "<a href='". $path. "'>".$file."</a>" ;
-					// [li]ã‚¿ã‚°
+					// [li]ƒ^ƒO
 					echo "</li>" ;
 				}
 			}
 
-			// [ul]ã‚¿ã‚°
+			// [ul]ƒ^ƒO
 			echo "</ul>" ;
 		}
 	  ?>

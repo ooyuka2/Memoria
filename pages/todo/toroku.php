@@ -1,6 +1,6 @@
 <?php
-//id,ã‚¿ã‚¤ãƒˆãƒ«,ä½œæ¥­å†…å®¹,ç´æœŸ,ç´æœŸæ™‚é–“,é–‹å§‹äºˆå®šæ—¥,çµ‚äº†äºˆå®šæ—¥,ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸,
-//å®Œäº†,æ‰€æ„Ÿ,level,top,parent,child,æˆæœç‰©,ãƒ†ãƒ¼ãƒ,å„ªå…ˆåº¦,ç™»éŒ²æ—¥
+//id,ƒ^ƒCƒgƒ‹,ì‹Æ“à—e,”[Šú,”[ŠúŠÔ,ŠJn—\’è“ú,I—¹—\’è“ú,ƒp[ƒZƒ“ƒe[ƒW,
+//Š®—¹,ŠŠ´,level,top,parent,child,¬‰Ê•¨,ƒe[ƒ},—Dæ“x,“o˜^“ú
 	
 	include('../function.php');
 	$todo = readCsvFile2('../../data/todo.csv');
@@ -10,26 +10,27 @@
 	for($j=0; $j<count($_POST['name']);$j++) {
 		if($_POST['name'][$j]!="") {
 			$todo[$id]['id'] = $id;
-			$todo[$id]['ã‚¿ã‚¤ãƒˆãƒ«'] = $_POST['name'][$j];
-			$todo[$id]['ä½œæ¥­å†…å®¹'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail'][$j]);
-			$todo[$id]['ç´æœŸ'] = $_POST['noki'][$j];
-			$todo[$id]['ç´æœŸæ™‚é–“'] = $_POST['time'][$j];
-			$todo[$id]['é–‹å§‹äºˆå®šæ—¥'] = $_POST['kaisi'][$j];
-			$todo[$id]['çµ‚äº†äºˆå®šæ—¥'] = $_POST['syuryo'][$j];
-			$todo[$id]['ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸'] = 0;
-			$todo[$id]['å®Œäº†'] = 0;
-			$todo[$id]['æ‰€æ„Ÿ'] = "no comment";
+			$todo[$id]['ƒ^ƒCƒgƒ‹'] = $_POST['name'][$j];
+			$todo[$id]['ì‹Æ“à—e'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail'][$j]);
+			$todo[$id]['”[Šú'] = $_POST['noki'][$j];
+			$todo[$id]['”[ŠúŠÔ'] = $_POST['time'][$j];
+			$todo[$id]['ŠJn—\’è“ú'] = $_POST['kaisi'][$j];
+			$todo[$id]['I—¹—\’è“ú'] = $_POST['syuryo'][$j];
+			$todo[$id]['ƒp[ƒZƒ“ƒe[ƒW'] = 0;
+			$todo[$id]['Š®—¹'] = 0;
+			$todo[$id]['ŠŠ´'] = "no comment";
 			$todo[$id]['level'] = $_POST['level'][$j];
 			$todo[$id]['top'] = $number;
 			$todo[$id]['parent'] = 0;
 			$todo[$id]['child'] = 0;
-			$todo[$id]['æˆæœç‰©'] = $_POST['mono'][$j];
-			if($j==0) $todo[$id]['ãƒ†ãƒ¼ãƒ'] = $_POST['theme'][$j];
-			else $todo[$id]['ãƒ†ãƒ¼ãƒ'] = 0;
-			$todo[$id]['å„ªå…ˆåº¦'] = $_POST['priority'][$j];
-			$todo[$id]['ç™»éŒ²æ—¥'] = date('Y/m/d H:i:s');
-			$todo[$id]['ä¿ç•™'] = 0;
-			$todo[$id]['å‰Šé™¤'] = 0;
+			$todo[$id]['¬‰Ê•¨'] = $_POST['mono'][$j];
+			if($j==0) $todo[$id]['ƒe[ƒ}'] = $_POST['theme'][$j];
+			else $todo[$id]['ƒe[ƒ}'] = 0;
+			$todo[$id]['—Dæ“x'] = $_POST['priority'][$j];
+			$todo[$id]['“o˜^“ú'] = date('Y/m/d H:i:s');
+			$todo[$id]['•Û—¯'] = 0;
+			$todo[$id]['íœ'] = 0;
+			$todo[$id]['ŠÔŠÇ—ƒe[ƒ}'] = $_POST['theme2'][$j];
 			$id++;
 		}
 	}

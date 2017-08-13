@@ -5,7 +5,7 @@
 		$working = readCsvFile2('../data/working.csv');
 		
 		date_default_timezone_set('Asia/Tokyo');
-		//$week_str_list = array( 'æ—¥', 'æœˆ', 'ç«', 'æ°´', 'æœ¨', 'é‡‘', 'åœŸ');//$week_str = $week_str_list[ $datetime->format('w') ];
+		//$week_str_list = array( '“ú', 'Œ', '‰Î', '…', '–Ø', '‹à', '“y');//$week_str = $week_str_list[ $datetime->format('w') ];
 		$today = new DateTime();
 		
 		
@@ -16,11 +16,11 @@
 			<div class="well bs-component">
 				
 				<?php
-					echo "<h3>ã€ é€±å ±ï¼š{$today->modify('friday')->format('m/d')}ï¼š{$myname}</h3><hr><p>";
+					echo "<h3>?T•ñF{$today->modify('friday')->format('m/d')}F{$myname}</h3><hr><p>";
 					$today = new DateTime();
 					echo $weeklyTo."<br><br>";
-					echo "ãŠä¸–è©±ã«ãªã£ã¦ãŠã‚Šã¾ã™ã€‚{$myname}ã§ã™ã€‚<br>é€±å ±ã‚’æå‡ºè‡´ã—ã¾ã™ã€‚<br><br><br>ï¼‘ï¼‰ãƒ†ãƒ¼ãƒé€²æ—<br>ãªã—<br><br>";
-					echo "ï¼’ï¼‰ä»Šé€±ã®æ¥­å‹™ã®ãƒˆãƒ”ãƒƒã‚¯ã‚¹<br>";
+					echo "‚¨¢˜b‚É‚È‚Á‚Ä‚¨‚è‚Ü‚·B{$myname}‚Å‚·B<br>T•ñ‚ğ’ño’v‚µ‚Ü‚·B<br><br><br>‚Pjƒe[ƒ}i’»<br>‚È‚µ<br><br>";
+					echo "‚Qj¡T‚Ì‹Æ–±‚ÌƒgƒsƒbƒNƒX<br>";
 					
 					$monday = $today->modify('monday this week')->setTime(0,0,0);
 					
@@ -31,17 +31,17 @@
 						//$date2->diff($date1)->format('%R%a');
 						//echo $workday->format('m/d').":::";
 						//echo $workday->diff($monday)->format('%R%a')."<br>";
-						if(($workday->diff($monday)->format('%R%a')) <= 0 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
+						if($working[$i]['id'] != "deskwork" && ($workday->diff($monday)->format('%R%a')) <= 0 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
 							$ary[$c] = $todo[$working[$i]['id']]['top'];
 							//echo $ary[$c];
-							echo "ã€€â—†{$todo[$ary[$c]]['ã‚¿ã‚¤ãƒˆãƒ«']}<br>";
-							$workdetail = str_replace('<br>', '<br>ã€€ã€€ã€€', $todo[$ary[$c]]['ä½œæ¥­å†…å®¹']);
-							echo "ã€€ã€€ã€€{$workdetail}<br>";
+							echo "@Ÿ{$todo[$ary[$c]]['ƒ^ƒCƒgƒ‹']}<br>";
+							$workdetail = str_replace('<br>', '<br>@@@', $todo[$ary[$c]]['ì‹Æ“à—e']);
+							echo "@@@{$workdetail}<br>";
 							for($j=1; $j<count($todo); $j++) {
 								if($todo[$j]['parent'] == $ary[$c]) {
-									echo "ã€€ã€€ã€€ãƒ»{$todo[$j]['ã‚¿ã‚¤ãƒˆãƒ«']}";
-									if($todo[$j]['å®Œäº†']==1) echo "ã€€ï¼ˆå®Œäº†ï¼‰<br>";
-									else echo "ã€€ï¼ˆæœªå®Œäº†oræœªç€æ‰‹ï¼‰<br>";
+									echo "@@@E{$todo[$j]['ƒ^ƒCƒgƒ‹']}";
+									if($todo[$j]['Š®—¹']==1) echo "@iŠ®—¹j<br>";
+									else echo "@i–¢Š®—¹or–¢’…èj<br>";
 									
 								}
 							}
@@ -51,34 +51,34 @@
 						
 					}
 					
-					echo "ï¼“ï¼‰ä»Šé€±ã®å®Ÿç¸¾<br>";
+					echo "‚Rj¡T‚ÌÀÑ<br>";
 					week_do("monday", 1, $todo, $working);
 					week_do("tuesday", 2, $todo, $working);
 					week_do("wednesday", 3, $todo, $working);
 					week_do("thursday", 4, $todo, $working);
 					week_do("friday", 5, $todo, $working);
 					echo "<br>";
-					echo "ï¼”ï¼‰æ¬¡é€±ã®ä¸»ãªäºˆå®š<br>";
+					echo "‚SjŸT‚Ìå‚È—\’è<br>";
 					next_week_do("monday", 1, $todo, $working);
 					next_week_do("tuesday", 2, $todo, $working);
 					next_week_do("wednesday", 3, $todo, $working);
 					next_week_do("thursday", 4, $todo, $working);
 					next_week_do("friday", 5, $todo, $working);
 					echo "<br><br>";
-					echo "ç¿Œé€±ä»¥é™<br>";
+					echo "—‚TˆÈ~<br>";
 					$sat = $today->modify('sat next week')->setTime(0,0,0);
 					$c = 0;
 					$ary = array();
 					for($i=1; $i<count($todo); $i++) {
-						$workday = new DateTime($todo[$i]['é–‹å§‹äºˆå®šæ—¥']);
+						$workday = new DateTime($todo[$i]['ŠJn—\’è“ú']);
 						if(($workday->diff($sat)->format('%R%a')) <= 0 && serch_word($todo[$i]['top'], $ary)==0) {
 							$ary[$c] = $todo[$i]['top'];
-							echo "ã€€ã€€ã€€ãƒ»{$todo[$ary[$c]]['ã‚¿ã‚¤ãƒˆãƒ«']}<br>";
+							echo "@@@E{$todo[$ary[$c]]['ƒ^ƒCƒgƒ‹']}<br>";
 							$c++;
 						}
 					}
-					if(count($ary)==0) echo "ã€€ã€€ã€€ãªã—<br>";
-					echo "<br>ä»¥ä¸Šã€å®œã—ããŠé¡˜ã„è‡´ã—ã¾ã™ã€‚</p>";
+					if(count($ary)==0) echo "@@@‚È‚µ<br>";
+					echo "<br>ˆÈãA‹X‚µ‚­‚¨Šè‚¢’v‚µ‚Ü‚·B</p>";
 				?>
 			</div>
 	    </fieldset>
@@ -98,21 +98,21 @@ function week_do($week, $week2, $todo, $working) {
 	//echo $day->format('m/d');
 	$c = 0;
 	$ary = array();
-	$week_str_list = array( 'æ—¥', 'æœˆ', 'ç«', 'æ°´', 'æœ¨', 'é‡‘', 'åœŸ');
-	echo "{$day->format('n/d')}ï¼ˆ{$week_str_list[$day->format('w')]}ï¼‰<br>";
+	$week_str_list = array( '“ú', 'Œ', '‰Î', '…', '–Ø', '‹à', '“y');
+	echo "{$day->format('n/d')}i{$week_str_list[$day->format('w')]}j<br>";
 	for($i=1; $i<count($working); $i++) {
 		$workday = new DateTime($working[$i]['day']);
 		$workday = $workday->setTime(0,0,0);
 		//echo $workday->format('m/d');
-		if($workday->diff($day)->format('%R%a') == 0 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
+		if($working[$i]['id'] != "deskwork" && $workday->diff($day)->format('%R%a') == 0 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
 			$ary[$c] = $todo[$working[$i]['id']]['top'];
 			//echo $ary[$c];
-			echo "ã€€ã€€ã€€ãƒ»{$todo[$ary[$c]]['ã‚¿ã‚¤ãƒˆãƒ«']}<br>";
+			echo "@@@E{$todo[$ary[$c]]['ƒ^ƒCƒgƒ‹']}<br>";
 			//echo "<br>";
 			$c++;
 		}
 	}
-	if(count($ary)==0) echo "ã€€ã€€ã€€ãªã—<br>";
+	if(count($ary)==0) echo "@@@‚È‚µ<br>";
 }
 
 function next_week_do($week, $week2, $todo, $working) {
@@ -121,20 +121,20 @@ function next_week_do($week, $week2, $todo, $working) {
 	$day = $today->modify($weekday)->setTime(0,0,0);
 	$c = 0;
 	$ary = array();
-	$week_str_list = array( 'æ—¥', 'æœˆ', 'ç«', 'æ°´', 'æœ¨', 'é‡‘', 'åœŸ');
-	echo "{$day->format('n/d')}ï¼ˆ{$week_str_list[$day->format('w')]}ï¼‰<br>";
+	$week_str_list = array( '“ú', 'Œ', '‰Î', '…', '–Ø', '‹à', '“y');
+	echo "{$day->format('n/d')}i{$week_str_list[$day->format('w')]}j<br>";
 	for($i=1; $i<count($todo); $i++) {
-		$workday = new DateTime($todo[$i]['é–‹å§‹äºˆå®šæ—¥']);
+		$workday = new DateTime($todo[$i]['ŠJn—\’è“ú']);
 		$workday = $workday->setTime(0,0,0);
 		//echo $workday->format('m/d');
 		if($workday->diff($day)->format('%R%a') == 0 && serch_word($todo[$i]['top'], $ary)==0) {
 			$ary[$c] = $todo[$i]['top'];
 			//echo $ary[$c];
-			echo "ã€€ã€€ã€€ãƒ»{$todo[$ary[$c]]['ã‚¿ã‚¤ãƒˆãƒ«']}<br>";
+			echo "@@@E{$todo[$ary[$c]]['ƒ^ƒCƒgƒ‹']}<br>";
 			//echo "<br>";
 			$c++;
 		}
 	}
-	if(count($ary)==0) echo "ã€€ã€€ã€€ãªã—<br>";
+	if(count($ary)==0) echo "@@@‚È‚µ<br>";
 }
 ?>

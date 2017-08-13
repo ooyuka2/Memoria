@@ -16,21 +16,21 @@ $(function () {
   }
 });
 $( ".time" ).timeDropper({
-  //æ©Ÿèƒ½ã‚ªãƒ—ã‚·ãƒ§ãƒ³
-  autoswitch: false,          //ã‚¯ãƒªãƒƒã‚¯ä½ç½®ç§»å‹•
-  meridians: false,           //12æ™‚é–“ / 24æ™‚é–“è¡¨ç¤º
-  format: "HH:mm",           //æ™‚åˆ»ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
-  mousewheel: false,          //ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«å¯å¦
-  init_animation: "fadeIn",   //åˆæœŸã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
-  setCurrentTime: false,       //ç¾åœ¨æ™‚åˆ»ã®è¨­å®š
+  //‹@”\ƒIƒvƒVƒ‡ƒ“
+  autoswitch: false,          //ƒNƒŠƒbƒNˆÊ’uˆÚ“®
+  meridians: false,           //12ŠÔ / 24ŠÔ•\¦
+  format: "HH:mm",           //ƒtƒH[ƒ}ƒbƒg
+  mousewheel: false,          //ƒ}ƒEƒXƒzƒC[ƒ‹‰Â”Û
+  init_animation: "fadeIn",   //‰ŠúƒAƒjƒ[ƒVƒ‡ƒ“
+  setCurrentTime: false,       //Œ»İ‚Ìİ’è
 
-  //ã‚¹ã‚¿ã‚¤ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³
-  primaryColor: "#1977cc",    //è¨­å®šä¸­ã®æ–‡å­—
-  textColor: "#555555",       //è¨­å®šå¾Œã®æ–‡å­—
-  backgroundColor: "#ffffff", //èƒŒæ™¯
-  borderColor: "#1977cc"      //æ ç·š
+  //ƒXƒ^ƒCƒ‹ƒIƒvƒVƒ‡ƒ“
+  primaryColor: "#1977cc",    //İ’è’†‚Ì•¶š
+  textColor: "#555555",       //İ’èŒã‚Ì•¶š
+  backgroundColor: "#ffffff", //”wŒi
+  borderColor: "#1977cc"      //˜gü
 });
-if (!Modernizr.inputtypes.date) { //HTML5ã®inputè¦ç´ ã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹åˆ¤å®š
+if (!Modernizr.inputtypes.date) { //HTML5‚Ìinput—v‘f‚É‘Î‰‚µ‚Ä‚¢‚é‚©”»’è
 	$(document).on("click",document, function() {
 			$(".noki").datepicker();
 			$(".kaisi").datepicker();

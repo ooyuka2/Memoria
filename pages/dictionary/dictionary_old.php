@@ -13,7 +13,7 @@
     <div class="row">
       <div class="col-xs-12 outline">
         <h1>Memoria for Ooyuka.</h1>
-        <p>分からない単語のメモや自分のタスクを管理しよう！！</p>
+        <p>������Ȃ��P��̃����⎩���̃^�X�N���Ǘ����悤�I�I</p>
         <div class="download">
           <a href="./todo.php" class="btn btn-warning btn-lg last-release-download-link"><i class="fa fa-github-alt"></i> Go to ToDo List</a>
           <a href="./dictionary.php" class="btn btn-primary btn-lg"><i class="fa fa-play"></i> Watch Dictionary</a>
@@ -33,7 +33,7 @@
 	    <div class="row">
 	      <div class="col-lg-12">
 	        <div class="page-header">
-	          <h1 id="tables">メモ帳</h1>
+	          <h1 id="tables">������</h1>
 	        </div>
 
 	        <div class="bs-component">
@@ -111,9 +111,9 @@
 	        } 
 	    }); 
         $("#dictionary").dataTable({
-    	    // 件数切替の値を10～50の10刻みにする
+    	    // �����ؑւ̒l��10�`50��10���݂ɂ���
 		    lengthMenu: [ 50, 100, 150, 200, 250, 300, 500 ],
-		    // 件数のデフォルトの値を50にする
+		    // �����̃f�t�H���g�̒l��50�ɂ���
 		    displayLength: 10,  
 			stateSave: true
         });

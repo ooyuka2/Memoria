@@ -14,7 +14,7 @@
 		$dictionary[$_GET['toroku']][6] = 0;
 		writeCsvFile("../data/dictionary.csv", $dictionary);
 		$name = $dictionary[$_GET['toroku']][0];
-		$_SESSION['change'] = "{$name}ã‚’å¤‰æ›´ã—ã¾ã—ãŸã€‚";
+		$_SESSION['change'] = "{$name}‚ğ•ÏX‚µ‚Ü‚µ‚½B";
 		header( "Location: ./dictionary.php" );
 		exit();
 	}
@@ -26,7 +26,7 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="page-header">
-          <h1 id="forms">ç·¨é›†ç™»éŒ²</h1>
+          <h1 id="forms">•ÒW“o˜^</h1>
         </div>
       </div>
     </div>
@@ -38,21 +38,21 @@
 	          echo "<form class='form-horizontal' method='post' action='dictionary.php?page=change&toroku={$id}'>";
 	      ?>
             <fieldset>
-              <legend>å…¥åŠ›æ¬„</legend>
+              <legend>“ü—Í—“</legend>
               <div class="form-group">
-                <label for="inputEmail" class="col-lg-2 control-label">ãƒ¡ãƒ¢ã‚¿ã‚¤ãƒˆãƒ«</label>
+                <label for="inputEmail" class="col-lg-2 control-label">ƒƒ‚ƒ^ƒCƒgƒ‹</label>
                 <div class="col-lg-10">
                     <?php
-                		echo "<input type='text' class='form-control' id='name' name='name' placeholder='ãƒ¡ãƒ¢' value='{$dictionary[$_GET['p']][0]}' onBlur='check_furi()'>";//
+                		echo "<input type='text' class='form-control' id='name' name='name' placeholder='ƒƒ‚' value='{$dictionary[$_GET['p']][0]}' onBlur='check_furi()'>";//
                 	?>
                 </div>
 
               </div>
               <div class="form-group">
-                <label for="inputEmail" class="col-lg-2 control-label">ãµã‚ŠãŒãª</label>
+                <label for="inputEmail" class="col-lg-2 control-label">‚Ó‚è‚ª‚È</label>
                 <div class="col-lg-10">
                     <?php
-                		echo "<input type='text' class='form-control' id='furi' name='furi' placeholder='ãƒ¡ãƒ¢' value='{$dictionary[$_GET['p']][1]}'>";//
+                		echo "<input type='text' class='form-control' id='furi' name='furi' placeholder='ƒƒ‚' value='{$dictionary[$_GET['p']][1]}'>";//
                 	?>
                 </div>
 
@@ -73,7 +73,7 @@
 			                  </select>
 			                  </div></div>
               <div class="form-group">
-                <label for="textArea" class="col-lg-2 control-label">è¦ç‚¹</label>
+                <label for="textArea" class="col-lg-2 control-label">—v“_</label>
                 <div class="col-lg-10">
                   <textarea class="form-control" rows="3" id="textArea" name="summary"><?php 
                   	$summary = str_replace('<br>', '&#13;',$dictionary[$_GET['p']][2]); 
@@ -83,7 +83,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="textArea" class="col-lg-2 control-label">è©³ç´°</label>
+                <label for="textArea" class="col-lg-2 control-label">Ú×</label>
                 <div class="col-lg-10">
                   <textarea class="form-control" rows="3" id="textArea" name="detail"><?php 
                   	$detail = str_replace('<br>', '&#13;',$dictionary[$_GET['p']][3]); 
