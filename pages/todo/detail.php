@@ -66,7 +66,7 @@ function panel_child($todo, $todoid) {
 				if($todo[$todoid]['level']==1) echo "<div class='panel panel-primary'>";
 				else if($todo[$todoid]['完了']==1) { echo "<div class='panel panel-success'>"; }
 				else echo "<div class='panel panel-danger'>";
-				echo "<div class='panel-heading'>";
+				echo "<div class='panel-heading' id='todoid{$todo[$todoid]['id']}'>";
 				echo "<div class='clearfix'><span class='pull-right close' onClick='todo_delete_check(&quot;{$todo[$todoid]['タイトル']}&quot;, &quot;{$todoid}&quot;)'>&times;</span><h3 class='panel-title'>{$todo[$todoid]['タイトル']}</h3></div>";
 				echo "</div>";
 				echo "<div class='panel-body'>";

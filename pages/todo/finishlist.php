@@ -16,7 +16,7 @@
 			$c++;
 			$top = $todo[$working[$i]['id']]['top'];
 			if(!isset($_GET['finisflist_search']) || strpos($todo[$top]['タイトル'],$_GET['finisflist_search']) !== false || strpos($todo[$top]['作業内容'],$_GET['finisflist_search']) !== false || strpos($todo[$working[$i]['id']]['タイトル'],$_GET['finisflist_search']) !== false || strpos($todo[$working[$i]['id']]['作業内容'],$_GET['finisflist_search']) !== false) {
-				echo "<div class='panel panel-primary'>";
+				echo "<div class='panel panel-primary' id='todoid{$todo[$top]['id']}'>";
 				echo "<div class='panel-heading'>";
 				echo "<a href='./todo.php?d=detail&p={$top}' style='color:#ffffff;'>";
 				echo "<h3 class='panel-title'>{$todo[$top]['タイトル']}</h3>";

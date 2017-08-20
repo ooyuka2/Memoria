@@ -160,7 +160,7 @@ function search_array($abc, $abc2, $abcl, $hiragana, $hiragana2, $word) {
 
 
 function last_todo_panel($todo, $i, $pattern) {
-			echo "<div class='panel panel-{$pattern}'>";
+			echo "<div class='panel panel-{$pattern}' id='todoid{$todo[$i]['id']}'>";
 			
 			echo "<div class='panel-heading'>";
 			if($todo[$i]['level'] == 1) {
@@ -412,10 +412,8 @@ function check_todo_tree($todo, $id , $date) {
 }
 
 function write_todo_tree_title($todo, $id, $color) {
-	
 	if(isset($_GET['p']) && $_GET['p'] == $todo[$id]['id']) echo "<div class='panel-tree-child bg-warning'>";
 	else echo "<div class='panel-tree-child'>";
-	
 	
 	
 	if($todo[$id]['level'] != 1) {
@@ -427,7 +425,7 @@ function write_todo_tree_title($todo, $id, $color) {
 	else if($todo[$id]['完了'] == 0) echo "<span class='glyphicon glyphicon-edit tree-mark' aria-hidden='true'></span>";
 	else echo "<span class='glyphicon glyphicon-check tree-mark' aria-hidden='true'></span>";
 	if(!isset($_GET['d'])) $_GET['d'] = "todo";
-	echo "<span class='text-{$color}' onDblClick='location.href = \"/Memoria/pages/todo.php?d={$_GET['d']}&p={$todo[$id]['id']}\"'  onMouseOver='this.classList.add(\"bg-info\")' onMouseOut='this.classList.remove(\"bg-info\")'>{$todo[$id]['タイトル']}</span>";
+	echo "<span class='text-{$color}' onDblClick='location.href = \"/Memoria/pages/todo.php?d={$_GET['d']}&p={$todo[$id]['id']}\"'  onMouseOver='this.classList.add(\"bg-info\")' onMouseOut='this.classList.remove(\"bg-info\")' onClick='gotoid(todoid{$todo[$id]['id']})'>{$todo[$id]['タイトル']}</span>";
 }
 
 function check_child_finish($todo, $parent) {

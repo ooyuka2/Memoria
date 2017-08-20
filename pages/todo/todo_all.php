@@ -3,7 +3,7 @@
 	for($i=0; $i<count($sa); $i++) {
 		if($todo[$sa[$i]]['level'] == 1 && $todo[$sa[$i]]['Š®—¹']==0 && $todo[$sa[$i]]['íœ']==0) {
 			
-			echo "<div class='panel panel-primary'>";
+			echo "<div class='panel panel-primary' id='todoid{$todo[$sa[$i]]['id']}'>";
 			
 			echo "<div class='panel-heading'>";
 			echo "<a href='./todo.php?d=detail&p={$sa[$i]}' style='color:#ffffff;'>";
