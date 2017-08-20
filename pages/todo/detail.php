@@ -7,9 +7,17 @@
 		echo "<div class='clearfix'><a href='todo.php?d=change&p={$_GET['p']}' class='btn btn-info pull-right btn-sm'>編集</a><a href='todo.php?d=renew&p={$_GET['p']}' class='btn btn-warning pull-right btn-sm' style='margin:0 10px'>流用</a>";
 		if(!(isset($_GET['d']) && $_GET['d']=="detail")) echo "<a href='todo.php?d=detail&p={$_GET['p']}' class='btn btn-primary pull-right btn-sm'>詳細</a>";
 		echo "</div>";
+	} else {
+		echo "<div class='clearfix'><a href='/Memoria/pages/todo.php?d=detail&p={$todo[$_GET['p']]['top']}'  class='btn btn-link pull-right btn-sm'>一番上の階層へ</a>";
+		echo "<a href='/Memoria/pages/todo.php?d=detail&p={$todo[$_GET['p']]['parent']}' class='btn btn-link pull-right btn-sm'>上の階層へ</a></div>";
 	}
-	echo "<div class='panel panel-primary'>";
+
+	panel_child($todo, $todo[$_GET['p']]['id']);
+
 	
+	
+	//echo "<div class='panel panel-primary'>";
+	/*
 	echo "<div class='panel-heading'>";
 	echo "<div class='clearfix'><span class='pull-right close' onClick='todo_delete_check(&quot;{$todo[$_GET['p']]['タイトル']}&quot;, &quot;{$_GET['p']}&quot;)'>&times;</span><h3 class='panel-title'>{$todo[$_GET['p']]['タイトル']}</h3></div>";
 	echo "</div>";
@@ -24,17 +32,18 @@
 	if($todo[$_GET['p']]['パーセンテージ']!=100) {
 		echo "<div class='col-xs-1'><button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown' aria-expanded='false'>作業<span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
 		for($j=ceil($todo[$_GET['p']]['パーセンテージ']/10)*10; $j<100; $j+=10) 
-		echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=do&p={$_GET['p']}&f={$j}'>{$j}％まで完了</a></li>";
+		echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=whatdo&p={$_GET['p']}&f={$j}'>{$j}％まで完了</a></li>";
 		echo "</ul></div>";
 		if($todo[$_GET['p']]['保留'] == 0) echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$_GET['p']}' class='btn btn-info btn-sm'>保留</a></div>";
 			else echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$_GET['p']}' class='btn btn-link btn-sm'>解除</a></div>";
-		echo "<div class='col-xs-1'><a href='todo.php?page=finish&p={$_GET['p']}' class='btn btn-success btn-sm'>完了</a></div>";//todo.php?page=finish
+		echo "<div class='col-xs-1'><a href='todo.php?page=finish&p={$_GET['p']}' class='btn btn-success btn-sm'>完了</a></div>";
 	}
 		echo "<div style='height:50px;'></div>";
 	panel_child($todo, $todo[$_GET['p']]['id']);
-	//echo "panel_child(\$todo, {$todo[$_GET['p']]['id']});";
 	echo "</div>";
 	echo "<div class='panel-footer'>{$todo[$_GET['p']]['開始予定日']}　～　{$todo[$_GET['p']]['納期']} {$todo[$_GET['p']]['納期時間']}</div>";
+
+	echo "</div>";*/
 	/*
 	$day1 = new DateTime($todo[$_GET['p']]['開始予定日']);
 	$day2 = new DateTime(date('Y/m/d'));
@@ -43,6 +52,71 @@
 	$week_str_list = array( '日', '月', '火', '水', '木', '金', '土');
 	$week_str = $week_str_list[ $day1->format('w') ];
 	print_r($week_str);*/
-	echo "</div>";
 ?>
 
+
+
+<?php
+
+function panel_child($todo, $todoid) {
+	//echo $todo[12]['child'];
+//	if($todo[$todoid]['child'] != 0) {
+//		for($todoid=1; $todoid<count($todo); $todoid++) {
+//			if($todo[$todoid]['parent']==$todoid && $todo[$todoid]['削除']==0) {
+				if($todo[$todoid]['level']==1) echo "<div class='panel panel-primary'>";
+				else if($todo[$todoid]['完了']==1) { echo "<div class='panel panel-success'>"; }
+				else echo "<div class='panel panel-danger'>";
+				echo "<div class='panel-heading'>";
+				echo "<div class='clearfix'><span class='pull-right close' onClick='todo_delete_check(&quot;{$todo[$todoid]['タイトル']}&quot;, &quot;{$todoid}&quot;)'>&times;</span><h3 class='panel-title'>{$todo[$todoid]['タイトル']}</h3></div>";
+				echo "</div>";
+				echo "<div class='panel-body'>";
+				echo "<div class='alert alert-dismissible alert-warning' style='margin-bottom:0'>{$todo[$todoid]['作業内容']}</div>";
+				if($todo[$todoid]['成果物']!="") {
+					echo "<div class='alert alert-dismissible alert-info'><!--<strong style='font-size:150%'>成果物</strong>-->{$todo[$todoid]['成果物']}</div>";
+				} else if($todo[$todoid]['所感']!="" && $todo[$todoid]['所感']!="no comment") {
+					echo "<div class='alert alert-dismissible alert-success'><!--<strong style='font-size:150%'>コメント</strong>-->{$todo[$todoid]['所感']}</div>";
+				} else echo "<div style='height:20px;'></div>";
+				echo "<div class='col-xs-9'><div class='progress'><div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' style='width: {$todo[$todoid]['パーセンテージ']}%;'>";
+				echo "{$todo[$todoid]['パーセンテージ']}%";
+				echo "</div></div></div>";
+				if($todo[$todoid]['パーセンテージ']!=100) {
+					echo "<div class='col-xs-1'>";
+					if($todo[$todoid]['child'] == 0) {
+						echo "<button type='button' class='btn btn-default dropdown-toggle btn-xs' data-toggle='dropdown' aria-expanded='false'>作業<span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
+						for($j=ceil($todo[$todoid]['パーセンテージ']/10)*10; $j<100; $j+=10) 
+						echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=whatdo&p={$todoid}&f={$j}'>{$j}％まで完了</a></li>";
+						echo "</ul>";
+					}
+					echo "</div>";
+					if($todo[$todoid]['保留'] == 0) echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$todoid}' class='btn btn-info btn-xs'>保留</a></div>";
+					else echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$todoid}' class='btn btn-link btn-xs'>解除</a></div>";
+					echo "<div class='col-xs-1'><a href='todo.php?page=whatdo&f=100&p={$todoid}' class='btn btn-success btn-xs'>完了</a></div>";
+				}//todo.php?page=whatdo&f=100
+				echo "<div style='height:50px;'></div>";
+				//panel_child($todo, $todo[$todoid]['id']);
+				
+				if($todo[$todoid]['child'] != 0) {
+					for($i=1; $i<count($todo); $i++) {
+						if($todo[$i]['parent']==$todoid && $todo[$i]['削除']==0) {
+							panel_child($todo, $todo[$i]['id']);
+						}
+					}
+				}
+				
+				echo "</div>";
+				echo "<div class='panel-footer'>{$todo[$todoid]['開始予定日']}　～　{$todo[$todoid]['納期']} {$todo[$todoid]['納期時間']}</div>";
+				echo "</div>";
+				
+//			}
+//		}
+//	}
+	return $todo;
+}
+
+
+
+
+
+
+
+?>

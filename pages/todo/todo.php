@@ -1,10 +1,10 @@
 <div class="row">
-	<div class="col-xs-4">
+	<div class="col-xs-6 col-sm-4">
 		<?php
 			include('todo/todo_tree.php');
 		?>
 	</div>
-	<div class="col-xs-8">
+	<div class="col-xs-6  col-sm-8">
 <?php
 	if(isset($_GET['p']) && $_GET['p']<count($todo)) {
 		include('todo/detail.php');

@@ -59,7 +59,7 @@
 			$working = readCsvFile2('../data/working.csv');
 			for($i=count($working)-1; $i>0; $i--) {
 				$workday = new DateTime($working[$i]['day']);
-				if(($workday->diff($whatday)->format('%R%a')) == 0 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
+				if( $working[$i]['id']!="deskwork" && ($workday->diff($whatday)->format('%R%a')) == 0 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
 					$ary[$c] = $working[$i]['id'];
 					//last_todo_panel($todo, $ary[$c],'primary');
 					

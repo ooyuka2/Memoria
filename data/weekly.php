@@ -1,4 +1,5 @@
 <?php
-	$weeklyTo = "â—‹â—‹â—‹â—‹";
-	$myname = "â–²â–²";
+	/*T•ñ—pÝ’è*/
+	$weeklyTo = "››››";
+	$myname = "££";
 ?>

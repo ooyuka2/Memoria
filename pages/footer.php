@@ -38,6 +38,41 @@ if (!Modernizr.inputtypes.date) { //HTML5‚Ìinput—v‘f‚É‘Î‰ž‚µ‚Ä‚¢‚é‚©”»’è
 	    });
 }
 
+var menuHeight = $(".navbar").height();
+var startPos = 0;
+$(window).scroll(function(){
+	var currentPos = $(this).scrollTop();
+	if (currentPos > startPos) {
+		if($(window).scrollTop() >= 200) {
+			$(".navbar").css("top", "-" + menuHeight + "px");
+		}
+	} else {
+		$(".navbar").css("top", 0 + "px");
+	}
+	startPos = currentPos;
+});
+
+document.onkeydown = 
+	function (e) {
+		if (event.ctrlKey ){
+			 if (event.keyCode == 83){
+				//alert("Crtl + S");
+				event.keyCode = 0;
+				return false;
+			 }
+		}
+	}
+
+document.onkeypress = 
+	function (e) {
+		if (e != null){
+			if ((e.ctrlKey || e.metaKey) && e.which == 115){
+				//alert("Crtl + S");
+				return false;
+			}
+		}
+	}
+
 </script>
 <?php
 	include('setting.php');

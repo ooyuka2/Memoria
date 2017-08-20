@@ -1,4 +1,8 @@
 <?php
+
+$updatefiletime = "2017-08-15-1706";
+
+
 //ファイル読み込んで配列に入れる
 function readCsvFile($filepath) {
 mb_internal_encoding("SJIS-win");
@@ -154,44 +158,6 @@ function search_array($abc, $abc2, $abcl, $hiragana, $hiragana2, $word) {
 	return 0;
 }
 
-function panel_child($todo, $parent) {
-	//echo $todo[12]['child'];
-	if($todo[$parent]['child'] != 0) {
-		for($i=1; $i<count($todo); $i++) {
-			if($todo[$i]['parent']==$parent && $todo[$i]['削除']==0) {
-				if($todo[$i]['完了']==1) { echo "<div class='panel panel-success'>"; }
-				else echo "<div class='panel panel-danger'>";
-				echo "<div class='panel-heading'>";
-				echo "<div class='clearfix'><span class='pull-right close' onClick='todo_delete_check(&quot;{$todo[$i]['タイトル']}&quot;, &quot;{$i}&quot;)'>&times;</span><h3 class='panel-title'>{$todo[$i]['タイトル']}</h3></div>";
-				echo "</div>";
-				echo "<div class='panel-body'>";
-				echo "<div class='alert alert-dismissible alert-warning' style='margin-bottom:0'>{$todo[$i]['作業内容']}</div>";
-				if($todo[$i]['成果物']!="") {
-					echo "<div class='alert alert-dismissible alert-info'><!--<strong style='font-size:150%'>成果物</strong>-->{$todo[$i]['成果物']}</div>";
-				} else echo "<div style='height:20px;'></div>";
-				echo "<div class='col-xs-9'><div class='progress'><div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' style='width: {$todo[$i]['パーセンテージ']}%;'>";
-				echo "{$todo[$i]['パーセンテージ']}%";
-				echo "</div></div></div>";
-				if($todo[$i]['パーセンテージ']!=100) {
-					echo "<div class='col-xs-1'><button type='button' class='btn btn-default dropdown-toggle btn-xs' data-toggle='dropdown' aria-expanded='false'>作業<span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
-					for($j=ceil($todo[$i]['パーセンテージ']/10)*10; $j<100; $j+=10) 
-					echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=do&p={$i}&f={$j}'>{$j}％まで完了</a></li>";
-					echo "</ul></div>";
-					if($todo[$i]['保留'] == 0) echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$i}' class='btn btn-info btn-xs'>保留</a></div>";
-					else echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$i}' class='btn btn-link btn-xs'>解除</a></div>";
-					echo "<div class='col-xs-1'><a href='todo.php?page=finish&p={$i}' class='btn btn-success btn-xs'>完了</a></div>";
-				}//todo.php?page=finish
-				echo "<div style='height:50px;'></div>";
-				panel_child($todo, $todo[$i]['id']);
-				echo "</div>";
-				echo "<div class='panel-footer'>{$todo[$i]['開始予定日']}　～　{$todo[$i]['納期']} {$todo[$i]['納期時間']}</div>";
-				echo "</div>";
-				
-			}
-		}
-	}
-	return $todo;
-}
 
 function last_todo_panel($todo, $i, $pattern) {
 			echo "<div class='panel panel-{$pattern}'>";
@@ -219,14 +185,14 @@ function last_todo_panel($todo, $i, $pattern) {
 			echo "<div class='panel-body'>";
 			echo "";
 			echo "<div class='col-md-9 col-xs-6'><strong>作業内容　: </strong>{$todo[$i]['作業内容']}<br><strong>成果物　　: </strong>{$todo[$i]['成果物']}<br><strong>期間　　　: </strong>{$todo[$i]['開始予定日']}　～　{$todo[$i]['納期']}</div>";
-			//echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=do&p={$i}' class='btn btn-default'>作業</a></div>";
+			//echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=whatdo&p={$i}' class='btn btn-default'>作業</a></div>";
 			echo "<div class='col-md-1 col-xs-2'><button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown' aria-expanded='false'>作業 <span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
 			for($j=ceil($todo[$i]['パーセンテージ']/10)*10; $j<100; $j+=10) 
-			echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=do&p={$i}&f={$j}'>{$j}％まで完了</a></li>";
+			echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=whatdo&p={$i}&f={$j}'>{$j}％まで完了</a></li>";
 			echo "</ul></div>";
 			if($todo[$i]['保留'] == 0) echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=wait&p={$i}' class='btn btn-info btn-sm'>保留</a></div>";
 			else echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=wait&p={$i}' class='btn btn-link btn-sm'>解除</a></div>";
-			echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=finish&p={$i}' class='btn btn-success btn-sm'>完了</a></div>";
+			echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=whatdo&f=100&p={$i}' class='btn btn-success btn-sm'>完了</a></div>";
 			echo "</div>";
 			echo "</div>";
 	
@@ -465,33 +431,12 @@ function write_todo_tree_title($todo, $id, $color) {
 }
 
 function check_child_finish($todo, $parent) {
-	/*
-	echo "check_child_finish(\$todo, {$parent})<br>";
-	echo $todo[($parent-1)]['child']."<br>";
-	echo "<pre>";
-	print_r($todo[($parent-1)]);
-	echo "</pre>";*/
 	if($todo[$parent]['child'] != 0) {
 		//echo "\$todo[\$parent]['child'] != 0<br>";
 		for($i=0; $i<count($todo); $i++) {
 			if($todo[$i]['parent']==$parent && $todo[$i]['完了']==0) {
-				//echo "ok{$todo[$i]['parent']} == \$parent<br>";
 				$todo[$i]['完了'] = 1;
 				$todo[$i]['パーセンテージ'] = 100;
-				/*
-				$working = readCsvFile2('../data/working.csv');
-				$www = count($working);
-				$working[$www]['id'] = $todo[$i]['id'];
-				$working[$www]['day'] = date('Y/m/d H:i:s');
-				$working[$www]['startTime'] = "00:00";
-				$working[$www]['finishTime'] = "00:00";
-				$working[$www]['per'] = 100;
-				/*
-				echo "<pre>";
-				print_r($working);
-				echo "</pre>";
-				*/
-				//writeCsvFile2("../data/working.csv", $working);
 				$todo = check_child_finish($todo, $todo[$i]['id']);
 			}
 		}
@@ -523,14 +468,36 @@ function check_parent_finish($todo, $child, $fdo) {
 	return $todo;
 }
 
-function check_parent_do($todo, $child) {
+function check_parent_do($todo, $child, $fdo) {
 	if($todo[$child]['level'] != 1) {
 		$parent = $todo[$child]['parent'];
-		$todo[$parent]['パーセンテージ'] += $todo[$child]['パーセンテージ']/$todo[$parent]['child'];
-		writeCsvFile2("../../data/todo.csv", $todo);
-		if($todo[$parent]['level']!=1) $todo = check_parent_do($todo, $parent);
+		$pfdo = $todo[$parent]['パーセンテージ'];
+		$todo[$parent]['パーセンテージ'] += $fdo/$todo[$parent]['child'];
+		$pfdo = $todo[$parent]['パーセンテージ'] - $pfdo;
+		//writeCsvFile2("../../data/todo.csv", $todo);
+		if($todo[$parent]['level']!=1) $todo = check_parent_do($todo, $parent, $pfdo);
 	}
 	return $todo;
+}
+
+function writeWorking($working) {
+	$lastday = new DateTime($working[(count($working)-1)]['day']);
+	$comday = new DateTime($working[(count($working)-2)]['day']);
+
+	if($lastday < $comday) {
+		$i = count($working)-2;
+		while($lastday < $comday) {
+			$i--;
+			$comday = new DateTime($working[$i]['day']);
+		}
+		$xxx = $working[(count($working)-1)];
+		for($j=count($working)-2; $j>$i; $j--) {
+			$working[($j+1)] = $working[$j];
+		}
+		$working[$i] = $xxx;
+	}
+
+	writeCsvFile2("../../data/working.csv", $working);
 }
 
 ?>

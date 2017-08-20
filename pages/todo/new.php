@@ -73,7 +73,7 @@
 						<?php
 							date_default_timezone_set('Asia/Tokyo');
 							$today=date('Y/m/d');
-							echo "<input type='date' class='form-control input-normal input-sm noki' name='noki[]' value='{$today}'>";
+							echo "<input type='text' class='form-control input-normal input-sm noki' name='noki[]' value='{$today}'>";
 						?>
 						</div>
 						<div class="col-xs-12 " style="margin-bottom:5px">
@@ -82,11 +82,11 @@
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
 							<label class="control-label">ŠJŽn—\’èŽž</label>
-							<?php echo "<input type='date' class='form-control input-normal input-sm kaisi' name='kaisi[]' value='{$today}'>"; ?>
+							<?php echo "<input type='text' class='form-control input-normal input-sm kaisi' name='kaisi[]' value='{$today}'>"; ?>
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
 							<label class="control-label">I—¹—\’è“úŽž</label>
-							<?php echo "<input type='date' class='form-control input-normal input-sm syuryo' name='syuryo[]' value='{$today}'>"; ?>
+							<?php echo "<input type='text' class='form-control input-normal input-sm syuryo' name='syuryo[]' value='{$today}'>"; ?>
 						</div>
 		            </div>
 		        </div>

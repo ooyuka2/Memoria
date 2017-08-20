@@ -164,28 +164,6 @@
 	function select_theme(theme) {
 		location.href = '/Memoria/pages/todo.php?page=select_theme&theme='+theme;
 	}
-	
-	
-document.onkeydown = 
-   function (e) {
-      if (event.ctrlKey ){
-         if (event.keyCode == 83){
-            //alert("Crtl + S");
-            event.keyCode = 0;
-            return false;
-         }
-      }
-   }
-
-document.onkeypress = 
-function (e) {
-      if (e != null){
-         if ((e.ctrlKey || e.metaKey) && e.which == 115){
-            //alert("Crtl + S");
-            return false;
-         }
-      }
-   }
 
 function todo_delete_check(tilte, id){
   ret = confirm(tilte + "‚ð–{“–‚Éíœ‚µ‚Ü‚·‚©H‚æ‚ë‚µ‚¢‚Å‚·‚©H");
@@ -196,9 +174,9 @@ function todo_delete_check(tilte, id){
 
 function finisflist_search(searchtext) {
 	if(searchtext.value != "") {
-		location.href = '/Memoria/pages/todo.php?d=finish&finisflist_search='+searchtext.value;
+		location.href = '/Memoria/pages/todo.php?list=finishlist&finisflist_search='+searchtext.value;
 	} else {
-		location.href = '/Memoria/pages/todo.php?d=finish';
+		location.href = '/Memoria/pages/todo.php?list=finishlist';
 	}
 }
 
@@ -215,7 +193,7 @@ if(document.getElementById("finisflist_search")) {
 }
 
 function tree_operate(element) {
-	$(element).parent().children('div').stop().fadeToggle(1000);
+	$(element).parent().children('div').stop().slideToggle(500);
 	element.classList.toggle("glyphicon-chevron-right");
 	element.classList.toggle("glyphicon-chevron-down");
 }
@@ -224,7 +202,7 @@ function tree_open() {
 	while($(".glyphicon-chevron-right").length > 0) {
 		var element = document.getElementsByClassName("glyphicon-chevron-right")[0];
 		element.classList.toggle("glyphicon-chevron-down");
-		$(element).parent().children('div').fadeIn(1000);
+		$(element).parent().children('div').slideDown(500);
 		element.classList.toggle("glyphicon-chevron-right");
 	}
 }
@@ -233,8 +211,12 @@ function tree_close() {
 	while($(".glyphicon-chevron-down").length > 0) {
 		var element = document.getElementsByClassName("glyphicon-chevron-down")[0];
 		element.classList.toggle("glyphicon-chevron-right");
-		$(element).parent().children('div').fadeOut(1000);
+		$(element).parent().children('div').slideUp(500);
 		element.classList.toggle("glyphicon-chevron-down");
 	}
 }
+
+
+
+
 </script>

@@ -146,7 +146,7 @@
 	
 	writeCsvFile2("../../data/todo.csv", $todo);
 	
-	header( "Location: ../todo.php" );
+	header( "Location: ../todo.php?{$_POST['id'][0]}" );
 	exit();
 
 ?>
