@@ -230,5 +230,50 @@ function gotoid(todoid) {
 	return false;
 }
 
+var tree_menu_x = 0;
+var tree_menu_y = 0;
 
+function tree_menu(id, top, pre, child, wait) {
+	tree_menu_x=document.body.scrollLeft+event.clientX;
+	tree_menu_y=document.body.scrollTop+event.clientY;
+	
+	var menu = "<div class='btn-group-vertical' style='width:180px; position: fixed;' id='tree_menu'>";
+	if(child == 0 && pre!=100) {
+		menu = menu + "<div class='btn-group' role='group'><button type='button' class='btn btn-default dropdown-toggle btn-xs btn-block' data-toggle='dropdown' aria-expanded='false'>作業設定<span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
+		for(j=Math.ceil(pre/10)*10; j<100; j+=10) 
+		menu = menu + "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=whatdo&p="+id+"&f="+j+"'>"+j+"％まで完了</a></li>";
+		menu = menu + "</ul>";
+		menu = menu + "</div>";
+	}
+	menu = menu + "<a href='todo.php?page=whatdo&f=100&p="+id+"' class='btn btn-default btn-xs btn-block'>完了設定</a>";
+	menu = menu + "<a href='todo.php?d=todo&p="+id+"' class='btn btn-default btn-xs btn-block'>リンクを開く</a>";
+	menu = menu + "<a href='todo.php?d=todo&p="+top+"' class='btn btn-default btn-xs btn-block'>詳細画面を開く</a>";
+	menu = menu + "<a href='todo.php?d=detail&p="+top+"' class='btn btn-default btn-xs btn-block'>フィルター</a>";
+	if(wait == 0 && pre!=100) menu = menu + "<a href='todo.php?page=wait&p="+id+"' class='btn btn-default btn-xs btn-block'>保留設定</a></div>";
+	else if(pre!=100) menu = menu + "<a href='todo.php?page=wait&p="+id+"' class='btn btn-default btn-xs btn-block'>解除設定</a></div>";
+	
+	document.getElementById("todo_tree_menu").innerHTML = menu;
+	document.getElementById("tree_menu").style.left=tree_menu_x+"px";
+	document.getElementById("tree_menu").style.top=tree_menu_y+"px";
+}
+
+if(document.getElementById("todo_tree_menu")) {
+	$('#myTabContent').on('dblclick', function() {
+		document.getElementById("todo_tree_menu").innerHTML = "";
+	});
+}
+
+
+document.onmousemove = function (e){
+	if(document.getElementById("tree_menu")) {
+	var mouse_x=document.body.scrollLeft+event.clientX;
+	var mouse_y=document.body.scrollTop+event.clientY;
+	if(abs(mouse_x-tree_menu_x)>100 && abs(mouse_y-tree_menu_y)>100) document.getElementById("todo_tree_menu").innerHTML = "";
+	}
+};
+
+
+function abs(val) {
+  return val < 0 ? -val : val;
+};
 </script>

@@ -425,7 +425,7 @@ function write_todo_tree_title($todo, $id, $color) {
 	else if($todo[$id]['完了'] == 0) echo "<span class='glyphicon glyphicon-edit tree-mark' aria-hidden='true'></span>";
 	else echo "<span class='glyphicon glyphicon-check tree-mark' aria-hidden='true'></span>";
 	if(!isset($_GET['d'])) $_GET['d'] = "todo";
-	echo "<span class='text-{$color}' onDblClick='location.href = \"/Memoria/pages/todo.php?d={$_GET['d']}&p={$todo[$id]['id']}\"'  onMouseOver='this.classList.add(\"bg-info\")' onMouseOut='this.classList.remove(\"bg-info\")' onClick='gotoid(todoid{$todo[$id]['id']})'>{$todo[$id]['タイトル']}</span>";
+	echo "<span class='text-{$color}' onDblClick='location.href = \"/Memoria/pages/todo.php?d={$_GET['d']}&p={$todo[$id]['id']}\"'  onMouseOver='this.classList.add(\"bg-info\")' onMouseOut='this.classList.remove(\"bg-info\")' onClick='gotoid(todoid{$todo[$id]['id']})' oncontextmenu='tree_menu({$todo[$id]['id']}, {$todo[$id]['top']}, {$todo[$id]['パーセンテージ']}, {$todo[$id]['child']}, {$todo[$id]['保留']});return false'>{$todo[$id]['タイトル']}</span>";
 }
 
 function check_child_finish($todo, $parent) {

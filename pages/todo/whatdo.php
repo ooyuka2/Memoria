@@ -19,7 +19,10 @@
 		<label class='' for='startTime'>ŠJŽnŽžŠÔ</label>
 		<div class='input-group'>
 			<span class='input-group-addon'><span class='glyphicon glyphicon-time' aria-hidden='true'></span></span>
-			<?php echo "<input type='text' class='form-control time' name='startTime' value='{$working[(count($working)-1)]['finishTime']}'>"; ?>
+			<?php echo "<input type='text' id='startTime' class='form-control time' name='startTime' value='{$working[(count($working)-1)]['finishTime']}'>"; ?>
+			<span class="input-group-btn"><button type="button" class="btn btn-default" onclick="document.getElementById('startTime').value='09:00'" style="background-color:#efefef">’©</button></span>
+			<span class="input-group-btn"><button type="button" class="btn btn-default" onclick="document.getElementById('startTime').value='13:00'" style="background-color:#efefef">’‹</button></span>
+
 		</div>
 	</div>
 	<div class='col-sm-1'></div>
@@ -27,7 +30,8 @@
 		<label class='' for='finishTime'>I—¹ŽžŠÔ</label>
 		<div class='input-group'>
 			<span class='input-group-addon'><span class='glyphicon glyphicon-time' aria-hidden='true'></span></span>
-			<input type='text' class='form-control time' name='finishTime'>
+			<input type='text' class='form-control time' name='finishTime' id='finishTime'>
+			<span class="input-group-btn"><button type="button" class="btn btn-default" onclick="document.getElementById('finishTime').value='13:00'" style="background-color:#efefef">’‹</button></span>
 		</div>
 	</div>
 	<div class="form-group col-sm-3">
