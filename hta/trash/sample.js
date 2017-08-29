@@ -1,0 +1,1 @@
+CR = String.fromCharCode(13);folderRef = new Folder ("/psdata/");fileList = folderRef.getFiles();txt = "";for (i=0; i<fileList.length; i++){	txt = txt + fileList[i].fullName + CR;}layObj = activeDocument.artLayers.add();layObj.kind = LayerKind.TEXT;layObj.textItem.contents = txt;

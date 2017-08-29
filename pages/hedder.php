@@ -17,7 +17,6 @@
 	<link rel="stylesheet" type="text/css" href="http://felicegattuso.com/projects/timedropper/js/timedropper/timedropper.css">
 	<link rel="stylesheet" type="text/css" href="../DataTables/datatables.min.css"/>
 	<?php
-		include('../data/update.php');
 		echo '<link id="sampleLink" rel="stylesheet" type="text/css" href="../'.$color.'/css/bootstrap.css?'.$updatefiletime.'">';
 		echo '<link id="sampleLink2" rel="stylesheet" type="text/css" href="../'.$color.'/css/example.css?'.$updatefiletime.'">';
 	?>

@@ -30,8 +30,9 @@
 		<label class='' for='finishTime'>終了時間</label>
 		<div class='input-group'>
 			<span class='input-group-addon'><span class='glyphicon glyphicon-time' aria-hidden='true'></span></span>
-			<input type='text' class='form-control time' name='finishTime' id='finishTime'>
-			<span class="input-group-btn"><button type="button" class="btn btn-default" onclick="document.getElementById('finishTime').value='13:00'" style="background-color:#efefef">昼</button></span>
+			<?php echo "<input type='text' class='form-control time' name='finishTime' id='finishTime' value=".date('H:i').">"; ?>
+			<span class="input-group-btn"><button type="button" class="btn btn-default" onclick="document.getElementById('finishTime').value='12:00'" style="background-color:#efefef">昼</button></span>
+			<span class="input-group-btn"><button type="button" class="btn btn-default" onclick="document.getElementById('finishTime').value=document.getElementById('startTime').value" style="background-color:#efefef">同</button></span>
 		</div>
 	</div>
 	<div class="form-group col-sm-3">
@@ -61,7 +62,7 @@
 
 <?php
 	if( $_GET['p'] == "deskwork" ) {
-		echo "<div class='row'><div class='form-group  col-sm-9'><textarea class='form-control input-normal input-sm' name='note' id='note'>事務作業（メール対応etc）</textarea></div></div>";
+		echo "<div class='row'><div class='form-group  col-sm-9'><textarea class='form-control input-normal input-sm' name='note' id='note' onChange='checkNote()'>事務作業（メール対応etc）</textarea></div></div>";
 ?>
 	<div class='row'>
 	<div class="form-group checkbox-wrap text-center col-sm-8">
@@ -76,6 +77,14 @@
 		<label class="label-checkbox">
 			<input type="checkbox" name="work_make" id="work_make" onclick="toggleMake()">
 			<span class="lever">申請書作成</span>
+		</label>
+		<label class="label-checkbox">
+			<input type="checkbox" name="work_time" id="work_time" onclick="toggleTime()">
+			<span class="lever">時間管理</span>
+		</label>
+		<label class="label-checkbox">
+			<input type="checkbox" name="work_weekly" id="work_weekly" onclick="toggleWeekly()">
+			<span class="lever">週報</span>
 		</label>
 	</div>
 	</div>
@@ -97,7 +106,10 @@
 
 	
 	<div class='row'>
-	<div class='col-sm-8'></div>
+	<div class='col-sm-6'></div>
+	<div class='form-group col-sm-2'>
+		<button type='reset' class='btn btn-default'>リセット</button>
+	</div>
 	<div class='form-group col-sm-4'>
 		<button type='submit' class='btn btn-default'>送信</button>
 	</div>

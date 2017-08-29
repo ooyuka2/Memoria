@@ -11,17 +11,18 @@
 		$working[$www]['finishTime'] = $_GET['finishTime'];
 		$working[$www]['keeper'] = $_GET['keeper'];
 		if($_GET['p'] == "deskwork") {
-			if(isset($_GET['note'])) $working[$www]['note'] = $_GET['note'];
+			if(isset($_GET['note'])) $working[$www]['note'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_GET['note']);
 			else $working[$www]['note'] = "";//$_GET['note'];
 		}else {
 			$todo = readCsvFile2('../../data/todo.csv');
 			$fdo = $_GET['f']-$todo[$_GET['p']]['パーセンテージ'];
 			$todo[$_GET['p']]['パーセンテージ'] = $_GET['f'];
 			if(isset($_GET['note'])) {
-				$todo[$_GET['p']]['所感'] = $_GET['note'];
+				$todo[$_GET['p']]['所感'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_GET['note']);
 				$working[$www]['note'] = "";
 			} else $working[$www]['note'] = "";
 			if($_GET['f']<100) {
+				$todo = check_child_do($todo, $_GET['p'], $fdo);
 				$todo = check_parent_do($todo, $_GET['p'], $fdo);
 			} else {
 				$todo[$_GET['p']]['完了'] = 1;

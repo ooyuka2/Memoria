@@ -1,0 +1,42 @@
+<html>
+<head>
+<script>
+
+var list = new Array();
+
+function init() {
+  var fso = new ActiveXObject("Scripting.FileSystemObject");
+  var f = fso.GetFile("list.txt");
+  var rs = f.OpenAsTextStream();
+  var i = 0;
+  while (!rs.AtEndOfStream) {
+    list[i] = rs.ReadLine();
+    i++;
+  }
+  rs.close();
+  for (var j=0;j<i;j++) {
+    var n = document.createElement("option");
+    n.text = list[j];
+    document.all.list.add(n);
+  }
+}
+
+function listChange() {
+  document.all.player.FileName = document.all.list.options[document.all.list.selectedIndex].text;
+}
+
+</script>
+</head>
+
+<body onLoad="init()">
+
+<h2 align="center">HTA Test</h2>
+
+<p align="center"><select name="list" onChange="listChange()"></select></p>
+
+<p align="center"><object  id="player" classid="CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95">
+</object>
+</p>
+
+</body>
+</html>

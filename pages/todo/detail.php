@@ -3,6 +3,7 @@
 ?>
 
 <?php
+	$working = readCsvFile2('../data/working.csv');
 	if($todo[$_GET['p']]['level'] == 1) {
 		echo "<div class='clearfix'><a href='todo.php?d=change&p={$_GET['p']}' class='btn btn-info pull-right btn-sm'>編集</a><a href='todo.php?d=renew&p={$_GET['p']}' class='btn btn-warning pull-right btn-sm' style='margin:0 10px'>流用</a>";
 		if(!(isset($_GET['d']) && $_GET['d']=="detail")) echo "<a href='todo.php?d=detail&p={$_GET['p']}' class='btn btn-primary pull-right btn-sm'>詳細</a>";
@@ -12,7 +13,7 @@
 		echo "<a href='/Memoria/pages/todo.php?d=detail&p={$todo[$_GET['p']]['parent']}' class='btn btn-link pull-right btn-sm'>上の階層へ</a></div>";
 	}
 
-	panel_child($todo, $todo[$_GET['p']]['id']);
+	panel_child($todo, $todo[$_GET['p']]['id'], $working);
 
 	
 	
@@ -58,7 +59,7 @@
 
 <?php
 
-function panel_child($todo, $todoid) {
+function panel_child($todo, $todoid, $working) {
 	//echo $todo[12]['child'];
 //	if($todo[$todoid]['child'] != 0) {
 //		for($todoid=1; $todoid<count($todo); $todoid++) {
@@ -72,10 +73,24 @@ function panel_child($todo, $todoid) {
 				echo "<div class='panel-body'>";
 				echo "<div class='alert alert-dismissible alert-warning' style='margin-bottom:0'>{$todo[$todoid]['作業内容']}</div>";
 				if($todo[$todoid]['成果物']!="") {
-					echo "<div class='alert alert-dismissible alert-info'><!--<strong style='font-size:150%'>成果物</strong>-->{$todo[$todoid]['成果物']}</div>";
-				} else if($todo[$todoid]['所感']!="" && $todo[$todoid]['所感']!="no comment") {
-					echo "<div class='alert alert-dismissible alert-success'><!--<strong style='font-size:150%'>コメント</strong>-->{$todo[$todoid]['所感']}</div>";
-				} else echo "<div style='height:20px;'></div>";
+					echo "<div class='alert alert-dismissible alert-info' style='margin-bottom:0'><!--<strong style='font-size:150%'>成果物</strong>-->{$todo[$todoid]['成果物']}</div>";
+				} 
+				if($todo[$todoid]['所感']!="" && $todo[$todoid]['所感']!="no comment") {
+					echo "<div class='alert alert-dismissible alert-danger' style='margin-bottom:0'><!--<strong style='font-size:150%'>コメント</strong>-->{$todo[$todoid]['所感']}</div>";
+				}
+				$whendo = "";
+				for($i=1; $i<count($working); $i++) {
+					if ($working[$i]['id'] == $todoid) {
+						if($whendo != "") $whendo = $whendo." : ";
+						$comDay = new DateTime($working[$i]['day']);
+						$comDay = $comDay->format('Y/m/d');
+						$whendo = $whendo.$comDay;
+					}
+				}
+				if($whendo != "") {
+					echo "<div class='alert alert-dismissible alert-success' style='margin-bottom:0'>{$whendo}</div>";
+				}
+				echo "<div style='height:20px;'></div>";
 				echo "<div class='col-xs-9'><div class='progress'><div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' style='width: {$todo[$todoid]['パーセンテージ']}%;'>";
 				echo "{$todo[$todoid]['パーセンテージ']}%";
 				echo "</div></div></div>";
@@ -98,7 +113,7 @@ function panel_child($todo, $todoid) {
 				if($todo[$todoid]['child'] != 0) {
 					for($i=1; $i<count($todo); $i++) {
 						if($todo[$i]['parent']==$todoid && $todo[$i]['削除']==0) {
-							panel_child($todo, $todo[$i]['id']);
+							panel_child($todo, $todo[$i]['id'], $working);
 						}
 					}
 				}

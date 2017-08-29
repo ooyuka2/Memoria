@@ -202,7 +202,7 @@ body {
   margin-bottom: 0;
   overflow: hidden;
   text-align: center;
-  background-color: #fdcea0;
+  background-color: #fff7cc;/*#fdcea0;*/
   background-image: url("../../img/circle.png");
   background-repeat: no-repeat;
   background-position: -35% center;
@@ -351,13 +351,27 @@ footer .copyright {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 24px;
 }
+.navbar-default, .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  background-color: #ffbb33;/*#ffdd33/*#ffee99;/*#FFE4B2;/*ffadff*/
+}
+
 .bkcolor {
   position: relative;
   min-height: 530px;
   margin-bottom: 0;
   overflow: hidden;
-  background-color: #FFE4B2;/*ffadff*/
+  background-color: #fff7cc;/*#FFE4B2;/*ffadff*/
   background-position: -35% center;
   -webkit-background-size: 70% 70%;
           background-size: 70%;
+}
+
+.panel-primary {
+	border-color: #ffcc00;
+	
+}
+.panel-primary > .panel-heading {
+    color: #fff;
+    background-color: #ffcc00;
+    border-color: #ffcc00;
 }

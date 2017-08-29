@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="Shft-JIS">
+
+	<title>警告灯ログシステム</title>
+	<!--<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="X-UA-Compatible" content="IE=11">-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+	<h1>警告灯ログシステム</h1>
+	<div>更新日時: <span id="listTime"></span></div>
+	<div>
+	<table class='table' id='LogTable'>
+		<tr>
+			<th></th>
+			<th>時間</th>
+			<th>警告灯ログ</th>
+			<th>対処</th>
+			<th>削除</th>
+		</tr>
+	</table>
+	</div>
+	<script type="text/VBScript" src="script/test.vbs"></script>
+	<script type="text/javascript">
+	var list = new Array();
+	window.onload = function(){
+		makeLogTable()
+		setInterval("makeLogTable()",1000 * 60);
+	}
+	
+	function makeLogTable() {
+		//makeList();
+		var fso = new ActiveXObject("Scripting.FileSystemObject");
+		var f = fso.GetFile("LOG/list.csv");
+		var rs = f.OpenAsTextStream();
+		var i = 0;
+		while (!rs.AtEndOfStream) {
+			list[i] = rs.ReadLine();
+			i++;
+		}
+		rs.close();
+		//document.getElementById("LogTable").innerHTML = "";
+		var tableRef = document.getElementById("LogTable");
+		for (var j=0;j<i;j++) {
+			var csvlist = list[j].split(",");
+			//document.getElementById( "LogTable" ).innerHTML += 
+				//"<tr><td>●</td><td>"+csvlist[2]+"</td><td>"+csvlist[1]+
+				//"</td><td><button type='button'>未対処</button></td><td><button type='button' disabled>削除</button></td></tr>";
+			i=j+1;
+			var newRow = tableRef.insertRow(i);
+			var newCell  = newRow.insertCell(0);
+			var newText  = document.createTextNode('●');
+			newCell.appendChild(newText);
+			newCell  = newRow.insertCell(1);
+			newText  = document.createTextNode(csvlist[2]);
+			newCell.appendChild(newText);
+			newCell  = newRow.insertCell(2);
+			newText  = document.createTextNode(csvlist[1]);
+			newCell.appendChild(newText);
+			newCell  = newRow.insertCell(3);
+			newButton  = document.createElement("button");
+			newButton.innerHTML="未対処";
+			newCell.appendChild(newButton);
+			newCell  = newRow.insertCell(4);
+			newText  = document.createTextNode("削除");
+			newCell.appendChild(newText);
+		}
+		var listTime = new Date(fso.GetFile("LOG/list.csv").DateLastModified);
+		document.getElementById("listTime").innerHTML = listTime.toLocaleString();
+	}
+	</script>
+</body>
+</html>

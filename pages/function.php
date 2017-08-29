@@ -1,6 +1,6 @@
 <?php
 
-$updatefiletime = "2017-08-15-1706";
+$updatefiletime = "2017-08-15-1725";
 
 
 //ファイル読み込んで配列に入れる
@@ -425,7 +425,7 @@ function write_todo_tree_title($todo, $id, $color) {
 	else if($todo[$id]['完了'] == 0) echo "<span class='glyphicon glyphicon-edit tree-mark' aria-hidden='true'></span>";
 	else echo "<span class='glyphicon glyphicon-check tree-mark' aria-hidden='true'></span>";
 	if(!isset($_GET['d'])) $_GET['d'] = "todo";
-	echo "<span class='text-{$color}' onDblClick='location.href = \"/Memoria/pages/todo.php?d={$_GET['d']}&p={$todo[$id]['id']}\"'  onMouseOver='this.classList.add(\"bg-info\")' onMouseOut='this.classList.remove(\"bg-info\")' onClick='gotoid(todoid{$todo[$id]['id']})' oncontextmenu='tree_menu({$todo[$id]['id']}, {$todo[$id]['top']}, {$todo[$id]['パーセンテージ']}, {$todo[$id]['child']}, {$todo[$id]['保留']});return false'>{$todo[$id]['タイトル']}</span>";
+	echo "<span class='text-{$color}' onDblClick='location.href = \"/Memoria/pages/todo.php?d={$_GET['d']}&p={$todo[$id]['id']}\"'  onMouseOver='this.classList.add(\"bg-info\")' onMouseOut='this.classList.remove(\"bg-info\")' onClick='gotoid(todoid{$todo[$id]['id']})' oncontextmenu='tree_menu({$todo[$id]['id']}, {$todo[$id]['top']}, {$todo[$id]['パーセンテージ']}, {$todo[$id]['child']}, {$todo[$id]['保留']});return false' style='cursor: pointer;'>{$todo[$id]['タイトル']}</span>";
 }
 
 function check_child_finish($todo, $parent) {
@@ -475,6 +475,28 @@ function check_parent_do($todo, $child, $fdo) {
 		//writeCsvFile2("../../data/todo.csv", $todo);
 		if($todo[$parent]['level']!=1) $todo = check_parent_do($todo, $parent, $pfdo);
 	}
+	return $todo;
+}
+
+function check_child_do($todo, $parent, $fdo) {
+	if($todo[$parent]['child'] != 0) {
+		//echo "\$todo[\$parent]['child'] != 0<br>";
+		for($i=0; $i<count($todo); $i++) {
+			if($todo[$i]['parent']==$parent && $todo[$i]['完了']==0) {
+				$todo[$i]['パーセンテージ'] += $fdo/$todo[$parent]['child'];
+				$todo = check_child_finish($todo, $todo[$i]['id'], $fdo/$todo[$parent]['child']);
+			}
+		}
+	}
+/*
+	if($todo[$child]['level'] != 1) {
+		$parent = $todo[$child]['parent'];
+		$pfdo = $todo[$parent]['パーセンテージ'];
+		$todo[$parent]['パーセンテージ'] += $fdo/$todo[$parent]['child'];
+		$pfdo = $todo[$parent]['パーセンテージ'] - $pfdo;
+		//writeCsvFile2("../../data/todo.csv", $todo);
+		if($todo[$parent]['level']!=1) $todo = check_parent_do($todo, $parent, $pfdo);
+	}*/
 	return $todo;
 }
 

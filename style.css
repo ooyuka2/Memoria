@@ -38,18 +38,7 @@ body {
 }
 
 
-/*	todoのリスト構造用	*/
-.tree-child-space {
-	border-left: solid 2px #a4d5bd;
-}
 
-.tree-mark {
-	color: #00947a;
-}
-
-.text-future {
-	color: #f19ca7;
-}
 
 /*	作業ボタンや完了ボタンの先のラジオボタン	*/
 .keeper-btn input {
@@ -267,4 +256,17 @@ select::-ms-expand {
     top: 0;
     right: 15px;
     width: 20px;
+}
+
+/*	todoのリスト構造用	*/
+.tree-child-space {
+	border-left: solid 2px #c0a2c7;/* #f6cfff;/*#a4d5bd;*/
+}
+
+.tree-mark {
+	color: #c0a2c7;/*#f6cfff;/*#00947a;*/
+}
+
+.text-future {
+	color: #c0a2c7;/*#f19ca7;*/
 }

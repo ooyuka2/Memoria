@@ -360,3 +360,17 @@ footer .copyright {
   -webkit-background-size: 70% 70%;
           background-size: 70%;
 }
+
+.panel-primary {
+	border-color: #ffff00;
+	
+}
+.panel-primary > .panel-heading {
+    color: #fff;
+    background-color: #ffff00;
+    border-color: #ffff00;
+}
+
+.panel-primary > .panel-heading > a {
+    color: #fc97ad !important;
+}
