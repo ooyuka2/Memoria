@@ -30,7 +30,7 @@
 			$todo[$id]['登録日'] = date('Y/m/d H:i:s');
 			$todo[$id]['保留'] = 0;
 			$todo[$id]['削除'] = 0;
-			$todo[$id]['時間管理テーマ'] = $_POST['theme2'][$j];
+			$todo[$id]['時間管理テーマ'] = $_POST['theme2'][0];
 			$id++;
 		}
 	}
@@ -65,8 +65,8 @@
 	print_r($todo);
 	echo "</pre>";*/
 	writeCsvFile2("../../data/todo.csv", $todo);
-	
-	header( "Location: ../todo.php?p={$_POST['id'][0]}" );
+	if($_POST['name'][0] == "") header( "Location: ../todo.php" );
+	else header( "Location: ../todo.php?p={$_POST['id'][0]}" );
 	exit();
 
 ?>

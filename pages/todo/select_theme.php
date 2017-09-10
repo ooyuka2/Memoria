@@ -8,6 +8,6 @@
 			exit();
 		}
 	}
-	header( "Location: /Memoria/pages/todo.php?d=new&theme=".$_GET['theme'] );
+	header( "Location: /Memoria/pages/todo.php?d==new&theme=".$_GET['theme'] );
 	exit();
 ?>

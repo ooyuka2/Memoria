@@ -3,14 +3,15 @@
 	$todo = readCsvFile2('../data/todo.csv');
  ?>
 <script language="javascript" type="text/javascript">
-	var new_field = "<fieldset><div class='well bs-component'><div class='clearfix'><span class='pull-right close' onClick='minus( minusnumber );'>&times;</span><span class='pull-right close'>　</span><span class='pull-right close' onClick='plus2( plusnumber );'>+</span></div><div class='form-group'><div class='col-xs-8'><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='タイトル'><input type='hidden' name='id[]' class='id'></div><div class='col-xs-12' style='margin-bottom:5px'><textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'></textarea></div><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='成果物'></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>レベル</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm level' name='level[]' value='2' min='2' max='10'></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>優先度</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm priority' name='priority[]' min='1' max='10'></div></div><div class='col-xs-4'><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期</label><input type='date' class='form-control input-normal input-sm noki' name='noki[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期の時間</label><input type='time' class='form-control input-normal input-sm time' name='time[]' step='900'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>開始予定時刻</label><input type='date' class='form-control input-normal input-sm kaisi' name='kaisi[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>終了予定日時</label><input type='date' class='form-control input-normal input-sm syuryo' name='syuryo[]'></div></div></div></div><div class='form-group' style='margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;'><div class='col-xs-offset-3 col-xs-3'><button type='reset' class='btn btn-default btn-block'>Reset</button></div><div class='col-xs-3'><button type='submit' class='btn btn-primary btn-block'>Submit</button></div></div></fieldset>";
+	var new_field = "<fieldset style='position: relative' draggable='true'><div class='well bs-component'><div class='clearfix'><span class='pull-right close' onClick='minus( minusnumber );'>&times;</span><span class='pull-right close'>　</span><span class='pull-right close' onClick='plus2( plusnumber );'>+</span></div><div class='form-group'><div class='col-xs-8'><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='タイトル'><input type='hidden' name='id[]' class='id'></div><div class='col-xs-12' style='margin-bottom:5px'><textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'></textarea></div><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='成果物'></div><div class='col-xs-2' style='margin-bottom:5px'><button type='button' class='btn btn-warning btn-xs' onClick='level_up(this)'>▲</button><button type='button' class='btn btn-warning btn-xs eee' onClick='level_down(this)'>▼</button></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>レベル</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm level' name='level[]' value='2' min='2' max='10' readonly></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>優先度</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm priority' name='priority[]' min='1' max='10'></div></div><div class='col-xs-4'><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期</label><input type='text' class='form-control input-normal input-sm noki' name='noki[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期の時間</label><input type='time' class='form-control input-normal input-sm time' name='time[]' step='900'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>開始予定時刻</label><input type='text' class='form-control input-normal input-sm kaisi' name='kaisi[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>終了予定日時</label><input type='text' class='form-control input-normal input-sm syuryo' name='syuryo[]'></div></div></div></div><div class='form-group' style='margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;'><div class='col-xs-offset-3 col-xs-3'><button type='reset' class='btn btn-default btn-block'>Reset</button></div><div class='col-xs-3'><button type='submit' class='btn btn-primary btn-block'>Submit</button></div></div></fieldset>";
 	
-
+	if(document.getElementsByClassName("new")) change_level();
 	
 	
 	//<button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>×</span></button>
 	var new_id = document.getElementsByClassName("name").length;
 	var last_id = <?php echo count($todo); ?>;
+	var notnew = true;
 	function read_form() {
 		var array = new Array();
 		for(var i=0; i<document.getElementsByClassName("name").length; i++) {
@@ -36,6 +37,7 @@
 			array[i][9] = document.getElementsByClassName("id")[i].value;
 			document.getElementsByClassName("id")[i].value = "";
 		}
+		notnew = false;
 		return array;
 	}
 	
@@ -57,6 +59,8 @@
 			}
 		}
 		if(deletekey==0) {
+			if(document.getElementsByClassName("level")[(new_id-1)].value != 1)
+				document.getElementsByClassName("level")[new_id].value = document.getElementsByClassName("level")[(new_id-1)].value;
 			document.getElementsByClassName("priority")[new_id].value = document.getElementsByClassName("priority")[(new_id-1)].value;
 			document.getElementsByClassName("noki")[new_id].value = document.getElementsByClassName("noki")[(new_id-1)].value;
 			document.getElementsByClassName("time")[new_id].value = document.getElementsByClassName("time")[(new_id-1)].value;
@@ -103,6 +107,7 @@
 				document.getElementsByClassName("id")[i].value = array[i][9];
 			}
 			else if (i==pluskey) {
+				document.getElementsByClassName("level")[i].value = array[i][3];
 				document.getElementsByClassName("priority")[i].value = array[i][4];
 				document.getElementsByClassName("noki")[i].value = array[i][5];
 				document.getElementsByClassName("time")[i].value = array[i][6];
@@ -132,6 +137,8 @@
 			document.getElementsByClassName("new")[0].innerHTML += new_field.replace("minusnumber", String(i)).replace("plusnumber", String(i));
 		}
 		write_form(array, 0);
+		setDateTime_start();
+		change_level();
 	}
 	function minus(number) {
 		//var array = ['', '','','','','','','',''];
@@ -141,6 +148,8 @@
 			document.getElementsByClassName("new")[0].innerHTML += new_field.replace("minusnumber", String(i)).replace("plusnumber", String(i));
 		}
 		write_form_delete(array, number);
+		setDateTime_start();
+		change_level();
 	}
 	function plus2(pluskey) {
 		//var array = ['', '','','','','','','',''];
@@ -150,6 +159,35 @@
 			document.getElementsByClassName("new")[0].innerHTML += new_field.replace("minusnumber", String(i)).replace("plusnumber", String(i));
 		}
 		write_form_plus(array, pluskey);
+		setDateTime_start();
+		change_level();
+	}
+	
+	function change_level() {
+		//親の親の親
+		for(var i=0; i<(document.getElementsByClassName("level").length); i++) {
+			var element = document.getElementsByClassName("level")[i];
+			var level = element.value;
+			var parent = element.parentNode.parentNode.parentNode.parentNode.parentNode; 
+			if(level < 2)		parent.style.right = parseInt(level * 40) + "px";
+			else if(level > 2)	parent.style.left = parseInt((level - 2) * 40) + "px";
+			else parent.style.left = 0 + "px";
+		}
+	}
+	
+	function level_up(btnnode) {
+		if(notnew==true) var element = btnnode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1];
+		else var element = btnnode.parentNode.nextSibling.nextSibling.childNodes[0];
+		if(element.value != 1) 
+		element.value = parseInt(element.value) + 1;
+		change_level();
+	}
+	
+	function level_down(btnnode) {
+		if(notnew==true) var element = btnnode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1];
+		else var element = btnnode.parentNode.nextSibling.nextSibling.childNodes[0];
+		if(element.value > 2) element.value = parseInt(element.value) - 1;
+		change_level();
 	}
 	
 	function setDateTime(){
@@ -160,6 +198,8 @@
 			document.getElementsByClassName("syuryo")[i].value = document.getElementsByClassName("syuryo")[0].value;
 		}
 	}
+	
+
 	
 	function select_theme(theme) {
 		location.href = '/Memoria/pages/todo.php?page=select_theme&theme='+theme;
@@ -257,7 +297,8 @@ function tree_menu(id, top, pre, child, wait) {
 	
 	document.getElementById("todo_tree_menu").innerHTML = menu;
 	document.getElementById("tree_menu").style.left=tree_menu_x+"px";
-	document.getElementById("tree_menu").style.top=tree_menu_y+"px";
+	if(tree_menu_y < 500) document.getElementById("tree_menu").style.top=tree_menu_y+"px";
+	else document.getElementById("tree_menu").style.top=tree_menu_y-150+"px";
 }
 
 if(document.getElementById("todo_tree_menu")) {

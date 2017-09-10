@@ -350,6 +350,8 @@ footer .copyright {
   color: #fff;
 }
 
+
+
 .bkcolor {
   position: relative;
   min-height: 530px;
@@ -374,3 +376,15 @@ footer .copyright {
 .panel-primary > .panel-heading > a {
     color: #fc97ad !important;
 }
+
+.btn-primary {
+	background-color: #ffff00;
+	border-color: #ffff00;
+	color: #d2b48c;
+}
+
+.btn-primary:hover {
+	background-color: #ffd700;
+	border-color: #ffd700;
+}
+

@@ -352,7 +352,11 @@ footer .copyright {
   font-size: 24px;
 }
 .navbar-default, .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-  background-color: #ffbb33;/*#ffdd33/*#ffee99;/*#FFE4B2;/*ffadff*/
+  background-color: #ffd700;/*#ffbb33;/*#ffdd33/*#ffee99;/*#FFE4B2;/*ffadff*/
+}
+
+.navbar .active a {
+	background-color: #ff66c9 !important;
 }
 
 .bkcolor {
@@ -375,3 +379,14 @@ footer .copyright {
     background-color: #ffcc00;
     border-color: #ffcc00;
 }
+
+.btn-primary {
+	background-color: #ffcc00;
+	border-color: #ffcc00;
+}
+
+.btn-primary:hover {
+	background-color: #ffa500;
+	border-color: #ffa500;
+}
+

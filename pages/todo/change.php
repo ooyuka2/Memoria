@@ -1,12 +1,15 @@
 <?php
+	include("todo_make.php");
+?>
+<!--
+<?php
 	$todo = readCsvFile2('../data/todo.csv');
 	if(!isset($_GET['p']) || $todo[$_GET['p']]['level']!=1) { // || $todo[$_GET['p']]['level']!=1
 		header( "Location: Error.php" );
 		exit();
 	}
 ?>
-  <!-- Forms
-  ================================================== -->
+
 
 
 </form>
@@ -146,3 +149,4 @@
     </form>
 </div>
 
+-->

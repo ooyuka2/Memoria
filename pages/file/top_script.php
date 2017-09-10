@@ -62,4 +62,6 @@
     function move(page) {
     	location.href = '/Memoria/pages/file.php?page=count&p=' + page;
     }
+    
+
 </script>

@@ -360,6 +360,7 @@ function readlogLine(file) {
 }
 /*	ロックファイルがあるかどうかを確認。ロックファイルの更新日時が５分以上前の時は削除	*/
 function checkListLock() {
+//ホストネームの取得location.host
 	var lockFlag = fso.FileExists( listlockFile );
 	var count = 0;
 	//var returnFlag = false;

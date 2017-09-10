@@ -270,3 +270,7 @@ select::-ms-expand {
 .text-future {
 	color: #c0a2c7;/*#f19ca7;*/
 }
+
+.new {
+	position: relative;
+}

@@ -61,7 +61,7 @@
 			$todo[$id]['登録日'] = $toroku;
 			$todo[$id]['保留'] = $wait;
 			$todo[$id]['削除'] = 0;
-			$todo[$id]['時間管理テーマ'] = $_POST['theme2'][$j];
+			$todo[$id]['時間管理テーマ'] = $_POST['theme2'][0];
 		}
 	}
 

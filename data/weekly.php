@@ -2,4 +2,5 @@
 	/*T•ñ—pÝ’è*/
 	$weeklyTo = "››››";
 	$myname = "££";
+	$thema1 = "        <br>       <br>            ";
 ?>

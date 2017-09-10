@@ -1,3 +1,4 @@
+
 <div id='keeper' class="table-responsive">
 	<div class='clearfix'>
 		<button style='margin:10px 0' class='btn btn-default pull-right btn-xs' onClick='location.href = "/Memoria/pages/todo.php?d=keeper&day=all"'>すべて</button>
@@ -12,8 +13,8 @@
 
 	$when = new DateTime($working[(count($working)-1)]['day']);
 	$when = $when->format('Y/m/d');
-	echo "<h3>{$when}</h3>";
-	echo "<table class='table table-condensed'><thead><tr><th class='col-md-2'>開始時間-終了時間</th><th class='col-md-8'>タイトル</th><th class='col-md-2'>時間管理テーマ</th></tr></thead><tbody>";
+	$keeper = "<table class='table table-condensed'><thead><tr><th class='col-md-2'>開始時間-終了時間</th><th class='col-md-8'>タイトル</th><th class='col-md-2'>時間管理テーマ</th></tr></thead><tbody>";
+	$copytext = $when."	";
 	$last = count($working)-1;
 	$day = 1;
 	
@@ -29,21 +30,32 @@
 			for($j=$first; $j<=$last; $j++) {
 				if($working[$j]['keeper'] == 1) continue;
 				$processTime = str_replace(":", "", $working[$j]['startTime'] . "-" . $working[$j]['finishTime']);
-				echo "<td>{$processTime}</td>";
+				$keeper .= "<td>{$processTime}</td>";
+				$copytext .= $processTime . "	";
 				if($working[$j]['id'] == "deskwork") {
-					echo "<td><span>{$working[$j]['note']}</span></td>";
-					echo "<td>37</td></tr>";
+					$keeper .= "<td><span>{$working[$j]['note']}</span></td>";
+					$keeper .= "<td>37</td></tr>";
+					if(strpos($working[$j]['note'], '<br>') !== false){
+						$note = str_replace("<br>", "\\n", "&quot".$working[$j]['note']."&quot");//\\\'
+					} else $note = $working[$j]['note'];
+					$copytext .= $note . "	37\\n	";
 				} else {
-					echo "<td><span onClick='goto_detail({$todo[$working[$j]['id']]['top']})'>{$todo[$todo[$working[$j]['id']]['top']]['タイトル']}</span></td>";
-					echo "<td>{$todo[$todo[$working[$j]['id']]['top']]['時間管理テーマ']}</td></tr>";
+					$keeper .= "<td><span onClick='goto_detail({$todo[$working[$j]['id']]['top']})'>{$todo[$todo[$working[$j]['id']]['top']]['タイトル']}</span></td>";
+					$keeper .= "<td>{$todo[$todo[$working[$j]['id']]['top']]['時間管理テーマ']}</td></tr>";
+					$copytext .= $todo[$todo[$working[$j]['id']]['top']]['タイトル'] . "	" . $todo[$todo[$working[$j]['id']]['top']]['時間管理テーマ']. "\\n	";
 				}
 			}
 			if($i!=1 && $day != $countday) {
-				echo "</tbody></table>";
+				$keeper .= "</tbody></table>";
+				echo '<div class="clearfix"><h3>'.$when.'<button onClick="execCopy(\''.$copytext.'\')" class="pull-right btn btn-sm btn-primary">copy</button></h3></div>';
+				
+				echo $keeper;
+
+				
 				$when = new DateTime($working[$i]['day']);
 				$when = $when->format('Y/m/d');
-				echo "<h3>{$when}</h3>";
-				echo "<table class='table table-condensed'><thead><tr><th class='col-md-2'>開始時間-終了時間</th><th class='col-md-8'>タイトル</th><th class='col-md-2'>時間管理テーマ</th></tr></thead><tbody>";
+				$keeper = "<table class='table table-condensed'><thead><tr><th class='col-md-2'>開始時間-終了時間</th><th class='col-md-8'>タイトル</th><th class='col-md-2'>時間管理テーマ</th></tr></thead><tbody>";
+				$copytext = $when."	";
 				$last = $i;
 			} else if($day == $countday) {
 				break;
@@ -51,6 +63,8 @@
 		$day ++;
 		}
 	}
+	echo '<div class="clearfix"><h3>'.$when.'</h3><button onClick="execCopy(\''.$copytext.'\')" class="pull-right btn btn-sm btn-primary">copy</button></div>';
+	echo $keeper;
 ?>
 	</tbody>
 </table>

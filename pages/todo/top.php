@@ -24,7 +24,7 @@
 				else echo "<li><a href='todo.php?d=weekly'>èTïÒ</a></li>";
 				if(isset($_GET['d']) && $_GET['d']=="keeper") echo "<li class='active'><a href='todo.php?d=keeper'>éûä‘ä«óù</a></li>";
 				else echo "<li><a href='todo.php?d=keeper'>éûä‘ä«óù</a></li>";
-				
+				if(isset($_GET['d']) && $_GET['d']=="todo_make") echo "<li class='active'><a href='todo.php?d=todo_make'>äJî≠íÜ</a></li>";
 			?>
 	<li role="presentation" class="dropdown pull-right">
 <?php
@@ -63,6 +63,7 @@
 			else echo "<div class='tab-pane fade' id='calendar'>";
 			
 			echo "</div>";
+			/*
 			if(isset($_GET['d']) && $_GET['d']=="new") echo "<div class='tab-pane fade active in' id='new'>";
 			else if(isset($_GET['d']) && $_GET['d']=="renew" && isset($_GET['p'])) echo "<div class='tab-pane fade active in' id='new'>";
 			else if(!(isset($_GET['d']) && $_GET['d']=="change")) echo "<div class='tab-pane fade' id='new'>";
@@ -74,6 +75,20 @@
 				include('todo/change.php');
 				echo "</div>";
 			}
+			*/
+			if(isset($_GET['d']) && $_GET['d']=="new") echo "<div class='tab-pane fade active in' id='new'>";
+			else if(isset($_GET['d']) && $_GET['d']=="renew" && isset($_GET['p'])) echo "<div class='tab-pane fade active in' id='new'>";
+			else if(!(isset($_GET['d']) && $_GET['d']=="change")) echo "<div class='tab-pane fade' id='new'>";
+			if(isset($_GET['d']) && $_GET['d']=="renew" && isset($_GET['p'])) include('todo/todo_make.php');
+			else if(!(isset($_GET['d']) && $_GET['d']=="change")) include('todo/todo_make.php');
+			if(!(isset($_GET['d']) && $_GET['d']=="change")) echo "</div>";
+			if(isset($_GET['d']) && $_GET['d']=="change") {
+				echo "<div class='tab-pane fade active in' id='change'>";
+				include('todo/todo_make.php');
+				echo "</div>";
+			}
+			
+			
 			if(isset($_GET['d']) && $_GET['d']=="weekly") {
 				echo "<div class='tab-pane fade active in' id='weekly'>";
 				include('todo/weekly.php');
@@ -96,6 +111,13 @@
 			}
 			else echo "<div class='tab-pane fade' id='todo'>";
 			echo "</div>";
+			/*
+			if(isset($_GET['d']) && $_GET['d']=="todo_make") {
+				echo "<div class='tab-pane fade active in' id='todo_make'>";
+				include('todo/todo_make.php');
+				echo "</div>";
+			}*/
+			
 		?>
 			</div>
 		</div>

@@ -14,7 +14,7 @@
 		$file[$_GET['toroku']]['detail'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail']);
 		$file[$_GET['toroku']]['syurui'] = $_POST['genre'];
 		//$file[$_GET['toroku']]['date'] = date('Y/m/d H:i:s');
-		$file[$_GET['toroku']]['count'] = 0;
+		//$file[$_GET['toroku']]['count'] = 0;
 		$file[$_GET['toroku']]['delete'] = 0;
 		
 		writeCsvFile("../data/file.csv", $file);

@@ -19,7 +19,7 @@
 					echo "<h3>?週報：{$today->modify('friday')->format('m/d')}：{$myname}</h3><hr><p>";
 					$today = new DateTime();
 					echo $weeklyTo."<br><br>";
-					echo "お世話になっております。{$myname}です。<br>週報を提出致します。<br><br><br>１）テーマ進捗<br>なし<br><br>";
+					echo "お世話になっております。{$myname}です。<br>週報を提出致します。<br><br><br>１）テーマ進捗<br>{$thema1}<br><br>";
 					echo "２）今週の業務のトピックス<br>";
 					
 					$monday = $today->modify('monday this week')->setTime(0,0,0);
