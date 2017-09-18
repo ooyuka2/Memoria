@@ -274,3 +274,6 @@ select::-ms-expand {
 .new {
 	position: relative;
 }
+.jumbotron.special {
+	padding-top: 5px !important;
+}

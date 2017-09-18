@@ -368,7 +368,8 @@ footer .copyright {
 	
 }
 .panel-primary > .panel-heading {
-    color: #fff;
+    /*color: #fff;*/
+    color: #fc97ad !important;
     background-color: #ffff00;
     border-color: #ffff00;
 }
@@ -388,3 +389,8 @@ footer .copyright {
 	border-color: #ffd700;
 }
 
+.navbar-default, .navbar-default .navbar-collapse, .navbar-default .navbar-form, .navbar.navbar-default.navbar-fixed-top {
+  background-color: #ffff99 !important;
+}
+
+/**/

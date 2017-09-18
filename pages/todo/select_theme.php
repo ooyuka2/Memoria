@@ -2,7 +2,7 @@
 	$todo = readCsvFile2('../data/todo.csv');
 	$id = 0;
 	for($i=count($todo)-1; $i>0; $i--) {
-		if($todo[$i]['テーマ'] == $_GET['theme']) {
+		if($todo[$i]['テーマ'] == $_GET['theme'] && $todo[$i]['削除'] == 0) {
 			$id = $i;
 			header( "Location: /Memoria/pages/todo.php?d=renew&p=".$id );
 			exit();

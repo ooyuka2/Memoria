@@ -1,6 +1,6 @@
 <?php
 
-$updatefiletime = "2017-09-08-1744";
+$updatefiletime = "2017-09-08-1753";
 
 
 //ファイル読み込んで配列に入れる
@@ -369,15 +369,26 @@ function check1array($array, $text) {
 
 function write_todo_tree($todo, $id, $date) {
 	$color = check_todo_tree($todo, $id, $date);
+	$count = $todo[$id]['順番']+1;
 	if($color != "") {
 		write_todo_tree_title($todo, $id, $color);
 		if($todo[$id]['child'] != 0) {
+			/*
 			for($i=0; $i<count($todo); $i++) {
 				if($todo[$i]['parent'] == $todo[$id]['id'] && $todo[$i]['削除'] == 0) write_todo_tree($todo, $i, $date);
 			}
+			*/
+			$next_id = todo_next_child($todo, $id, $count);
+			while($next_id != 0) {
+				$count = write_todo_tree($todo, $next_id, $date);
+				//$count++;
+				$next_id = todo_next_child($todo, $id, $count);
+			}
+
 		}
 		echo "</div>";
 	}
+	return $count;
 }
 
 function check_todo_tree($todo, $id , $date) {
@@ -518,6 +529,26 @@ function writeWorking($working) {
 	}
 
 	writeCsvFile2("../../data/working.csv", $working);
+}
+
+function todo_next($todo, $top, $next) {
+	$id = 0;
+	for($i=1; $i<count($todo);$i++) {
+		if($todo[$i]['top']==$top && $todo[$i]['level']!=1 && $todo[$i]['削除']==0 && $todo[$i]['順番']==$next) {
+			$id = $todo[$i]['id'];
+		}
+	}
+	return $id;
+}
+
+function todo_next_child($todo, $parent, $next) {
+	$id = 0;
+	for($i=1; $i<count($todo);$i++) {
+		if($todo[$i]['parent']==$parent && $todo[$i]['level']!=1 && $todo[$i]['削除']==0 && $todo[$i]['順番']==$next) {
+			$id = $todo[$i]['id'];
+		}
+	}
+	return $id;
 }
 
 ?>

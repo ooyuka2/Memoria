@@ -14,30 +14,35 @@
 
 
 <div class="jumbotron special">
-  <div class="honoka"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 outline">
-        <h1>Setting</h1>
-        <p>未実装！！</p>
-        <div class="download">
-			<div id="sampleWrap">
-			    <button class="btn btn-default" onclick="setHref('../honoka/css/bootstrap.css'); setHref2('../honoka/css/example.css'); setValue('honoka')">オレンジ</button>
-			    <button class="btn btn-default" onclick="setHref('../niko/css/bootstrap.css'); setHref2('../niko/css/example.css');setValue('niko')">ピンク</button>
-			    <button class="btn btn-default" onclick="setHref('../rin/css/bootstrap.css'); setHref2('../rin/css/example.css');setValue('rin')">黄色</button>
-			    <button class="btn btn-default" onclick="setHref('../umi/css/bootstrap.css'); setHref2('../umi/css/example.css');setValue('umi')">青色</button>
+	<!--  <div class="honoka"></div> -->
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-xs-4 txtright col-xs-offset-8"><!--  outline -->
+				<h1>Setting</h1>
+				<div class="download">
+					<div class="basedon small">
+						<span class="last-version"></span>setting.phpにて色のタイプの変更可能<span class="base-version"></span>
+					</div>
+					<div id="sampleWrap">
+						<form class='form-horizontal' method='post' action='./settings.php'>
+							<button type='button' class="btn btn-default" onclick="setHref('../honoka/css/bootstrap.css'); setHref2('../honoka/css/example.css'); setValue('honoka')">オレンジ</button>
+							<button type='button' class="btn btn-default" onclick="setHref('../niko/css/bootstrap.css'); setHref2('../niko/css/example.css');setValue('niko')">ピンク</button>
+							<button type='button' class="btn btn-default" onclick="setHref('../rin/css/bootstrap.css'); setHref2('../rin/css/example.css');setValue('rin')">黄色</button>
+							<button type='button' class="btn btn-default" onclick="setHref('../umi/css/bootstrap.css'); setHref2('../umi/css/example.css');setValue('umi')">青色</button>
+							<button type='submit' value='niko' class="btn btn-danger" id="kakutei" name="kakutei">確定</button>
+							<!-- <br><br><a href="./xxx.php" class="btn">xxx.php</a> -->
+						</form>
+					</div>
+					<div class="basedon small">
+						<span class="last-version"></span>todo.csvの更新ver+Order<span class="base-version"></span>
+					</div>
+					<div id="sampleWrap">
+						<a href="/Memoria/pages/settings/PlusOrder.php" class="btn btn-danger btn-block btn-sm">更新</a>
+					</div>
+				</div>
 			</div>
-          <div class="basedon small">
-          <span class="last-version"></span>setting.phpにて色のタイプの変更可能<span class="base-version"></span>
-          </div>
-          <form class='form-horizontal' method='post' action='./settings.php'>
-          	<button type='submit' value='niko' class="btn btn-danger btn-lg" id="kakutei" name="kakutei">確定</button>
-          	<!-- <br><br><a href="./xxx.php" class="btn">xxx.php</a> -->
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+		</div>
+	</div>
 </div>
 
 <?php

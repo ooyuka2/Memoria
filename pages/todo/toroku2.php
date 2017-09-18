@@ -62,6 +62,7 @@
 			$todo[$id]['•Û—¯'] = $wait;
 			$todo[$id]['íœ'] = 0;
 			$todo[$id]['ŽžŠÔŠÇ—ƒe[ƒ}'] = $_POST['theme2'][0];
+			$todo[$id]['‡”Ô'] = $j;
 		}
 	}
 

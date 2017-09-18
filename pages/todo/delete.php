@@ -6,6 +6,7 @@
 		//íœ‘ÎÛ‚ª‚È‚¢‚©‚ÌŠm”F
 		$top=$todo[$_GET['id']]['top'];
 		$todo[$_GET['id']]['íœ'] = 1;
+		$order = $todo[$_GET['id']]['‡”Ô'] + 1;
 		if($todo[$_GET['id']]['parent'] != 0) {
 			$todo[$todo[$_GET['id']]['parent']]['child'] -= 1;
 		}
@@ -17,7 +18,18 @@
 				}
 			}
 		}
-		/*
+		
+		
+		$next_id = todo_next($todo, $todo[$_GET['id']]['top'], $order);
+		while($next_id != 0) {
+			$todo[$next_id]['‡”Ô'] = $order-1;
+			$order++;
+			$next_id = todo_next($todo, $todo[$_GET['id']]['top'], $order);
+		}
+
+		
+		
+/*
 	echo "<pre>";
 	
 	for($i=1; $i<count($todo); $i++) {

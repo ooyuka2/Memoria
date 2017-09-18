@@ -30,9 +30,30 @@ table td {
 	<div class='bkcolor'>
 	<div class="container" style="padding:25px 0 50px 0">
 <?php
-		// ディレクトリのパスを記述
-		$dir = "./tools/" ;
+	echo "<h2>MyTool</h2>";
+	readTool("../data/tools/");
+	echo "<h2>MemoriaTool</h2>";
+	readTool("./tools/");
+?>
+	</div>
+	</div>
+</section>
 
+<?php
+	
+	include_once('footer.php');
+	select_script_page("tools", $_GET['page']);
+?>
+<script>
+	window.onload = function(){
+	    document.getElementsByClassName('tools')[0].classList.add('active');
+	}
+</script>
+</body>
+</html>
+
+<?php
+	function readTool($dir) {
 		// ディレクトリの存在を確認し、ハンドルを取得
 		if( is_dir( $dir ) && $handle = opendir( $dir ) ) {
 			// [ul]タグ
@@ -54,20 +75,5 @@ table td {
 			// [ul]タグ
 			echo "</ul>" ;
 		}
-	  ?>
-	</div>
-	</div>
-</section>
-
-<?php
-	
-	include_once('footer.php');
-	select_script_page("tools", $_GET['page']);
-?>
-<script>
-	window.onload = function(){
-	    document.getElementsByClassName('tools')[0].classList.add('active');
 	}
-</script>
-</body>
-</html>
+?>
