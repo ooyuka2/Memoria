@@ -555,7 +555,7 @@ function todo_next_child($todo, $parent, $next) {
 
 <?php
 // 現在の年月を取得
-function calendar($year, $month) {
+function calendar($year, $month, $todo) {
 	// 月末日を取得
 	$last_day = date('j', mktime(0, 0, 0, $month + 1, 0, $year));
 	$calendar = array();
@@ -611,24 +611,35 @@ function calendar($year, $month) {
 	    <?php $cnt = 0; ?>
 	    <?php foreach ($calendar as $key => $value): ?>
 	 
-	        <?php
-	        	if($value['day']!="") {
-		        	if($thisyear == $year && $thismonth == $month && $thisday == $value['day'])
-		        		echo "<td style='background: #fff352;'>";
-		        	else if($cnt == 0 && $value['day']!="") echo "<td style='background: #ffc0cb;'>";
-		        	else if($cnt == 6 && $value['day']!="") echo "<td style='background: #afeeee;'>";
-		        	else echo "<td>";
+			<?php
+				$sa = sort_by_noki_priority($todo);
+				if($value['day']!="") {
+					if($thisyear == $year && $thismonth == $month && $thisday == $value['day'])
+						echo "<td style='background: #fff352;'>";
+					else if($cnt == 0 && $value['day']!="") echo "<td style='background: #ffc0cb;'>";
+					else if($cnt == 6 && $value['day']!="") echo "<td style='background: #afeeee;'>";
+					else echo "<td>";
 			?>
-	        <?php 
+			 <?php 
 
-	        		echo "<a href='todo.php?d=calendar";
-	        		echo "&year={$year}&mounth={$month}&day={$value['day']}'";
-	        		echo "style='display:block; width:100%; height:100%'>".$value['day']."</a>";
-	        	}
-	        	else echo "<td>";
-	        	$cnt++;
-	         ?>
-	        </td>
+					echo "<a href='todo.php?d=calendar";
+					echo "&year={$year}&mounth={$month}&day={$value['day']}'";
+			 		echo "style='display:block; width:100%; '>".$value['day']."</a>";//height:100%
+			 		if($value['day']!="") {
+			 			$day = $year ."/". $month ."/". $value['day'];
+			 			$day2 = new DateTime($day);
+			 		}
+			 		for($i=0; $i<count($sa); $i++) {
+						if($value['day']!="") {
+							$day1 = new DateTime($todo[$sa[$i]]['開始予定日']);
+							if($day1 == $day2 && $todo[$sa[$i]]['完了']==0 && $todo[$sa[$i]]['保留']==0 && $todo[$sa[$i]]['child']==0 && $todo[$sa[$i]]['削除']==0) echo "<br>".$todo[$sa[$i]]['タイトル'];
+						}
+					}
+				}
+				else echo "<td>";
+				$cnt++;
+			?>
+			</td>
 	 
 	    <?php if ($cnt == 7): ?>
 	    </tr>

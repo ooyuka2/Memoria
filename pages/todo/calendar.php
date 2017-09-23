@@ -2,26 +2,28 @@
 	if(!isset($_GET['day']) && !isset($_GET['mounth']) && !isset($_GET['year'])) {
 ?>
 	<div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-12">
 			<?php
 			$year = date('Y');
 			$month = date('n');
-			calendar($year, $month);
+			calendar($year, $month, $todo);
 			?>
 		</div>
+		<!--
 		<div class="col-lg-6">
 			<?php
 			calendar($year, $month+1);
 			?>
 		</div>
+		-->
 	</div>
 <?php
 	} else if(isset($_GET['mounth']) && isset($_GET['year'])) {
 ?>
 	<div class="row">
-		<div class="col-lg-6 col-lg-offset-3">
+		<div class="col-lg-12">
 			<?php
-				calendar($_GET['year'], $_GET['mounth']);
+				calendar($_GET['year'], $_GET['mounth'], $todo);
 			?>
 		</div>
 	</div>
@@ -39,19 +41,22 @@
 				date_default_timezone_set('Asia/Tokyo');
 				$day1 = new DateTime($todo[$sa[$i]]['äJénó\íËì˙']);
 				$day2 = new DateTime($day);
+				$day3 = new DateTime($todo[$sa[$i]]['èIóπó\íËì˙']);
 				$interval = $day1->diff($day2);
-				if($todo[$sa[$i]]['äÆóπ']==0 && $interval->format('%r%a ì˙')>=0 && $todo[$sa[$i]]['ï€óØ']==0 && $todo[$sa[$i]]['child']==0 && $todo[$sa[$i]]['çÌèú']==0) { //$todo[$i]['level'] == 1 && 
-					last_todo_panel($todo, $sa[$i],'primary');
+				$interval2 = $day3->diff($day2);
+				if($todo[$sa[$i]]['äÆóπ']==0 && $interval->format('%r%a ì˙')>=0 && $interval2->format('%r%a ì˙')<=0 && $todo[$sa[$i]]['ï€óØ']==0 && $todo[$sa[$i]]['child']==0 && $todo[$sa[$i]]['çÌèú']==0) { //$todo[$i]['level'] == 1 && 
+					$finishday = new DateTime($todo[$sa[$i]]['î[ä˙']);
+					$today = new DateTime(date('Y/m/d'));
+					if($finishday->diff($day2->modify('+1 day'))->format('%r%a ì˙') >= 0) {
+						last_todo_panel($todo, $sa[$i],'primary');
+					}else if($finishday->diff($today->modify('+3 day'))->format('%r%a ì˙') >= 0) {
+						last_todo_panel($todo, $sa[$i],'warning');
+					} else {
+						last_todo_panel($todo, $sa[$i],'danger');
+					}
 				}
 			}
-			for($i=0; $i<count($sa); $i++) {
-				$day1 = new DateTime($todo[$sa[$i]]['äJénó\íËì˙']);
-				$day2 = new DateTime($day);
-				$interval = $day1->diff($day2);
-				if ($todo[$sa[$i]]['äÆóπ']==0 && $interval->format('%r%a ì˙')>=0 && $todo[$sa[$i]]['ï€óØ']==1 && $todo[$sa[$i]]['child']==0 && $todo[$sa[$i]]['çÌèú']==0) {
-					last_todo_panel($todo, $sa[$i], 'info');
-				}
-			}
+			
 		} else {
 			$todo_theme = readCsvFile2('../data/todo_theme.csv');
 			$c = 0;
@@ -62,8 +67,6 @@
 				if( $working[$i]['id']!="deskwork" && ($workday->diff($whatday)->format('%R%a')) == 0 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
 					$ary[$c] = $working[$i]['id'];
 					//last_todo_panel($todo, $ary[$c],'primary');
-					
-					
 					$top = $todo[$working[$i]['id']]['top'];
 					echo "<div class='panel panel-primary'>";
 					
@@ -80,13 +83,6 @@
 					echo "</div>";
 					echo "<div class='panel-footer'>{$todo[$top]['äJénó\íËì˙']}Å@Å`Å@{$todo[$top]['î[ä˙']}</div>";
 					echo "</div>";
-					
-					
-					
-					
-					
-					
-					
 					echo "<br>";
 					$c++;
 				}
