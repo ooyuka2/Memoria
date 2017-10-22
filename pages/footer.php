@@ -109,5 +109,5 @@ function execCopy(string){
 </script>
 <?php
 	include('setting.php');
-	echo '<script src="../'.$color.'/js/bootstrap.min.js"></script>';
+	echo '<script src="../img/'.$color.'/js/bootstrap.min.js"></script>';
 ?>

@@ -25,10 +25,10 @@
 					</div>
 					<div id="sampleWrap">
 						<form class='form-horizontal' method='post' action='./settings.php'>
-							<button type='button' class="btn btn-default" onclick="setHref('../honoka/css/bootstrap.css'); setHref2('../honoka/css/example.css'); setValue('honoka')">オレンジ</button>
-							<button type='button' class="btn btn-default" onclick="setHref('../niko/css/bootstrap.css'); setHref2('../niko/css/example.css');setValue('niko')">ピンク</button>
-							<button type='button' class="btn btn-default" onclick="setHref('../rin/css/bootstrap.css'); setHref2('../rin/css/example.css');setValue('rin')">黄色</button>
-							<button type='button' class="btn btn-default" onclick="setHref('../umi/css/bootstrap.css'); setHref2('../umi/css/example.css');setValue('umi')">青色</button>
+							<button type='button' class="btn btn-default" onclick="setHref('../img/honoka/css/bootstrap.css'); setHref2('../img/honoka/css/example.css'); setValue('honoka')">オレンジ</button>
+							<button type='button' class="btn btn-default" onclick="setHref('../img/niko/css/bootstrap.css'); setHref2('../img/niko/css/example.css');setValue('niko')">ピンク</button>
+							<button type='button' class="btn btn-default" onclick="setHref('../img/rin/css/bootstrap.css'); setHref2('../img/rin/css/example.css');setValue('rin')">黄色</button>
+							<button type='button' class="btn btn-default" onclick="setHref('../img/umi/css/bootstrap.css'); setHref2('../img/umi/css/example.css');setValue('umi')">青色</button>
 							<button type='submit' value='niko' class="btn btn-danger" id="kakutei" name="kakutei">確定</button>
 							<!-- <br><br><a href="./xxx.php" class="btn">xxx.php</a> -->
 						</form>
