@@ -90,7 +90,7 @@ function todo_make_child($todo, $todo_theme, $todo_keeper_theme, $count, $top) {
 
 
 function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $id, $p, $count) {
-	if(isset($_GET['theme'])) $theme = $todo[$_GET['p']]['テーマ'];
+	if(isset($_GET['theme'])) $theme = $_GET['theme'];
 	else if(isset($_GET['p'])) $theme = $todo[$_GET['p']]['テーマ'];
 	else $theme = 0;
 	if(isset($_GET['p']) && $_GET['p']) $time_theme = $todo[$_GET['p']]['時間管理テーマ'];

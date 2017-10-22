@@ -15,7 +15,6 @@
 		//if()
 	?>
 	var last_id = <?php echo count($todo); ?>;
-	var notnew = true;
 	function read_form() {
 		var array = new Array();
 		for(var i=0; i<document.getElementsByClassName("name").length; i++) {
@@ -41,7 +40,6 @@
 			array[i][9] = document.getElementsByClassName("id")[i].value;
 			document.getElementsByClassName("id")[i].value = "";
 		}
-		notnew = false;
 		return array;
 	}
 	
@@ -180,8 +178,8 @@
 	}
 	
 	function level_up(btnnode) {
-		if(notnew==true) var element = btnnode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1];
-		else var element = btnnode.parentNode.nextSibling.nextSibling.childNodes[0];
+		//var element = btnnode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1];
+		var element = btnnode.parentNode.nextSibling.nextSibling.childNodes[0];
 		var index = $('.level').index(element);
 		if(element.value != 1 && parseInt(document.getElementsByClassName("level")[(index-1)].value) + 1 != parseInt(element.value)) 
 		element.value = parseInt(element.value) + 1;
@@ -189,8 +187,8 @@
 	}
 	
 	function level_down(btnnode) {
-		if(notnew==true) var element = btnnode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1];
-		else var element = btnnode.parentNode.nextSibling.nextSibling.childNodes[0];
+		var element = btnnode.parentNode.nextSibling.nextSibling.childNodes[0];
+		//var element = btnnode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1];
 		if(element.value > 2) element.value = parseInt(element.value) - 1;
 		change_level();
 	}

@@ -119,4 +119,28 @@ function checkNote() {
 	}
 }
 
+//startTimeChange()
+
+function finishTimeChange() {
+	var finishTime = document.getElementById('finishTime').value;
+	
+	document.getElementById('finishTime').value = "13:00";
+}
+
+function changePID() {
+	//document.getElementById('pid').value;
+	var options = document.getElementById('selectPeriodically').options;
+	for(var i = 0; i < options.length; i++){
+		if(options[i].selected == true){
+			document.getElementById('pid').value = options[i].value;
+			document.getElementById('note').value = options[i].text;
+			if(document.getElementById('note').value == "事務仕事") {
+				document.getElementById('note').value = "事務作業（メール対応etc）";
+			}
+			checkNote();
+		};
+	};
+	
+}
+
 </script>

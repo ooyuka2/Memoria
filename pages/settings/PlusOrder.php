@@ -38,7 +38,7 @@
 			
 		} else {
 			//echo "Ç†ÇÈ";
-			echo "<script>alert('Ç†ÇÈ');</script>";
+			echo "<script>alert('çXêVçœÇ›');location.href = '/Memoria/pages/todo.php';</script>";
 		}
 
 	function PlusOrder($todo, $top, $count) {

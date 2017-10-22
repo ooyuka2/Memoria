@@ -268,15 +268,25 @@ function sort_by_noki_todo_priority2($todo) {
 
 function sort_by_noki_todo_priority($todo, $flag) {
 	$tmparray = array();
+	$tmpcount = 0;
+	if($flag) {
+		for($i=1; $i<count($todo); $i++) {
+			if($todo[$i]['今日やること'] == 1 && $todo[$i]['完了'] == 0 && !check1array($tmparray, $todo[$i]['top'])) {
+				$tmparray[count($tmparray)] = $todo[$i]['top'];
+			}
+		}
+		$tmparray[count($tmparray)] = 0;
+		$tmpcount = count($tmparray);
+	}
 	for($i=1; $i<count($todo); $i++) {
-		if($todo[$i]['完了'] == 0 && $todo[$i]['保留'] == 0 && $todo[$i]['削除'] != 1 && $flag) {
+		if($todo[$i]['完了'] == 0 && $todo[$i]['保留'] == 0 && $todo[$i]['削除'] != 1 && $flag && $todo[$todo[$i]['top']]['今日やること'] == 0) {
 			$tmparray[count($tmparray)] = $todo[$i]['id'];
 		} else if($todo[$todo[$i]['top']]['完了'] == 1 && $todo[$i]['削除'] != 1 && !$flag) {
 			$tmparray[count($tmparray)] = $todo[$i]['id'];
 		}
 	}
 	if($flag) $tmparray[count($tmparray)] = 0;
-	for($i=0; $i<count($tmparray); $i++) {
+	for($i=$tmpcount; $i<count($tmparray); $i++) {
 		for($j=$i+1; $j<count($tmparray); $j++) {
 			if($tmparray[$i] == 0) {
 				$today =  new DateTime();
@@ -354,7 +364,8 @@ function sort_by_noki_todo_priority($todo, $flag) {
 	//print_r($todo[25]);
 	//print_r($sortlist);
 	print_r($tmparray);
-	echo "</pre>";*/
+	echo "</pre>";
+	*/
 	return $sortlist;
 }
 
@@ -629,12 +640,13 @@ function calendar($year, $month, $todo) {
 			 			$day = $year ."/". $month ."/". $value['day'];
 			 			$day2 = new DateTime($day);
 			 		}
+			 		/*
 			 		for($i=0; $i<count($sa); $i++) {
 						if($value['day']!="") {
 							$day1 = new DateTime($todo[$sa[$i]]['開始予定日']);
 							if($day1 == $day2 && $todo[$sa[$i]]['完了']==0 && $todo[$sa[$i]]['保留']==0 && $todo[$sa[$i]]['child']==0 && $todo[$sa[$i]]['削除']==0) echo "<br>".$todo[$sa[$i]]['タイトル'];
 						}
-					}
+					}*/
 				}
 				else echo "<td>";
 				$cnt++;

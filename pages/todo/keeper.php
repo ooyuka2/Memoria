@@ -8,9 +8,11 @@
 
 <?php
 	//$todo = readCsvFile2('../data/todo.csv');
+	include('../data/weekly.php');
+	
 	$working = readCsvFile2('../data/working.csv');
 
-
+	echo "<br><div class='clearfix'><a href='{$keeperpage}' class='pull-right'>時間管理</a></div>";
 	$when = new DateTime($working[(count($working)-1)]['day']);
 	$when = $when->format('Y/m/d');
 	$keeper = "<table class='table table-condensed'><thead><tr><th class='col-md-2'>開始時間-終了時間</th><th class='col-md-8'>タイトル</th><th class='col-md-2'>時間管理テーマ</th></tr></thead><tbody>";
@@ -32,13 +34,13 @@
 				$processTime = str_replace(":", "", $working[$j]['startTime'] . "-" . $working[$j]['finishTime']);
 				$keeper .= "<td>{$processTime}</td>";
 				$copytext .= $processTime . "	";
-				if($working[$j]['id'] == "deskwork") {
+				if($working[$j]['id'] == "periodically") {
 					$keeper .= "<td><span>{$working[$j]['note']}</span></td>";
-					$keeper .= "<td>37</td></tr>";
+					$keeper .= "<td>{$working[$j]['keeper']}</td></tr>";
 					if(strpos($working[$j]['note'], '<br>') !== false){
 						$note = str_replace("<br>", "\\n", "&quot".$working[$j]['note']."&quot");//\\\'
 					} else $note = $working[$j]['note'];
-					$copytext .= $note . "	37\\n	";
+					$copytext .= $note . "	{$working[$j]['keeper']}\\n	";
 				} else {
 					$keeper .= "<td><span onClick='goto_detail({$todo[$working[$j]['id']]['top']})'>{$todo[$todo[$working[$j]['id']]['top']]['タイトル']}</span></td>";
 					$keeper .= "<td>{$todo[$todo[$working[$j]['id']]['top']]['時間管理テーマ']}</td></tr>";
@@ -69,3 +71,8 @@
 	</tbody>
 </table>
 </div>
+
+<?php
+	//https://www.hotpepper.jp/strJ000758708/course/
+	//https://r.gnavi.co.jp/a81kzjy90000/menu4/
+?>

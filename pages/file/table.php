@@ -93,7 +93,8 @@
 			    				echo "<a href='".$file[$i]['summary']."' target='_blank' onClick='move(".$i.")'>".$file[$i]['summary']."</a>";
 			    			
 			    				if($file[$i]['detail']!="")
-			    				echo "<span style='float: right;'><a href='./file.php?page=detail&p=".$i."'>Ú×</span></td><td>";
+			    				//echo "<span style='float: right;'><a href='./file.php?page=detail&p=".$i."'>Ú×</span></td><td>";
+			    				echo "<br>{$file[$i]['detail']}<span style='float: right;'><a href='./file.php?page=detail&p=".$i."'>Ú×</span></td><td>";
 			    				else { echo "</td><td>"; }
 			    				echo $file[$i]['count'];
 			    				echo "</td><td><a href='./file.php?page=change&p=".$i."' class='btn btn-info'>•ÒW</a>";

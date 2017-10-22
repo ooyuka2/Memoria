@@ -1,16 +1,28 @@
 <?php
 	include('../function.php');
 	$working = readCsvFile2('../../data/working.csv');
+	$periodically = readCsvFile2('../../data/periodically.csv');
 	if(isset($_GET['p']) && isset($_GET['startTime'])) {
 		$www = count($working);
-		$working[$www]['id'] = $_GET['p'];
+		if(ctype_digit($_GET['p'])) {
+			$working[$www]['id'] = $_GET['p'];
+		} else {
+			$working[$www]['id'] = "periodically";
+		}
 		if(isset($_GET['date'])) $working[$www]['day'] = date($_GET['date']);
 		else $working[$www]['day'] = date('Y/m/d H:i:s');
 		$working[$www]['per'] = $_GET['f'];
 		$working[$www]['startTime'] = $_GET['startTime'];
 		$working[$www]['finishTime'] = $_GET['finishTime'];
-		$working[$www]['keeper'] = $_GET['keeper'];
-		if($_GET['p'] == "deskwork") {
+		if(ctype_digit($_GET['p'])) {
+			$working[$www]['keeper'] = $_GET['keeper'];
+		} else {
+			for($i=1; $i<count($periodically); $i++) {
+				if($periodically[$i]['title']==$_GET['p']) $working[$www]['keeper'] = $periodically[$i]['id'];
+			}
+		}
+		//if($_GET['p'] == "deskwork") {
+		if(!ctype_digit($_GET['p'])) {
 			if(isset($_GET['note'])) $working[$www]['note'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_GET['note']);
 			else $working[$www]['note'] = "";//$_GET['note'];
 		}else {
