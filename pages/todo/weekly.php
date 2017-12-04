@@ -6,8 +6,10 @@
 		$periodically = readCsvFile2('../data/periodically.csv');
 		date_default_timezone_set('Asia/Tokyo');
 		//$week_str_list = array( 'ì˙', 'åé', 'âŒ', 'êÖ', 'ñÿ', 'ã‡', 'ìy');//$week_str = $week_str_list[ $datetime->format('w') ];
-		if(isset($_GET['day'])) $today = new DateTime($_GET['day']);
-		else $today = new DateTime();
+		
+		if(isset($_GET['day'])) $TodayS = $_GET['day'];
+		else $TodayS = date('Ymd');
+		$today = new DateTime($TodayS);
 		
 		
 		include('../data/weekly.php');
@@ -53,18 +55,18 @@
 					}
 					
 					echo "ÇRÅjç°èTÇÃé¿ê—<br>";
-					week_do("monday", 1, $todo, $working, $today);
-					week_do("tuesday", 2, $todo, $working, $today);
-					week_do("wednesday", 3, $todo, $working, $today);
-					week_do("thursday", 4, $todo, $working, $today);
-					week_do("friday", 5, $todo, $working, $today);
+					week_do("monday", 1, $todo, $working, $TodayS);
+					week_do("tuesday", 2, $todo, $working, $TodayS);
+					week_do("wednesday", 3, $todo, $working, $TodayS);
+					week_do("thursday", 4, $todo, $working, $TodayS);
+					week_do("friday", 5, $todo, $working, $TodayS);
 					echo "<br>";
 					echo "ÇSÅjéüèTÇÃéÂÇ»ó\íË<br>";
-					next_week_do("monday", 1, $todo, $working, $periodically, $today);
-					next_week_do("tuesday", 2, $todo, $working, $periodically, $today);
-					next_week_do("wednesday", 3, $todo, $working, $periodically, $today);
-					next_week_do("thursday", 4, $todo, $working, $periodically, $today);
-					next_week_do("friday", 5, $todo, $working, $periodically, $today);
+					next_week_do("monday", 1, $todo, $working, $periodically, $TodayS);
+					next_week_do("tuesday", 2, $todo, $working, $periodically, $TodayS);
+					next_week_do("wednesday", 3, $todo, $working, $periodically, $TodayS);
+					next_week_do("thursday", 4, $todo, $working, $periodically, $TodayS);
+					next_week_do("friday", 5, $todo, $working, $periodically, $TodayS);
 					echo "<br><br>";
 					echo "óÇèTà»ç~<br>";
 					$sat = $today->modify('sat next week')->setTime(0,0,0);
@@ -88,11 +90,12 @@
 </div>
 
 <?php
-function week_do($week, $week2, $todo, $working, $today) {
-	
+function week_do($week, $week2, $todo, $working, $TodayS) {
+	$today = new DateTime($TodayS);
 	$weekday = $week." this week";
+	//echo $weekday;
 	$day = $today->modify($weekday)->setTime(0,0,0);
-	//echo $day->format('m/d');
+	//echo $day->modify($weekday)->format('m/d');
 	$c = 0;
 	$ary = array();
 	$week_str_list = array( 'ì˙', 'åé', 'âŒ', 'êÖ', 'ñÿ', 'ã‡', 'ìy');
@@ -113,7 +116,8 @@ function week_do($week, $week2, $todo, $working, $today) {
 	if(count($ary)==0) echo "Å@Å@Å@Ç»Çµ<br>";
 }
 
-function next_week_do($week, $week2, $todo, $working, $periodically, $today) {
+function next_week_do($week, $week2, $todo, $working, $periodically, $TodayS) {
+	$today = new DateTime($TodayS);
 	$weekday = $week." next week";
 	$day = $today->modify($weekday)->setTime(0,0,0);
 	$c = 0;

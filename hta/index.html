@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="Shft-JIS">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=11">
+
+	<title>警告灯ログシステム</title>
+
+    
+	<link id="sampleLink" rel="stylesheet" type="text/css" href="Bootstrap-3.3.7/css/bootstrap.css">
+	<link id="sampleLink2" rel="stylesheet" type="text/css" href="css/style_ver6.css">
+</head>
+<body>
+<header>
+<nav class="navbar navbar-default navbar-fixed-top" id="topText">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">
+				警告灯ログシステム
+			</a>
+			<div class="navbar-right space-right">
+				<a href="#">更新日時:　<span id="listTime"></span> </a>
+				<button type="button" class="btn btn-default btn-xs navbar-btn" onClick="updateLogTable()">更新</button>
+			</div>
+		</div>
+		<div class="collapse navbar-collapse" id="navbarEexample">
+			<ul class="nav navbar-nav nav-small">
+				<li class="active checkProgress"><a href="#" onClick="changeProgress(3)">全体:　<span id="numErrorAll"></span>件</a></li>
+				<li class="checkProgress"><a href="#" onClick="changeProgress(0)">未対処数:　<span id="numError"></span>件</a></li>
+				<li class="checkProgress"><a href="#" onClick="changeProgress(1)">対処中:　<span id="numTry"></span>件</a></li>
+				<li class="checkProgress"><a href="#" onClick="changeProgress(2)">対処済み:　<span id="numFinish"></span>件</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+</header>
+<div id = "header_space"></div>
+<section class="section section-inverse bkcolor container">
+	<p id="errormessage"></p>
+	<table class='table table-hover table-responsive table-condensed' id='LogTable'>
+        <thead id='LogTableHead'>
+			<tr>
+				<th>色</th>
+				<th class="col-md-2">更新日時</th>
+				<th class="col-md-6">警報</th>
+				<th class="col-md-1">件数</th>
+				<th class="col-md-2">進捗</th>
+				<th class="col-md-1">削除</th>
+			</tr>
+		</thead>
+		<tbody id='LogTableBody'>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+			<tr>
+				<td>色</td>
+				<td class="col-md-2">更新日時</td>
+				<td class="col-md-6">警報</td>
+				<td class="col-md-1">件数</td>
+				<td class="col-md-2">進捗</td>
+				<td class="col-md-1">削除</td>
+			</tr>
+	    </tbody>
+	</table>
+
+</section>
+<script src="script/jquery.min.js"></script>
+<script src="Bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="script/jquery.floatThead.min.js"></script>
+<script type="text/javascript" src="script/script_ver6.js"></script>
+</body>
+</html>

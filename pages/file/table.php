@@ -90,8 +90,10 @@
 			    				echo "<tr><td>";
 			    				echo $file[$i]['name'];
 			    				echo "</td><td>";
-			    				echo "<a href='".$file[$i]['summary']."' target='_blank' onClick='move(".$i.")'>".$file[$i]['summary']."</a>";
-			    			
+			    				if($file[$i]['syurui'] == 2) 
+			    					echo "<a href='".$file[$i]['summary']."' onClick='move(".$i.")'>".$file[$i]['summary']."</a>";
+			    				else
+			    					echo "<a href='".$file[$i]['summary']."' target='_blank' onClick='move(".$i.")'>".$file[$i]['summary']."</a>";
 			    				if($file[$i]['detail']!="")
 			    				//echo "<span style='float: right;'><a href='./file.php?page=detail&p=".$i."'>è⁄ç◊</span></td><td>";
 			    				echo "<br>{$file[$i]['detail']}<span style='float: right;'><a href='./file.php?page=detail&p=".$i."'>è⁄ç◊</span></td><td>";

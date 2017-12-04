@@ -1,0 +1,70 @@
+<html><head>
+<title>指定フォルダのファイル、フォルダの一覧を表示する</title></head>
+<body>
+<form name="form1">
+    <p>パスを入力してください
+    <input type="text" name="path" value="" size="30" maxlength="320">
+
+    対象 
+    <select name="list_type" onClick="show_result()">
+    <option value="1">ファイルのみ
+    <option value="2">フォルダのみ
+    <option value="3">ファイルとフォルダ
+	</select></p>
+
+    <p><textarea name="kekka" cols="80" rows="30"></textarea></p>
+    <p><input type="reset" value="クリア"><input type="button" value="実行" onClick="show_result()" /></p>
+
+</form>
+<script language="VBScript">
+	Dim objFSO
+	Dim objFolder
+	Dim R
+    Set objFSO = CreateObject("Scripting.FileSystemObject")
+
+	Sub Window_OnLoad
+		Window.ResizeTo 1000,640
+	End Sub
+
+	Function listup_files()
+		Dim strFiles
+		Dim File
+		For Each File In objFolder.Files
+			strFiles = strFiles & File.Name & vbCrLf
+		Next
+		listup_files = strFiles
+	End Function
+
+	Function listup_subfolders()
+		Dim strFolder
+		Dim objSubFolder
+		For Each objSubFolder In objFolder.SubFolders
+			strFolder = strFolder & objSubFolder.Name & vbCrLf
+		Next
+		listup_subfolders = strFolder
+	End Function
+
+    Sub show_result()
+		Dim strResult
+		if document.form1.path.value = "" Then
+			document.form1.kekka.value = "パスを入力してください"
+			Exit Sub
+		End if
+		If objFSO.FolderExists(document.form1.path.value) = FALSE Then
+			document.form1.kekka.value = "パス名が正しくありません"
+			Exit Sub
+		End If
+		Set objFolder = objFSO.GetFolder(document.form1.path.value)
+		Select Case document.form1.list_type.value
+		Case 1
+			strResult = listup_files
+		Case 2
+			strResult = listup_subfolders
+		Case 3
+			strResult = listup_files
+			strResult = strResult & listup_subfolders
+		End Select
+        document.form1.kekka.value = strResult
+    End Sub
+</script>
+</body></html>

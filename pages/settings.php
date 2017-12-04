@@ -5,7 +5,7 @@
 <?php
 	include('navigation.php');
 	if(isset($_POST["kakutei"])) {
-		$txtfile = "<?php\r\n	//honoka, niko, rin, umi\r\n	\$color = '".$_POST['kakutei']."';\r\n?>";
+		$txtfile = "<?php\r\n	//honoka, niko, rin, umi, frandre\r\n	\$color = '".$_POST['kakutei']."';\r\n?>";
 		file_put_contents( 'setting.php', $txtfile, LOCK_EX );
 		header( "Location: ./settings.php" );
 		exit();
@@ -29,6 +29,7 @@
 							<button type='button' class="btn btn-default" onclick="setHref('../img/niko/css/bootstrap.css'); setHref2('../img/niko/css/example.css');setValue('niko')">ピンク</button>
 							<button type='button' class="btn btn-default" onclick="setHref('../img/rin/css/bootstrap.css'); setHref2('../img/rin/css/example.css');setValue('rin')">黄色</button>
 							<button type='button' class="btn btn-default" onclick="setHref('../img/umi/css/bootstrap.css'); setHref2('../img/umi/css/example.css');setValue('umi')">青色</button>
+							<button type='button' class="btn btn-default" onclick="setHref('../img/frandre/css/bootstrap.css'); setHref2('../img/frandre/css/example.css');setValue('frandre')">赤色</button>
 							<button type='submit' value='niko' class="btn btn-danger" id="kakutei" name="kakutei">確定</button>
 							<!-- <br><br><a href="./xxx.php" class="btn">xxx.php</a> -->
 						</form>

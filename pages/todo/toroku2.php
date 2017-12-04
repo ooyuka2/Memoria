@@ -21,6 +21,7 @@
 				$toroku = $todo[$id]['“o˜^“ú'];
 				$wait = $todo[$id]['•Û—¯'];
 				$deletekey = $todo[$id]['íœ'];
+				$todoToday = $todo[$id]['¡“ú‚â‚é‚±‚Æ'];
 			} else if(isset($_POST['id'][$j])) {
 				$id = $_POST['id'][$j];
 				$persentage = 0;
@@ -30,6 +31,7 @@
 				$wait = 0;
 				$deletekey = 0;
 				$newflug = true;
+				$todoToday = 0;
 			} else {
 				$id = count($todo);
 				$persentage = 0;
@@ -38,6 +40,7 @@
 				$toroku = date('Y/m/d H:i:s');
 				$wait = 0;
 				$deletekey = 0;
+				$todoToday = 0;
 			}
 			$idarray[$j] = $id;
 			$todo[$id]['id'] = $id;
@@ -63,6 +66,7 @@
 			$todo[$id]['íœ'] = 0;
 			$todo[$id]['ŠÔŠÇ—ƒe[ƒ}'] = $_POST['theme2'][0];
 			$todo[$id]['‡”Ô'] = $j;
+			$todo[$id]['¡“ú‚â‚é‚±‚Æ'] = $todoToday;
 		}
 	}
 

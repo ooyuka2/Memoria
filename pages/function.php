@@ -422,7 +422,7 @@ function check_todo_tree($todo, $id , $date) {
 		} else if($finishday->diff($day2->modify('+1 day'))->format('%r%a “ú') >= 0) {
 			//write_todo_tree($todo, $id, 'danger');
 			$color = 'danger';
-		}else if($finishday->diff($today->modify('+3 day'))->format('%r%a “ú') >= 0) {
+		}else if($finishday->diff($today->modify('+7 day'))->format('%r%a “ú') >= 0) {
 			//write_todo_tree($todo, $id, 'warning');
 			$color = 'warning';
 		} else {
