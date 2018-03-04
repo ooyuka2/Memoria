@@ -17,7 +17,7 @@ if (is_readable($filepath)) {
 	}else {
 		$records = null;
 	}
-	mb_convert_variables('SJIS-win',"SJIS, SJIS-win, UTF-8, Unicode",$records);
+	//mb_convert_variables('SJIS-win',"SJIS, SJIS-win, UTF-8, Unicode",$records);
 	//mb_convert_variables('UTF-8',"auto",$records);
 	//print_r($records);
 	return $records;
@@ -34,7 +34,7 @@ if (is_readable($filepath)) {
 				$records[] = $line;
 			}
 		}
-		mb_convert_variables('SJIS-win',"SJIS, SJIS-win, UTF-8, Unicode",$records);
+		//mb_convert_variables('SJIS-win',"SJIS, SJIS-win, UTF-8, Unicode",$records);
 		//mb_convert_variables('UTF-8',"auto",$records);
 		for($i=0;$i<count($records);$i++) {
 			/*echo "<pre>";
@@ -48,7 +48,7 @@ if (is_readable($filepath)) {
 		$ary = null;
 	}
 	//print_r($ary);
-	mb_convert_variables('SJIS-win',"SJIS, SJIS-win, UTF-8, Unicode",$ary);
+	//mb_convert_variables('SJIS-win',"SJIS, SJIS-win, UTF-8, Unicode",$ary);
 	return $ary;
 }
 
@@ -562,6 +562,32 @@ function todo_next_child($todo, $parent, $next) {
 	return $id;
 }
 
+function makeDialogs($path, $file, $memo) {
+	echo "<div class='bs-component' id='{$file}'>";
+	echo "<div class='modal'>";
+	echo "<div class='modal-dialog'>";
+	echo "<div class='modal-content'>";
+	echo "<div class='modal-header'>";
+	//echo "<h4 class='modal-title'>{$title}</h4>";
+	echo "</div>";
+	echo "<div class='modal-body'>";
+	$hyouzi = str_replace("\n","<br>",$memo);
+	echo "<p>{$hyouzi}</p>";
+	echo "</div>";
+	echo "<div class='modal-footer'>";
+//	echo "<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>Å~</button>";
+	echo '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="deleteMemoPanel(\''.$path.'\', \''.$file.'\')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
+	echo 'Å@<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="changeMempPanel(\''.$path.'\', \''.$file.'\')"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>';
+//	echo 'Å@<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>';
+
+	//echo "<button type='button' class='btn btn-default' data-dismiss='modal'>ï¬Ç∂ÇÈ</button>";
+	//echo "<button type='button' class='btn btn-primary'>ï€ë∂</button>";
+	echo "</div>";
+	echo "</div>";
+	echo "</div>";
+	echo "</div>";
+	echo "</div>";
+}
 ?>
 
 <?php

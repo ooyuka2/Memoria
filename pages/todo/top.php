@@ -28,7 +28,10 @@
 			?>
 	<li role="presentation" class="dropdown pull-right">
 <?php
-	if(!isset($_GET['list'])) echo "<a data-toggle='dropdown' role='button' aria-expanded='false'>今日やること<span class='caret'></span></a>";
+	if(!isset($_GET['list']))
+		echo "<a data-toggle='dropdown' role='button' aria-expanded='false'>メモパネル<span class='caret'></span></a>";
+	else if(isset($_GET['list']) && $_GET['list']=="today")
+		echo "<a data-toggle='dropdown' role='button' aria-expanded='false'>今日やること<span class='caret'></span></a>";
 	else if(isset($_GET['list']) && $_GET['list']=="tomorrow")
 		echo "<a data-toggle='dropdown' role='button' aria-expanded='false'>明日やること<span class='caret'></span></a>";
 	else if(isset($_GET['list']) && $_GET['list']=="week")
@@ -40,10 +43,11 @@
 ?>
 		
 	<ul class="dropdown-menu" role="menu">
-		<li role="presentation"><a href="/Memoria/pages/todo.php">今日やること</a></li>
+		<li role="presentation"><a href="/Memoria/pages/todo.php?list=today">今日やること</a></li>
 		<li role="presentation"><a href="/Memoria/pages/todo.php?list=tomorrow">明日やること</a></li>
 		<li role="presentation"><a href="/Memoria/pages/todo.php?list=week">1週間やること</a></li>
 		<li role="presentation"><a href="/Memoria/pages/todo.php?list=todo_all">未完了</a></li>
+		<li role="presentation"><a href="/Memoria/pages/todo.php">メモパネル</a></li>
 		<li role="presentation"><a href="/Memoria/pages/todo.php?list=finishlist">完了済み</a></li>
 	</ul>
 </li>

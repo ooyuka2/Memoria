@@ -33,7 +33,7 @@
 <!-- jumbotron special -->
 <section class="section section-inverse japanese-font">
 	<div class='bkcolor'>
-	<div class="container" style="padding:0 0 50px 0">
+	<div class="container" style="margin:0 auto; padding:0 0 0 0; width:95%; max-width:1500px">
 	  <?php
 	  	select_page("todo", $_GET['page']);
 	  ?>

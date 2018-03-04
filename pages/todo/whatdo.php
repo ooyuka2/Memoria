@@ -11,7 +11,7 @@
 ?>
 <div style='width:90%; margin: auto'  >
 
-<form class='form-horizontal' method='get' action='todo/do.php' style='padding-top: 50px;'>
+<form class='form-horizontal' method='post' action='todo/do.php' style='padding-top: 50px;'>
 	
 	<?php echo "<input type='hidden' name='p' value='{$_GET['p']}' id='pid'>"; ?>
 	<input type='hidden' name='page' value='do'>
