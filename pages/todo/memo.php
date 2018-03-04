@@ -11,6 +11,6 @@
 			}
 		}
 	}
-	echo '<a href="C:\xampp\htdocs\Memoria\data\memo" class="btn btn-primary btn-block active">ï“èWÇ∑ÇÈ</a>';
+	echo '<a href="\\172.22.1.36\C$\xampp\htdocs\Memoria\data\memo" class="btn btn-primary btn-block active">ï“èWÇ∑ÇÈ</a>';
 ?>
 
