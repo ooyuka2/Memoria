@@ -1,16 +1,27 @@
 <?php
-	
+	echo "<div class='row'>";
+	$memolist = readCsvFile2('../data/memo.csv');
 	$dir = "../data/memo/";
 	if( is_dir( $dir ) && $handle = opendir( $dir ) ) {
 		while( ($file = readdir($handle)) !== false ) {
 			// ファイルのみ取得
 			if( filetype( $path = $dir . $file ) == "file" ) {
 			// ファイル名$file ファイルパス$path
+			$num = check2array($memolist, $file, "filename");
+			if($num == -1) {
+				$num = count($memolist);
+				//filename,big,type,lock
+				$memolist[$num]['filename'] = $file;
+				$memolist[$num]['big'] = 'y';
+				$memolist[$num]['type'] = 'txt';
+				$memolist[$num]['lock'] = 'n';
+				writeCsvFile2('../data/memo.csv', $memolist);
+			}
 			$memo = file_get_contents($path);
-			makeDialogs($path, $file, $memo);
+			makeDialogs($path, $memo, $memolist[$num]);
 			}
 		}
 	}
-	echo '<a href="\\172.22.1.36\C$\xampp\htdocs\Memoria\data\memo" class="btn btn-primary btn-block active">編集する</a>';
+	echo "</div>";
 ?>
 

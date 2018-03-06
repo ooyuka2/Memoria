@@ -378,6 +378,15 @@ function check1array($array, $text) {
 	return $flug;
 }
 
+//2次元配列の中に一致するものがあるか否か
+function check2array($array, $text, $num) {
+	$flug = -1;
+	for($i=0; $i<count($array); $i++) {
+		if($array[$i][$num] == $text) $flug = $i;
+	}
+	return $flug;
+}
+
 function write_todo_tree($todo, $id, $date) {
 	$color = check_todo_tree($todo, $id, $date);
 	$count = $todo[$id]['順番']+1;
@@ -562,22 +571,28 @@ function todo_next_child($todo, $parent, $next) {
 	return $id;
 }
 
-function makeDialogs($path, $file, $memo) {
-	echo "<div class='bs-component' id='{$file}'>";
+function makeDialogs($path, $memo, $memolist) {
+	if($memolist['big'] == "y") echo "<div class='bs-component col-sm-12' id='{$memolist['filename']}'>";
+	else echo "<div class='bs-component col-sm-6' id='{$memolist['filename']}'>";
 	echo "<div class='modal'>";
 	echo "<div class='modal-dialog'>";
 	echo "<div class='modal-content'>";
 	echo "<div class='modal-header'>";
 	//echo "<h4 class='modal-title'>{$title}</h4>";
+	//
+	if($memolist['lock'] == "n") echo "<span style='display:none;'>".mb_substr($memo, 0, 20)."……</span><button type='button' class='close' data-dismiss='modal' aria-hidden='true' onClick='switchingMemoPanel(this)'><span class='glyphicon glyphicon-resize-small' aria-hidden='true'></span></button>";
+	else echo "<span>".mb_substr($memo, 0, 20)."……</span><button type='button' class='close' data-dismiss='modal' aria-hidden='true' onClick='switchingMemoPanel(this)'><span class='glyphicon glyphicon-resize-full' aria-hidden='true'></span></button>";
 	echo "</div>";
-	echo "<div class='modal-body'>";
+	if($memolist['lock'] == "n") echo "<div class='modal-body'>";
+	else echo "<div class='modal-body' style='display:none;'>";
 	$hyouzi = str_replace("\n","<br>",$memo);
 	echo "<p>{$hyouzi}</p>";
 	echo "</div>";
-	echo "<div class='modal-footer'>";
-//	echo "<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>";
-	echo '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="deleteMemoPanel(\''.$path.'\', \''.$file.'\')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
-	echo '　<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="changeMempPanel(\''.$path.'\', \''.$file.'\')"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>';
+	
+	if($memolist['lock'] == "n") echo "<div class='modal-footer'>";
+	else echo "<div class='modal-footer' style='display:none;'>";
+	echo '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="deleteMemoPanel(\''.$path.'\', \''.$memolist['filename'].'\')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
+	echo '　<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="changeMempPanel(\''.$path.'\', \''.$memolist['filename'].'\')"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>';
 //	echo '　<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>';
 
 	//echo "<button type='button' class='btn btn-default' data-dismiss='modal'>閉じる</button>";
@@ -690,6 +705,15 @@ function calendar($year, $month, $todo) {
 	</table>
 	</div>
 <?php
+}
+
+//##################################################################
+//				デバッグ用関数
+//##################################################################
+function print_r_pre($array) {
+	echo "<pre>";
+	print_r($array);
+	echo "</pre>";
 }
 ?>
 

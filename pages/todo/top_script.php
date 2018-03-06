@@ -209,10 +209,10 @@
 	}
 
 function todo_delete_check(tilte, id){
-  ret = confirm(tilte + "を本当に削除しますか？よろしいですか？");
-  if (ret == true){
-    location.href = '/Memoria/pages/todo.php?page=delete&delete=OK&id='+id;
-  }
+	ret = confirm(tilte + "を本当に削除しますか？よろしいですか？");
+	if (ret == true){
+		location.href = '/Memoria/pages/todo.php?page=delete&delete=OK&id='+id;
+	}
 }
 
 function finisflist_search(searchtext) {
@@ -322,7 +322,7 @@ document.onmousemove = function (e){
 
 // ##############################################################################################################################
 //
-//            メモパネルの編集用
+//            メモパネル用の関数
 //
 // ##############################################################################################################################
 
@@ -331,10 +331,21 @@ function changeMempPanel(path, file) {
 }
 
 function deleteMemoPanel(path, file) {
-	
-	document.getElementById(file).style.display="none";
-	location.href = "./todo/changeMemo.php?path=../"+path+"&do=delete";
+	ret = confirm(file + "を本当に削除しますか？よろしいですか？");
+	if (ret == true){
+		document.getElementById(file).style.display="none";
+		location.href = "./todo/changeMemo.php?path=../"+path+"&do=delete";
+	}
 
+
+}
+
+function switchingMemoPanel(element) {
+	$(element).parent().next('div').stop().slideToggle(500);
+	$(element).parent().next().next('div').stop().slideToggle(500);
+	$(element).prev().stop().slideToggle(500);
+	element.children[0].classList.toggle("glyphicon-resize-full");
+	element.children[0].classList.toggle("glyphicon-resize-small");
 }
 
 // ##############################################################################################################################

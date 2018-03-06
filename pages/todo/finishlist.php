@@ -11,7 +11,7 @@
 	$c = 0;
 	$ary = array();
 	for($i=count($working)-1; $i>0; $i--) {
-		if($working[$i]['id'] != "deskwork" && $todo[$todo[$working[$i]['id']]['top']]['Š®—¹'] == 1 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
+		if($working[$i]['id'] != "deskwork" && $working[$i]['id'] != "periodically" && $todo[$todo[$working[$i]['id']]['top']]['Š®—¹'] == 1 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
 			$ary[$c] = $todo[$working[$i]['id']]['top'];
 			$c++;
 			$top = $todo[$working[$i]['id']]['top'];
