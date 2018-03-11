@@ -580,8 +580,13 @@ function makeDialogs($path, $memo, $memolist) {
 	echo "<div class='modal-header'>";
 	//echo "<h4 class='modal-title'>{$title}</h4>";
 	//
-	if($memolist['lock'] == "n") echo "<span style='display:none;'>".mb_substr($memo, 0, 20)."……</span><button type='button' class='close' data-dismiss='modal' aria-hidden='true' onClick='switchingMemoPanel(this)'><span class='glyphicon glyphicon-resize-small' aria-hidden='true'></span></button>";
-	else echo "<span>".mb_substr($memo, 0, 20)."……</span><button type='button' class='close' data-dismiss='modal' aria-hidden='true' onClick='switchingMemoPanel(this)'><span class='glyphicon glyphicon-resize-full' aria-hidden='true'></span></button>";
+	//$title = htmlspecialchars($memo, ENT_IGNORE);
+	
+	$title = str_replace("<", "!", $memo);
+	$title = str_replace(">", "!", $title);
+	$title = mb_substr($title, 0, 20);
+	if($memolist['lock'] == "n") echo "<span style='display:none;'>".$title."……</span><button type='button' class='close' data-dismiss='modal' aria-hidden='true' onClick='switchingMemoPanel(this)'><span class='glyphicon glyphicon-resize-small' aria-hidden='true'></span></button>";
+	else echo "<span>".$title."……</span><button type='button' class='close' data-dismiss='modal' aria-hidden='true' onClick='switchingMemoPanel(this)'><span class='glyphicon glyphicon-resize-full' aria-hidden='true'></span></button>";
 	echo "</div>";
 	if($memolist['lock'] == "n") echo "<div class='modal-body'>";
 	else echo "<div class='modal-body' style='display:none;'>";
