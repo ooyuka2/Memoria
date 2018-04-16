@@ -148,6 +148,7 @@ function week_do($week, $week2, $todo, $working, $TodayS) {
 	}
 }
 
+
 function next_week_do($week, $week2, $todo, $working, $periodically, $TodayS) {
 	$today = new DateTime($TodayS);
 	$weekday = $week." next week";
