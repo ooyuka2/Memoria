@@ -11,7 +11,7 @@
 		else $TodayS = date('Ymd');
 		$today = new DateTime($TodayS);
 		
-		
+		echo $TodayS;
 		include('../data/weekly.php');
 		
 		?>
@@ -28,9 +28,57 @@
 					
 					$c = 0;
 					$ary = array();
+					
+					for($i=1; $i<count($todo); $i++) {
+						if($todo[$i]['テーマ対応'] == 1) {
+							$flug = 0;
+							for($j=1; $j<count($working); $j++) {
+								if($working[$j]['id'] != "periodically" && $todo[$working[$j]['id']]['top'] == $i) {
+									$workday = new DateTime($working[$j]['day']);
+									if($workday->diff($monday)->format('%R%a') <= 0) {
+										echo "●";
+										$flug = 1;
+										break;
+									}
+								}
+							}
+							if($flug == 0) echo "〇";
+							echo "{$todo[$i]['タイトル']}<br>";
+							for($j=1; $j<count($todo); $j++) {
+								if($todo[$j]['parent'] == $todo[$i]['id']) {
+									echo "　　　□・{$todo[$j]['タイトル']}";
+									if($todo[$j]['完了']==1) echo "：完了<br>";
+									else if($todo[$j]['パーセンテージ']==0) echo "<br>";
+									else echo "<br>";
+									
+								}
+							}
+							//$todo[$i]['id']
+							$workdetail = str_replace('<br>', '<br>　　　', $todo[$i]['テーマ概要']);
+							echo "　＜テーマ概要＞<br>　　　{$workdetail}<br>";
+							echo "　＜進捗＞<br>";
+							for($j=1; $j<count($working); $j++) {
+								$workday = new DateTime($working[$j]['day']);
+								if($working[$j]['id'] != "periodically" && $workday->diff($monday)->format('%R%a') <= 0 && $todo[$working[$j]['id']]['top'] == $i) {
+									echo "　　　{$workday->format('n/d')}：{$todo[$working[$j]['id']]['タイトル']}→<br>";
+								}
+							}
+							if($todo[$i]['完了'] == 0) echo "　＜今後の予定＞<br>";
+							echo "<br>";
+							
+							
+						}
+
+						
+						
+					}
+					//
+					echo "３．その他<br>";
+					$ary = array();
+					$c = 0;
 					for($i=1; $i<count($working); $i++) {
 						$workday = new DateTime($working[$i]['day']);
-						if($working[$i]['id'] != "periodically" && ($workday->diff($monday)->format('%R%a')) <= 0 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
+						if($working[$i]['id'] != "periodically" && $todo[$working[$i]['id']]['テーマ対応'] == 0 && ($workday->diff($monday)->format('%R%a')) <= 0 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
 							$ary[$c] = $todo[$working[$i]['id']]['top'];
 							echo "●{$todo[$ary[$c]]['タイトル']}<br>";
 							for($j=1; $j<count($todo); $j++) {
@@ -45,14 +93,18 @@
 							$workdetail = str_replace('<br>', '<br>　　　', $todo[$ary[$c]]['作業内容']);
 							echo "　＜テーマ概要＞<br>　　　{$workdetail}<br>";
 							echo "　＜進捗＞<br>";
-							echo "　　　yy/mm：→<br>";
+							
+							for($j=$i; $j<count($working); $j++) {
+								if($working[$j]['id'] != "periodically" && $todo[$working[$j]['id']]['top'] == $todo[$working[$i]['id']]['top']) {
+									echo "　　　{$workday->format('n/d')}：{$todo[$working[$j]['id']]['タイトル']}→<br>";
+								}
+							}
 							echo "　＜今後の予定＞<br>";
 							echo "<br>";
 							$c++;
 						}
 						
 					}
-					echo "３．その他<br>";
 					echo "４．今週の実績<br>";
 					week_do("monday", 1, $todo, $working, $TodayS);
 					week_do("tuesday", 2, $todo, $working, $TodayS);
@@ -133,7 +185,7 @@ function week_do($week, $week2, $todo, $working, $TodayS) {
 			$week_do_text = "";
 			if($working[$i]['keeper'] == 1) continue;
 			$processTime = str_replace(":", "", $working[$i]['startTime'] . "-" . $working[$i]['finishTime']);
-			$week_do_text .= "　　　". $processTime . "　　　";
+			$week_do_text .= "　　　　". $processTime . "　　　";
 			if($working[$i]['id'] == "periodically") {
 				if(strpos($working[$i]['note'], '<br>') !== false){
 					$note = str_replace("<br>", "\\n", "&quot".$working[$i]['note']."&quot");//\\\'

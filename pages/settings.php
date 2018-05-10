@@ -52,7 +52,12 @@
 					<div id="sampleWrap">
 						<a href="/Memoria/pages/settings/PlusTodayDo.php" class="btn btn-danger btn-block btn-sm">更新</a>
 					</div>
-					
+					<div class="basedon small">
+						<span class="last-version"></span>todo.csvの更新ver+テーマ対応、テーマ概要<span class="base-version"></span>
+					</div>
+					<div id="sampleWrap">
+						<a href="/Memoria/pages/settings/xxx_20180507.php" class="btn btn-danger btn-block btn-sm">更新</a>
+					</div>
 				</div>
 			</div>
 		</div>
