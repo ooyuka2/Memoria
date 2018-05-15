@@ -1,5 +1,13 @@
 <?php
-	$todo = readCsvFile2('../data/todo.csv');
+	
+	//session_start();
+	//$_SESSION['todofile'] = "old201804";
+	if(!isset($_SESSION['todofile'])) $todo = readCsvFile2('../data/todo.csv');
+	else if($_SESSION['todofile'] == "old201804") {
+		$todo = readCsvFile2('../data/old201804todo.csv');
+		echo "ok";
+	}
+
 ?>
 
 <div class="row">
@@ -49,6 +57,7 @@
 		<li role="presentation"><a href="/Memoria/pages/todo.php?list=todo_all">ñ¢äÆóπ</a></li>
 		<li role="presentation"><a href="/Memoria/pages/todo.php">ÉÅÉÇÉpÉlÉã</a></li>
 		<li role="presentation"><a href="/Memoria/pages/todo.php?list=finishlist">äÆóπçœÇ›</a></li>
+		<li role="presentation"><a href="/Memoria/pages/todo/lookbk.php">old201804todo</a></li>
 	</ul>
 </li>
 	  </ul>
@@ -79,7 +88,10 @@
 				include('todo/change.php');
 				echo "</div>";
 			}
+			
 			*/
+			
+			
 			if(isset($_GET['d']) && $_GET['d']=="new") echo "<div class='tab-pane fade active in' id='new'>";
 			else if(isset($_GET['d']) && $_GET['d']=="renew" && isset($_GET['p'])) echo "<div class='tab-pane fade active in' id='new'>";
 			else if(!(isset($_GET['d']) && $_GET['d']=="change")) echo "<div class='tab-pane fade' id='new'>";
@@ -91,7 +103,6 @@
 				include('todo/todo_make.php');
 				echo "</div>";
 			}
-			
 			
 			if(isset($_GET['d']) && $_GET['d']=="weekly") {
 				echo "<div class='tab-pane fade active in' id='weekly'>";
@@ -129,6 +140,7 @@
 </div>
 
 <?php
+
 /*
 //if(!isset($_GET['d']) || $_GET['d']=="today") echo "<li class='active'><a href='todo.php?d=today'>ç°ì˙</a></li>";
 if(isset($_GET['p']) && $_GET['d']=="today") echo "<li class='active'><a href='todo.php?d=today'>ç°ì˙</a></li>";

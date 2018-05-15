@@ -4,6 +4,7 @@
 	$periodically = readCsvFile2('../../data/periodically.csv');
 	if(isset($_POST['p']) && isset($_POST['startTime'])) {
 		$www = count($working);
+		$working[$www]['file'] = "todo";
 		if(ctype_digit($_POST['p'])) {
 			$working[$www]['id'] = $_POST['p'];
 		} else {

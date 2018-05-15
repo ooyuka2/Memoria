@@ -30,7 +30,7 @@
 					$ary = array();
 					
 					for($i=1; $i<count($todo); $i++) {
-						if($todo[$i]['テーマ対応'] == 1) {
+						if($todo[$i]['時間管理テーマ'] != 0 && $todo[$i]['時間管理テーマ'] < 30) {
 							$flug = 0;
 							for($j=1; $j<count($working); $j++) {
 								if($working[$j]['id'] != "periodically" && $todo[$working[$j]['id']]['top'] == $i) {
@@ -78,7 +78,7 @@
 					$c = 0;
 					for($i=1; $i<count($working); $i++) {
 						$workday = new DateTime($working[$i]['day']);
-						if($working[$i]['id'] != "periodically" && $todo[$working[$i]['id']]['テーマ対応'] == 0 && ($workday->diff($monday)->format('%R%a')) <= 0 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
+						if($working[$i]['id'] != "periodically" && ($todo[$todo[$working[$i]['id']]['top']]['時間管理テーマ'] != 0 && $todo[$todo[$working[$i]['id']]['top']]['時間管理テーマ'] >= 30) && ($workday->diff($monday)->format('%R%a')) <= 0 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
 							$ary[$c] = $todo[$working[$i]['id']]['top'];
 							echo "●{$todo[$ary[$c]]['タイトル']}<br>";
 							for($j=1; $j<count($todo); $j++) {
@@ -176,7 +176,8 @@ function week_do($week, $week2, $todo, $working, $TodayS) {
 	$week_str_list = array( '日', '月', '火', '水', '木', '金', '土');
 	echo "{$day->format('n月d日')}（{$week_str_list[$day->format('w')]}）<br>";
 	$flug =0;
-
+	$echoString = "";
+	
 	for($i=count($working)-1; $i>0; $i--) {
 		$workday = new DateTime($working[$i]['day']);
 		$workday = $workday->setTime(0,0,0);
@@ -194,10 +195,12 @@ function week_do($week, $week2, $todo, $working, $TodayS) {
 			} else {
 				$week_do_text .= $todo[$todo[$working[$i]['id']]['top']]['タイトル'] . "<br>";
 			}
-			echo $week_do_text;
+			$echoString = $week_do_text . $echoString;
 		}
 		else if ($flug == 1) break;
 	}
+	echo $echoString;
+	
 }
 
 

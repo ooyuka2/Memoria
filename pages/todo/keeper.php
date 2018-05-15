@@ -3,14 +3,21 @@
 	<div class='clearfix'>
 		<button style='margin:10px 0' class='btn btn-default pull-right btn-xs' onClick='location.href = "/Memoria/pages/todo.php?d=keeper&day=all"'>すべて</button>
 		<button style='margin:10px 10px' class='btn btn-default pull-right btn-xs' onClick='location.href = "/Memoria/pages/todo.php?d=keeper&day=31"'>31日間</button>
-		<button style='margin:10px 0' class='btn btn-default pull-right btn-xs' onClick='location.href = "/Memoria/pages/todo.php?d=keeper&day=7"'>7日間</button>
+		<button style='margin:10px 10px' class='btn btn-default pull-right btn-xs' onClick='location.href = "/Memoria/pages/todo.php?d=keeper&day=7"'>7日間</button>
+		<button style='margin:10px 0' class='btn btn-default pull-right btn-xs' onClick='location.href = "/Memoria/pages/todo.php?d=keeper&day=old201804working"'>201804まで</button>
 	</div>
 
 <?php
 	//$todo = readCsvFile2('../data/todo.csv');
 	include('../data/weekly.php');
 	
-	$working = readCsvFile2('../data/working.csv');
+	
+	if(isset($_GET['day']) && $_GET['day'] == 'old201804working') {
+		$working = readCsvFile2('../data/old201804working.csv');
+		$todo = readCsvFile2('../data/todo.csv');
+		$old201804todo = readCsvFile2('../data/old201804todo.csv');
+	}
+	else $working = readCsvFile2('../data/working.csv');
 
 	echo "<br><div class='clearfix'><a href='{$keeperpage}' class='pull-right'>時間管理</a></div>";
 	$when = new DateTime($working[(count($working)-1)]['day']);
@@ -21,8 +28,10 @@
 	$day = 1;
 	
 	$countday = 7;
-	if(isset($_GET['day']) && $_GET['day'] == 'all') $countday = $last;
+	if(isset($_GET['day']) && $_GET['day'] == 'old201804working') $countday = $last;
+	else if(isset($_GET['day']) && $_GET['day'] == 'all') $countday = $last;
 	else if(isset($_GET['day']) && ctype_digit($_GET['day'])) 	$countday = $_GET['day'];
+	
 	
 	for($i=count($working)-1; $i>0; $i--) {
 		$comDay = new DateTime($working[$i]['day']);
@@ -41,10 +50,15 @@
 						$note = str_replace("<br>", "\\n", "&quot".$working[$j]['note']."&quot");//\\\'
 					} else $note = $working[$j]['note'];
 					$copytext .= $note . "	{$working[$j]['keeper']}\\n	";
-				} else {
+				} else if($working[$j]['file'] == "todo") {
 					$keeper .= "<td><span onClick='goto_detail({$todo[$working[$j]['id']]['top']})'>{$todo[$todo[$working[$j]['id']]['top']]['タイトル']}</span></td>";
 					$keeper .= "<td>{$todo[$todo[$working[$j]['id']]['top']]['時間管理テーマ']}</td></tr>";
 					$copytext .= $todo[$todo[$working[$j]['id']]['top']]['タイトル'] . "	" . $todo[$todo[$working[$j]['id']]['top']]['時間管理テーマ']. "\\n	";
+				} else if($working[$j]['file'] == "old201804") {
+					$keeper .= "<td><span onClick='goto_detail({$old201804todo[$working[$j]['id']]['top']})'>{$old201804todo[$old201804todo[$working[$j]['id']]['top']]['タイトル']}</span></td>";
+					$keeper .= "<td>{$old201804todo[$old201804todo[$working[$j]['id']]['top']]['時間管理テーマ']}</td></tr>";
+					$copytext .= $old201804todo[$old201804todo[$working[$j]['id']]['top']]['タイトル'] . "	" . $old201804todo[$old201804todo[$working[$j]['id']]['top']]['時間管理テーマ']. "\\n	";
+					//$old201804todo
 				}
 			}
 			if($i!=1 && $day != $countday) {

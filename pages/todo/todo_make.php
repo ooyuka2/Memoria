@@ -1,5 +1,5 @@
 <?php
-	$todo = readCsvFile2('../data/todo.csv');
+	//$todo = readCsvFile2('../data/todo.csv');
 	$todo_theme = readCsvFile2('../data/todo_theme.csv');
 	$todo_keeper_theme = readCsvFile2('../data/todo_keeper_theme.csv');
 	if((!isset($_GET['p']) || $todo[$_GET['p']]['level']!=1) && $_GET['d']!="new") {
@@ -108,12 +108,14 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 		$kaisi = $today;
 		$syuryo = $today;
 		$count = 0;
+		$todotheme = 0;
 	} else {
 		$title = $todo[$p]['タイトル'];
 		$detail = str_replace('<br>', '&#13;',$todo[$p]['作業内容']); 
 		$mono = $todo[$p]['成果物'];
 		$priority = $todo[$p]['優先度'];
 		$count = $todo[$p]['順番'];
+		$todotheme = $todo[$p]['テーマ対応'];
 		if($_GET['d'] == "renew") {
 			$today = date('Y/m/d');
 			$noki = $today;

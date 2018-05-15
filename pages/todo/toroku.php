@@ -33,7 +33,8 @@
 			$todo[$id]['時間管理テーマ'] = $_POST['theme2'][0];
 			$todo[$id]['順番'] = $j;
 			$todo[$id]['今日やること'] = 0;
-			$todo[$id]['テーマ対応'] = 0;
+			if($j==0) $todo[$id]['テーマ対応'] = $_POST['theme'][$j];
+			else $todo[$id]['テーマ対応'] = 0;
 			$todo[$id]['テーマ概要'] = "";
 			$id++;
 		}

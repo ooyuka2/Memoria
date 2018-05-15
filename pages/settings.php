@@ -58,6 +58,14 @@
 					<div id="sampleWrap">
 						<a href="/Memoria/pages/settings/xxx_20180507.php" class="btn btn-danger btn-block btn-sm">更新</a>
 					</div>
+					
+					<div class="basedon small">
+						<span class="last-version"></span>todoリストを分ける<span class="base-version"></span>
+					</div>
+					<div id="sampleWrap">
+						<a href="/Memoria/pages/settings/makeBK.php" class="btn btn-danger btn-block btn-sm">更新</a>
+					</div>
+					
 				</div>
 			</div>
 		</div>
