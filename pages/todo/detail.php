@@ -3,17 +3,14 @@
 ?>
 
 <?php
-	if(!isset($_SESSION['todofile'])) $working = readCsvFile2('../data/working.csv');
-	else if($_SESSION['todofile'] == "old201804") {
-		$working = readCsvFile2('../data/old201804working.csv');
-	}
+
 	if($todo[$_GET['p']]['level'] == 1) {
-		echo "<div class='clearfix'><a href='todo.php?d=change&p={$_GET['p']}' class='btn btn-info pull-right btn-sm'>•ÒW</a><a href='todo.php?d=renew&p={$_GET['p']}' class='btn btn-warning pull-right btn-sm' style='margin:0 10px'>—¬—p</a>";
-		if(!(isset($_GET['d']) && $_GET['d']=="detail")) echo "<a href='todo.php?d=detail&p={$_GET['p']}' class='btn btn-primary pull-right btn-sm'>Ú×</a>";
+		echo "<div class='clearfix'><a href='todo.php?d=change&p={$_GET['p']}&file={$file}' class='btn btn-info pull-right btn-sm'>•ÒW</a><a href='todo.php?d=renew&p={$_GET['p']}&file={$file}' class='btn btn-warning pull-right btn-sm' style='margin:0 10px'>—¬—p</a>";
+		if(!(isset($_GET['d']) && $_GET['d']=="detail")) echo "<a href='todo.php?d=detail&p={$_GET['p']}&file={$file}' class='btn btn-primary pull-right btn-sm'>Ú×</a>";
 		echo "</div>";
 	} else {
-		echo "<div class='clearfix'><a href='/Memoria/pages/todo.php?d=detail&p={$todo[$_GET['p']]['top']}'  class='btn btn-link pull-right btn-sm'>ˆê”Ôã‚ÌŠK‘w‚Ö</a>";
-		echo "<a href='/Memoria/pages/todo.php?d=detail&p={$todo[$_GET['p']]['parent']}' class='btn btn-link pull-right btn-sm'>ã‚ÌŠK‘w‚Ö</a></div>";
+		echo "<div class='clearfix'><a href='/Memoria/pages/todo.php?d=detail&p={$todo[$_GET['p']]['top']}&file={$file}'  class='btn btn-link pull-right btn-sm'>ˆê”Ôã‚ÌŠK‘w‚Ö</a>";
+		echo "<a href='/Memoria/pages/todo.php?d=detail&p={$todo[$_GET['p']]['parent']}&file={$file}' class='btn btn-link pull-right btn-sm'>ã‚ÌŠK‘w‚Ö</a></div>";
 	}
 
 	panel_child($todo, $todo[$_GET['p']]['id'], $working);
@@ -68,9 +65,9 @@ function panel_child($todo, $todoid, $working) {
 						echo "</ul>";
 					}
 					echo "</div>";
-					if($todo[$todoid]['•Û—¯'] == 0) echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$todoid}' class='btn btn-info btn-xs'>•Û—¯</a></div>";
-					else echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$todoid}' class='btn btn-link btn-xs'>‰ğœ</a></div>";
-					echo "<div class='col-xs-1'><a href='todo.php?page=whatdo&f=100&p={$todoid}' class='btn btn-success btn-xs'>Š®—¹</a></div>";
+					if($todo[$todoid]['•Û—¯'] == 0) echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$todoid}&file={$file}' class='btn btn-info btn-xs'>•Û—¯</a></div>";
+					else echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$todoid}&file={$file}' class='btn btn-link btn-xs'>‰ğœ</a></div>";
+					echo "<div class='col-xs-1'><a href='todo.php?page=whatdo&f=100&p={$todoid}&file={$file}' class='btn btn-success btn-xs'>Š®—¹</a></div>";
 				}//todo.php?page=whatdo&f=100
 				echo "<div style='height:50px;'></div>";
 				//panel_child($todo, $todo[$todoid]['id']);

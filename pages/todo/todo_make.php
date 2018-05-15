@@ -1,12 +1,12 @@
+
 <?php
 	//$todo = readCsvFile2('../data/todo.csv');
 	$todo_theme = readCsvFile2('../data/todo_theme.csv');
 	$todo_keeper_theme = readCsvFile2('../data/todo_keeper_theme.csv');
 	if((!isset($_GET['p']) || $todo[$_GET['p']]['level']!=1) && $_GET['d']!="new") {
-		//header( "Location: Error.php" );
 		echo "<button>‚à‚Ç‚ê</button>";
-		//exit();
 	}
+	if (isset($_GET['file']) && $_GET['file'] == "old201804" && $_GET['d']=="change") echo '<meta http-equiv="refresh" content="1;URL=./todo.php">';
 ?>
 
 <div class="col-xs-1"></div>

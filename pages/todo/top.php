@@ -1,10 +1,18 @@
 <?php
 	
-	//session_start();
-	//$_SESSION['todofile'] = "old201804";
-	if(!isset($_SESSION['todofile'])) $todo = readCsvFile2('../data/todo.csv');
-	else if($_SESSION['todofile'] == "old201804") {
+	//if(!isset($_SESSION['todofile'])) $todo = readCsvFile2('../data/todo.csv');
+	//else if($_SESSION['todofile'] == "old201804") {
+	//	$todo = readCsvFile2('../data/old201804todo.csv');
+	//}
+	
+	if(isset($_GET['file']) && $_GET['file'] == "old201804") {
 		$todo = readCsvFile2('../data/old201804todo.csv');
+		$working = readCsvFile2('../data/old201804working.csv');
+		$file = "old201804";
+	} else {
+		$todo = readCsvFile2('../data/todo.csv');
+		$working = readCsvFile2('../data/working.csv');
+		$file = "todo";
 	}
 
 ?>
@@ -56,7 +64,7 @@
 		<li role="presentation"><a href="/Memoria/pages/todo.php?list=todo_all">–¢Š®—¹</a></li>
 		<li role="presentation"><a href="/Memoria/pages/todo.php">ƒƒ‚ƒpƒlƒ‹</a></li>
 		<li role="presentation"><a href="/Memoria/pages/todo.php?list=finishlist">Š®—¹Ï‚Ý</a></li>
-		<li role="presentation"><a href="/Memoria/pages/todo/lookbk.php">old201804todo</a></li>
+		<li role="presentation"><a href="/Memoria/pages/todo.php?list=finishlist&file=old201804">old201804todo</a></li>
 	</ul>
 </li>
 	  </ul>

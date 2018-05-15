@@ -6,7 +6,7 @@
 	}
 	else unset($_SESSION['todofile']);
 	
-	header( "Location: /Memoria/pages/todo.php" );
+	header( "Location: /Memoria/pages/todo.php?list=finishlist" );
 	exit();
 	
 ?>
