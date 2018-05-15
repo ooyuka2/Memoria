@@ -5,7 +5,6 @@
 	if(!isset($_SESSION['todofile'])) $todo = readCsvFile2('../data/todo.csv');
 	else if($_SESSION['todofile'] == "old201804") {
 		$todo = readCsvFile2('../data/old201804todo.csv');
-		echo "ok";
 	}
 
 ?>

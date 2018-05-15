@@ -7,7 +7,11 @@
 	}
 	echo "<div class='clearfix'><div style='width: 30%; float: right;'><input type='text' onChange='finisflist_search(this)' value='{$searchtext}' class='form-control input-normal input-sm' id='finisflist_search'></div></div><div style='height: 5px'></div>";
 	
-	$working = readCsvFile2('../data/working.csv');
+	
+	if(!isset($_SESSION['todofile'])) $working = readCsvFile2('../data/working.csv');
+	else if($_SESSION['todofile'] == "old201804") {
+		$working = readCsvFile2('../data/old201804working.csv');
+	}
 	$c = 0;
 	$ary = array();
 	for($i=count($working)-1; $i>0; $i--) {

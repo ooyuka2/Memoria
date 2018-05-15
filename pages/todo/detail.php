@@ -3,7 +3,10 @@
 ?>
 
 <?php
-	$working = readCsvFile2('../data/working.csv');
+	if(!isset($_SESSION['todofile'])) $working = readCsvFile2('../data/working.csv');
+	else if($_SESSION['todofile'] == "old201804") {
+		$working = readCsvFile2('../data/old201804working.csv');
+	}
 	if($todo[$_GET['p']]['level'] == 1) {
 		echo "<div class='clearfix'><a href='todo.php?d=change&p={$_GET['p']}' class='btn btn-info pull-right btn-sm'>•ÒW</a><a href='todo.php?d=renew&p={$_GET['p']}' class='btn btn-warning pull-right btn-sm' style='margin:0 10px'>—¬—p</a>";
 		if(!(isset($_GET['d']) && $_GET['d']=="detail")) echo "<a href='todo.php?d=detail&p={$_GET['p']}' class='btn btn-primary pull-right btn-sm'>Ú×</a>";
