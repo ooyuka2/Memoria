@@ -15,6 +15,10 @@
 	if($_GET['d'] != "change") {
 		echo "<form class='form-horizontal' method='post' action='todo/toroku.php'>";
 		$id = count($todo);
+		if(isset($_GET['file']) && $_GET['file'] != "todo") {
+			$temp = readCsvFile2('../data/todo.csv');
+			$id = count($temp);
+		}
 		if($_GET['d'] == "new") todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 1, $_GET['d'], $id, 0, 0);
 		else todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 1, $_GET['d'], $id, $_GET['p'], 0);
 	} else {

@@ -24,6 +24,7 @@
 				$todoToday = $todo[$id]['今日やること'];
 				$todotheme = $todo[$id]['テーマ対応'];
 				$todoGist = $todo[$id]['テーマ概要'];
+				$todopeople = $todo[$id]['担当'];
 			} else if(isset($_POST['id'][$j])) {
 				$id = $_POST['id'][$j];
 				$persentage = 0;
@@ -36,6 +37,7 @@
 				$todoToday = 0;
 				$todotheme = 0;
 				$todoGist = "";
+				$todopeople = "";
 			} else {
 				$id = count($todo);
 				$persentage = 0;
@@ -47,6 +49,7 @@
 				$todoToday = 0;
 				$todotheme = 0;
 				$todoGist = "";
+				$todopeople = "";
 			}
 			$idarray[$j] = $id;
 			$todo[$id]['id'] = $id;
@@ -76,6 +79,7 @@
 			if($j==0) $todo[$id]['テーマ対応'] = 0;//$_POST['theme'][$j];
 			else $todo[$id]['テーマ対応'] = 0;
 			$todo[$id]['テーマ概要'] = $todoGist;
+			$todo[$id]['担当'] = $todopeople;
 		}
 	}
 

@@ -276,7 +276,7 @@ function gotoid(todoid) {
 var tree_menu_x = 0;
 var tree_menu_y = 0;
 
-function tree_menu(id, top, pre, child, wait) {
+function tree_menu(id, top, pre, child, wait, todofile) {
 	tree_menu_x=event.clientX;//document.body.scrollLeft+
 	tree_menu_y=event.clientY;//document.body.scrollTop+
 	
@@ -289,14 +289,14 @@ function tree_menu(id, top, pre, child, wait) {
 		menu = menu + "</ul>";
 		menu = menu + "</div>";
 	}
-	menu = menu + "<a href='todo.php?page=whatdo&f=100&p="+id+"' class='btn btn-default btn-xs btn-block'>完了設定</a>";
-	menu = menu + "<a href='todo.php?d=todo&p="+id+"' class='btn btn-default btn-xs btn-block'>リンクを開く</a>";
-	menu = menu + "<a href='todo.php?d=todo&p="+top+"' class='btn btn-default btn-xs btn-block'>詳細画面を開く</a>";
-	menu = menu + "<a href='todo.php?d=change&p="+top+"' class='btn btn-default btn-xs btn-block'>編集を開く</a>";
-	menu = menu + "<a href='todo.php?d=renew&p="+top+"' class='btn btn-default btn-xs btn-block'>流用する</a>";
-	menu = menu + "<a href='todo.php?d=detail&p="+top+"' class='btn btn-default btn-xs btn-block'>フィルター</a>";
-	if(wait == 0 && pre!=100) menu = menu + "<a href='todo.php?page=wait&p="+id+"' class='btn btn-default btn-xs btn-block'>保留設定</a></div>";
-	else if(pre!=100) menu = menu + "<a href='todo.php?page=wait&p="+id+"' class='btn btn-default btn-xs btn-block'>解除設定</a></div>";
+	if(todofile  === "todo") menu = menu + "<a href='todo.php?page=whatdo&f=100&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>完了設定</a>";
+	menu = menu + "<a href='todo.php?d=todo&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>リンクを開く</a>";
+	menu = menu + "<a href='todo.php?d=todo&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>詳細画面を開く</a>";
+	if(todofile  === "todo") menu = menu + "<a href='todo.php?d=change&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>編集を開く</a>";
+	menu = menu + "<a href='todo.php?d=renew&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>流用する</a>";
+	menu = menu + "<a href='todo.php?d=detail&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>フィルター</a>";
+	if(wait == 0 && pre!=100) menu = menu + "<a href='todo.php?page=wait&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>保留設定</a></div>";
+	else if(pre!=100) menu = menu + "<a href='todo.php?page=wait&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>解除設定</a></div>";
 	
 	document.getElementById("todo_tree_menu").innerHTML = menu;
 	document.getElementById("tree_menu").style.left=tree_menu_x+"px";

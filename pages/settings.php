@@ -65,6 +65,12 @@
 					<div id="sampleWrap">
 						<a href="/Memoria/pages/settings/makeBK.php" class="btn btn-danger btn-block btn-sm">更新</a>
 					</div>
+					<div class="basedon small">
+						<span class="last-version"></span>担当追加<span class="base-version"></span>
+					</div>
+					<div id="sampleWrap">
+						<a href="/Memoria/pages/settings/Pluspeople.php" class="btn btn-danger btn-block btn-sm">更新</a>
+					</div>
 					
 				</div>
 			</div>

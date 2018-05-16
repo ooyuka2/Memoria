@@ -36,6 +36,7 @@
 			if($j==0) $todo[$id]['テーマ対応'] = $_POST['theme'][$j];
 			else $todo[$id]['テーマ対応'] = 0;
 			$todo[$id]['テーマ概要'] = "";
+			$todo[$id]['担当'] = "";
 			$id++;
 		}
 	}

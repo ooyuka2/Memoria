@@ -446,6 +446,11 @@ function write_todo_tree_title($todo, $id, $color) {
 	if(isset($_GET['p']) && $_GET['p'] == $todo[$id]['id']) echo "<div class='panel-tree-child bg-warning'>";
 	else echo "<div class='panel-tree-child'>";
 	
+	if(isset($_GET['file']) && $_GET['file'] == "old201804") {
+		$file = "old201804";
+	} else {
+		$file = "todo";
+	}
 	
 	if($todo[$id]['level'] != 1) {
 		echo "&thinsp;";
@@ -456,7 +461,7 @@ function write_todo_tree_title($todo, $id, $color) {
 	else if($todo[$id]['完了'] == 0) echo "<span class='glyphicon glyphicon-edit tree-mark' aria-hidden='true'></span>";
 	else echo "<span class='glyphicon glyphicon-check tree-mark' aria-hidden='true'></span>";
 	if(!isset($_GET['d'])) $_GET['d'] = "todo";
-	echo "<span class='text-{$color}' onDblClick='location.href = \"/Memoria/pages/todo.php?d={$_GET['d']}&p={$todo[$id]['id']}\"'  onMouseOver='this.classList.add(\"bg-info\")' onMouseOut='this.classList.remove(\"bg-info\")' onClick='gotoid(todoid{$todo[$id]['id']})' oncontextmenu='tree_menu({$todo[$id]['id']}, {$todo[$id]['top']}, {$todo[$id]['パーセンテージ']}, {$todo[$id]['child']}, {$todo[$id]['保留']});return false' style='cursor: pointer;'>{$todo[$id]['タイトル']}</span>";
+	echo "<span class='text-{$color}' onDblClick='location.href = \"/Memoria/pages/todo.php?d={$_GET['d']}&p={$todo[$id]['id']}\"'  onMouseOver='this.classList.add(\"bg-info\")' onMouseOut='this.classList.remove(\"bg-info\")' onClick='gotoid(todoid{$todo[$id]['id']})' oncontextmenu='tree_menu({$todo[$id]['id']}, {$todo[$id]['top']}, {$todo[$id]['パーセンテージ']}, {$todo[$id]['child']}, {$todo[$id]['保留']}, \"{$file}\");return false' style='cursor: pointer;'>{$todo[$id]['タイトル']}</span>";
 }
 
 function check_child_finish($todo, $parent) {

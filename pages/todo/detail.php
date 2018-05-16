@@ -13,7 +13,7 @@
 		echo "<a href='/Memoria/pages/todo.php?d=detail&p={$todo[$_GET['p']]['parent']}&file={$file}' class='btn btn-link pull-right btn-sm'>è„ÇÃäKëwÇ÷</a></div>";
 	}
 
-	panel_child($todo, $todo[$_GET['p']]['id'], $working);
+	panel_child($todo, $todo[$_GET['p']]['id'], $working, $file);
 
 ?>
 
@@ -21,7 +21,7 @@
 
 <?php
 
-function panel_child($todo, $todoid, $working) {
+function panel_child($todo, $todoid, $working, $file) {
 	//echo $todo[12]['child'];
 //	if($todo[$todoid]['child'] != 0) {
 //		for($todoid=1; $todoid<count($todo); $todoid++) {
@@ -65,6 +65,7 @@ function panel_child($todo, $todoid, $working) {
 						echo "</ul>";
 					}
 					echo "</div>";
+
 					if($todo[$todoid]['ï€óØ'] == 0) echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$todoid}&file={$file}' class='btn btn-info btn-xs'>ï€óØ</a></div>";
 					else echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$todoid}&file={$file}' class='btn btn-link btn-xs'>âèú</a></div>";
 					echo "<div class='col-xs-1'><a href='todo.php?page=whatdo&f=100&p={$todoid}&file={$file}' class='btn btn-success btn-xs'>äÆóπ</a></div>";
@@ -85,7 +86,7 @@ function panel_child($todo, $todoid, $working) {
 				$next_id = todo_next_child($todo, $todoid, $count);
 				while($next_id != 0) {
 					//$count = write_todo_tree($todo, $next_id, $date);
-					$count = panel_child($todo, $todo[$next_id]['id'], $working);
+					$count = panel_child($todo, $todo[$next_id]['id'], $working, $file);
 					//$count++;
 					$next_id = todo_next_child($todo, $todoid, $count);
 				}
