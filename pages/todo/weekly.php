@@ -29,7 +29,7 @@
 					$ary = array();
 					
 					for($i=1; $i<count($todo); $i++) {
-						if($todo[$i]['時間管理テーマ'] != 0 && ($todo[$i]['時間管理テーマ'] < 30) ) {
+						if($todo[$i]['時間管理テーマ'] != 0 && ($todo[$i]['時間管理テーマ'] < 30) && $todo[$i]['level']==1) {
 							$flug = 0;
 							for($j=1; $j<count($working); $j++) {
 								if($working[$j]['id'] != "periodically" && $todo[$working[$j]['id']]['top'] == $i) {
