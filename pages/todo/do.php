@@ -32,7 +32,7 @@
 			$todo[$_POST['p']]['パーセンテージ'] = $_POST['f'];
 			if(isset($_POST['note'])) {
 				$todo[$_POST['p']]['所感'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['note']);
-				$working[$www]['note'] = "";
+				$working[$www]['note'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['note']);
 			} else $working[$www]['note'] = "";
 			if($_POST['f']<100) {
 				$todo = check_child_do($todo, $_POST['p'], $fdo);

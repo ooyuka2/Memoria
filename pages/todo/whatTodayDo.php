@@ -28,14 +28,22 @@
 				$todo = readCsvFile2('../data/todo.csv');
 				$sa = sort_by_noki_todo_priority($todo, true);
 				$pid = "";
+				
+				
+				
 				for($i=0; $i<count($sa); $i++) {
+					
 					if($sa[$i]!=0) { 
+						$workday = new DateTime($todo[$sa[$i]]['開始予定日']);
+						$today = new DateTime(date('Ymd'));
 						echo "<tr><td style='text-align: center; vertical-align: middle;'>";
-						if($todo[$sa[$i]]['今日やること'] == 0)
-						echo "<button type='button' id='doButton{$sa[$i]}' class='btn btn-success' onClick='doBotton({$sa[$i]})'>やる</button>　<button type='button' id='donotButton{$sa[$i]}'  class='btn btn-info disabled' onClick='donotBotton({$sa[$i]})'>やらない!</button></td><td>";
-						else {
+						//echo $workday->diff($today)->format('%r%a 日');
+						if($todo[$sa[$i]]['今日やること'] == 1 || $workday->diff($today)->format('%r%a 日') == 0) {
 							echo "<button type='button' id='doButton{$sa[$i]}'  class='btn btn-success disabled' onClick='doBotton({$sa[$i]})'>やる!</button>　<button type='button' id='donotButton{$sa[$i]}'  class='btn btn-info' onClick='donotBotton({$sa[$i]})'>やらない</button></td><td>";
 							$pid = $pid . "@". $sa[$i];
+						} else {
+							echo "<button type='button' id='doButton{$sa[$i]}' class='btn btn-success' onClick='doBotton({$sa[$i]})'>やる</button>　<button type='button' id='donotButton{$sa[$i]}'  class='btn btn-info disabled' onClick='donotBotton({$sa[$i]})'>やらない!</button></td><td>";
+							
 						}
 						write_todo_tree($todo, $sa[$i], date('Y/m/d'));
 						echo "</td></tr>";
