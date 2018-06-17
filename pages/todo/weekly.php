@@ -1,21 +1,23 @@
-<div class="col-xs-12">
-      <?php
-      	//$todo = readCsvFile2('../data/todo.csv');
-		$todo_theme = readCsvFile2('../data/todo_theme.csv');
-		$working = readCsvFile2('../data/working.csv');
-		$periodically = readCsvFile2('../data/periodically.csv');
-		$weekly = readCsvFile2('../data/weekly.csv');
-		
-		date_default_timezone_set('Asia/Tokyo');
-		//$week_str_list = array( '日', '月', '火', '水', '木', '金', '土');//$week_str = $week_str_list[ $datetime->format('w') ];
-		
-		if(isset($_GET['day'])) $TodayS = $_GET['day'];
-		else $TodayS = date('Ymd');
-		$today = new DateTime($TodayS);
-		
-		include('../data/weekly.php');
-		
-		?>
+
+<?php
+	//$todo = readCsvFile2('../data/todo.csv');
+	$todo_theme = readCsvFile2('../data/todo_theme.csv');
+	$working = readCsvFile2('../data/working.csv');
+	$periodically = readCsvFile2('../data/periodically.csv');
+	$weekly = readCsvFile2('../data/weekly.csv');
+	
+	date_default_timezone_set('Asia/Tokyo');
+	//$week_str_list = array( '日', '月', '火', '水', '木', '金', '土');//$week_str = $week_str_list[ $datetime->format('w') ];
+	
+	if(isset($_GET['day'])) $TodayS = $_GET['day'];
+	else $TodayS = date('Ymd');
+	$today = new DateTime($TodayS);
+	
+	include('../data/weekly.php');
+	
+	if(!isset($_GET['change'])) {
+?>
+	<div class="col-xs-12">
 		<fieldset>
 			<div class="well bs-component">
 				
@@ -200,10 +202,75 @@
 					echo "<br>以上、よろしくお願い致します。</p>";
 				?>
 			</div>
-	    </fieldset>
+		</fieldset>
+		<div style="height: 100px"></div>
+	</div>
+	<div class="form-group" style="margin-bottom:0; position: fixed; top: 100px;right:0;width:300px;">
+		<button type="button" class="btn btn-primary btn-block" onclick="location.href = '/Memoria/pages/todo.php?d=weekly&change=change';">編集</button>
+	</div>
 
-        <div style="height: 100px"></div>
+<?php
+	} else if($_GET['change'] == "change") {
+		$monday = $today->modify('monday this week')->setTime(0,0,0);
+?>
+<div class="bs-component table-responsive">
+	<table class='table table-striped table-hover table-condensed'>
+		<thead>
+			<tr>
+				<th class="col-md-2">テーマ</th>
+				<th class="col-md-1"></th>
+				<th class="col-md-5">週報</th>
+				<th class="col-md-4">週報ヒント</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+				
+				for($i=1; $i<count($weekly); $i++) {
+					echo "<tr><td>{$todo[$weekly[$i]['todoid']]['タイトル']}</td><td>";
+					echo "</td><td>";
+					echo "</td><td>";
+					
+					echo "　＜テーマ概要＞<br>";
+					echo $todo[$weekly[$i]['todoid']]['作業内容'];
+					
+					echo "　＜進捗＞<br>";
+					for($j=1; $j<count($working); $j++) {
+						$workday = new DateTime($working[$j]['day']);
+						if($working[$j]['id'] != "periodically" && $workday->diff($monday)->format('%R%a') <= 0 && $todo[$working[$j]['id']]['top'] == $weekly[$i]['todoid']) {
+							echo "　　　{$workday->format('n/d')}：{$todo[$working[$j]['id']]['タイトル']}→<br>";
+						}
+					}
+
+					echo "　＜今後の予定＞<br>";
+					for($j=1; $j<count($todo); $j++) {
+						if($todo[$j]['top'] == $todo[$weekly[$i]['todoid']]['id'] && $todo[$j]['完了']==0) {
+							$temp = new DateTime($todo[$j]['納期']);
+							echo "　　　～{$temp->format('n/d')}　：{$todo[$j]['タイトル']}→<br>";
+						}
+					}
+					echo "</td></tr>";
+				}
+			?>
+		</tbody>
+	</table>
 </div>
+
+
+
+
+
+
+
+
+
+<?php
+	} else if($_GET['change'] == "go") {
+	
+	}
+?>
+
+
 
 <?php
 //function week_do($week, $week2, $todo, $working, $TodayS) {
