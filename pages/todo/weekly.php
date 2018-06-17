@@ -227,29 +227,84 @@
 			<?php
 				
 				for($i=1; $i<count($weekly); $i++) {
-					echo "<tr><td>{$todo[$weekly[$i]['todoid']]['タイトル']}</td><td>";
-					echo "</td><td>";
-					echo "</td><td>";
-					
-					echo "　＜テーマ概要＞<br>";
-					echo $todo[$weekly[$i]['todoid']]['作業内容'];
-					
-					echo "　＜進捗＞<br>";
-					for($j=1; $j<count($working); $j++) {
-						$workday = new DateTime($working[$j]['day']);
-						if($working[$j]['id'] != "periodically" && $workday->diff($monday)->format('%R%a') <= 0 && $todo[$working[$j]['id']]['top'] == $weekly[$i]['todoid']) {
-							echo "　　　{$workday->format('n/d')}：{$todo[$working[$j]['id']]['タイトル']}→<br>";
-						}
-					}
+					echo "<tr><td rowspan='9'>{$todo[$weekly[$i]['todoid']]['タイトル']}</td><td>";
 
-					echo "　＜今後の予定＞<br>";
-					for($j=1; $j<count($todo); $j++) {
-						if($todo[$j]['top'] == $todo[$weekly[$i]['todoid']]['id'] && $todo[$j]['完了']==0) {
-							$temp = new DateTime($todo[$j]['納期']);
-							echo "　　　～{$temp->format('n/d')}　：{$todo[$j]['タイトル']}→<br>";
+					echo "進捗有り無し";
+					echo "</td><td>";
+					$flug = 0;
+					for($j=1; $j<count($working); $j++) {
+						if($working[$j]['id'] != "periodically" && $todo[$working[$j]['id']]['top'] == $weekly[$i]['todoid']) {
+							$workday = new DateTime($working[$j]['day']);
+							if($workday->diff($monday)->format('%R%a') <= 0) {
+								echo "●";
+								$flug = 1;
+								break;
+							}
 						}
 					}
-					echo "</td></tr>";
+					if($flug == 0) echo "〇";
+					echo "</td><td>";
+					echo "</td></tr><tr><td>";
+					
+					echo "最終更新日時";
+					echo "</td><td>";
+					echo "</td><td>";
+					echo "</td></tr><tr><td>";
+					
+					echo "テーマ概要";
+					echo "</td><td>";
+					echo $weekly[$i]['テーマ概要'];
+					echo "</td><td>";
+					echo $todo[$weekly[$i]['todoid']]['作業内容'];
+					echo "</td></tr><tr><td>";
+					
+					echo "担当";
+					echo "</td><td>";
+					echo $weekly[$i]['担当'];
+					echo "</td><td>";
+					echo $weekly[$i]['担当'];
+					echo "</td></tr><tr><td>";
+					
+					echo "済み";
+					echo "</td><td>";
+					echo $weekly[$i]['済み'];
+					echo "</td><td>";
+					echo $weekly[$i]['済み'];
+					echo "</td></tr><tr><td>";
+					
+					echo "進捗";
+					echo "</td><td>";
+					echo $weekly[$i]['進捗'];
+					echo "</td><td>";
+					if($flug != 0) {
+						for($j=1; $j<count($working); $j++) {
+							$workday = new DateTime($working[$j]['day']);
+							if($working[$j]['id'] != "periodically" && $workday->diff($monday)->format('%R%a') <= 0 && $todo[$working[$j]['id']]['top'] == $weekly[$i]['todoid']) {
+								echo "　　　{$workday->format('n/d')}：{$todo[$working[$j]['id']]['タイトル']}→<br>";
+							}
+						}
+					}
+					echo "</td></tr><tr><td>";
+					
+					echo "今後の予定";
+					echo "</td><td>";
+					echo $weekly[$i]['今後の予定'];
+					echo "</td><td>";
+					if($todo[$weekly[$i]['todoid']]['完了']==0) {
+						for($j=1; $j<count($todo); $j++) {
+							if($todo[$j]['top'] == $todo[$weekly[$i]['todoid']]['id'] && $todo[$j]['完了']==0) {
+								$temp = new DateTime($todo[$j]['納期']);
+								echo "　　　～{$temp->format('n/d')}　：{$todo[$j]['タイトル']}→<br>";
+							}
+						}
+					}
+					echo "</td></tr><tr><td>";
+					
+					echo "表示";
+					echo "</td><td>";
+					echo "</td><td>";
+
+					echo "</td></tr><tr><td></td><td></td><td></td></tr>";
 				}
 			?>
 		</tbody>
