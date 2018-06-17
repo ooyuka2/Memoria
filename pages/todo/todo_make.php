@@ -3,6 +3,7 @@
 	//$todo = readCsvFile2('../data/todo.csv');
 	$todo_theme = readCsvFile2('../data/todo_theme.csv');
 	$todo_keeper_theme = readCsvFile2('../data/todo_keeper_theme.csv');
+	$weekly = readCsvFile2('../data/weekly.csv');
 	if((!isset($_GET['p']) || $todo[$_GET['p']]['level']!=1) && $_GET['d']!="new") {
 		echo "<button>もどれ</button>";
 	}
@@ -19,12 +20,12 @@
 			$temp = readCsvFile2('../data/todo.csv');
 			$id = count($temp);
 		}
-		if($_GET['d'] == "new") todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 1, $_GET['d'], $id, 0, 0);
-		else todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 1, $_GET['d'], $id, $_GET['p'], 0);
+		if($_GET['d'] == "new") todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 1, $_GET['d'], $id, 0, 0, $weekly);
+		else todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 1, $_GET['d'], $id, $_GET['p'], 0, $weekly);
 	} else {
 		echo "<form class='form-horizontal' method='post' action='todo/toroku2.php' name='changetodo'>";
 		$id = $_GET['p'];
-		todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 1, $_GET['d'], $id, $id, 0);
+		todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 1, $_GET['d'], $id, $id, 0, $weekly);
 	}
 ?>
 
@@ -32,7 +33,7 @@
 		<div class="new" >
 <?php
 	if($_GET['d'] != "new") {
-		$count = todo_make_child($todo, $todo_theme, $todo_keeper_theme, 1, $_GET['p']);
+		$count = todo_make_child($todo, $todo_theme, $todo_keeper_theme, 1, $_GET['p'], $weekly);
 	}
 	
 
@@ -59,30 +60,30 @@
 
 <?php
 /*
-function todo_make_child($todo, $todo_theme, $todo_keeper_theme, $count, $parent) {
+function todo_make_child($todo, $todo_theme, $todo_keeper_theme, $count, $parent, $weekly) {
 	for($i=1; $i<count($todo);$i++) {
 		if($todo[$i]['parent']==$parent && $todo[$i]['level']!=1 && $todo[$i]['削除']==0) {
 			if($_GET['d'] == "renew") {
 				$id = count($todo) + $count;
-				todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $todo[$i]['level'], $_GET['d'], $id, $todo[$i]['id'], $count);
+				todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $todo[$i]['level'], $_GET['d'], $id, $todo[$i]['id'], $count, $weekly);
 			} else {
-				todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $todo[$i]['level'], $_GET['d'], $todo[$i]['id'], $todo[$i]['id'], $count);
+				todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $todo[$i]['level'], $_GET['d'], $todo[$i]['id'], $todo[$i]['id'], $count, $weekly);
 			}
 			$count++;
-			$count = todo_make_child($todo, $todo_theme, $todo_keeper_theme, 1, $i);
+			$count = todo_make_child($todo, $todo_theme, $todo_keeper_theme, 1, $i, $weekly);
 		}
 	}
 	return $count;
 }*/
 
-function todo_make_child($todo, $todo_theme, $todo_keeper_theme, $count, $top) {
+function todo_make_child($todo, $todo_theme, $todo_keeper_theme, $count, $top, $weekly) {
 	$next_id = todo_next($todo, $top, $count);
 	while($next_id != 0) {
 		if($_GET['d'] == "renew") {
 			$id = count($todo) + $count;
-			todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $todo[$next_id]['level'], $_GET['d'], $id, $todo[$next_id]['id'], $count);
+			todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $todo[$next_id]['level'], $_GET['d'], $id, $todo[$next_id]['id'], $count, $weekly);
 		} else {
-			todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $todo[$next_id]['level'], $_GET['d'], $todo[$next_id]['id'], $todo[$next_id]['id'], $count);
+			todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $todo[$next_id]['level'], $_GET['d'], $todo[$next_id]['id'], $todo[$next_id]['id'], $count, $weekly);
 		}
 		//echo "count={$count}	<br>";
 		$count++;
@@ -93,7 +94,7 @@ function todo_make_child($todo, $todo_theme, $todo_keeper_theme, $count, $top) {
 
 
 
-function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $id, $p, $count) {
+function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $id, $p, $count, $weekly) {
 	if(isset($_GET['theme'])) $theme = $_GET['theme'];
 	else if(isset($_GET['p'])) $theme = $todo[$_GET['p']]['テーマ'];
 	else $theme = 0;
@@ -112,6 +113,7 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 		$kaisi = $today;
 		$syuryo = $today;
 		$make_weekly = "-1";
+		$make_weekly_select = "";
 		$count = 0;
 	} else {
 		$title = $todo[$p]['タイトル'];
@@ -120,6 +122,11 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 		$priority = $todo[$p]['優先度'];
 		$count = $todo[$p]['順番'];
 		$make_weekly = $_GET['p'];
+		
+		$weeklyid = check2array($weekly, $make_weekly, "todoid");
+		
+		if($weeklyid == -1) $make_weekly_select = "";
+		else $make_weekly_select = " checked/";
 		if($_GET['d'] == "renew") {
 			$today = date('Y/m/d');
 			$noki = $today;
@@ -201,7 +208,7 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 	if($level == 1) {
 		echo "<div class='col-xs-12' style='margin-bottom:5px'>";
 		echo "<label class='label-checkbox pull-right'>";
-		echo "<input type='checkbox' name='make_weekly' value='{$make_weekly}' checked/>";
+		echo "<input type='checkbox' name='make_weekly' value='{$make_weekly}' {$make_weekly_select}>";
 		echo "<span class='lever'>週報の作成</span>";
 		echo "</label></div>";
 	}

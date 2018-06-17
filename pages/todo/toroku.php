@@ -4,6 +4,7 @@
 	
 	include('../function.php');
 	$todo = readCsvFile2('../../data/todo.csv');
+	
 	$id = $_POST['id'][0];
 	$number = $id;
 	date_default_timezone_set('Asia/Tokyo');
@@ -62,6 +63,42 @@
 			$todo[$id]['child'] = $child;
 			$id++;
 		}
+	}
+	
+	if($_POST['name'][0]!="" && isset($_POST['make_weekly']) && $_POST['make_weekly']==-1) {
+		$weekly = readCsvFile2('../../data/weekly.csv');
+		include('../../data/weekly.php');
+		
+		$c = count($weekly);
+		$weekly[$c]["todoid"] = $number;
+		$weekly[$c]["テーマ概要"] = $todo[$number]['作業内容'];
+		$weekly[$c]["担当"] = $myname;
+		$weekly[$c]["済み"] = "";
+		$weekly[$c]["進捗"] = "";
+		$weekly[$c]["今後の予定"] = "";
+		$weekly[$c]["parentid"] = "0";
+		$weekly[$c]["最終更新日時"] = date('Y/m/d H:i:s');
+		$weekly[$c]["表示"] = "0";
+		$weekly[$c]["削除"] = "0";
+		writeCsvFile2("../../data/weekly.csv", $weekly);
+	} else if($_POST['name'][0]!="" && isset($_POST['make_weekly'])) {
+		$weekly = readCsvFile2('../../data/weekly.csv');
+		include('../../weekly.php');
+		
+		$weeklyid = check2array($weekly, $_POST['make_weekly'], "todoid");
+		
+		$c = count($weekly);
+		$weekly[$c]["todoid"] = $number;
+		$weekly[$c]["テーマ概要"] = $weekly[$weeklyid]["テーマ概要"];
+		$weekly[$c]["担当"] = $weekly[$weeklyid]["担当"] ;
+		$weekly[$c]["済み"] = $weekly[$weeklyid]["済み"];
+		$weekly[$c]["進捗"] = $weekly[$weeklyid]["進捗"];
+		$weekly[$c]["今後の予定"] = $weekly[$weeklyid]["今後の予定"];
+		$weekly[$c]["parentid"] = $weekly[$weeklyid]["parentid"];
+		$weekly[$c]["最終更新日時"] = date('Y/m/d H:i:s');
+		$weekly[$c]["表示"] = "0";
+		$weekly[$c]["削除"] = "0";
+		writeCsvFile2("../../data/weekly.csv", $weekly);
 	}
 	
 	/*echo "<pre>";

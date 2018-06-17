@@ -149,6 +149,37 @@
 	echo "</pre>";
 	*/
 	
+	if(isset($_POST['make_weekly'])) {
+		$weekly = readCsvFile2('../../data/weekly.csv');
+		include('../../weekly.php');
+		
+		$weeklyid = check2array($weekly, $_POST['make_weekly'], "todoid");
+		
+		if($weeklyid == -1) {
+			$c = count($weekly);
+			$weekly[$c]["todoid"] = $number;
+			$weekly[$c]["テーマ概要"] = $todo[$number]['作業内容'];
+			$weekly[$c]["担当"] = $myname;
+			$weekly[$c]["済み"] = "";
+			$weekly[$c]["進捗"] = "";
+			$weekly[$c]["今後の予定"] = "";
+			$weekly[$c]["parentid"] = "0";
+			$weekly[$c]["最終更新日時"] = date('Y/m/d H:i:s');
+			$weekly[$c]["表示"] = "0";
+			$weekly[$c]["削除"] = "0";
+			writeCsvFile2("../../data/weekly.csv", $weekly);
+		}
+	} else {
+		$weekly = readCsvFile2('../../data/weekly.csv');
+		$weeklyid = check2array($weekly, $number, "todoid");
+		
+		if($weeklyid != -1) {
+			$weekly[$weeklyid ]["削除"] = "1";
+			writeCsvFile2("../../data/weekly.csv", $weekly);
+		}
+	}
+	
+	
 	writeCsvFile2("../../data/todo.csv", $todo);
 	
 	header( "Location: ../todo.php?p={$_POST['id'][0]}" );
