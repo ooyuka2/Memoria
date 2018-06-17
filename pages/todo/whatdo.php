@@ -22,7 +22,7 @@
 		<div class='input-group'>
 			<span class='input-group-addon'><span class='glyphicon glyphicon-time' aria-hidden='true'></span></span>
 			<?php echo "<input type='text' id='startTime' class='form-control time' name='startTime' value='{$working[(count($working)-1)]['finishTime']}'>"; ?>
-			<span class="input-group-btn"><button type="button" class="btn btn-default" onclick="document.getElementById('startTime').value='09:00';document.getElementById('finishTime').value='09:30'" style="background-color:#efefef">’©</button></span>
+			<span class="input-group-btn"><button type="button" class="btn btn-default" onclick="document.getElementById('startTime').value='09:30';document.getElementById('finishTime').value='10:00'" style="background-color:#efefef">’©</button></span>
 			<span class="input-group-btn"><button type="button" class="btn btn-default" onclick="document.getElementById('startTime').value='13:00';document.getElementById('finishTime').value='13:30'" style="background-color:#efefef">’‹</button></span>
 			<!--<span class="input-group-btn"><button type="button" class="btn btn-default" onclick='startTimeChange()' style="background-color:#efefef">¾¯Ä</button></span>-->
 

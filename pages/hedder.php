@@ -3,9 +3,11 @@
 <head>
 	<?php
 		session_start();
-		include_once('setting.php');
+		include_once('../data/setting.php');
 		include_once('function.php');
 		header("Content-type: text/html; charset=SJIS-win");
+		$now = new DateTime();
+		$updatefiletime = $now->format('Y-m-d-h-i-s');
 	?>
   <!-- <meta http-equiv="Content-Type" content="text/html; charset=shift_jis">-->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">

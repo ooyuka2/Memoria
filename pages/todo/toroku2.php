@@ -22,9 +22,6 @@
 				$wait = $todo[$id]['保留'];
 				$deletekey = $todo[$id]['削除'];
 				$todoToday = $todo[$id]['今日やること'];
-				$todotheme = $todo[$id]['テーマ対応'];
-				$todoGist = $todo[$id]['テーマ概要'];
-				$todopeople = $todo[$id]['担当'];
 			} else if(isset($_POST['id'][$j])) {
 				$id = $_POST['id'][$j];
 				$persentage = 0;
@@ -35,9 +32,6 @@
 				$deletekey = 0;
 				$newflug = true;
 				$todoToday = 0;
-				$todotheme = 0;
-				$todoGist = "";
-				$todopeople = "";
 			} else {
 				$id = count($todo);
 				$persentage = 0;
@@ -47,9 +41,6 @@
 				$wait = 0;
 				$deletekey = 0;
 				$todoToday = 0;
-				$todotheme = 0;
-				$todoGist = "";
-				$todopeople = "";
 			}
 			$idarray[$j] = $id;
 			$todo[$id]['id'] = $id;
@@ -76,10 +67,6 @@
 			$todo[$id]['時間管理テーマ'] = $_POST['theme2'][0];
 			$todo[$id]['順番'] = $j;
 			$todo[$id]['今日やること'] = $todoToday;
-			if($j==0) $todo[$id]['テーマ対応'] = 0;//$_POST['theme'][$j];
-			else $todo[$id]['テーマ対応'] = 0;
-			$todo[$id]['テーマ概要'] = $todoGist;
-			$todo[$id]['担当'] = $todopeople;
 		}
 	}
 

@@ -111,15 +111,15 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 		$noki_time = '18:00';
 		$kaisi = $today;
 		$syuryo = $today;
+		$make_weekly = "-1";
 		$count = 0;
-		$todotheme = 0;
 	} else {
 		$title = $todo[$p]['タイトル'];
 		$detail = str_replace('<br>', '&#13;',$todo[$p]['作業内容']); 
 		$mono = $todo[$p]['成果物'];
 		$priority = $todo[$p]['優先度'];
 		$count = $todo[$p]['順番'];
-		$todotheme = $todo[$p]['テーマ対応'];
+		$make_weekly = $_GET['p'];
 		if($_GET['d'] == "renew") {
 			$today = date('Y/m/d');
 			$noki = $today;
@@ -197,6 +197,15 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 	echo "</div></div>";
 	
 	echo "<div class='col-xs-4 date_and_time'>";
+	
+	if($level == 1) {
+		echo "<div class='col-xs-12' style='margin-bottom:5px'>";
+		echo "<label class='label-checkbox pull-right'>";
+		echo "<input type='checkbox' name='make_weekly' value='{$make_weekly}' checked/>";
+		echo "<span class='lever'>週報の作成</span>";
+		echo "</label></div>";
+	}
+	
 	echo "<div class='col-xs-12' style='margin-bottom:5px'>";
 	echo "<label class='control-label'>納期</label>";
 	echo "<input type='text' class='form-control input-normal input-sm noki' name='noki[]' value='{$noki}'>";

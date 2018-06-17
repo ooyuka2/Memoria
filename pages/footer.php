@@ -108,6 +108,6 @@ function execCopy(string){
 
 </script>
 <?php
-	include('setting.php');
+	include('../data/setting.php');
 	echo '<script src="../img/'.$color.'/js/bootstrap.min.js"></script>';
 ?>

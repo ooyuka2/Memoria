@@ -6,7 +6,7 @@
 	include('navigation.php');
 	if(isset($_POST["kakutei"])) {
 		$txtfile = "<?php\r\n	//honoka, niko, rin, umi, frandre\r\n	\$color = '".$_POST['kakutei']."';\r\n?>";
-		file_put_contents( 'setting.php', $txtfile, LOCK_EX );
+		file_put_contents( '../data/setting.php', $txtfile, LOCK_EX );
 		header( "Location: ./settings.php" );
 		exit();
 	}
@@ -71,6 +71,15 @@
 					<div id="sampleWrap">
 						<a href="/Memoria/pages/settings/Pluspeople.php" class="btn btn-danger btn-block btn-sm">更新</a>
 					</div>
+					<div class="basedon small">
+						<span class="last-version"></span>週報情報修正<span class="base-version"></span>
+					</div>
+					<div id="sampleWrap">
+						<a href="/Memoria/pages/settings/makeWeeklycsv.php" class="btn btn-danger btn-block btn-sm">更新</a>
+					</div>
+					
+					
+					
 					
 				</div>
 			</div>

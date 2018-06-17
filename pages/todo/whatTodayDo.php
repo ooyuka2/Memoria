@@ -56,7 +56,7 @@
 	</table>
 </div>
 <form method='get' action='todo.php?page=whatTodayDo'>
-	<div class="form-group" style="margin-bottom:0; position: fixed; bottom: 20px;right:0;width:300px;">
+	<div class="form-group" style="margin-bottom:0; position: fixed; top: 100px;right:0;width:300px;">
 		<?php echo "<input type='hidden' name='pid' value='{$pid}' id='pid'>"; ?>
 		<input type='hidden' name='page' value='whatTodayDo'>
 		<button type="submit" class="btn btn-primary btn-block">Submit</button>
