@@ -1,11 +1,6 @@
 
 <?php
 	//$todo = readCsvFile2('../data/todo.csv');
-	$todo_theme = readCsvFile2('../data/todo_theme.csv');
-	$working = readCsvFile2('../data/working.csv');
-	$periodically = readCsvFile2('../data/periodically.csv');
-	$weekly = readCsvFile2('../data/weekly.csv');
-	
 	date_default_timezone_set('Asia/Tokyo');
 	//$week_str_list = array( '日', '月', '火', '水', '木', '金', '土');//$week_str = $week_str_list[ $datetime->format('w') ];
 	
@@ -13,9 +8,14 @@
 	else $TodayS = date('Ymd');
 	$today = new DateTime($TodayS);
 	
-	include('../data/weekly.php');
+	
 	
 	if(!isset($_GET['change'])) {
+		$todo_theme = readCsvFile2('../data/todo_theme.csv');
+		$working = readCsvFile2('../data/working.csv');
+		$periodically = readCsvFile2('../data/periodically.csv');
+		$weekly = readCsvFile2('../data/weekly.csv');
+		include('../data/weekly.php');
 ?>
 	<div class="col-xs-12">
 		<fieldset>
@@ -211,15 +211,22 @@
 
 <?php
 	} else if($_GET['change'] == "change") {
+		$todo_theme = readCsvFile2('../data/todo_theme.csv');
+		$working = readCsvFile2('../data/working.csv');
+		$periodically = readCsvFile2('../data/periodically.csv');
+		$weekly = readCsvFile2('../data/weekly.csv');
+		include('../data/weekly.php');
 		$monday = $today->modify('monday this week')->setTime(0,0,0);
 ?>
+<form class='form-horizontal' method='post' action='todo/weekly.php?change=go'>
+<div class="form-group">
 <div class="bs-component table-responsive">
 	<table class='table table-striped table-hover table-condensed'>
 		<thead>
 			<tr>
-				<th class="col-md-2">テーマ</th>
+				<th class="col-md-3">テーマ</th>
 				<th class="col-md-1"></th>
-				<th class="col-md-5">週報</th>
+				<th class="col-md-4">週報</th>
 				<th class="col-md-4">週報ヒント</th>
 			</tr>
 		</thead>
@@ -227,54 +234,72 @@
 			<?php
 				
 				for($i=1; $i<count($weekly); $i++) {
-					echo "<tr><td rowspan='9'>{$todo[$weekly[$i]['todoid']]['タイトル']}</td><td>";
-
-					echo "進捗有り無し";
-					echo "</td><td>";
 					$flug = 0;
 					for($j=1; $j<count($working); $j++) {
 						if($working[$j]['id'] != "periodically" && $todo[$working[$j]['id']]['top'] == $weekly[$i]['todoid']) {
 							$workday = new DateTime($working[$j]['day']);
 							if($workday->diff($monday)->format('%R%a') <= 0) {
-								echo "●";
+								
 								$flug = 1;
 								break;
 							}
 						}
 					}
+					
+					
+					echo "<tr><td rowspan='9'>";
 					if($flug == 0) echo "〇";
+					else echo "●";
+					
+					echo "{$todo[$weekly[$i]['todoid']]['タイトル']}</td><td>";
+					//echo "進捗有り無し";
 					echo "</td><td>";
-					echo "</td></tr><tr><td>";
+
+					echo "</td><td>";
+					echo "</td></tr><tr><input type='hidden' name='id[]' value='{$i}' class='id'><td>";
 					
 					echo "最終更新日時";
 					echo "</td><td>";
+					echo $weekly[$i]['最終更新日時'];
 					echo "</td><td>";
+					echo "表示";
 					echo "</td></tr><tr><td>";
 					
+					echo "KPI";
+					echo "</td><td>";
+					echo "<input type='text' class='form-control input-normal input-sm kpi' name='kpi[]' value='{$weekly[$i]['KPI']}'>";
+					echo "</td><td>";
+					echo $weekly[$i]['KPI'];
+					echo "</td></tr><tr><td>";
+
+
 					echo "テーマ概要";
 					echo "</td><td>";
-					echo $weekly[$i]['テーマ概要'];
+					$temp = str_replace('<br>', '&#13;',$weekly[$i]['テーマ概要']);
+					echo "<textarea class='form-control input-normal input-sm detail' name='detail[]'>{$temp}</textarea>";
 					echo "</td><td>";
 					echo $todo[$weekly[$i]['todoid']]['作業内容'];
 					echo "</td></tr><tr><td>";
 					
 					echo "担当";
 					echo "</td><td>";
-					echo $weekly[$i]['担当'];
+					echo "<input type='text' class='form-control input-normal input-sm name' name='name[]' value='{$weekly[$i]['担当']}'>";
 					echo "</td><td>";
 					echo $weekly[$i]['担当'];
 					echo "</td></tr><tr><td>";
 					
 					echo "済み";
 					echo "</td><td>";
-					echo $weekly[$i]['済み'];
+					$temp = str_replace('<br>', '&#13;',$weekly[$i]['済み']);
+					echo "<textarea class='form-control input-normal input-sm finish' name='finish[]'>{$temp}</textarea>";
 					echo "</td><td>";
 					echo $weekly[$i]['済み'];
 					echo "</td></tr><tr><td>";
 					
 					echo "進捗";
 					echo "</td><td>";
-					echo $weekly[$i]['進捗'];
+					$temp = str_replace('<br>', '&#13;',$weekly[$i]['進捗']);
+					echo "<textarea class='form-control input-normal input-sm step' name='step[]'>{$temp}</textarea>";
 					echo "</td><td>";
 					if($flug != 0) {
 						for($j=1; $j<count($working); $j++) {
@@ -288,7 +313,8 @@
 					
 					echo "今後の予定";
 					echo "</td><td>";
-					echo $weekly[$i]['今後の予定'];
+					$temp = str_replace('<br>', '&#13;',$weekly[$i]['今後の予定']);
+					echo "<textarea class='form-control input-normal input-sm plan' name='plan[]'>{$temp}</textarea>";
 					echo "</td><td>";
 					if($todo[$weekly[$i]['todoid']]['完了']==0) {
 						for($j=1; $j<count($todo); $j++) {
@@ -298,29 +324,51 @@
 							}
 						}
 					}
-					echo "</td></tr><tr><td>";
-					
-					echo "表示";
-					echo "</td><td>";
-					echo "</td><td>";
-
 					echo "</td></tr><tr><td></td><td></td><td></td></tr>";
 				}
 			?>
 		</tbody>
 	</table>
 </div>
+</div>
 
-
-
-
-
-
-
-
-
+	<div class="form-group" style="margin-bottom:0; position: fixed; bottom: 20px;right:0;width:500px;">
+	    <div class="col-xs-offset-3 col-xs-3">
+	        <button type="reset" class="btn btn-default btn-block">Reset</button>
+	    </div>
+		<div class="col-xs-3">
+	        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+	    </div>
+	</div>
+	<div style="height: 100px"></div>
+<form>
 <?php
 	} else if($_GET['change'] == "go") {
+		if(isset($_POST['id'][0])) {
+			include('../function.php');
+			$weekly = readCsvFile2('../../data/weekly.csv');
+			
+			for($i=0; $i<count($_POST['id']); $i++) {
+				$weekly[$_POST['id'][$i]]["テーマ概要"] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail'][$i]);
+				$weekly[$_POST['id'][$i]]["KPI"] = $_POST['kpi'][$i];
+				$weekly[$_POST['id'][$i]]["担当"] = $_POST['name'][$i];
+				$weekly[$_POST['id'][$i]]["済み"] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['finish'][$i]);
+				$weekly[$_POST['id'][$i]]["進捗"] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['step'][$i]);
+				$weekly[$_POST['id'][$i]]["今後の予定"] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['plan'][$i]);
+				$weekly[$_POST['id'][$i]]["最終更新日時"] = date('Y/m/d H:i:s');
+				$weekly[$_POST['id'][$i]]["表示"] = "0";
+				
+				
+			}
+			
+			writeCsvFile2('../../data/weekly.csv', $weekly);
+			header( "Location: /Memoria/pages/todo.php?d=weekly" );
+			exit();
+			
+			
+		} else {
+			echo "<script>alert('なんかおかしい？');location.href = '/Memoria/pages/todo.php?d=weekly';</script>";
+		}
 	
 	}
 ?>

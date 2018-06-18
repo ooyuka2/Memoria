@@ -20,6 +20,7 @@
 			
 			$weekly[0]["todoid"] = "todoid";
 			$weekly[0]["テーマ概要"] = "テーマ概要";
+			$weekly[0]["KPI"] = "KPI";
 			$weekly[0]["担当"] = "担当";
 			$weekly[0]["済み"] = "済み";
 			$weekly[0]["進捗"] = "進捗";
@@ -60,6 +61,7 @@
 					$c =$c +1;
 					$weekly[$c]["todoid"] = $todo[$i]["id"];
 					$weekly[$c]["テーマ概要"] = "";
+					$weekly[$c]["KPI"] = "";
 					$weekly[$c]["担当"] = $todo0[$i]["担当"];
 					$weekly[$c]["済み"] = "";
 					$weekly[$c]["進捗"] = "";
