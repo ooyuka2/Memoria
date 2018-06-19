@@ -125,8 +125,9 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 		
 		$weeklyid = check2array($weekly, $make_weekly, "todoid");
 		
-		if($weeklyid == -1) $make_weekly_select = "";
-		else $make_weekly_select = " checked/";
+		
+		if($weeklyid != -1 &&$weekly[$weeklyid]["ï\é¶"] == 0 && $weekly[$weeklyid]["çÌèú"] == 0) $make_weekly_select = " checked/";
+		else $make_weekly_select = "";
 		if($_GET['d'] == "renew") {
 			$today = date('Y/m/d');
 			$noki = $today;

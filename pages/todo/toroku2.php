@@ -169,13 +169,17 @@
 			$weekly[$c]["•\¦"] = "0";
 			$weekly[$c]["íœ"] = "0";
 			writeCsvFile2("../../data/weekly.csv", $weekly);
+		} else if($weekly[$weeklyid]["•\¦"] == 1 || $weekly[$weeklyid]["íœ"] == 1) {
+			$weekly[$weeklyid]["•\¦"] = "0";
+			$weekly[$weeklyid]["íœ"] = "0";
+			writeCsvFile2("../../data/weekly.csv", $weekly);
 		}
 	} else {
 		$weekly = readCsvFile2('../../data/weekly.csv');
 		$weeklyid = check2array($weekly, $number, "todoid");
 		
 		if($weeklyid != -1) {
-			$weekly[$weeklyid ]["íœ"] = "1";
+			$weekly[$weeklyid]["íœ"] = "1";
 			writeCsvFile2("../../data/weekly.csv", $weekly);
 		}
 	}
