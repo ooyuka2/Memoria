@@ -37,6 +37,7 @@
 						$weeklyid = check2array($weekly, $i, "todoid");
 						
 						if($todo[$i]['時間管理テーマ'] != 0 && ($todo[$i]['時間管理テーマ'] < 30) && $todo[$i]['level']==1 && $weeklyid != -1 && $weekly[$weeklyid]['表示'] == 0) {
+							echo "KPI：{$weekly[$weeklyid]['KPI']}<br>";
 							$flug = 0;
 							for($j=1; $j<count($working); $j++) {
 								if($working[$j]['id'] != "periodically" && $todo[$working[$j]['id']]['top'] == $i) {
@@ -153,7 +154,7 @@
 									}
 								}
 							}
-							if($todo[$i]['完了'] == 0) {
+							if($todo[$ary[$c]]['完了'] == 0) {
 								echo "　＜今後の予定＞<br>";
 								if($weeklyid != -1) {
 									$workdetail = str_replace('<br>', '<br>　　　', $weekly[$weeklyid]['今後の予定']);
@@ -231,102 +232,113 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php
-				
-				for($i=1; $i<count($weekly); $i++) {
-					$flug = 0;
-					for($j=1; $j<count($working); $j++) {
-						if($working[$j]['id'] != "periodically" && $todo[$working[$j]['id']]['top'] == $weekly[$i]['todoid']) {
-							$workday = new DateTime($working[$j]['day']);
-							if($workday->diff($monday)->format('%R%a') <= 0) {
-								
-								$flug = 1;
-								break;
-							}
-						}
-					}
+<?php
+	
+	$count = 0;
+	
+	for($i=1; $i<count($weekly); $i++) {
+		$flug = 0;
+		for($j=1; $j<count($working); $j++) {
+			if($working[$j]['id'] != "periodically" && $todo[$working[$j]['id']]['top'] == $weekly[$i]['todoid']) {
+				$workday = new DateTime($working[$j]['day']);
+				if($workday->diff($monday)->format('%R%a') <= 0) {
 					
-					
-					echo "<tr><td rowspan='9'>";
-					if($flug == 0) echo "〇";
-					else echo "●";
-					
-					echo "{$todo[$weekly[$i]['todoid']]['タイトル']}</td><td>";
-					//echo "進捗有り無し";
-					echo "</td><td>";
-
-					echo "</td><td>";
-					echo "</td></tr><tr><input type='hidden' name='id[]' value='{$i}' class='id'><td>";
-					
-					echo "最終更新日時";
-					echo "</td><td>";
-					echo $weekly[$i]['最終更新日時'];
-					echo "</td><td>";
-					echo "表示";
-					echo "</td></tr><tr><td>";
-					
-					echo "KPI";
-					echo "</td><td>";
-					echo "<input type='text' class='form-control input-normal input-sm kpi' name='kpi[]' value='{$weekly[$i]['KPI']}'>";
-					echo "</td><td>";
-					echo $weekly[$i]['KPI'];
-					echo "</td></tr><tr><td>";
-
-
-					echo "テーマ概要";
-					echo "</td><td>";
-					$temp = str_replace('<br>', '&#13;',$weekly[$i]['テーマ概要']);
-					echo "<textarea class='form-control input-normal input-sm detail' name='detail[]'>{$temp}</textarea>";
-					echo "</td><td>";
-					echo $todo[$weekly[$i]['todoid']]['作業内容'];
-					echo "</td></tr><tr><td>";
-					
-					echo "担当";
-					echo "</td><td>";
-					echo "<input type='text' class='form-control input-normal input-sm name' name='name[]' value='{$weekly[$i]['担当']}'>";
-					echo "</td><td>";
-					echo $weekly[$i]['担当'];
-					echo "</td></tr><tr><td>";
-					
-					echo "済み";
-					echo "</td><td>";
-					$temp = str_replace('<br>', '&#13;',$weekly[$i]['済み']);
-					echo "<textarea class='form-control input-normal input-sm finish' name='finish[]'>{$temp}</textarea>";
-					echo "</td><td>";
-					echo $weekly[$i]['済み'];
-					echo "</td></tr><tr><td>";
-					
-					echo "進捗";
-					echo "</td><td>";
-					$temp = str_replace('<br>', '&#13;',$weekly[$i]['進捗']);
-					echo "<textarea class='form-control input-normal input-sm step' name='step[]'>{$temp}</textarea>";
-					echo "</td><td>";
-					if($flug != 0) {
-						for($j=1; $j<count($working); $j++) {
-							$workday = new DateTime($working[$j]['day']);
-							if($working[$j]['id'] != "periodically" && $workday->diff($monday)->format('%R%a') <= 0 && $todo[$working[$j]['id']]['top'] == $weekly[$i]['todoid']) {
-								echo "　　　{$workday->format('n/d')}：{$todo[$working[$j]['id']]['タイトル']}→<br>";
-							}
-						}
-					}
-					echo "</td></tr><tr><td>";
-					
-					echo "今後の予定";
-					echo "</td><td>";
-					$temp = str_replace('<br>', '&#13;',$weekly[$i]['今後の予定']);
-					echo "<textarea class='form-control input-normal input-sm plan' name='plan[]'>{$temp}</textarea>";
-					echo "</td><td>";
-					if($todo[$weekly[$i]['todoid']]['完了']==0) {
-						for($j=1; $j<count($todo); $j++) {
-							if($todo[$j]['top'] == $todo[$weekly[$i]['todoid']]['id'] && $todo[$j]['完了']==0) {
-								$temp = new DateTime($todo[$j]['納期']);
-								echo "　　　～{$temp->format('n/d')}　：{$todo[$j]['タイトル']}→<br>";
-							}
-						}
-					}
-					echo "</td></tr><tr><td></td><td></td><td></td></tr>";
+					$flug = 1;
+					break;
 				}
-			?>
+			}
+		}
+		if($weekly[$i]['表示'] == 0 && ($todo[$weekly[$i]['todoid']]['時間管理テーマ'] != 0 && ($todo[$weekly[$i]['todoid']]['時間管理テーマ'] < 30)) || $flug != 0) {
+
+			
+			
+			echo "<tr><td rowspan='9'>";
+			if($flug == 0) echo "〇";
+			else echo "●";
+			
+			echo "{$todo[$weekly[$i]['todoid']]['タイトル']}</td><td>";
+			//echo "進捗有り無し";
+			echo "</td><td>";
+
+			echo "</td><td>";
+			echo "</td></tr><tr><input type='hidden' name='id[]' value='{$i}' class='id'><input type='hidden' name='write[]' value='0' class='write'><td>";
+			
+			echo "最終更新日時";
+			echo "</td><td>";
+			echo $weekly[$i]['最終更新日時'];
+			echo "</td><td>";
+
+			echo "<label class='label-checkbox pull-right'>";
+			echo "<input type='checkbox' name='make_weekly[]' value='{$i}'  onChange='writeweekly({$count})' checked/>";
+			echo "<span class='lever'>週報の表示</span>";
+			echo "</label>";
+
+			echo "</td></tr><tr><td>";
+			
+			echo "KPI";
+			echo "</td><td>";
+			echo "<input type='text' class='form-control input-normal input-sm kpi' name='kpi[]' value='{$weekly[$i]['KPI']}' onChange='writeweekly({$count})'>";
+			echo "</td><td>";
+			echo $weekly[$i]['KPI'];
+			echo "</td></tr><tr><td>";
+
+
+			echo "テーマ概要";
+			echo "</td><td>";
+			$temp = str_replace('<br>', '&#13;',$weekly[$i]['テーマ概要']);
+			echo "<textarea class='form-control input-normal input-sm detail' name='detail[]' onChange='writeweekly({$count})'>{$temp}</textarea>";
+			echo "</td><td>";
+			echo $todo[$weekly[$i]['todoid']]['作業内容'];
+			echo "</td></tr><tr><td>";
+			
+			echo "担当";
+			echo "</td><td>";
+			echo "<input type='text' class='form-control input-normal input-sm name' name='name[]' value='{$weekly[$i]['担当']}' onChange='writeweekly({$count})'>";
+			echo "</td><td>";
+			echo $weekly[$i]['担当'];
+			echo "</td></tr><tr><td>";
+			
+			echo "済み";
+			echo "</td><td>";
+			$temp = str_replace('<br>', '&#13;',$weekly[$i]['済み']);
+			echo "<textarea class='form-control input-normal input-sm finish' name='finish[]' onChange='writeweekly({$count})'>{$temp}</textarea>";
+			echo "</td><td>";
+			echo $weekly[$i]['済み'];
+			echo "</td></tr><tr><td>";
+			
+			echo "進捗";
+			echo "</td><td>";
+			$temp = str_replace('<br>', '&#13;',$weekly[$i]['進捗']);
+			echo "<textarea class='form-control input-normal input-sm step' name='step[]' onChange='writeweekly({$count})'>{$temp}</textarea>";
+			echo "</td><td>";
+			if($flug != 0) {
+				for($j=1; $j<count($working); $j++) {
+					$workday = new DateTime($working[$j]['day']);
+					if($working[$j]['id'] != "periodically" && $workday->diff($monday)->format('%R%a') <= 0 && $todo[$working[$j]['id']]['top'] == $weekly[$i]['todoid']) {
+						echo "{$workday->format('n/d')}：{$todo[$working[$j]['id']]['タイトル']}→<br>";
+					}
+				}
+			}
+			echo "</td></tr><tr><td>";
+			
+			echo "今後の予定";
+			echo "</td><td>";
+			$temp = str_replace('<br>', '&#13;',$weekly[$i]['今後の予定']);
+			echo "<textarea class='form-control input-normal input-sm plan' name='plan[]' onChange='writeweekly({$count})'>{$temp}</textarea>";
+			echo "</td><td>";
+			if($todo[$weekly[$i]['todoid']]['完了']==0) {
+				for($j=1; $j<count($todo); $j++) {
+					if($todo[$j]['top'] == $todo[$weekly[$i]['todoid']]['id'] && $todo[$j]['完了']==0) {
+						$temp = new DateTime($todo[$j]['納期']);
+						echo "～{$temp->format('n/d')}　：{$todo[$j]['タイトル']}→<br>";
+					}
+				}
+			}
+			echo "</td></tr><tr><td></td><td></td><td></td></tr>";
+			$count ++;
+		}
+	}
+?>
 		</tbody>
 	</table>
 </div>
@@ -344,20 +356,26 @@
 <form>
 <?php
 	} else if($_GET['change'] == "go") {
+				header("Content-type: text/html; charset=SJIS-win");
 		if(isset($_POST['id'][0])) {
 			include('../function.php');
 			$weekly = readCsvFile2('../../data/weekly.csv');
 			
 			for($i=0; $i<count($_POST['id']); $i++) {
-				$weekly[$_POST['id'][$i]]["テーマ概要"] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail'][$i]);
-				$weekly[$_POST['id'][$i]]["KPI"] = $_POST['kpi'][$i];
-				$weekly[$_POST['id'][$i]]["担当"] = $_POST['name'][$i];
-				$weekly[$_POST['id'][$i]]["済み"] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['finish'][$i]);
-				$weekly[$_POST['id'][$i]]["進捗"] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['step'][$i]);
-				$weekly[$_POST['id'][$i]]["今後の予定"] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['plan'][$i]);
-				$weekly[$_POST['id'][$i]]["最終更新日時"] = date('Y/m/d H:i:s');
-				$weekly[$_POST['id'][$i]]["表示"] = "0";
-				
+				if($_POST['write'][$i] == 1) {
+					$weekly[$_POST['id'][$i]]["テーマ概要"] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail'][$i]);
+					$weekly[$_POST['id'][$i]]["KPI"] = $_POST['kpi'][$i];
+					$weekly[$_POST['id'][$i]]["担当"] = $_POST['name'][$i];
+					$weekly[$_POST['id'][$i]]["済み"] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['finish'][$i]);
+					$weekly[$_POST['id'][$i]]["進捗"] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['step'][$i]);
+					$weekly[$_POST['id'][$i]]["今後の予定"] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['plan'][$i]);
+					$weekly[$_POST['id'][$i]]["最終更新日時"] = date('Y/m/d H:i:s');
+					$weekly[$_POST['id'][$i]]["表示"] = "1";
+					for($j=0; $j<count($_POST['make_weekly']); $j++) {
+						if($_POST['make_weekly'][$j] == $_POST['id'][$i]) $weekly[$_POST['id'][$i]]["表示"] = "0";
+					}
+					
+				}
 				
 			}
 			
@@ -365,6 +383,8 @@
 			header( "Location: /Memoria/pages/todo.php?d=weekly" );
 			exit();
 			
+			//print_r_pre($_POST['make_weekly']);
+			//print_r_pre($weekly);
 			
 		} else {
 			echo "<script>alert('なんかおかしい？');location.href = '/Memoria/pages/todo.php?d=weekly';</script>";

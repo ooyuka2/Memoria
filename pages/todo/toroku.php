@@ -72,6 +72,7 @@
 		$c = count($weekly);
 		$weekly[$c]["todoid"] = $number;
 		$weekly[$c]["テーマ概要"] = $todo[$number]['作業内容'];
+		$weekly[$c]["KPI"] = "";
 		$weekly[$c]["担当"] = $myname;
 		$weekly[$c]["済み"] = "";
 		$weekly[$c]["進捗"] = "";
@@ -90,6 +91,7 @@
 		$c = count($weekly);
 		$weekly[$c]["todoid"] = $number;
 		$weekly[$c]["テーマ概要"] = $weekly[$weeklyid]["テーマ概要"];
+		$weekly[$c]["KPI"] = $weekly[$weeklyid]["KPI"];
 		$weekly[$c]["担当"] = $weekly[$weeklyid]["担当"] ;
 		$weekly[$c]["済み"] = $weekly[$weeklyid]["済み"];
 		$weekly[$c]["進捗"] = $weekly[$weeklyid]["進捗"];

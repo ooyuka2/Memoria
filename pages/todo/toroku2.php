@@ -159,6 +159,7 @@
 			$c = count($weekly);
 			$weekly[$c]["todoid"] = $number;
 			$weekly[$c]["テーマ概要"] = $todo[$number]['作業内容'];
+			$weekly[$c]["KPI"] = "";
 			$weekly[$c]["担当"] = $myname;
 			$weekly[$c]["済み"] = "";
 			$weekly[$c]["進捗"] = "";
