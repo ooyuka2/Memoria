@@ -80,7 +80,6 @@
 		$weekly[$c]["parentid"] = "0";
 		$weekly[$c]["最終更新日時"] = date('Y/m/d H:i:s');
 		$weekly[$c]["表示"] = "0";
-		$weekly[$c]["削除"] = "0";
 		writeCsvFile2("../../data/weekly.csv", $weekly);
 	} else if($_POST['name'][0]!="" && isset($_POST['make_weekly'])) {
 		$weekly = readCsvFile2('../../data/weekly.csv');
@@ -99,7 +98,6 @@
 		$weekly[$c]["parentid"] = $weekly[$weeklyid]["parentid"];
 		$weekly[$c]["最終更新日時"] = date('Y/m/d H:i:s');
 		$weekly[$c]["表示"] = "0";
-		$weekly[$c]["削除"] = "0";
 		writeCsvFile2("../../data/weekly.csv", $weekly);
 	}
 	

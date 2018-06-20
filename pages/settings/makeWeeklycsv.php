@@ -28,8 +28,6 @@
 			$weekly[0]["parentid"] = "parentid";
 			$weekly[0]["最終更新日時"] = "最終更新日時";
 			$weekly[0]["表示"] = "表示";
-			$weekly[0]["削除"] = "削除";
-			
 
 			$c = 0;
 			for($i=0; $i<count($todo0); $i++) {
@@ -69,7 +67,6 @@
 					$weekly[$c]["parentid"] = "0";
 					$weekly[$c]["最終更新日時"] = date('Y/m/d H:i:s');
 					$weekly[$c]["表示"] = "0";
-					$weekly[$c]["削除"] = "0";
 				
 				}
 				

@@ -37,24 +37,34 @@
 						$weeklyid = check2array($weekly, $i, "todoid");
 						
 						if($todo[$i]['時間管理テーマ'] != 0 && ($todo[$i]['時間管理テーマ'] < 30) && $todo[$i]['level']==1 && $weeklyid != -1 && $weekly[$weeklyid]['表示'] == 0) {
-							echo "KPI：{$weekly[$weeklyid]['KPI']}<br>";
+							if($weekly[$weeklyid]['parentid'] == 0) echo "KPI：{$weekly[$weeklyid]['KPI']}<br>";
 							$flug = 0;
 							for($j=1; $j<count($working); $j++) {
 								if($working[$j]['id'] != "periodically" && $todo[$working[$j]['id']]['top'] == $i) {
 									$workday = new DateTime($working[$j]['day']);
 									if($workday->diff($monday)->format('%R%a') <= 0) {
-										echo "●";
+										
 										$flug = 1;
 										break;
 									}
 								}
 							}
-							if($flug == 0) echo "〇";
+							$lastday = new DateTime($weekly[$weeklyid]['最終更新日時']);
+							if(($lastday->diff($monday)->format('%R%a')) <= 0) echo "<span class='text-info'>";
+							else "<span class='text-danger'>";
+							if($weekly[$weeklyid]['parentid'] == 0) {
+								if($flug == 0) echo "〇";
+								else echo "●";
+							} else {
+								if($flug == 0) echo "□";
+								else echo "■";
+							}
+
 							echo "{$todo[$i]['タイトル']}：";
 							if($weeklyid != -1) echo "{$weekly[$weeklyid]['担当']}";
 							else echo $myname;
-							if($todo[$i]['完了']==1) echo "【：完了】<br>";
-							else echo "<br>";
+							if($todo[$i]['完了']==1) echo "【：完了】</span><br>";
+							else echo "</span><br>";
 							//for($j=1; $j<count($todo); $j++) {
 							//	if($todo[$j]['parent'] == $todo[$i]['id']) {
 							//		echo "　　　□・{$todo[$j]['タイトル']}";

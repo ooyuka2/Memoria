@@ -167,11 +167,9 @@
 			$weekly[$c]["parentid"] = "0";
 			$weekly[$c]["最終更新日時"] = date('Y/m/d H:i:s');
 			$weekly[$c]["表示"] = "0";
-			$weekly[$c]["削除"] = "0";
 			writeCsvFile2("../../data/weekly.csv", $weekly);
-		} else if($weekly[$weeklyid]["表示"] == 1 || $weekly[$weeklyid]["削除"] == 1) {
+		} else if($weekly[$weeklyid]["表示"] == 1) {
 			$weekly[$weeklyid]["表示"] = "0";
-			$weekly[$weeklyid]["削除"] = "0";
 			writeCsvFile2("../../data/weekly.csv", $weekly);
 		}
 	} else {
@@ -179,7 +177,7 @@
 		$weeklyid = check2array($weekly, $number, "todoid");
 		
 		if($weeklyid != -1) {
-			$weekly[$weeklyid]["削除"] = "1";
+			$weekly[$weeklyid]["表示"] = "1";
 			writeCsvFile2("../../data/weekly.csv", $weekly);
 		}
 	}
