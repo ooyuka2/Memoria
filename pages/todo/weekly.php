@@ -51,13 +51,13 @@
 							}
 							$lastday = new DateTime($weekly[$weeklyid]['最終更新日時']);
 							if(($lastday->diff($monday)->format('%R%a')) <= 0) echo "<span class='text-info'>";
-							else "<span class='text-danger'>";
+							else echo "<span class='text-danger'>";
 							if($weekly[$weeklyid]['parentid'] == 0) {
 								if($flug == 0) echo "〇";
 								else echo "●";
 							} else {
-								if($flug == 0) echo "□";
-								else echo "■";
+								if($flug == 0) echo "　□";
+								else echo "　■";
 							}
 
 							echo "{$todo[$i]['タイトル']}：";
@@ -129,20 +129,21 @@
 						if($working[$i]['id'] != "periodically" && ($todo[$todo[$working[$i]['id']]['top']]['時間管理テーマ'] <= 0 || $todo[$todo[$working[$i]['id']]['top']]['時間管理テーマ'] >= 30) && ($workday->diff($monday)->format('%R%a')) <= 0 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
 							$ary[$c] = $todo[$working[$i]['id']]['top'];
 							$weeklyid = check2array($weekly, $ary[$c], "todoid");
-							echo "●{$todo[$ary[$c]]['タイトル']}：";
+							echo "<span class='text-info'>●{$todo[$ary[$c]]['タイトル']}：";
 							if($weeklyid != -1) echo "{$weekly[$weeklyid]['担当']}";
 							else echo $myname;
-							if($todo[$ary[$c]]['完了']==1) echo "【：完了】<br>";
-							else echo "<br>";
+							if($todo[$ary[$c]]['完了']==1) echo "【：完了】";
+							echo "</span><br>";
 							
-							
-							for($j=1; $j<count($todo); $j++) {
-								if($todo[$j]['parent'] == $ary[$c]) {
-									echo "　　　□・{$todo[$j]['タイトル']}";
-									if($todo[$j]['完了']==1) echo "：完了<br>";
-									else if($todo[$j]['パーセンテージ']==0) echo "<br>";
-									else echo "<br>";
-									
+							if($weeklyid == -1) {
+								for($j=1; $j<count($todo); $j++) {
+									if($todo[$j]['parent'] == $ary[$c]) {
+										echo "　　　□・{$todo[$j]['タイトル']}";
+										if($todo[$j]['完了']==1) echo "：完了<br>";
+										else if($todo[$j]['パーセンテージ']==0) echo "<br>";
+										else echo "<br>";
+										
+									}
 								}
 							}
 							if($weeklyid != -1) $workdetail = str_replace('<br>', '<br>　　　', $weekly[$weeklyid]['テーマ概要']);
