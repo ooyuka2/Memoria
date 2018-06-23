@@ -85,6 +85,18 @@ function json_safe_encode($data){
     return json_encode($data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
 }
 
+
+//##################################################################
+//				iniファイル書き込み用関数
+//##################################################################
+
+
+function write_ini_file($filename, $ini){
+	$fp = fopen($filename, 'w');
+	foreach ($ini as $k => $i) fputs($fp, "$k=$i\n");
+	fclose($fp);
+}
+
 //##################################################################
 //				ページのインクルード的な関数
 //##################################################################

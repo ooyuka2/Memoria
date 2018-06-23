@@ -246,6 +246,7 @@
 <?php
 	
 	$count = 0;
+	$monday = $today->modify('monday this week')->setTime(0,0,0);
 	
 	for($i=1; $i<count($weekly); $i++) {
 		$flug = 0;
@@ -260,14 +261,17 @@
 			}
 		}
 		if($weekly[$i]['表示'] == 0 && ($todo[$weekly[$i]['todoid']]['時間管理テーマ'] != 0 && ($todo[$weekly[$i]['todoid']]['時間管理テーマ'] < 30)) || $flug != 0) {
-
-			
 			
 			echo "<tr><td rowspan='9'>";
+			
+			$lastday = new DateTime($weekly[$i]['最終更新日時']);
+			if(($lastday->diff($monday)->format('%R%a')) <= 0) echo "<span class='text-info'>";
+			else echo "<span class='text-danger'>";
+			
 			if($flug == 0) echo "〇";
 			else echo "●";
 			
-			echo "{$todo[$weekly[$i]['todoid']]['タイトル']}</td><td>";
+			echo "{$todo[$weekly[$i]['todoid']]['タイトル']}</span></td><td>";
 			//echo "進捗有り無し";
 			echo "</td><td>";
 
