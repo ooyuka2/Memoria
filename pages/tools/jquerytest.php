@@ -6,7 +6,8 @@
 	<?php
 		header("Content-type: charset=SJIS-win");
 	?>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="./jquery.min.js"></script>
+	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
 	<script>
 	$(document).ready(function() {
 		/**
@@ -23,8 +24,12 @@
 			 * @param data	: サーバに送信する値
 			 */
 			$.ajax({
+				beforeSend: function(xhr){
+					xhr.overrideMimeType('text/html;charset=Shift_JIS');
+				},
 				type: "POST",
 				url: "send.php",
+				scriptCharset:'Shift_JIS',
 				data: data,
 			}).done(function(data, dataType) {
 				// doneのブロック内は、Ajax通信が成功した場合に呼び出される

@@ -326,26 +326,43 @@ document.onmousemove = function (e){
 //
 // ##############################################################################################################################
 
-function changeMempPanel(path, file, element) {
+function changeMempPanel(file, element) {
 	//location.href = path;
 	//var data = {'memoform' : $('#memoform').val()};
-		var makeform = $(element).parent().prev();
-		makeform.html("通信中。。。");
+	
+	if(document.getElementById("memoform") != null) {
+		ret = confirm(file + "を保存しますか？");
+		if (ret == true){
+			saveMempPanel();
+		} else {
+			return false;
+		}
+	}
+	
+	var makeform = $(element).parent().prev();
+	makeform.html("通信中。。。");
+
 	
 	$.ajax({
-		type: "get",
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+		},
+		type: "POST",
+		scriptCharset:'Shift_JIS',
 		url: "./todo/changeMemo.php",
 		data: {"file":file,"do":"readform"},
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 
 		// PHPから返ってきたデータの表示
-		makeform.html("<textarea id='memoform' class='form-control input-normal input-sml'>"+data+"</textarea>");
+		makeform.html("<textarea id='memoform' class='form-control input-normal input-sml' onKeyPress='changeMemoform()'>"+data+"</textarea><input type='hidden' value='"+file+"'></input>");
 		//alert(data);
 		var textarea = document.getElementById("memoform");
 		if( textarea.scrollHeight > textarea.offsetHeight ){
 			textarea.style.height = textarea.scrollHeight+'px';
 		}
+		$(element).after("<button type='button' id='memocancel' class='close' data-dismiss='modal' aria-hidden='true' onclick='reReadMemoPanel()'><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></button>");
+		$(element).after("<button type='button' id='memosave' class='close' data-dismiss='modal' aria-hidden='true' onclick='saveMemoPanel()'><span class='glyphicon glyphicon-upload' aria-hidden='true'></span></button>");
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
 
@@ -355,12 +372,81 @@ function changeMempPanel(path, file, element) {
 		// エラーメッセージの表示
 		alert('Error : ' + errorThrown);
 	});
-	
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}
 
+function changeMemoform() {
+	var textarea = document.getElementById("memoform");
+	if( textarea.scrollHeight > textarea.offsetHeight ){
+		textarea.style.height = textarea.scrollHeight+'px';
+	}
+}
 
-	
-	
+function reReadMemoPanel(){
 
+	file = $("#memoform").next().val();
+	var makeMemoPanel = $("#memoform").parent();
+	makeMemoPanel.html("通信中。。。");
+	$.ajax({
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+		},
+		type: "POST",
+		scriptCharset:'Shift_JIS',
+		url: "./todo/changeMemo.php",
+		data: {"file":file,"do":"readtxt"},
+	}).done(function(data, dataType) {
+		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+
+		// PHPから返ってきたデータの表示
+		makeMemoPanel.html(data);
+		$("#memocancel").remove();
+		$("#memosave").remove();
+
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+
+		// this;
+		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+
+		// エラーメッセージの表示
+		alert('Error : ' + errorThrown);
+	});
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}
+
+function saveMemoPanel() {
+	file = $("#memoform").next().val();
+	var makeMemoPanel = $("#memoform").parent();
+	var text = $("#memoform").val();
+	makeMemoPanel.html("保存中。。。");
+	$.ajax({
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+		},
+		type: "POST",
+		scriptCharset:'Shift_JIS',
+		url: "./todo/changeMemo.php",
+		data: {"file":file,"do":"change","txt":text},
+	}).done(function(data, dataType) {
+		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+
+		// PHPから返ってきたデータの表示
+		makeMemoPanel.html(data);
+		$("#memocancel").remove();
+		$("#memosave").remove();
+
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+
+		// this;
+		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+
+		// エラーメッセージの表示
+		alert('Error : ' + errorThrown);
+	});
 	// サブミット後、ページをリロードしないようにする
 	return false;
 }

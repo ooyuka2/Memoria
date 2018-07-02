@@ -1,15 +1,16 @@
 <?php
-//header("Content-type: text/plain; charset=SJIS-win");
+header("Content-type: text/plain; charset=SJIS-win");
 
 if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])
    && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
 {
-  // Ajaxãƒªã‚¯ã‚¨ã‚¹ãƒˆã®å ´åˆã®ã¿å‡¦ç†ã™ã‚‹
+  // AjaxƒŠƒNƒGƒXƒg‚Ìê‡‚Ì‚Ýˆ—‚·‚é
 
   if (isset($_POST['request']))
   {
-      //ã“ã“ã«ä½•ã‹ã—ã‚‰ã®å‡¦ç†ã‚’æ›¸ãï¼ˆDBç™»éŒ²ã‚„ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®æ›¸ãè¾¼ã¿ãªã©ï¼‰
-      echo $_POST['request']."OKaaaaaaaaaaã‚ã‚ã‚a";
+      //‚±‚±‚É‰½‚©‚µ‚ç‚Ìˆ—‚ð‘‚­iDB“o˜^‚âƒtƒ@ƒCƒ‹‚Ö‚Ì‘‚«ž‚Ý‚È‚Çj
+      $str = mb_convert_encoding($_POST['request'], "SJIS-win", "auto");
+      echo $str."OKaaaaaaaaaa‚ ‚ ‚ a";
   }
   else
   {

@@ -518,6 +518,13 @@ function todo_next_child($todo, $parent, $next) {
 	return $id;
 }
 
+
+//##################################################################
+//				メモパネル作成用関数
+//##################################################################
+
+
+
 function makeDialogs($path, $memo, $memolist) {
 	if($memolist['big'] == "y") echo "<div class='bs-component col-sm-12' id='{$memolist['filename']}'>";
 	else echo "<div class='bs-component col-sm-6' id='{$memolist['filename']}'>";
@@ -544,7 +551,7 @@ function makeDialogs($path, $memo, $memolist) {
 	if($memolist['lock'] == "n") echo "<div class='modal-footer'>";
 	else echo "<div class='modal-footer' style='display:none;'>";
 	echo '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="deleteMemoPanel(\''.$path.'\', \''.$memolist['filename'].'\')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
-	echo '　<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="changeMempPanel(\''.$path.'\', \''.$memolist['filename'].'\', this)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>';
+	echo '　<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="changeMempPanel(\''.$memolist['filename'].'\', this)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>';
 //	echo '　<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>';
 
 	//echo "<button type='button' class='btn btn-default' data-dismiss='modal'>閉じる</button>";
