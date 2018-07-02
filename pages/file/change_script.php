@@ -1,4 +1,4 @@
-<script type="text/javascript" src="../js/jquery.autoKana.js"></script>
+<script type="text/javascript" src="/Memoria/js/jquery.autoKana.js"></script>
 <script>
 	$(function() {
 	    $.fn.autoKana('#name', '#furi', {

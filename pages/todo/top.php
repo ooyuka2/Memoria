@@ -63,8 +63,9 @@
 		<li role="presentation"><a href="/Memoria/pages/todo.php?list=week">1週間やること</a></li>
 		<li role="presentation"><a href="/Memoria/pages/todo.php?list=todo_all">未完了</a></li>
 		<li role="presentation"><a href="/Memoria/pages/todo.php">メモパネル</a></li>
-		<li role="presentation"><a href="/Memoria/pages/todo.php?list=finishlist">完了済み</a></li>
-		<li role="presentation"><a href="/Memoria/pages/todo.php?list=finishlist&file=old201804">old201804todo</a></li>
+		<li role="presentation" class="dropdown-header">完了済み</li>
+		<li role="presentation" class="dropdown-submenu"><a href="/Memoria/pages/todo.php?list=finishlist">2018年05月以降</a></li>
+		<li role="presentation" class="dropdown-submenu"><a href="/Memoria/pages/todo.php?list=finishlist&file=old201804">2018年04月以前</a></li>
 	</ul>
 </li>
 	  </ul>

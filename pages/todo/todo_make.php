@@ -193,7 +193,7 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 					
 					
 	
-	echo "<div class='col-xs-2 center-block' style='margin-bottom:5px'><button type='button' class='btn btn-warning btn-xs' onClick='level_up(this)'>Å£</button><button type='button' class='btn btn-warning btn-xs eee' onClick='level_down(this)'>Å•</button></div>";
+	echo "<div class='col-xs-2 center-block' style='margin-bottom:5px'><button type='button' class='btn btn-warning btn-xs' onClick='level_down(this)'>Å£</button><button type='button' class='btn btn-warning btn-xs eee' onClick='level_up(this)'>Å•</button></div>";
 	echo "<label class='col-sm-2 control-label' style='margin-bottom:5px'>ÉåÉxÉã</label>";
 	echo "<div class='col-xs-3' style='margin-bottom:5px'>";
 	echo "<input type='number' class='form-control input-normal input-sm level' name='level[]' min='1' max='10' value='{$level}' readonly>";

@@ -107,7 +107,10 @@ function execCopy(string){
 
 
 </script>
+
+
+
 <?php
-	include('../data/setting.php');
-	echo '<script src="../img/'.$color.'/js/bootstrap.min.js"></script>';
+	//include('../data/setting.php');
+	echo '<script src="../img/'.$ini['csstype'].'/js/bootstrap.min.js"></script>';
 ?>

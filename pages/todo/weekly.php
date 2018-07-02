@@ -15,16 +15,16 @@
 		$working = readCsvFile2('../data/working.csv');
 		$periodically = readCsvFile2('../data/periodically.csv');
 		$weekly = readCsvFile2('../data/weekly.csv');
-		include('../data/weekly.php');
+		$ini = parse_ini_file('../data/config.ini');
 ?>
 	<div class="col-xs-12">
 		<fieldset>
 			<div class="well bs-component">
 				
 				<?php
-					echo "<h3>?週報：{$today->modify('friday')->format('m/d')}：{$myname}</h3><hr><p>";
-					echo $weeklyTo."<br><br>";
-					echo "いつもお世話になっております。<br>{$myname}です。<br>今週の週報を提出致します。<br><br><br>１．トピックス（従来の*コピペできる週次実績）<br>テーマ名：担当名<br><br><br><br>";
+					echo "<h3>?週報：{$today->modify('friday')->format('m/d')}：{$ini['myname']}</h3><hr><p>";
+					echo $ini['weeklyTo']."<br><br>";
+					echo "いつもお世話になっております。<br>{$ini['myname']}です。<br>今週の週報を提出致します。<br><br><br>１．トピックス（従来の*コピペできる週次実績）<br>テーマ名：担当名<br><br><br><br>";
 					echo "２．テーマ進捗<br>";
 					
 					$monday = $today->modify('monday this week')->setTime(0,0,0);
@@ -62,7 +62,7 @@
 
 							echo "{$todo[$i]['タイトル']}：";
 							if($weeklyid != -1) echo "{$weekly[$weeklyid]['担当']}";
-							else echo $myname;
+							else echo $ini['myname'];
 							if($todo[$i]['完了']==1) echo "【：完了】</span><br>";
 							else echo "</span><br>";
 							//for($j=1; $j<count($todo); $j++) {
@@ -131,7 +131,7 @@
 							$weeklyid = check2array($weekly, $ary[$c], "todoid");
 							echo "<span class='text-info'>●{$todo[$ary[$c]]['タイトル']}：";
 							if($weeklyid != -1) echo "{$weekly[$weeklyid]['担当']}";
-							else echo $myname;
+							else echo $ini['myname'];
 							if($todo[$ary[$c]]['完了']==1) echo "【：完了】";
 							echo "</span><br>";
 							
@@ -227,7 +227,7 @@
 		$working = readCsvFile2('../data/working.csv');
 		$periodically = readCsvFile2('../data/periodically.csv');
 		$weekly = readCsvFile2('../data/weekly.csv');
-		include('../data/weekly.php');
+		$ini = parse_ini_file('../data/config.ini');
 		$monday = $today->modify('monday this week')->setTime(0,0,0);
 ?>
 <form class='form-horizontal' method='post' action='todo/weekly.php?change=go'>

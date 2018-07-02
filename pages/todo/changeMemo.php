@@ -1,22 +1,44 @@
 <?php
-	include('../function.php');
-	if (isset($_GET['path'])) {
-	//‚±‚±‚É‰½‚©‚µ‚ç‚Ìˆ—‚ð‘‚­iDB“o˜^‚âƒtƒ@ƒCƒ‹‚Ö‚Ì‘‚«ž‚Ý‚È‚Çj
-		if ($_GET['do']=="new") {
-			
-		} else if($_GET['do']=="change") {
+	//header("Content-type: text/plain; charset=SJIS-win");
+	//include('../function.php');
+
+	if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+	   && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+	  // Ajaxãƒªã‚¯ã‚¨ã‚¹ãƒˆã®å ´åˆã®ã¿å‡¦ç†ã™ã‚‹
+
+		if (isset($_GET['do'])) {
+			if($_GET['do']=="readtxt") {
+				
+				$memo = file_get_contents("../../data/memo/".$_GET['file']);
+				echo str_replace("\n","<br>",$memo);
+				
+			}else if($_GET['do']=="readform") {
+				
+				$memo = file_get_contents("../../data/memo/".$_GET['file']);
+				echo $memo;
+				//header('Content-type: application/json');
+				//echo json_encode("hellow");
+				//echo "successã‚ã‚ã‚";
+			} else if ($_GET['do']=="new") {
+				
+			} else if($_GET['do']=="change") {
+				
+			} else {
+				echo 'errorã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã„ãŸã—ã¾ã—ãŸ';
+			}
 			
 		} else {
-			unlink ( $_GET['path'] );
-			$memolist = readCsvFile2('../../data/memo.csv');
-			$file = explode("/", $_GET['path']);
-			$num = check2array($memolist, $file[(count($file)-1)], "filename");
-			$templist = array_splice($memolist,$num,1);
-			writeCsvFile2('../../data/memo.csv', $memolist);
+			echo 'ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã„ãŸã—ã¾ã—ãŸ';
 		}
-	//header( "Location: /Memoria/pages/todo.php" );		
-	} else {
-		echo 'ƒGƒ‰[‚ª”­¶‚¢‚½‚µ‚Ü‚µ‚½';
 	}
-
+	/* else if (isset($_GET['path']) && $_GET['do']=="delete") {
+		unlink ( $_GET['path'] );
+		$memolist = readCsvFile2('../../data/memo.csv');
+		$file = explode("/", $_GET['path']);
+		$num = check2array($memolist, $file[(count($file)-1)], "filename");
+		$templist = array_splice($memolist,$num,1);
+		writeCsvFile2('../../data/memo.csv', $memolist);
+		header( "Location: /Memoria/pages/todo.php" );
+	}
+	*/
 ?>

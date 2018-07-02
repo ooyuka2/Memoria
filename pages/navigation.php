@@ -31,7 +31,7 @@
           <li class="todo"><a href="./todo.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true" style='font-size:120%;'></span> ToDoÅ@<span class="badge"><?php echo $navTodoCount; ?></span></a></li>
           <li class="file"><a href="./file.php"><span class="glyphicon glyphicon-file" aria-hidden="true" style='font-size:120%;'></span> file</a></li>
           <li class="dictionary"><a href="./dictionary.php"><span class="glyphicon glyphicon-book" aria-hidden="true" style='font-size:120%;'></span> Dictionary</a></li>
-          <li class="setting"><a href="./tools.php"><span class="glyphicon glyphicon-cog" aria-hidden="true" style='font-size:120%;'></span> tools</a></li>
+          <li class="tools"><a href="./tools.php"><span class="glyphicon glyphicon-cog" aria-hidden="true" style='font-size:120%;'></span> tools</a></li>
           <li class="setting"><a href="./settings.php"><span class="glyphicon glyphicon-cog" aria-hidden="true" style='font-size:120%;'></span> Setting</a></li>
           
         </ul>

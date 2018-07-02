@@ -1,5 +1,5 @@
-<h2>ã‚¨ã‚¯ã‚»ãƒ«VBAé«˜é€ŸåŒ–ã®ãŸã‚ã®ãƒ’ãƒ³ãƒˆ</h2>
-ãƒ»å‡¦ç†å‰å¾Œã«ä»¥ä¸‹ã‚’å…¥ã‚Œã‚‹
+<h2>ƒGƒNƒZƒ‹VBA‚‘¬‰»‚Ì‚½‚ß‚Ìƒqƒ“ƒg</h2>
+Eˆ—‘OŒã‚ÉˆÈ‰º‚ð“ü‚ê‚é
 	Application.ScreenUpdating = False
 	Application.ScreenUpdating = True
 

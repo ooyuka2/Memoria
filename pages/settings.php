@@ -5,8 +5,8 @@
 <?php
 	include('navigation.php');
 	if(isset($_POST["kakutei"])) {
-		$txtfile = "<?php\r\n	//honoka, niko, rin, umi, frandre\r\n	\$color = '".$_POST['kakutei']."';\r\n?>";
-		file_put_contents( '../data/setting.php', $txtfile, LOCK_EX );
+		$ini['csstype'] = $_POST['kakutei'];
+		write_ini_file('../data/config.ini', $ini);
 		header( "Location: ./settings.php" );
 		exit();
 	}

@@ -67,13 +67,13 @@
 	
 	if($_POST['name'][0]!="" && isset($_POST['make_weekly']) && $_POST['make_weekly']==-1) {
 		$weekly = readCsvFile2('../../data/weekly.csv');
-		include('../../data/weekly.php');
+		$ini = parse_ini_file('../../data/config.ini');
 		
 		$c = count($weekly);
 		$weekly[$c]["todoid"] = $number;
 		$weekly[$c]["ƒe[ƒ}ŠT—v"] = $todo[$number]['ì‹Æ“à—e'];
 		$weekly[$c]["KPI"] = "";
-		$weekly[$c]["’S“–"] = $myname;
+		$weekly[$c]["’S“–"] = $ini['myname'];
 		$weekly[$c]["Ï‚İ"] = "";
 		$weekly[$c]["i’»"] = "";
 		$weekly[$c]["¡Œã‚Ì—\’è"] = "";

@@ -5,8 +5,8 @@
 //##################################################################
 //ファイル読み込んで配列に入れる
 function readCsvFile($filepath) {
-mb_internal_encoding("SJIS-win");
-if (is_readable($filepath)) {
+	mb_internal_encoding("SJIS-win");
+	if (is_readable($filepath)) {
 		$file = new SplFileObject($filepath); 
 		$file->setFlags(SplFileObject::READ_CSV); 
 		foreach ($file as $line) {
@@ -25,8 +25,8 @@ if (is_readable($filepath)) {
 
 //ファイル読み込んで配列に入れる
 function readCsvFile2($filepath) {
-mb_internal_encoding("SJIS-win");
-if (is_readable($filepath)) {
+	mb_internal_encoding("SJIS-win");
+	if (is_readable($filepath)) {
 		$file = new SplFileObject($filepath); 
 		$file->setFlags(SplFileObject::READ_CSV); 
 		foreach ($file as $line) {
@@ -544,7 +544,7 @@ function makeDialogs($path, $memo, $memolist) {
 	if($memolist['lock'] == "n") echo "<div class='modal-footer'>";
 	else echo "<div class='modal-footer' style='display:none;'>";
 	echo '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="deleteMemoPanel(\''.$path.'\', \''.$memolist['filename'].'\')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
-	echo '　<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="changeMempPanel(\''.$path.'\', \''.$memolist['filename'].'\')"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>';
+	echo '　<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="changeMempPanel(\''.$path.'\', \''.$memolist['filename'].'\', this)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>';
 //	echo '　<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>';
 
 	//echo "<button type='button' class='btn btn-default' data-dismiss='modal'>閉じる</button>";
@@ -706,50 +706,6 @@ function check2array($array, $text, $num) {
 		if($array[$i][$num] == $text) $flug = $i;
 	}
 	return $flug;
-}
-
-
-function search_array($abc, $abc2, $abcl, $hiragana, $hiragana2, $word) {
-	if(serch_word($_GET['search'], $abc2)) {
-		$i = serch_word_r($_GET['search'], $abc2);
-		if($word==$abc[$i] || $word==$abcl[$i]) return 1;
-		
-	}
-	if(serch_word($_GET['search'], $hiragana2)) {
-		$i = serch_word_r($_GET['search'], $hiragana2);
-		if($word==$hiragana[$i]) return 1;
-		if($i==5 && $word=="が") return 1;
-		if($i==6 && $word=="ぎ") return 1;
-		if($i==7 && $word=="ぐ") return 1;
-		if($i==8 && $word=="げ") return 1;
-		if($i==9 && $word=="ご") return 1;
-		if($i==10 && $word=="ざ") return 1;
-		if($i==11 && $word=="じ") return 1;
-		if($i==12 && $word=="ず") return 1;
-		if($i==13 && $word=="ぜ") return 1;
-		if($i==14 && $word=="ぞ") return 1;
-		if($i==15 && $word=="だ") return 1;
-		if($i==16 && $word=="ぢ") return 1;
-		if($i==17 && $word=="づ") return 1;
-		if($i==17 && $word=="っ") return 1;
-		if($i==18 && $word=="で") return 1;
-		if($i==19 && $word=="ど") return 1;
-		if($i==25 && $word=="ば") return 1;
-		if($i==25 && $word=="ぱ") return 1;
-		if($i==26 && $word=="び") return 1;
-		if($i==26 && $word=="ぴ") return 1;
-		if($i==27 && $word=="ぶ") return 1;
-		if($i==27 && $word=="ぷ") return 1;
-		if($i==28 && $word=="べ") return 1;
-		if($i==28 && $word=="ぺ") return 1;
-		if($i==29 && $word=="ぼ") return 1;
-		if($i==29 && $word=="ぽ") return 1;
-		if($i==35 && $word=="ゃ") return 1;
-		if($i==36 && $word=="ゅ") return 1;
-		if($i==37 && $word=="ょ") return 1;
-		
-	}
-	return 0;
 }
 
 

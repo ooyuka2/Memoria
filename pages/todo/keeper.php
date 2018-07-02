@@ -9,7 +9,8 @@
 
 <?php
 	//$todo = readCsvFile2('../data/todo.csv');
-	include('../data/weekly.php');
+	//include('../data/weekly.php');
+	$ini = parse_ini_file('../data/config.ini');
 	
 	
 	if(isset($_GET['day']) && $_GET['day'] == 'old201804working') {
@@ -19,7 +20,7 @@
 	}
 	else $working = readCsvFile2('../data/working.csv');
 
-	echo "<br><div class='clearfix'><a href='{$keeperpage}' class='pull-right'>時間管理</a></div>";
+	echo "<br><div class='clearfix'><a href='{$ini['keeperpage']}' class='pull-right'>時間管理</a></div>";
 	$when = new DateTime($working[(count($working)-1)]['day']);
 	$when = $when->format('Y/m/d');
 	$keeper = "<table class='table table-condensed'><thead><tr><th class='col-md-2'>開始時間-終了時間</th><th class='col-md-8'>タイトル</th><th class='col-md-2'>時間管理テーマ</th></tr></thead><tbody>";

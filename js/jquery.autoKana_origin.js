@@ -30,8 +30,8 @@
                 'katakana': false
             }, passedOptions);
 
-        var kana_extraction_pattern = new RegExp('[^ @‚Ÿ‚ -‚ñ[]', 'g');
-        var kana_compacting_pattern = new RegExp('[‚Ÿ‚¡‚£‚¥‚§‚Á‚á‚ã‚å]', 'g');
+        var kana_extraction_pattern = new RegExp('[^ ã€€ãã‚-ã‚“ãƒ¼]', 'g');
+        var kana_compacting_pattern = new RegExp('[ããƒã…ã‡ã‰ã£ã‚ƒã‚…ã‚‡]', 'g');
         var elName,
             elKana,
             active = false,
