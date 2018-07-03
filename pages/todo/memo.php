@@ -17,8 +17,6 @@
 					$memolist[$num]['lock'] = 'n';
 					writeCsvFile2('../data/memo.csv', $memolist);
 				}
-				$memo = file_get_contents($path);
-				makeDialogs($path, $memo, $memolist[$num]);
 			}
 		}
 	}

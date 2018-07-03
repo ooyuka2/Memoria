@@ -16,7 +16,7 @@
 <div class="jumbotron special">
 	<!--  <div class="honoka"></div> -->
 	<div class="container">
-		<div class="row clearfix">
+		<div class="row clearfix" style="background-image:'../img/circle.png';">
 			<div class="col-xs-4 txtright col-xs-offset-8"><!--  outline -->
 				<h1>Setting</h1>
 				<div class="download">

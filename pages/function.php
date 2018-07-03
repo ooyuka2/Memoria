@@ -550,8 +550,8 @@ function makeDialogs($path, $memo, $memolist) {
 	
 	if($memolist['lock'] == "n") echo "<div class='modal-footer'>";
 	else echo "<div class='modal-footer' style='display:none;'>";
-	echo '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="deleteMemoPanel(\''.$path.'\', \''.$memolist['filename'].'\')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
-	echo '　<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="changeMempPanel(\''.$memolist['filename'].'\', this)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>';
+	echo '<span class="pull-right">　</span><button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="deleteMemoPanel(\''.$path.'\', \''.$memolist['filename'].'\')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
+	echo '<span class="pull-right">　</span><button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="changeMempPanel(\''.$memolist['filename'].'\', this, \''.$memolist['big'].'\', \''.$memolist['lock'].'\')"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>';
 //	echo '　<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>';
 
 	//echo "<button type='button' class='btn btn-default' data-dismiss='modal'>閉じる</button>";

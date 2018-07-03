@@ -326,20 +326,21 @@ document.onmousemove = function (e){
 //
 // ##############################################################################################################################
 
-function changeMempPanel(file, element) {
+function changeMempPanel(file, element, min, lock) {
 	//location.href = path;
 	//var data = {'memoform' : $('#memoform').val()};
 	
 	if(document.getElementById("memoform") != null) {
 		ret = confirm(file + "を保存しますか？");
 		if (ret == true){
-			saveMempPanel();
+			saveMemoPanel();
 		} else {
 			return false;
 		}
 	}
 	
 	var makeform = $(element).parent().prev();
+	var makebotton = $(element).parent();
 	makeform.html("通信中。。。");
 
 	
@@ -355,14 +356,18 @@ function changeMempPanel(file, element) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 
 		// PHPから返ってきたデータの表示
-		makeform.html("<textarea id='memoform' class='form-control input-normal input-sml' onKeyPress='changeMemoform()'>"+data+"</textarea><input type='hidden' value='"+file+"'></input>");
+		if(min=='n') minstr = "/checked";
+		else minstr = "";
+		if(lock=='y') lockstr = "/checked";
+		else lockstr = "";
+		
+		makeform.html("<textarea id='memoform' class='form-control input-normal input-sml' onKeyPress='changeMemoform()'>"+data+"</textarea><input type='hidden' value='"+file+"'></input><span class='pull-right'><label class='checkbox-inline'><input type='checkbox' id='minisize' value='minisize' "+minstr+"> mini size</label><label class='checkbox-inline'><input type='checkbox' id='lockmemo' value='lock' "+lockstr+"> lock</label></span>");
 		//alert(data);
 		var textarea = document.getElementById("memoform");
 		if( textarea.scrollHeight > textarea.offsetHeight ){
 			textarea.style.height = textarea.scrollHeight+'px';
 		}
-		$(element).after("<button type='button' id='memocancel' class='close' data-dismiss='modal' aria-hidden='true' onclick='reReadMemoPanel()'><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></button>");
-		$(element).after("<button type='button' id='memosave' class='close' data-dismiss='modal' aria-hidden='true' onclick='saveMemoPanel()'><span class='glyphicon glyphicon-upload' aria-hidden='true'></span></button>");
+		makebotton.prepend("<div id='memobotton'><button type='button' id='memosave' class='btn btn-info pull-right' onclick='saveMemoPanel()'>保存</button><span class='pull-right'>　</span><button type='button' id='memocancel' class='btn btn-default pull-right' onclick='reReadMemoPanel()'>キャンセル</button></div>");
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
 
@@ -388,6 +393,8 @@ function reReadMemoPanel(){
 	file = $("#memoform").next().val();
 	var makeMemoPanel = $("#memoform").parent();
 	makeMemoPanel.html("通信中。。。");
+	
+	
 	$.ajax({
 		beforeSend: function(xhr){
 			xhr.overrideMimeType('text/html;charset=Shift_JIS');
@@ -401,8 +408,7 @@ function reReadMemoPanel(){
 
 		// PHPから返ってきたデータの表示
 		makeMemoPanel.html(data);
-		$("#memocancel").remove();
-		$("#memosave").remove();
+		$("#memobotton").remove();
 
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
@@ -421,7 +427,16 @@ function saveMemoPanel() {
 	file = $("#memoform").next().val();
 	var makeMemoPanel = $("#memoform").parent();
 	var text = $("#memoform").val();
+	
+	//チェックボックスの確認
+	if($('#lockmemo').prop('checked')) var lockmemo = "y";
+	else var lockmemo = "n";
+	if($('#minisize').prop('checked')) var min = "n";
+	else var min = "y";
+	
 	makeMemoPanel.html("保存中。。。");
+
+	
 	$.ajax({
 		beforeSend: function(xhr){
 			xhr.overrideMimeType('text/html;charset=Shift_JIS');
@@ -429,14 +444,13 @@ function saveMemoPanel() {
 		type: "POST",
 		scriptCharset:'Shift_JIS',
 		url: "./todo/changeMemo.php",
-		data: {"file":file,"do":"change","txt":text},
+		data: {"file":file,"do":"change","txt":text,"min":min,"lockmemo":lockmemo},
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 
 		// PHPから返ってきたデータの表示
 		makeMemoPanel.html(data);
-		$("#memocancel").remove();
-		$("#memosave").remove();
+		$("#memobotton").remove();
 
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
