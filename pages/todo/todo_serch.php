@@ -15,11 +15,22 @@
 	$c = 0;
 	$ary = array();
 	for($i=1; $i<count($todo); $i++) {
-		if($todo[$i]['完了'] == 0 && serch_word($todo[$i]['top'], $ary)==0 && $todo[$i]['削除'] == 0) {
+		if($todo[$i]['完了'] == 0 && $todo[$i]['level'] == 1 && $todo[$i]['削除'] == 0) {
 			$ary[$c] = $todo[$i]['top'];
 			$c++;
 			$top = $todo[$i]['top'];
-			if(strpos($todo[$top]['タイトル'],$searchtext) !== false || strpos($todo[$top]['作業内容'],$searchtext) !== false || strpos($todo[$i]['タイトル'],$searchtext) !== false || strpos($todo[$i]['作業内容'],$searchtext) !== false) {
+			$flug = 0;
+			for($j=1; $j<count($todo); $j++) {
+				if($todo[$j]['top'] == $i) {
+					if(strpos($todo[$j]['タイトル'],$searchtext) !== false || strpos($todo[$j]['作業内容'],$searchtext) !== false || strpos($todo[$j]['タイトル'],$searchtext) !== false || strpos($todo[$j]['作業内容'],$searchtext) !== false) {
+						$flug = 1;
+						break;
+					}
+				}
+			}
+			
+			
+			if($flug ==1) {
 				echo "<div class='panel panel-primary' id='todoid{$todo[$top]['id']}'>";
 				echo "<div class='panel-heading'>";
 				echo "<a href='./todo.php?d=detail&p={$top}&file={$file}' style='color:#ffffff;'>";
@@ -42,7 +53,18 @@
 			$ary[$c] = $todo[$working[$i]['id']]['top'];
 			$c++;
 			$top = $todo[$working[$i]['id']]['top'];
-			if(strpos($todo[$top]['タイトル'],$searchtext) !== false || strpos($todo[$top]['作業内容'],$searchtext) !== false || strpos($todo[$working[$i]['id']]['タイトル'],$searchtext) !== false || strpos($todo[$working[$i]['id']]['作業内容'],$searchtext) !== false) {
+			
+			$flug = 0;
+			for($j=1; $j<count($todo); $j++) {
+				if($todo[$j]['top'] == $top) {
+					if(strpos($todo[$j]['タイトル'],$searchtext) !== false || strpos($todo[$j]['作業内容'],$searchtext) !== false || strpos($todo[$j]['タイトル'],$searchtext) !== false || strpos($todo[$j]['作業内容'],$searchtext) !== false) {
+						$flug = 1;
+						break;
+					}
+				}
+			}
+			
+			if($flug ==1) {
 				echo "<div class='panel panel-primary' id='todoid{$todo[$top]['id']}'>";
 				echo "<div class='panel-heading'>";
 				echo "<a href='./todo.php?d=detail&p={$top}&file={$file}' style='color:#ffffff;'>";
@@ -76,7 +98,18 @@
 				$ary[$c] = $todo[$working[$i]['id']]['top'];
 				$c++;
 				$top = $todo[$working[$i]['id']]['top'];
-				if(strpos($todo[$top]['タイトル'],$searchtext) !== false || strpos($todo[$top]['作業内容'],$searchtext) !== false || strpos($todo[$working[$i]['id']]['タイトル'],$searchtext) !== false || strpos($todo[$working[$i]['id']]['作業内容'],$searchtext) !== false) {
+				
+				$flug = 0;
+				for($j=1; $j<count($todo); $j++) {
+					if($todo[$j]['top'] == $top) {
+						if(strpos($todo[$j]['タイトル'],$searchtext) !== false || strpos($todo[$j]['作業内容'],$searchtext) !== false || strpos($todo[$j]['タイトル'],$searchtext) !== false || strpos($todo[$j]['作業内容'],$searchtext) !== false) {
+							$flug = 1;
+							break;
+						}
+					}
+				}
+				
+				if($flug ==1) {
 					echo "<div class='panel panel-primary' id='todoid{$todo[$top]['id']}'>";
 					echo "<div class='panel-heading'>";
 					echo "<a href='./todo.php?d=detail&p={$top}&file={$file}' style='color:#ffffff;'>";

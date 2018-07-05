@@ -10,10 +10,6 @@
 //
 // ##############################################################################################################################
 function todo_serch(searchtext){
-
-//
-
-	
 	if(searchtext.value != "") {
 		$.ajax({
 			beforeSend: function(xhr){
@@ -38,7 +34,31 @@ function todo_serch(searchtext){
 			// エラーメッセージの表示
 			alert('Error : ' + errorThrown);
 		});
-	} 
+	} else {
+		$.ajax({
+			beforeSend: function(xhr){
+				xhr.overrideMimeType('text/html;charset=Shift_JIS');
+			},
+			type: "GET",
+			scriptCharset:'Shift_JIS',
+			url: "./todo/memo.php",
+			data: {"search":searchtext.value},
+		}).done(function(data, dataType) {
+			// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+
+			// PHPから返ってきたデータの表示
+			$("#todo_space").html(data);
+
+		}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+			// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+
+			// this;
+			// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+
+			// エラーメッセージの表示
+			alert('Error : ' + errorThrown);
+		});
+	}
 	// サブミット後、ページをリロードしないようにする
 	return false;
 }
