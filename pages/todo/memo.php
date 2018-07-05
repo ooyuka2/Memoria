@@ -1,3 +1,5 @@
+
+
 <?php
 	echo "<div class='row'>";
 	$memolist = readCsvFile2('../data/memo.csv');

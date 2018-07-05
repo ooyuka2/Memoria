@@ -7,19 +7,17 @@
 <?php
 	date_default_timezone_set('Asia/Tokyo');
 	if(isset($_GET['toroku'])) {
-		for($j=0; $j<count($_POST['name']);$j++) {
-			if($_POST['name'][$j]!="") {
-				$dictionary[$_POST['id'][$j]][0] = $_POST['name'][$j];
-				$dictionary[$_POST['id'][$j]][1] = $_POST['furi'][$j];
-				$dictionary[$_POST['id'][$j]][2] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary'][$j]);
-				$dictionary[$_POST['id'][$j]][3] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail'][$j]);
-				$dictionary[$_POST['id'][$j]][4] = $_POST['genre'][$j];
-				$dictionary[$_POST['id'][$j]][5] = date('Y/m/d H:i:s');
-				$dictionary[$_POST['id'][$j]][6] = 0;
-				//echo $_POST['id'][$j];
-			}
+		if($_POST['name']!="") {
+			$dictionary[$_GET['toroku']][0] = $_POST['name'];
+			$dictionary[$_GET['toroku']][1] = $_POST['furi'];
+			$dictionary[$_GET['toroku']][2] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary']);
+			$dictionary[$_GET['toroku']][3] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail']);
+			$dictionary[$_GET['toroku']][4] = $_POST['genre'];
+			$dictionary[$_GET['toroku']][5] = date('Y/m/d H:i:s');
+			$dictionary[$_GET['toroku']][6] = 0;
 		}
 		writeCsvFile("../data/dictionary.csv", $dictionary);
+		$_SESSION['change'] = "{$_POST['name']}を追加しました。";
 		header( "Location: ./dictionary.php" );
 		exit();
 	}	
@@ -47,59 +45,60 @@
 	          <?php
 	          	  $id=count($dictionary); 
 		          echo "<form class='form-horizontal ' method='post' action='dictionary.php?page=new&toroku={$id}' name='form_back'>";//form-inline
-			    for($j=0; $j<10;$j++) {
 		      ?>
-			      <div class="well bs-component">
-			        <div class="form-group" style="margin-bottom:0;">
-			            <div class="col-xs-3" style="padding-right:0;">
-							<div class="col-xs-12" style="padding-right:0;">
-								<?php
-									echo "<input type='search' autocomplete='on' list='keywords' class='form-control input-normal input-sm name' id='name' name='name[]' placeholder='メモ' onBlur='check_furi({$j})'>";
-									$id=count($dictionary)+$j;
-									echo "<input type='hidden' name='id[]' value='{$id}'>";
-								?>
-							</div>
-							<div class="col-xs-12" style="padding-right:0;">
-								<input type="text" class="form-control input-normal input-sm furi" id="furi" name="furi[]" placeholder="ふりがな">
-							</div>
-			            	<div class="col-xs-12" style="padding-right:0;">
-			                  <select class="form-control input-normal input-sm" id="genre" name="genre[]">
+              <legend>入力欄</legend>
+              <div class="form-group">
+                <label for="inputEmail" class="col-lg-2 control-label">メモタイトル</label>
+                <div class="col-lg-10">
+                    <?php
+                		echo "<input type='text' class='form-control' id='name' name='name' placeholder='メモ' value='' onBlur='check_furi()'>";//
+                	?>
+                </div>
+
+              </div>
+              <div class="form-group">
+                <label for="inputEmail" class="col-lg-2 control-label">ふりがな</label>
+                <div class="col-lg-10">
+                    <?php
+                		echo "<input type='text' class='form-control' id='furi' name='furi' placeholder='メモ' value=''>";//
+                	?>
+                </div>
+
+              </div>
+              <div class="form-group">
+              	<div class="col-xs-offset-2 col-xs-3">
+			                  <select class="form-control input-normal input-sm" id="genre" name="genre">
+			                  	
 			                  	<?php
-			                  		
+			                  		//echo "<option value='0'></option>";
 			                  		for($i=1;$i<count($group);$i++) {
 			                  			echo "<option value='{$i}'>{$group[$i][0]}</option>";
 			                  		}
 			                  	?>
+			                    
 			                  </select>
-							</div>
-			            </div>
-			            <div class="col-xs-9" style="padding-right:0; padding-left:0;">
-							<div class="col-xs-12" style="padding-left:0;">
-								<textarea class="form-control input-normal input-sm" rows="2" id="textArea" name="summary[]"></textarea>
-							</div>
-							<div class="col-xs-12" style="padding-left:0;">
-								<textarea class="form-control input-normal input-sm" rows="3" id="textArea" name="detail[]"><?php echo "\n\n&lt;a href='' target='_blank'&gt;参考WEBサイト&lt;/a&gt;"; ?></textarea>
-							</div>
-			            </div>
-			        </div>
-			    </div>
-			    <?php
-			    	}
-			    ?>
-			    
-			    
-			    
+			                  </div></div>
+              <div class="form-group">
+                <label for="textArea" class="col-lg-2 control-label">要点</label>
+                <div class="col-lg-10">
+                  <textarea class="form-control" rows="3" id="textArea" name="summary"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="textArea" class="col-lg-2 control-label">詳細</label>
+                <div class="col-lg-10">
+                  <textarea class="form-control" rows="3" id="textArea" name="detail"></textarea>
+                </div>
+              </div>
 
-		        <div class="form-group" style="margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;">
-		            <div class="col-xs-offset-3 col-xs-3">
-		                <button type="reset" class="btn btn-default btn-block">Reset</button>
-		            </div>
-					<div class="col-xs-3">
-		                <button type="submit" class="btn btn-primary btn-block">Submit</button>
-		            </div>
-		        </div>
-		        <div style="height: 100px"></div>
-		    </form>
-		</fieldset>
-    </div>
-</div>
+              <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                  <button type="reset" class="btn btn-default">Reset</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>iv>

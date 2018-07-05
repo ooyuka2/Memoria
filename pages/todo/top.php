@@ -40,6 +40,7 @@
 				if(isset($_GET['d']) && $_GET['d']=="keeper") echo "<li class='active'><a href='todo.php?d=keeper'>ŠÔŠÇ—</a></li>";
 				else echo "<li><a href='todo.php?d=keeper'>ŠÔŠÇ—</a></li>";
 				if(isset($_GET['d']) && $_GET['d']=="todo_make") echo "<li class='active'><a href='todo.php?d=todo_make'>ŠJ”­’†</a></li>";
+
 			?>
 	<li role="presentation" class="dropdown pull-right">
 <?php
@@ -68,6 +69,11 @@
 		<li role="presentation" class="dropdown-submenu"><a href="/Memoria/pages/todo.php?list=finishlist&file=old201804">2018”N04ŒˆÈ‘O</a></li>
 	</ul>
 </li>
+<?php
+				if(!isset($_GET['d']) || $_GET['d']=="todo") {
+					echo "<li class='pull-right'><input type='text' onKeyUp='todo_serch(this)' class='form-control input-sm' style='width:250px;margin:0'></li>";
+				}
+?>
 	  </ul>
 	<div style='width:95%; margin: auto'><!-- class='col-md-offset-1 col-md-10 col-sm-12' -->
       <div id="myTabContent" class="tab-content">

@@ -4,4 +4,7 @@
 	Application.ScreenUpdating = True
 
     Dim C As Variant, Ans As Long, i As Long, j As Long
+
+
+
     C = Range("A1:B10000")

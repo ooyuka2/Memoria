@@ -12,8 +12,8 @@
 		$file[$_GET['toroku']]['furi'] = $_POST['furi'];
 		$file[$_GET['toroku']]['summary'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary']);
 		$file[$_GET['toroku']]['detail'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail']);
-		$file[$_GET['toroku']]['syurui'] = $_POST['genre'];
 		//$file[$_GET['toroku']]['date'] = date('Y/m/d H:i:s');
+		$file[$_GET['toroku']]['syurui'] = $_POST['genre'];
 		//$file[$_GET['toroku']]['count'] = 0;
 		$file[$_GET['toroku']]['delete'] = 0;
 		
@@ -78,7 +78,7 @@
 			                  </select>
 			                  </div></div>
               <div class="form-group">
-                <label for="textArea" class="col-lg-2 control-label">óvì_</label>
+                <label for="textArea" class="col-lg-2 control-label">URL</label>
                 <div class="col-lg-10">
                   <textarea class="form-control" rows="3" id="textArea" name="summary"><?php 
                   	$summary = str_replace('<br>', '&#13;',$file[$_GET['p']]['summary']); 
@@ -88,7 +88,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="textArea" class="col-lg-2 control-label">è⁄ç◊</label>
+                <label for="textArea" class="col-lg-2 control-label">îıçl</label>
                 <div class="col-lg-10">
                   <textarea class="form-control" rows="3" id="textArea" name="detail"><?php 
                   	$detail = str_replace('<br>', '&#13;',$file[$_GET['p']]['detail']); 

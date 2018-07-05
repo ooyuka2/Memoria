@@ -1,5 +1,5 @@
 <?php
-	//header("Content-type: text/plain; charset=SJIS-win");
+	header("Content-type: text/plain; charset=SJIS-win");
 	include('../function.php');
 
 	if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])

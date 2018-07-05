@@ -7,24 +7,21 @@
 <?php
 	date_default_timezone_set('Asia/Tokyo');
 	if(isset($_GET['toroku'])) {
-		for($j=0; $j<count($_POST['name']);$j++) {
-			if($_POST['name'][$j]!="") {
-				$file[$_POST['id'][$j]]['name'] = $_POST['name'][$j];
-				$file[$_POST['id'][$j]]['furi'] = $_POST['furi'][$j];
-				$file[$_POST['id'][$j]]['summary'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary'][$j]);
-				$file[$_POST['id'][$j]]['detail'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail'][$j]);
-				$file[$_POST['id'][$j]]['syurui'] = $_POST['genre'][$j];
-				$file[$_POST['id'][$j]]['count'] = 0;
-				$file[$_POST['id'][$j]]['date'] = date('Y/m/d H:i:s');
-				$file[$_POST['id'][$j]]['delete'] = 0;
-				//echo $_POST['id'][$j];
-			}
+		if($_POST['name']!="") {
+			$file[$_GET['toroku']]['name'] = $_POST['name'];
+			$file[$_GET['toroku']]['furi'] = $_POST['furi'];
+			$file[$_GET['toroku']]['summary'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary']);
+			$file[$_GET['toroku']]['detail'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail']);
+			$file[$_GET['toroku']]['count'] = 0;
+			$file[$_GET['toroku']]['syurui'] = $_POST['genre'];
+			$file[$_GET['toroku']]['date'] = date('Y/m/d H:i:s');
+			$file[$_GET['toroku']]['delete'] = 0;
 		}
+		$_SESSION['change'] = "{$_POST['name']}を追加しました。";
 		writeCsvFile("../data/file.csv", $file);
 		header( "Location: ./file.php" );
 		exit();
 	}	
-	
 ?>
 <div class="row">
   <div class="col-lg-12">
@@ -48,59 +45,68 @@
 	          <?php
 	          	  $id=count($file); 
 		          echo "<form class='form-horizontal ' method='post' action='file.php?page=new&toroku={$id}' name='form_back'>";//form-inline
-			    for($j=0; $j<10;$j++) {
 		      ?>
-			      <div class="well bs-component">
-			        <div class="form-group" style="margin-bottom:0;">
-			            <div class="col-xs-3" style="padding-right:0;">
-							<div class="col-xs-12" style="padding-right:0;">
-								<?php
-									echo "<input type='search' autocomplete='on' list='keywords' class='form-control input-normal input-sm name' id='name' name='name[]' placeholder='メモ' onBlur='check_furi({$j})'>";
-									$id=count($file)+$j;
-									echo "<input type='hidden' name='id[]' value='{$id}'>";
-								?>
-							</div>
-							<div class="col-xs-12" style="padding-right:0;">
-								<input type="text" class="form-control input-normal input-sm furi" id="furi" name="furi[]" placeholder="ふりがな">
-							</div>
-			            	<div class="col-xs-12" style="padding-right:0;">
-			                  <select class="form-control input-normal input-sm" id="genre" name="genre[]">
+              <legend>入力欄</legend>
+              <div class="form-group">
+                <label for="inputEmail" class="col-lg-2 control-label">メモタイトル</label>
+                <div class="col-lg-10">
+                    <?php
+                		echo "<input type='text' class='form-control' id='name' name='name' placeholder='メモ' value='' onBlur='check_furi()'>";//
+                	?>
+                </div>
+
+              </div>
+              <div class="form-group">
+                <label for="inputEmail" class="col-lg-2 control-label">ふりがな</label>
+                <div class="col-lg-10">
+                    <?php
+                		echo "<input type='text' class='form-control' id='furi' name='furi' placeholder='メモ' value=''>";//
+                	?>
+                </div>
+
+              </div>
+              <div class="form-group">
+              	<div class="col-xs-offset-2 col-xs-3">
+			                  <select class="form-control input-normal input-sm" id="genre" name="genre">
+			                  	
 			                  	<?php
-			                  		
+			                  		//echo "<option value='0'></option>";
 			                  		for($i=1;$i<count($group);$i++) {
 			                  			echo "<option value='{$i}'>{$group[$i]['group']}</option>";
 			                  		}
 			                  	?>
+			                    
 			                  </select>
-							</div>
-			            </div>
-			            <div class="col-xs-9" style="padding-right:0; padding-left:0;">
-							<div class="col-xs-12" style="padding-left:0;">
-								<textarea class="form-control input-normal input-sm" rows="2" id="textArea" name="summary[]"></textarea>
-							</div>
-							<div class="col-xs-12" style="padding-left:0;">
-								<textarea class="form-control input-normal input-sm" rows="3" id="textArea" name="detail[]"></textarea>
-							</div>
-			            </div>
-			        </div>
-			    </div>
-			    <?php
-			    	}
-			    ?>
-			    
-			    
-			    
+			                  </div></div>
+              <div class="form-group">
+                <label for="textArea" class="col-lg-2 control-label">URL</label>
+                <div class="col-lg-10">
+                  <textarea class="form-control" rows="3" id="textArea" name="summary"><?php 
+                  	//$summary = str_replace('<br>', '&#13;',$file[$_GET['p']]['summary']); 
+                  	//echo $summary;
+                  	
+                  	?></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="textArea" class="col-lg-2 control-label">備考</label>
+                <div class="col-lg-10">
+                  <textarea class="form-control" rows="3" id="textArea" name="detail"><?php 
+                  	//$detail = str_replace('<br>', '&#13;',$file[$_GET['p']]['detail']); 
+                  	//echo $detail;
+                  	
+                  	?></textarea>
+                </div>
+              </div>
 
-		        <div class="form-group" style="margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;">
-		            <div class="col-xs-offset-3 col-xs-3">
-		                <button type="reset" class="btn btn-default btn-block">Reset</button>
-		            </div>
-					<div class="col-xs-3">
-		                <button type="submit" class="btn btn-primary btn-block">Submit</button>
-		            </div>
-		        </div>
-		        <div style="height: 100px"></div>
-		    </form>
-		</fieldset>
+              <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                  <button type="reset" class="btn btn-default">Reset</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
     </div>
-</div>

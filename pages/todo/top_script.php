@@ -3,6 +3,58 @@
 	$todo = readCsvFile2('../data/todo.csv');
  ?>
 <script language="javascript" type="text/javascript">
+
+// ##############################################################################################################################
+//
+//            todoの検索用の関数
+//
+// ##############################################################################################################################
+function todo_serch(searchtext){
+
+//
+
+	
+	if(searchtext.value != "") {
+		$.ajax({
+			beforeSend: function(xhr){
+				xhr.overrideMimeType('text/html;charset=Shift_JIS');
+			},
+			type: "GET",
+			scriptCharset:'Shift_JIS',
+			url: "./todo/todo_serch.php",
+			data: {"search":searchtext.value},
+		}).done(function(data, dataType) {
+			// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+
+			// PHPから返ってきたデータの表示
+			$("#todo_space").html(data);
+
+		}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+			// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+
+			// this;
+			// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+
+			// エラーメッセージの表示
+			alert('Error : ' + errorThrown);
+		});
+	} 
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}
+
+
+
+
+// ##############################################################################################################################
+//
+//            todo編集用の関数
+//
+// ##############################################################################################################################
+
+
+
+
 	var new_field = "<fieldset style='position: relative'><div class='well bs-component'><div class='clearfix'><span class='pull-right close' onClick='minus( minusnumber );'>&times;</span><span class='pull-right close'>　</span><span class='pull-right close' onClick='plus2( plusnumber );'>+</span></div><div class='form-group'><div class='col-xs-8'><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='タイトル'><input type='hidden' name='id[]' class='id'></div><div class='col-xs-12' style='margin-bottom:5px'><textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'></textarea></div><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='成果物'></div><div class='col-xs-2' style='margin-bottom:5px'><button type='button' class='btn btn-warning btn-xs' onClick='level_down(this)'>▲</button><button type='button' class='btn btn-warning btn-xs eee' onClick='level_up(this)'>▼</button></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>レベル</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm level' name='level[]' value='2' min='2' max='10' readonly></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>優先度</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm priority' name='priority[]' min='1' max='10'></div></div><div class='col-xs-4'><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期</label><input type='text' class='form-control input-normal input-sm noki' name='noki[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期の時間</label><input type='time' class='form-control input-normal input-sm time' name='time[]' step='900'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>開始予定時刻</label><input type='text' class='form-control input-normal input-sm kaisi' name='kaisi[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>終了予定日時</label><input type='text' class='form-control input-normal input-sm syuryo' name='syuryo[]'></div></div></div></div></fieldset>";
 	//<div class='form-group' style='margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;'><div class='col-xs-offset-3 col-xs-3'><button type='reset' class='btn btn-default btn-block'>Reset</button></div><div class='col-xs-3'><button type='submit' class='btn btn-primary btn-block'>Submit</button></div></div>
 	
@@ -341,7 +393,10 @@ function changeMempPanel(file, element, min, lock) {
 	
 	var makeform = $(element).parent().prev();
 	var makebotton = $(element).parent();
-	makeform.html("通信中。。。");
+	
+	var h = makeform.height();
+	
+	makeform.html("通信中。。。").height(h).css('background','url(\"/Memoria/img/gif-load.gif\") center center no-repeat').css('background-size','20% auto');
 
 	
 	$.ajax({
@@ -361,7 +416,7 @@ function changeMempPanel(file, element, min, lock) {
 		if(lock=='y') lockstr = "/checked";
 		else lockstr = "";
 		
-		makeform.html("<textarea id='memoform' class='form-control input-normal input-sml' onKeyPress='changeMemoform()'>"+data+"</textarea><input type='hidden' value='"+file+"'></input><span class='pull-right'><label class='checkbox-inline'><input type='checkbox' id='minisize' value='minisize' "+minstr+"> mini size</label><label class='checkbox-inline'><input type='checkbox' id='lockmemo' value='lock' "+lockstr+"> lock</label></span>");
+		makeform.html("<textarea id='memoform' class='form-control input-normal input-sml' onKeyPress='changeMemoform()'>"+data+"</textarea><input type='hidden' value='"+file+"'></input><span class='pull-right'><label class='checkbox-inline'><input type='checkbox' id='minisize' value='minisize' "+minstr+"> mini size</label><label class='checkbox-inline'><input type='checkbox' id='lockmemo' value='lock' "+lockstr+"> lock</label></span>").height("auto").css('background','');
 		//alert(data);
 		var textarea = document.getElementById("memoform");
 		if( textarea.scrollHeight > textarea.offsetHeight ){
@@ -392,7 +447,8 @@ function reReadMemoPanel(){
 
 	file = $("#memoform").next().val();
 	var makeMemoPanel = $("#memoform").parent();
-	makeMemoPanel.html("通信中。。。");
+	var h = makeMemoPanel.height();
+	makeMemoPanel.html("通信中。。。").height(h).css('background','url(\"/Memoria/img/gif-load.gif\") center center no-repeat').css('background-size','20% auto');
 	
 	
 	$.ajax({
@@ -407,7 +463,7 @@ function reReadMemoPanel(){
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 
 		// PHPから返ってきたデータの表示
-		makeMemoPanel.html(data);
+		makeMemoPanel.html(data).height("auto").css('background','');
 		$("#memobotton").remove();
 
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
@@ -434,7 +490,9 @@ function saveMemoPanel() {
 	if($('#minisize').prop('checked')) var min = "n";
 	else var min = "y";
 	
-	makeMemoPanel.html("保存中。。。");
+	var h = makeMemoPanel.height();
+
+	makeMemoPanel.html("保存中。。。").height(h).css('background','url(\"/Memoria/img/gif-load.gif\") center center no-repeat').css('background-size','20% auto');
 
 	
 	$.ajax({
@@ -449,7 +507,7 @@ function saveMemoPanel() {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 
 		// PHPから返ってきたデータの表示
-		makeMemoPanel.html(data);
+		makeMemoPanel.html(data).height("auto").css('background','');
 		$("#memobotton").remove();
 
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {

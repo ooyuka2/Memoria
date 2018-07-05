@@ -6,7 +6,7 @@
 		<div id="todo_tree_menu"></div>
 		
 	</div>
-	<div class="col-xs-6  col-sm-8">
+	<div class="col-xs-6 col-sm-8" id='todo_space'>
 <?php
 	if(isset($_GET['p']) && $_GET['p']<count($todo)) {
 		include('todo/detail.php');
