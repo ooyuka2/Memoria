@@ -7,6 +7,7 @@
 	$file = "todo";
 	if(isset($_GET['search'])) {
 		$searchtext=mb_convert_encoding($_GET['search'], "SJIS-win", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode");
+		$searchtext = mb_convert_kana($searchtext, "asHc");
 	} else {
 		$searchtext=" ";
 	}
@@ -22,7 +23,7 @@
 			$flug = 0;
 			for($j=1; $j<count($todo); $j++) {
 				if($todo[$j]['top'] == $i) {
-					if(strpos($todo[$j]['タイトル'],$searchtext) !== false || strpos($todo[$j]['作業内容'],$searchtext) !== false || strpos($todo[$j]['タイトル'],$searchtext) !== false || strpos($todo[$j]['作業内容'],$searchtext) !== false) {
+					if(serch_word_str($todo[$j]['タイトル'], $searchtext) || serch_word_str($todo[$j]['作業内容'], $searchtext) || serch_word_str($todo[$j]['所感'], $searchtext) || serch_word_str($todo[$j]['成果物'], $searchtext)) {
 						$flug = 1;
 						break;
 					}
@@ -31,19 +32,21 @@
 			
 			
 			if($flug ==1) {
-				echo "<div class='panel panel-primary' id='todoid{$todo[$top]['id']}'>";
-				echo "<div class='panel-heading'>";
-				echo "<a href='./todo.php?d=detail&p={$top}&file={$file}' style='color:#ffffff;'>";
-				echo "<h3 class='panel-title'>{$todo[$top]['タイトル']}</h3>";
-				echo "</a></div>";
-				echo "<div class='panel-body'>";
-				echo "{$todo[$top]['作業内容']}<br>";
-				echo "<div class='col-xs-12'><div class='progress'><div class='progress-bar progress-bar-success progress-bar-striped active' role='progressbar' style='width: {$todo[$top]['パーセンテージ']}%;'>";
-				echo "{$todo[$top]['パーセンテージ']}%";
-				echo "</div></div></div>";
-				echo "</div>";
-				echo "<div class='panel-footer'>{$todo[$top]['開始予定日']}　～　{$todo[$top]['納期']}</div>";
-				echo "</div>";
+				if ($todo[$todo[$top]['id']]['保留']==1) last_todo_panel($todo, $todo[$top]['id'], 'info', $file);
+				else {
+					date_default_timezone_set('Asia/Tokyo');
+					$day1 = new DateTime($todo[$todo[$top]['id']]['開始予定日']);
+					$day2 = new DateTime(date('Y/m/d'));
+					$finishday = new DateTime($todo[$todo[$top]['id']]['納期']);
+					$today = new DateTime(date('Y/m/d'));
+					if($finishday->diff($day2->modify('+1 day'))->format('%r%a 日') >= 0) {
+						last_todo_panel($todo, $todo[$top]['id'],'primary', $file);
+					}else if($finishday->diff($today->modify('+3 day'))->format('%r%a 日') >= 0) {
+						last_todo_panel($todo, $todo[$top]['id'],'warning', $file);
+					} else {
+						last_todo_panel($todo, $todo[$top]['id'],'danger', $file);
+					}
+				}
 			}
 		}
 	}
@@ -57,7 +60,7 @@
 			$flug = 0;
 			for($j=1; $j<count($todo); $j++) {
 				if($todo[$j]['top'] == $top) {
-					if(strpos($todo[$j]['タイトル'],$searchtext) !== false || strpos($todo[$j]['作業内容'],$searchtext) !== false || strpos($todo[$j]['タイトル'],$searchtext) !== false || strpos($todo[$j]['作業内容'],$searchtext) !== false) {
+					if(serch_word_str($todo[$j]['タイトル'], $searchtext) || serch_word_str($todo[$j]['作業内容'], $searchtext) || serch_word_str($todo[$j]['所感'], $searchtext) || serch_word_str($todo[$j]['成果物'], $searchtext)) {
 						$flug = 1;
 						break;
 					}
@@ -65,65 +68,39 @@
 			}
 			
 			if($flug ==1) {
-				echo "<div class='panel panel-primary' id='todoid{$todo[$top]['id']}'>";
-				echo "<div class='panel-heading'>";
-				echo "<a href='./todo.php?d=detail&p={$top}&file={$file}' style='color:#ffffff;'>";
-				echo "<h3 class='panel-title'>{$todo[$top]['タイトル']}</h3>";
-				echo "</a></div>";
-				echo "<div class='panel-body'>";
-				echo "{$todo[$top]['作業内容']}<br>";
-				echo "<div class='col-xs-12'><div class='progress'><div class='progress-bar progress-bar-success progress-bar-striped active' role='progressbar' style='width: {$todo[$top]['パーセンテージ']}%;'>";
-				echo "{$todo[$top]['パーセンテージ']}%";
-				echo "</div></div></div>";
-				echo "</div>";
-				echo "<div class='panel-footer'>{$todo[$top]['開始予定日']}　～　{$todo[$top]['納期']}</div>";
-				echo "</div>";
+				last_todo_panel($todo, $todo[$top]['id'],'success', $file);
 			}
 		}
 	}
 
+	$todo = readCsvFile2('../../data/old201804todo.csv');
+	$working = readCsvFile2('../../data/old201804working.csv');
+	$file = "old201804";
 	if(isset($searchtext)) {
-		$todo = readCsvFile2('../../data/old201804todo.csv');
-		$working = readCsvFile2('../../data/old201804working.csv');
-		$file = "old201804";
-		if(isset($searchtext)) {
-			$searchtext=$searchtext;
-		} else {
-			$searchtext="";
-		}
-		$c = 0;
-		$ary = array();
-		for($i=count($working)-1; $i>0; $i--) {
-			if($working[$i]['id'] != "deskwork" && $working[$i]['id'] != "periodically" && $todo[$todo[$working[$i]['id']]['top']]['完了'] == 1 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
-				$ary[$c] = $todo[$working[$i]['id']]['top'];
-				$c++;
-				$top = $todo[$working[$i]['id']]['top'];
-				
-				$flug = 0;
-				for($j=1; $j<count($todo); $j++) {
-					if($todo[$j]['top'] == $top) {
-						if(strpos($todo[$j]['タイトル'],$searchtext) !== false || strpos($todo[$j]['作業内容'],$searchtext) !== false || strpos($todo[$j]['タイトル'],$searchtext) !== false || strpos($todo[$j]['作業内容'],$searchtext) !== false) {
-							$flug = 1;
-							break;
-						}
+		$searchtext=$searchtext;
+	} else {
+		$searchtext="";
+	}
+	$c = 0;
+	$ary = array();
+	for($i=count($working)-1; $i>0; $i--) {
+		if($working[$i]['id'] != "deskwork" && $working[$i]['id'] != "periodically" && $todo[$todo[$working[$i]['id']]['top']]['完了'] == 1 && serch_word($todo[$working[$i]['id']]['top'], $ary)==0) {
+			$ary[$c] = $todo[$working[$i]['id']]['top'];
+			$c++;
+			$top = $todo[$working[$i]['id']]['top'];
+			
+			$flug = 0;
+			for($j=1; $j<count($todo); $j++) {
+				if($todo[$j]['top'] == $top) {
+					if(serch_word_str($todo[$j]['タイトル'], $searchtext) || serch_word_str($todo[$j]['作業内容'], $searchtext) || serch_word_str($todo[$j]['所感'], $searchtext) || serch_word_str($todo[$j]['成果物'], $searchtext)) {
+						$flug = 1;
+						break;
 					}
 				}
-				
-				if($flug ==1) {
-					echo "<div class='panel panel-primary' id='todoid{$todo[$top]['id']}'>";
-					echo "<div class='panel-heading'>";
-					echo "<a href='./todo.php?d=detail&p={$top}&file={$file}' style='color:#ffffff;'>";
-					echo "<h3 class='panel-title'>{$todo[$top]['タイトル']}</h3>";
-					echo "</a></div>";
-					echo "<div class='panel-body'>";
-					echo "{$todo[$top]['作業内容']}<br>";
-					echo "<div class='col-xs-12'><div class='progress'><div class='progress-bar progress-bar-success progress-bar-striped active' role='progressbar' style='width: {$todo[$top]['パーセンテージ']}%;'>";
-					echo "{$todo[$top]['パーセンテージ']}%";
-					echo "</div></div></div>";
-					echo "</div>";
-					echo "<div class='panel-footer'>{$todo[$top]['開始予定日']}　～　{$todo[$top]['納期']}</div>";
-					echo "</div>";
-				}
+			}
+			
+			if($flug ==1) {
+				last_todo_panel($todo, $todo[$top]['id'],'success', $file);
 			}
 		}
 	}

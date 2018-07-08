@@ -69,7 +69,10 @@ function panel_child($todo, $todoid, $working, $file) {
 					if($todo[$todoid]['•Û—¯'] == 0) echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$todoid}&file={$file}' class='btn btn-info btn-xs'>•Û—¯</a></div>";
 					else echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$todoid}&file={$file}' class='btn btn-link btn-xs'>‰ğœ</a></div>";
 					echo "<div class='col-xs-1'><a href='todo.php?page=whatdo&f=100&p={$todoid}&file={$file}' class='btn btn-success btn-xs'>Š®—¹</a></div>";
-				}//todo.php?page=whatdo&f=100
+				} else {
+					echo "<div class='col-xs-1 pull-right'><a href='todo.php?page=whatdo&f=100&p={$todoid}&file={$file}' class='btn btn-success btn-xs'>Š®—¹</a></div>";
+					echo "<div class='col-md-1 pull-right'><a href='./todo/nofinish.php?p={$todoid}' class='btn btn-warning btn-xs'>–¢Š®—¹</a></div>";
+				}
 				echo "<div style='height:50px;'></div>";
 				//panel_child($todo, $todo[$todoid]['id']);
 				

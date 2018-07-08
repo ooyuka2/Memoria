@@ -1,5 +1,7 @@
 <?php
 
+
+
 //##################################################################
 //				csv読み込み/書き込み用関数
 //##################################################################
@@ -82,7 +84,7 @@ function writeCsvFile2($filepath, $records) {
 }
 
 function json_safe_encode($data){
-    return json_encode($data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+		return json_encode($data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
 }
 
 
@@ -118,8 +120,10 @@ function select_script_page($folder, $page) {
 //				todo用関数
 //##################################################################
 
-function last_todo_panel($todo, $i, $pattern) {
+function last_todo_panel($todo, $i, $pattern, $file) {
 			echo "<div class='panel panel-{$pattern}' id='todoid{$todo[$i]['id']}'>";
+			
+			if($todo[$i]['保留'] == "") $todo[$i]['保留'] = 0;
 			
 			echo "<div class='panel-heading'>";
 			if($todo[$i]['level'] == 1) {
@@ -128,7 +132,7 @@ function last_todo_panel($todo, $i, $pattern) {
 				if($pattern=='warning') echo "style='color:#fa8072;'";
 				else if($pattern=='info') echo "style='color:#87ceeb;'";
 				echo ">";
-				echo "<h3 class='panel-title'>{$todo[$i]['タイトル']}</h3>";
+				echo "<h3 class='panel-title' oncontextmenu='tree_menu({$todo[$i]['id']}, {$todo[$i]['top']}, {$todo[$i]['パーセンテージ']}, {$todo[$i]['child']}, {$todo[$i]['保留']}, \"{$file}\");return false' >{$todo[$i]['タイトル']}</h3>";
 			}
 			else {
 				//$b = $todo[$i]['top'];
@@ -138,20 +142,23 @@ function last_todo_panel($todo, $i, $pattern) {
 				if($pattern=='warning') echo "style='color:#fa8072;'";
 				else if($pattern=='info') echo "style='color:#87ceeb;'";
 				echo ">";
-				echo "<h3 class='panel-title'>{$todo[$i]['タイトル']}<span class='pull-right'>{$todo[$todo[$i]['top']]['タイトル']}</span></h3>";
+				echo "<h3 class='panel-title' oncontextmenu='tree_menu({$todo[$i]['id']}, {$todo[$i]['top']}, {$todo[$i]['パーセンテージ']}, {$todo[$i]['child']}, {$todo[$i]['保留']}, \"{$file}\");return false'>{$todo[$i]['タイトル']}<span class='pull-right'>{$todo[$todo[$i]['top']]['タイトル']}</span></h3>";
 			}
 			echo "</a></div>";
 			echo "<div class='panel-body'>";
 			echo "";
 			echo "<div class='col-md-9 col-xs-6'><strong>作業内容　: </strong>{$todo[$i]['作業内容']}<br><strong>成果物　　: </strong>{$todo[$i]['成果物']}<br><strong>期間　　　: </strong>{$todo[$i]['開始予定日']}　～　{$todo[$i]['納期']}</div>";
-			//echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=whatdo&p={$i}' class='btn btn-default'>作業</a></div>";
-			echo "<div class='col-md-1 col-xs-2'><button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown' aria-expanded='false'>作業 <span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
-			for($j=ceil($todo[$i]['パーセンテージ']/10)*10; $j<100; $j+=10) 
-			echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=whatdo&p={$i}&f={$j}'>{$j}％まで完了</a></li>";
-			echo "</ul></div>";
-			if($todo[$i]['保留'] == 0) echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=wait&p={$i}' class='btn btn-info btn-sm'>保留</a></div>";
-			else echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=wait&p={$i}' class='btn btn-link btn-sm'>解除</a></div>";
-			echo "<div class='col-md-1 col-xs-2'><a href='todo.php?page=whatdo&f=100&p={$i}' class='btn btn-success btn-sm'>完了</a></div>";
+			echo "<div class='col-md-1 col-xs-2 pull-right'><a href='todo.php?page=whatdo&f=100&p={$i}' class='btn btn-success btn-sm'>完了</a></div>";
+			if($todo[$i]['完了'] != 1) {
+				if($todo[$i]['保留'] == 0) echo "<div class='col-md-1 col-xs-2 pull-right'><a href='todo.php?page=wait&p={$i}' class='btn btn-info btn-sm'>保留</a></div>";
+				else echo "<div class='col-md-1 col-xs-2 pull-right'><a href='todo.php?page=wait&p={$i}' class='btn btn-link btn-sm'>解除</a></div>";
+				echo "<div class='col-md-1 col-xs-2 pull-right'><button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown' aria-expanded='false'>作業 <span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
+				for($j=ceil($todo[$i]['パーセンテージ']/10)*10; $j<100; $j+=10) 
+				echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=whatdo&p={$i}&f={$j}'>{$j}％まで完了</a></li>";
+				echo "</ul></div>";
+			} else if($file == "todo") {
+				echo "<div class='col-md-1 col-xs-2 pull-right'><a href='./todo/nofinish.php?p={$i}' class='btn btn-warning btn-sm'>未完了</a></div>";
+			}
 			echo "</div>";
 			echo "</div>";
 	
@@ -248,14 +255,14 @@ function sort_by_noki_todo_priority($todo, $flag) {
 	for($i=$tmpcount; $i<count($tmparray); $i++) {
 		for($j=$i+1; $j<count($tmparray); $j++) {
 			if($tmparray[$i] == 0) {
-				$today =  new DateTime();
+				$today =	new DateTime();
 				$date1 = $today->modify('+1 day')->setTime(0,0,0);
 			} else {
 				$date1 = $todo[$tmparray[$i]]['納期']. " ".$todo[$tmparray[$i]]['納期時間'];
 				$date1 = new DateTime($date1);
 			}
 			if($tmparray[$j] == 0) {
-				$today =  new DateTime();
+				$today =	new DateTime();
 				$date2 = $today->modify('+1 day')->setTime(0,0,0);
 			} else {
 				$date2 = $todo[$tmparray[$j]]['納期']. " ".$todo[$tmparray[$j]]['納期時間'];
@@ -399,11 +406,13 @@ function write_todo_tree_title($todo, $id, $color) {
 		for($j=1; $j<$todo[$id]['level']; $j++) echo " <span class='tree-child-space'>　</span>";
 	}
 	
+	if($todo[$id]['保留'] == "") $todo[$id]['保留'] = 0;
+	
 	if($todo[$id]['child'] != 0) echo "<span class='glyphicon glyphicon-chevron-down tree-mark' aria-hidden='true' onClick='tree_operate(this)'></span>";
 	else if($todo[$id]['完了'] == 0) echo "<span class='glyphicon glyphicon-edit tree-mark' aria-hidden='true'></span>";
 	else echo "<span class='glyphicon glyphicon-check tree-mark' aria-hidden='true'></span>";
 	if(!isset($_GET['d'])) $_GET['d'] = "todo";
-	echo "<span class='text-{$color}' onDblClick='location.href = \"/Memoria/pages/todo.php?d={$_GET['d']}&p={$todo[$id]['id']}\"'  onMouseOver='this.classList.add(\"bg-info\")' onMouseOut='this.classList.remove(\"bg-info\")' onClick='gotoid(todoid{$todo[$id]['id']})' oncontextmenu='tree_menu({$todo[$id]['id']}, {$todo[$id]['top']}, {$todo[$id]['パーセンテージ']}, {$todo[$id]['child']}, {$todo[$id]['保留']}, \"{$file}\");return false' style='cursor: pointer;'>{$todo[$id]['タイトル']}</span>";
+	echo "<span class='text-{$color}' onDblClick='location.href = \"/Memoria/pages/todo.php?d={$_GET['d']}&p={$todo[$id]['id']}\"'	onMouseOver='this.classList.add(\"bg-info\")' onMouseOut='this.classList.remove(\"bg-info\")' onClick='gotoid(todoid{$todo[$id]['id']})' oncontextmenu='tree_menu({$todo[$id]['id']}, {$todo[$id]['top']}, {$todo[$id]['パーセンテージ']}, {$todo[$id]['child']}, {$todo[$id]['保留']}, \"{$file}\");return false' style='cursor: pointer;'>{$todo[$id]['タイトル']}</span>";
 }
 
 function check_child_finish($todo, $parent) {
@@ -475,6 +484,18 @@ function check_child_do($todo, $parent, $fdo) {
 		//writeCsvFile2("../../data/todo.csv", $todo);
 		if($todo[$parent]['level']!=1) $todo = check_parent_do($todo, $parent, $pfdo);
 	}*/
+	return $todo;
+}
+
+function check_parent_nofinish($todo, $child, $fdo) {
+	if($todo[$child]['level'] != 1) {
+		$parent = $todo[$child]['parent'];
+		$pfdo = $todo[$parent]['パーセンテージ'];
+		$todo[$parent]['パーセンテージ'] += $fdo/$todo[$parent]['child'];
+		$pfdo = $pfdo - $todo[$parent]['パーセンテージ'];
+		$todo[$parent]['完了'] = 0;
+		if($todo[$parent]['level']!=1) $todo = check_parent_nofinish($todo, $parent, $pfdo);
+	}
 	return $todo;
 }
 
@@ -574,28 +595,28 @@ function calendar($year, $month, $todo) {
 	// 月末日までループ
 	for ($i = 1; $i < $last_day + 1; $i++) {
 		// 曜日を取得
-	    $week = date('w', mktime(0, 0, 0, $month, $i, $year));
-	    // 1日の場合
-	    if ($i == 1) {
-	        // 1日目の曜日までをループ
-	        for ($s = 1; $s <= $week; $s++) {
-	            // 前半に空文字をセット
-	            $calendar[$j]['day'] = '';
-	            $j++;
-	        }
-	    }
-	    // 配列に日付をセット
-	    $calendar[$j]['day'] = $i;
-	    $j++;
-	    // 月末日の場合
-	    if ($i == $last_day) {
-	        // 月末日から残りをループ
-	        for ($e = 1; $e <= 6 - $week; $e++) {
-	            // 後半に空文字をセット
-	            $calendar[$j]['day'] = '';
-	            $j++;
-	        }
-	    }
+			$week = date('w', mktime(0, 0, 0, $month, $i, $year));
+			// 1日の場合
+			if ($i == 1) {
+					// 1日目の曜日までをループ
+					for ($s = 1; $s <= $week; $s++) {
+							// 前半に空文字をセット
+							$calendar[$j]['day'] = '';
+							$j++;
+					}
+			}
+			// 配列に日付をセット
+			$calendar[$j]['day'] = $i;
+			$j++;
+			// 月末日の場合
+			if ($i == $last_day) {
+					// 月末日から残りをループ
+					for ($e = 1; $e <= 6 - $week; $e++) {
+							// 後半に空文字をセット
+							$calendar[$j]['day'] = '';
+							$j++;
+					}
+			}
 	}
 ?>
 	<div class='calendar'>
@@ -608,19 +629,19 @@ function calendar($year, $month, $todo) {
 	<br>
 	<br>
 	<table>
-	    <tr>
-	        <th style='background: #e73562;'>日</th>
-	        <th>月</th>
-	        <th>火</th>
-	        <th>水</th>
-	        <th>木</th>
-	        <th>金</th>
-	        <th style='background: #009b9f;'>土</th>
-	    </tr>
+			<tr>
+					<th style='background: #e73562;'>日</th>
+					<th>月</th>
+					<th>火</th>
+					<th>水</th>
+					<th>木</th>
+					<th>金</th>
+					<th style='background: #009b9f;'>土</th>
+			</tr>
 	 
-	    <tr>
-	    <?php $cnt = 0; ?>
-	    <?php foreach ($calendar as $key => $value): ?>
+			<tr>
+			<?php $cnt = 0; ?>
+			<?php foreach ($calendar as $key => $value): ?>
 	 
 			<?php
 				$sa = sort_by_noki_priority($todo);
@@ -653,14 +674,14 @@ function calendar($year, $month, $todo) {
 			?>
 			</td>
 	 
-	    <?php if ($cnt == 7): ?>
-	    </tr>
-	    <tr>
-	    <?php $cnt = 0; ?>
-	    <?php endif; ?>
+			<?php if ($cnt == 7): ?>
+			</tr>
+			<tr>
+			<?php $cnt = 0; ?>
+			<?php endif; ?>
 	 
-	    <?php endforeach; ?>
-	    </tr>
+			<?php endforeach; ?>
+			</tr>
 	</table>
 	</div>
 <?php
@@ -713,6 +734,18 @@ function check2array($array, $text, $num) {
 		if($array[$i][$num] == $text) $flug = $i;
 	}
 	return $flug;
+}
+
+//##################################################################
+//				検索用関数
+//##################################################################
+
+function serch_word_str($word, $searchtext) {
+	//strpos($todo[$j]['タイトル'],$searchtext) !== false
+	$word = mb_convert_kana($word, "asHc");
+	
+	if(strpos($word,$searchtext) !== false) return true;
+	return false;
 }
 
 

@@ -178,7 +178,7 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 	}
 
 	echo "<div class='col-xs-12' style='margin-bottom:5px'>";
-	echo "<input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='タイトル' value='{$title}'>";
+	echo "<input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='タイトル' value='{$title}' required>";
 	echo "<input type='hidden' name='id[]' value='{$id}' class='id'>";
 	echo "</div>";
 	

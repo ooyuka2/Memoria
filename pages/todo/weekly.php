@@ -27,6 +27,10 @@
 					echo "いつもお世話になっております。<br>{$ini['myname']}です。<br>今週の週報を提出致します。<br><br><br>１．トピックス（従来の*コピペできる週次実績）<br>テーマ名：担当名<br><br><br><br>";
 					echo "２．テーマ進捗<br>";
 					
+					echo "<br>".$ini['thema1']."<br><br>";
+					//
+					echo "３．その他<br>";
+					
 					$monday = $today->modify('monday this week')->setTime(0,0,0);
 					
 					$c = 0;
@@ -119,8 +123,7 @@
 						
 						
 					}
-					//
-					echo "３．その他<br>";
+					
 					$ary = array();
 					$c = 0;
 					for($i=1; $i<count($working); $i++) {

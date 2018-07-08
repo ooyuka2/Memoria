@@ -11,6 +11,9 @@
 // ##############################################################################################################################
 function todo_serch(searchtext){
 	if(searchtext.value != "") {
+		//var h = makeform.height();
+		$("#todo_space").css('background','url(\"../img/grid.svg\") center center no-repeat').css('background-size','20% auto').css('min-height','500px');
+		
 		$.ajax({
 			beforeSend: function(xhr){
 				xhr.overrideMimeType('text/html;charset=Shift_JIS');
@@ -23,7 +26,7 @@ function todo_serch(searchtext){
 			// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 
 			// PHPから返ってきたデータの表示
-			$("#todo_space").html(data);
+			$("#todo_space").html(data).height("auto").css('background','');
 
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 			// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
@@ -35,13 +38,27 @@ function todo_serch(searchtext){
 			alert('Error : ' + errorThrown);
 		});
 	} else {
+		
+		var arg  = new Object;
+		url = location.search.substring(1).split('&');
+		
+		for(i=0; url[i]; i++) {
+			var k = url[i].split('=');
+			arg[k[0]] = k[1];
+		}
+		if(arg.list != undefined) {
+			var url = "./todo/" + arg.list + ".php";
+		} else {
+			var url = "./todo/memo.php";
+		}
+		
 		$.ajax({
 			beforeSend: function(xhr){
 				xhr.overrideMimeType('text/html;charset=Shift_JIS');
 			},
 			type: "GET",
 			scriptCharset:'Shift_JIS',
-			url: "./todo/memo.php",
+			url: url,
 			data: {"search":searchtext.value},
 		}).done(function(data, dataType) {
 			// doneのブロック内は、Ajax通信が成功した場合に呼び出される
@@ -75,7 +92,7 @@ function todo_serch(searchtext){
 
 
 
-	var new_field = "<fieldset style='position: relative'><div class='well bs-component'><div class='clearfix'><span class='pull-right close' onClick='minus( minusnumber );'>&times;</span><span class='pull-right close'>　</span><span class='pull-right close' onClick='plus2( plusnumber );'>+</span></div><div class='form-group'><div class='col-xs-8'><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='タイトル'><input type='hidden' name='id[]' class='id'></div><div class='col-xs-12' style='margin-bottom:5px'><textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'></textarea></div><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='成果物'></div><div class='col-xs-2' style='margin-bottom:5px'><button type='button' class='btn btn-warning btn-xs' onClick='level_down(this)'>▲</button><button type='button' class='btn btn-warning btn-xs eee' onClick='level_up(this)'>▼</button></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>レベル</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm level' name='level[]' value='2' min='2' max='10' readonly></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>優先度</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm priority' name='priority[]' min='1' max='10'></div></div><div class='col-xs-4'><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期</label><input type='text' class='form-control input-normal input-sm noki' name='noki[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期の時間</label><input type='time' class='form-control input-normal input-sm time' name='time[]' step='900'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>開始予定時刻</label><input type='text' class='form-control input-normal input-sm kaisi' name='kaisi[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>終了予定日時</label><input type='text' class='form-control input-normal input-sm syuryo' name='syuryo[]'></div></div></div></div></fieldset>";
+	var new_field = "<fieldset style='position: relative'><div class='well bs-component'><div class='clearfix'><span class='pull-right close' onClick='minus( minusnumber );'>&times;</span><span class='pull-right close'>　</span><span class='pull-right close' onClick='plus2( plusnumber );'>+</span></div><div class='form-group'><div class='col-xs-8'><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='タイトル' required><input type='hidden' name='id[]' class='id'></div><div class='col-xs-12' style='margin-bottom:5px'><textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'></textarea></div><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='成果物'></div><div class='col-xs-2' style='margin-bottom:5px'><button type='button' class='btn btn-warning btn-xs' onClick='level_down(this)'>▲</button><button type='button' class='btn btn-warning btn-xs eee' onClick='level_up(this)'>▼</button></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>レベル</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm level' name='level[]' value='2' min='2' max='10' readonly></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>優先度</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm priority' name='priority[]' min='1' max='10'></div></div><div class='col-xs-4'><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期</label><input type='text' class='form-control input-normal input-sm noki' name='noki[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期の時間</label><input type='time' class='form-control input-normal input-sm time' name='time[]' step='900'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>開始予定時刻</label><input type='text' class='form-control input-normal input-sm kaisi' name='kaisi[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>終了予定日時</label><input type='text' class='form-control input-normal input-sm syuryo' name='syuryo[]'></div></div></div></div></fieldset>";
 	//<div class='form-group' style='margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;'><div class='col-xs-offset-3 col-xs-3'><button type='reset' class='btn btn-default btn-block'>Reset</button></div><div class='col-xs-3'><button type='submit' class='btn btn-primary btn-block'>Submit</button></div></div>
 	
 	if(document.getElementsByClassName("new")) change_level();
@@ -345,6 +362,14 @@ function gotoid(todoid) {
 	return false;
 }
 
+
+// ##############################################################################################################################
+//
+//            右クリックメニュー用の関数
+//
+// ##############################################################################################################################
+
+
 var tree_menu_x = 0;
 var tree_menu_y = 0;
 
@@ -352,16 +377,21 @@ function tree_menu(id, top, pre, child, wait, todofile) {
 	tree_menu_x=event.clientX;//document.body.scrollLeft+
 	tree_menu_y=event.clientY;//document.body.scrollTop+
 	
-	var menu = "<div class='btn-group-vertical' style='width:180px; position: fixed;' id='tree_menu'>";
+	var menu = "<div class='btn-group-vertical' style='width:180px; position: fixed; ' id='tree_menu'>";//z-index: 1;
 
 	if(pre!=100) { //child == 0 && 
 		menu = menu + "<div class='btn-group' role='group'><button type='button' class='btn btn-default dropdown-toggle btn-xs btn-block' data-toggle='dropdown' aria-expanded='false'>作業設定<span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
+		
 		for(j=Math.ceil(pre/10)*10; j<100; j+=10) 
 		menu = menu + "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=whatdo&p="+id+"&f="+j+"'>"+j+"％まで完了</a></li>";
 		menu = menu + "</ul>";
 		menu = menu + "</div>";
 	}
+	
+	if(wait == "") wait = 0;
+	
 	if(todofile  === "todo") menu = menu + "<a href='todo.php?page=whatdo&f=100&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>完了設定</a>";
+	if(todofile  === "todo" && pre==100) menu = menu + "<a href='./todo/nofinish.php?p="+id+"' class='btn btn-default btn-xs btn-block'>未完了設定</a>";
 	menu = menu + "<a href='todo.php?d=todo&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>リンクを開く</a>";
 	menu = menu + "<a href='todo.php?d=todo&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>詳細画面を開く</a>";
 	if(todofile  === "todo") menu = menu + "<a href='todo.php?d=change&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>編集を開く</a>";
@@ -416,7 +446,7 @@ function changeMempPanel(file, element, min, lock) {
 	
 	var h = makeform.height();
 	
-	makeform.html("通信中。。。").height(h).css('background','url(\"/Memoria/img/gif-load.gif\") center center no-repeat').css('background-size','20% auto');
+	makeform.height(h).css('background','url(\"/Memoria/img/grid-gray.svg\") center center no-repeat').css('background-size','20% auto');
 
 	
 	$.ajax({
@@ -468,7 +498,7 @@ function reReadMemoPanel(){
 	file = $("#memoform").next().val();
 	var makeMemoPanel = $("#memoform").parent();
 	var h = makeMemoPanel.height();
-	makeMemoPanel.html("通信中。。。").height(h).css('background','url(\"/Memoria/img/gif-load.gif\") center center no-repeat').css('background-size','20% auto');
+	makeMemoPanel.height(h).css('background','url(\"/Memoria/img/grid-gray.svg\") center center no-repeat').css('background-size','20% auto');
 	
 	
 	$.ajax({
@@ -512,7 +542,7 @@ function saveMemoPanel() {
 	
 	var h = makeMemoPanel.height();
 
-	makeMemoPanel.html("保存中。。。").height(h).css('background','url(\"/Memoria/img/gif-load.gif\") center center no-repeat').css('background-size','20% auto');
+	makeMemoPanel.height(h).css('background','url(\"/Memoria/img/grid-gray.svg\") center center no-repeat').css('background-size','20% auto');
 
 	
 	$.ajax({
@@ -561,43 +591,6 @@ function switchingMemoPanel(element) {
 	element.children[0].classList.toggle("glyphicon-resize-small");
 }
 
-$(document).ready(function() {
-	/**
-	 * 送信ボタンクリック
-	 */
-	$('#sendmemo').click(function() {
-		// POSTメソッドで送るデータを定義します var data = {パラメータ名 : 値};
-		var data = {'request' : $('#request').val()};
-
-		/**
-		 * Ajax通信メソッド
-		 * @param type	: HTTP通信の種類
-		 * @param url	 : リクエスト送信先のURL
-		 * @param data	: サーバに送信する値
-		 */
-		$.ajax({
-			type: "POST",
-			url: "changeMemo.php",
-			data: data,
-		}).done(function(data, dataType) {
-			// doneのブロック内は、Ajax通信が成功した場合に呼び出される
-
-			// PHPから返ってきたデータの表示
-			alert(data);
-		}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-			// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
-
-			// this;
-			// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
-
-			// エラーメッセージの表示
-			alert('Error : ' + errorThrown);
-		});
-
-		// サブミット後、ページをリロードしないようにする
-		return false;
-	});
-});
 
 // ##############################################################################################################################
 //

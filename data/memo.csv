@@ -1,8 +1,8 @@
 filename,big,type,lock
 memo.txt,y,txt,n
-memo2.txt,n,txt,y
-memo3.txt,y,txt,y
-memo6.txt,y,txt,y
-memo8.txt,y,txt,n
-memo7.txt,y,txt,n
 memo0.txt,y,txt,n
+memo2.txt,y,txt,n
+memo3.txt,y,txt,n
+memo6.txt,y,txt,n
+memo7.txt,y,txt,n
+memo8.txt,y,txt,n

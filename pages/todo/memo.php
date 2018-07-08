@@ -1,15 +1,14 @@
 
 
 <?php
-	if(isset($todo)) {
-		$dir = "../data/memo/";
-		$memocsv = '../data/memo.csv';
-	} else {
-		$dir = "../../data/memo/";
-		$memocsv = '../../data/memo.csv';
-		include_once('../function.php');
+	//$ini = parse_ini_file('C:/xampp/htdocs/Memoria/data/config.ini');
+	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+	if(!isset($todo)) {
+		include_once($ini['dirWin'].'/pages/function.php');
 		header("Content-type: text/html; charset=SJIS-win");
 	}
+	$dir = $ini['dirWin']."/data/memo/";
+	$memocsv = $ini['dirWin'].'/data/memo.csv';
 	echo "<div class='row'>";
 	$memolist = readCsvFile2($memocsv);
 	

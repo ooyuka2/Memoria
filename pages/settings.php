@@ -1,23 +1,25 @@
 <?php
-	include('hedder.php');
+	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
+	include_once($ini['dirWin'].'/pages/function.php');
+	include($ini['dirWin'].'/pages/hedder.php');
 ?>
 <body>
 <?php
-	include('navigation.php');
+	include($ini['dirWin'].'/pages/navigation.php');
 	if(isset($_POST["kakutei"])) {
 		$ini['csstype'] = $_POST['kakutei'];
-		write_ini_file('../data/config.ini', $ini);
-		header( "Location: ./settings.php" );
+		write_ini_file($ini['dirWin'].'/data/config.ini', $ini);
+		header( "Location: ".$ini['dirhtml']."/pages/settings.php" );
 		exit();
 	}
 ?>
 
 
 <div class="jumbotron special">
-	<!--  <div class="honoka"></div> -->
+	<!--	<div class="honoka"></div> -->
 	<div class="container">
 		<div class="row clearfix" style="background-image:'../img/circle.png';">
-			<div class="col-xs-4 txtright col-xs-offset-8"><!--  outline -->
+			<div class="col-xs-4 txtright col-xs-offset-8"><!--	outline -->
 				<h1>Setting</h1>
 				<div class="download">
 					<div class="basedon small">
@@ -88,22 +90,22 @@
 </div>
 
 <?php
-	include('footer.php');
+	include($ini['dirWin'].'/pages/footer.php');
 ?>
 <script>
 	window.onload = function(){
-	    document.getElementsByClassName('setting')[0].classList.add('active');
+			document.getElementsByClassName('setting')[0].classList.add('active');
 	}
 </script>
 <script type="text/javascript">
 function setHref( $href ) {
-    jQuery( '#sampleLink' ).attr( 'href', $href );
+		jQuery( '#sampleLink' ).attr( 'href', $href );
 }
 function setHref2( $href ) {
-    jQuery( '#sampleLink2' ).attr( 'href', $href );
+		jQuery( '#sampleLink2' ).attr( 'href', $href );
 }setValue('honoka')
 function setValue( iro ) {
-    document.getElementById("kakutei").value=iro;
+		document.getElementById("kakutei").value=iro;
 }
 </script>
 </body>

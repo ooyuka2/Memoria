@@ -1,6 +1,8 @@
 <?php
 	if(!isset($_GET['p'])) {
-		header( "Location: ".$_SERVER['HTTP_REFERER'] );
+		$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+		header( "Location: ".$ini['dirhtml']."/pages/todo.php" );
+		
 		exit();
 	}
 	$working = readCsvFile2('../data/working.csv');

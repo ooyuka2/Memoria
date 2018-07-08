@@ -33,7 +33,7 @@
 				
 				for($i=0; $i<count($sa); $i++) {
 					
-					if($sa[$i]!=0) { 
+					if($sa[$i]!=0 && $todo[$sa[$i]]['íœ'] != 1) { 
 						$flug = 0;
 						
 						for($j=1; $j<count($todo); $j++) {

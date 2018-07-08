@@ -1,18 +1,20 @@
 <?php
-	include('hedder.php');
+	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
+	include_once($ini['dirWin'].'/pages/function.php');
+	include($ini['dirWin'].'/pages/hedder.php');
 ?>
 <style type="text/css">
 table {
-    width: 100%;
+		width: 100%;
 }
 table th {
-    background: #87cefa;
+		background: #87cefa;
 }
 table th,
 table td {
-    border: 1px solid #CCCCCC;
-    text-align: center;
-    padding: 5px;
+		border: 1px solid #CCCCCC;
+		text-align: center;
+		padding: 5px;
 }
 .calendar {
 	margin: 30px 10px;
@@ -20,7 +22,7 @@ table td {
 </style>
 <body>
 <?php
-	include('navigation.php');
+	include($ini['dirWin'].'/pages/navigation.php');
 	//$dictionary = readCsvFile('../data/dictionary.csv');
 	if(!isset($_GET['page'])) $_GET['page'] = "top";
 ?>
@@ -31,9 +33,9 @@ table td {
 	<div class="container" style="padding:25px 0 50px 0">
 <?php
 	echo "<h2>MyTool</h2>";
-	readTool("../data/tools/");
+	readTool($ini['dirWin']."/../data/tools/");
 	echo "<h2>MemoriaTool</h2>";
-	readTool("./tools/");
+	readTool($ini['dirWin']."/pages/tools/");
 ?>
 	</div>
 	</div>
@@ -41,12 +43,12 @@ table td {
 
 <?php
 	
-	include_once('footer.php');
+	include($ini['dirWin'].'/pages/footer.php');
 	select_script_page("tools", $_GET['page']);
 ?>
 <script>
 	window.onload = function(){
-	    document.getElementsByClassName('tools')[0].classList.add('active');
+			document.getElementsByClassName('tools')[0].classList.add('active');
 	}
 </script>
 </body>

@@ -1,21 +1,13 @@
 <script type="text/javascript" src="/Memoria/js/jquery.autoKana.js"></script>
 <script>
 	$(function() {
-		for(var i=0; i<document.getElementsByClassName("name").length; i++) {
-		    $.fn.autoKana('.name:eq('+i+')', '.furi:eq('+i+')', {
-		        katakana : false  //true：カタカナ、false：ひらがな（デフォルト）
-	    	});
-	    }
+	    $.fn.autoKana('#name', '#furi', {
+	        katakana : false  //true：カタカナ、false：ひらがな（デフォルト）
+	    });
 	});
-	
 /*  $(function(){
     $.fn.autoKana2('#name', '#furi');
   });*/
-function check_furi(i) {
-	if(document.getElementsByClassName("furi")[i].value=="")
-	document.getElementsByClassName("furi")[i].value=document.getElementsByClassName("name")[i].value;
-}
-
 document.onkeydown = 
    function (e) {
       if (event.ctrlKey ){
@@ -36,5 +28,8 @@ function (e) {
          }
       }
    }
-
+function check_furi() {
+	if(document.getElementById("furi").value=="")
+	document.getElementById("furi").value=document.getElementById("name").value;
+}
 </script>

@@ -18,7 +18,7 @@ if (!Modernizr.inputtypes.date) { //HTML5のinput要素に対応しているか判定
 			$(".noki").datepicker();
 			$(".kaisi").datepicker();
 			$(".syuryo").datepicker();
-	    });
+			});
 }*/
 
 var menuHeight = $(".navbar").height();
@@ -68,18 +68,18 @@ function setDateTime_start() {
 	
 	$( ".time" ).timeDropper({
 		//機能オプション
-		autoswitch: false,          //クリック位置移動
-		meridians: false,           //12時間 / 24時間表示
-		format: "HH:mm",           //時刻フォーマット
-		mousewheel: false,          //マウスホイール可否
-		init_animation: "fadeIn",   //初期アニメーション
-		setCurrentTime: false,       //現在時刻の設定
+		autoswitch: false,					//クリック位置移動
+		meridians: false,					 //12時間 / 24時間表示
+		format: "HH:mm",					 //時刻フォーマット
+		mousewheel: false,					//マウスホイール可否
+		init_animation: "fadeIn",	 //初期アニメーション
+		setCurrentTime: false,			 //現在時刻の設定
 
 		//スタイルオプション
-		primaryColor: "#1977cc",    //設定中の文字
-		textColor: "#555555",       //設定後の文字
+		primaryColor: "#1977cc",		//設定中の文字
+		textColor: "#555555",			 //設定後の文字
 		backgroundColor: "#ffffff", //背景
-		borderColor: "#1977cc"      //枠線
+		borderColor: "#1977cc"			//枠線
 	});
 }
 
@@ -112,5 +112,5 @@ function execCopy(string){
 
 <?php
 	//include('../data/setting.php');
-	echo '<script src="../img/'.$ini['csstype'].'/js/bootstrap.min.js"></script>';
+	echo '<script src="'.$ini['dirhtml'].'/img/'.$ini['csstype'].'/js/bootstrap.min.js"></script>';
 ?>

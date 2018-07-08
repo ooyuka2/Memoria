@@ -70,8 +70,8 @@
 	</ul>
 </li>
 <?php
-				if(!isset($_GET['d']) || $_GET['d']=="todo") {
-					echo "<li class='pull-right'><input type='text' onKeyUp='todo_serch(this)' class='form-control input-sm' style='width:250px;margin:0'></li>";
+				if(!isset($_GET['d']) || $_GET['d']=="todo" || $_GET['d']=="detail") {
+					echo "<li class='pull-right'><input type='text' onKeyUp='todo_serch(this)' class='form-control input-sm' style='width:250px;margin:0' placeholder='ŒŸõ'></li>";
 				}
 ?>
 	  </ul>

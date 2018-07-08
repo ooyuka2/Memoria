@@ -9,7 +9,7 @@ name,furi,summary,detail,count,syurui,date,delete
 うさぎ,うさぎ,http://localhost/Memoria/pages/file.php,,0,1,"2017/3/28 20:08",
 うさぎ,うさぎ,http://localhost/Memoria/pages/file.php,,0,1,"2017/3/28 20:08",
 VBA基礎文法最速マスター,VBAきそぶんぽうさいそくますたー,http://d.hatena.ne.jp/nattou_curry_2/20100129/1264787849,,0,1,"2017/4/2 19:24",0
-データ,でーた,"C:\xampp\htdocs\Memoria\data",,1,1,"2017/5/2 18:10",0
+データ,でーた,"C:\xampp\htdocs\Memoria\data",,3,1,"2017/5/2 18:10",0
 ページ1,ぺーじ,"C:\xampp\htdocs\Memoria\pages",,0,1,"2017/5/2 18:10",0
 ページ2,ぺーじ,"C:\xampp\htdocs\Memoria\pages",,0,1,"2017/5/2 18:10",0
 ページ3,ぺーじ,"C:\xampp\htdocs\Memoria\pages",,1,1,"2017/5/2 18:10",0
@@ -32,6 +32,8 @@ DateTimeクラス,DateTimeクラス,DateTimeクラスは日付時間を扱うオブジェクトです,,0,
 ページ,ぺーじ,"<a href='C:\xampp\htdocs\Memoria\pages' target='_blank'>C:\xampp\htdocs\Memoria\pages</a><br><a href='C:\xampp\htdocs\Memoria\pages' target='_blank'>C:\xampp\htdocs\Memoria\pages</a>",,0,4,"2017/5/2 18:10",0
 コナンの映画見る,コナンの映画見る,,,1,0,"2018/6/26 3:12",0
 コナンの映画見る,コナンの映画見る,,,1,0,"2018/6/26 3:13",0
-うさぎ兎,,http://kachibito.net/web-design/jquery-gantt.html,,3,3,"2018/07/06 04:21:55",0
+うさぎ兎,,http://kachibito.net/web-design/jquery-gantt.html,,4,3,"2018/07/06 04:21:55",0
 ゴシック,,http://bootstrap3.cyberlab.info/css/forms-supportedControls.html#usage4,,3,0,"2018/07/06 04:24:23",0
 jQueryのnext()やprev()などで兄弟要素を取得,,http://www.flatflag.nir87.com/next-1204,,0,3,"2018/07/06 04:30:54",0
+ローディング画像作成,,http://loadergenerator.com/,,0,3,"2018/07/07 21:31:24",0
+ローディング画像,ローディング画像,https://www.benricho.org/loading_images/webfont.html,,0,3,"2018/07/07 22:30:01",0

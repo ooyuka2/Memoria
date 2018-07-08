@@ -1,43 +1,30 @@
-<?php
-	$todo = readCsvFile2('../data/todo.csv');
-	$navTodoCount = 0;
-	//for($i=1; $i<count($todo); $i++) {
-	//	date_default_timezone_set('Asia/Tokyo');
-	//	$day1 = new DateTime($todo[$i]['ŠJŽn—\’è“ú']);
-	//	$day2 = new DateTime(date('Y/m/d'));
-	//	$interval = $day1->diff($day2);
-	//	if($todo[$i]['Š®—¹']==0 && $interval->format('%r%a “ú')>=0 && $todo[$i]['•Û—¯']==0 && $todo[$i]['child']==0 && $todo[$i]['íœ']==0) {
-	//		$navTodoCount++;
-	//	}
-	//}
-	//$navTodoCount = 0;
-?>
 <header>
-  <div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <a href="./"class="navbar-brand">
-        	<img src='../img/logo.png' alt='Memoria' style="width:auto;height:300%;position:relative;bottom:25px;">
-        </a>
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <div class="navbar-collapse collapse" id="navbar-main">
-        <ul class="nav navbar-nav">
-          <li class="top"><a href="./">	<span class="glyphicon glyphicon-home" aria-hidden="true" style='font-size:120%;'></span></a></li>
-          <li class="todo"><a href="./todo.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true" style='font-size:120%;'></span> ToDo<!--@<span class="badge"><?php echo $navTodoCount; ?></span>--></a></li>
-          <li class="file"><a href="./file.php"><span class="glyphicon glyphicon-file" aria-hidden="true" style='font-size:120%;'></span> file</a></li>
-          <li class="dictionary"><a href="./dictionary.php"><span class="glyphicon glyphicon-book" aria-hidden="true" style='font-size:120%;'></span> Dictionary</a></li>
-          <li class="tools"><a href="./tools.php"><span class="glyphicon glyphicon-cog" aria-hidden="true" style='font-size:120%;'></span> tools</a></li>
-          <li class="setting"><a href="./settings.php"><span class="glyphicon glyphicon-cog" aria-hidden="true" style='font-size:120%;'></span> Setting</a></li>
-          
-        </ul>
-      </div>
-    </div>
-  </div>
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a href="./"class="navbar-brand">
+					<img src='../img/logo.png' alt='Memoria' style="width:auto;height:300%;position:relative;bottom:25px;">
+				</a>
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="navbar-main">
+				<ul class="nav navbar-nav">
+				<?php
+					echo "<li class='top'><a href='".$ini['dirhtml']."/pages/'><span class='glyphicon glyphicon-home' aria-hidden='true' style='font-size:120%;'></span></a></li>";
+					echo "<li class='todo'><a href='".$ini['dirhtml']."/pages/todo.php'><span class='glyphicon glyphicon-tasks' aria-hidden='true' style='font-size:120%;'></span> ToDo</a></li>";
+					echo "<li class='file'><a href='".$ini['dirhtml']."/pages/file.php'><span class='glyphicon glyphicon-file' aria-hidden='true' style='font-size:120%;'></span> file</a></li>";
+					echo "<li class='dictionary'><a href='".$ini['dirhtml']."/pages/dictionary.php'><span class='glyphicon glyphicon-book' aria-hidden='true' style='font-size:120%;'></span> Dictionary</a></li>";
+					echo "<li class='tools'><a href='".$ini['dirhtml']."/pages/tools.php'><span class='glyphicon glyphicon-cog' aria-hidden='true' style='font-size:120%;'></span> tools</a></li>";
+					echo "<li class='setting'><a href='".$ini['dirhtml']."/pages/settings.php'><span class='glyphicon glyphicon-cog' aria-hidden='true' style='font-size:120%;'></span> Setting</a></li>";
+				?>
+				</ul>
+			</div>
+		</div>
+	</div>
 </header>
 
 
