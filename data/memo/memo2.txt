@@ -3,12 +3,11 @@
 エクセルのシートの中身すべて削除
 
 
-If ActiveSheet.AutoFilterMode Then  'シートにオートフィルタがかけられている場合'
-	If ActiveSheet.AutoFilter.FilterMode Then   'オートフィルタでデータが絞り込まれている場合'
-		ActiveSheet.Cells.AutoFilter    'オートフィルタのON/OFF切り替え'
-	End If
-End If
-
+    If ActiveSheet.AutoFilterMode Then  'シートにオートフィルタがかけられている場合'
+        If ActiveSheet.AutoFilter.FilterMode Then   'オートフィルタでデータが絞り込まれている場合'
+            ActiveSheet.Cells.AutoFilter    'オートフィルタのON/OFF切り替え'
+        End If
+    End If
 
 ActiveSheet.Cells.Clear 'アクティブシートのクリア'
 Sheets("Sheet2").Cells.Clear     'シート名を指定してクリア'

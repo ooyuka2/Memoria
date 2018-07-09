@@ -21,6 +21,8 @@
 		echo '<link id="sampleLink" rel="stylesheet" type="text/css" href="'.$ini['dirhtml'].'/img/'.$ini['csstype'].'/css/bootstrap.css?'.$updatefiletime.'">';
 		echo '<link id="sampleLink2" rel="stylesheet" type="text/css" href="'.$ini['dirhtml'].'/img/'.$ini['csstype'].'/css/example.css?'.$updatefiletime.'">';
 	?>
-	<?php echo '<link rel="stylesheet" type="text/css" href="'.$ini['dirhtml'].'/style.css? $updatefiletime;"/>'; ?>
+	<?php echo '<link rel="stylesheet" type="text/css" href="'.$ini['dirhtml'].'/style.css? $updatefiletime;"/>';
+	//echo '<link rel="stylesheet" href="'.$ini['dirhtml'].'/md/github-markdown.css">';
+	 ?>
 	
 </head>

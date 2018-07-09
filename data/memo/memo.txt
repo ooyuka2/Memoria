@@ -1,11 +1,21 @@
-右クリックメニューにｔｏｄｏfile名入れる
+PHP Markdown
+============
 
-<h2>エクセルVBA高速化のためのヒント</h2>
+### 右クリックメニューにｔｏｄｏfile名入れる
+
+    sss
+    ssss
+
+#エクセルVBA高速化のためのヒント
 ・処理前後に以下を入れる
 	Application.ScreenUpdating = False
 	Application.ScreenUpdating = True
 
     Dim C As Variant, Ans As Long, i As Long, j As Long
-a
 
     C = Range("A1:B10000")
+
+
+[rink](C:\xampp\htdocs\Memoria\data\memo)
+
+[rink](http://kachibito.net/css)

@@ -7,7 +7,8 @@
 	$file = "todo";
 	if(isset($_GET['search'])) {
 		$searchtext=mb_convert_encoding($_GET['search'], "SJIS-win", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode");
-		$searchtext = mb_convert_kana($searchtext, "asHc");
+		$searchtext = mb_convert_kana($searchtext, "asHc", "SJIS-win");
+		$searchtext = mb_strtolower($searchtext);
 	} else {
 		$searchtext=" ";
 	}
@@ -76,11 +77,6 @@
 	$todo = readCsvFile2('../../data/old201804todo.csv');
 	$working = readCsvFile2('../../data/old201804working.csv');
 	$file = "old201804";
-	if(isset($searchtext)) {
-		$searchtext=$searchtext;
-	} else {
-		$searchtext="";
-	}
 	$c = 0;
 	$ary = array();
 	for($i=count($working)-1; $i>0; $i--) {

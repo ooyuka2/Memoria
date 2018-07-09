@@ -1,8 +1,9 @@
-
-
 <?php
-	//$ini = parse_ini_file('C:/xampp/htdocs/Memoria/data/config.ini');
+
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+	require_once($ini['dirWin']."/md/md.php");
+
+	
 	if(!isset($todo)) {
 		include_once($ini['dirWin'].'/pages/function.php');
 		header("Content-type: text/html; charset=SJIS-win");
@@ -33,7 +34,14 @@
 	$i=1;
 	while($i<count($memolist)) {
 		if(file_exists ($dir.$memolist[$i]['filename'])) {
-			$memo = file_get_contents($dir.$memolist[$i]['filename']);
+			$markdown = file_get_contents($dir.$memolist[$i]['filename']);
+			$markdown = mb_convert_encoding($markdown, "UTF-8", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode");
+			$parser = new \cebe\markdown\GithubMarkdown();
+			//$parser = new \cebe\markdown\MarkdownExtra();
+			$memo = $parser->parse($markdown);
+			//$memo = $parser->parseParagraph($markdown);
+			$memo = mb_convert_encoding($memo, "SJIS-win", "UTF-8");
+			
 			makeDialogs($path, $memo, $memolist[$i]);
 			$i++;
 		} else {
@@ -44,5 +52,8 @@
 	}
 
 	echo "</div>";
+
+
+
 ?>
 

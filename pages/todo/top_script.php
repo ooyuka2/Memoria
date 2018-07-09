@@ -377,7 +377,7 @@ function tree_menu(id, top, pre, child, wait, todofile) {
 	tree_menu_x=event.clientX;//document.body.scrollLeft+
 	tree_menu_y=event.clientY;//document.body.scrollTop+
 	
-	var menu = "<div class='btn-group-vertical' style='width:180px; position: fixed; ' id='tree_menu'>";//z-index: 1;
+	var menu = "<div class='btn-group-vertical' style='width:180px; position: fixed; z-index: 1;' id='tree_menu'>";//
 
 	if(pre!=100) { //child == 0 && 
 		menu = menu + "<div class='btn-group' role='group'><button type='button' class='btn btn-default dropdown-toggle btn-xs btn-block' data-toggle='dropdown' aria-expanded='false'>作業設定<span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
@@ -473,6 +473,9 @@ function changeMempPanel(file, element, min, lock) {
 			textarea.style.height = textarea.scrollHeight+'px';
 		}
 		makebotton.prepend("<div id='memobotton'><button type='button' id='memosave' class='btn btn-info pull-right' onclick='saveMemoPanel()'>保存</button><span class='pull-right'>　</span><button type='button' id='memocancel' class='btn btn-default pull-right' onclick='reReadMemoPanel()'>キャンセル</button></div>");
+		
+		window.location.hash = "#"+file;
+		
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
 
@@ -511,10 +514,12 @@ function reReadMemoPanel(){
 		data: {"file":file,"do":"readtxt"},
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
-
+		
 		// PHPから返ってきたデータの表示
 		makeMemoPanel.html(data).height("auto").css('background','');
 		$("#memobotton").remove();
+		
+		window.location.hash = "#"+file;
 
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
@@ -559,6 +564,8 @@ function saveMemoPanel() {
 		// PHPから返ってきたデータの表示
 		makeMemoPanel.html(data).height("auto").css('background','');
 		$("#memobotton").remove();
+		
+		window.location.hash = "#"+file;
 
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。

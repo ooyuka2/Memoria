@@ -553,6 +553,7 @@ function makeDialogs($path, $memo, $memolist) {
 	echo "<div class='modal-dialog'>";
 	echo "<div class='modal-content'>";
 	echo "<div class='modal-header'>";
+	echo "<a name='{$memolist['filename']}'></a>";
 	//echo "<h4 class='modal-title'>{$title}</h4>";
 	//
 	//$title = htmlspecialchars($memo, ENT_IGNORE);
@@ -565,7 +566,7 @@ function makeDialogs($path, $memo, $memolist) {
 	echo "</div>";
 	if($memolist['lock'] == "n") echo "<div class='modal-body'>";
 	else echo "<div class='modal-body' style='display:none;'>";
-	$hyouzi = str_replace("\n","<br>",$memo);
+	$hyouzi = str_replace("<table>","<table class='table table-striped table-bordered table-hover table-condensed'>",$memo);
 	echo "<p>{$hyouzi}</p>";
 	echo "</div>";
 	
@@ -742,7 +743,8 @@ function check2array($array, $text, $num) {
 
 function serch_word_str($word, $searchtext) {
 	//strpos($todo[$j]['ƒ^ƒCƒgƒ‹'],$searchtext) !== false
-	$word = mb_convert_kana($word, "asHc");
+	$word = mb_convert_kana($word, "asHc", "SJIS-win");
+	$word = mb_strtolower($word);
 	
 	if(strpos($word,$searchtext) !== false) return true;
 	return false;

@@ -1,23 +1,32 @@
 <?php
 	header("Content-type: text/plain; charset=SJIS-win");
-	include('../function.php');
+	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+	include($ini['dirWin'].'/pages/function.php');
+	require_once($ini['dirWin']."/md/md.php");
 
 	if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])
-	   && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-	  // Ajaxリクエストの場合のみ処理する
+		&& strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+	// Ajaxリクエストの場合のみ処理する
 
 		if (isset($_POST['do'])) {
+			
 			if($_POST['do']=="readtxt") {
 				
-				$memo = file_get_contents("../../data/memo/".$_POST['file']);
-				$memo = mb_convert_encoding($memo, "SJIS-win", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode");
-				echo str_replace("\n","<br>",$memo);
+				$markdown = mb_convert_encoding(file_get_contents("../../data/memo/".$_POST['file']), "UTF-8", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode");
+				$parser = new \cebe\markdown\GithubMarkdown();
+				$memo = $parser->parse($markdown);
+				$memo = mb_convert_encoding($memo, "SJIS-win", "UTF-8");
+				$memo = str_replace("<table>","<table class='table table-striped table-bordered table-hover table-condensed'>",$memo);
+				
+				//echo str_replace("\n","<br>",$memo);
+				echo $memo;
 				
 			}else if($_POST['do']=="readform") {
 				
 				$memo = file_get_contents("../../data/memo/".$_POST['file']);
 				$memo = mb_convert_encoding($memo, "SJIS-win", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode");
 				echo $memo;
+				
 			} else if ($_POST['do']=="new") {
 				
 			} else if($_POST['do']=="change") {
@@ -30,9 +39,13 @@
 				$memolist[$num]['lock'] = $_POST['lockmemo'];
 				writeCsvFile2('../../data/memo.csv', $memolist);
 				
-				$memo = file_get_contents("../../data/memo/".$_POST['file']);
-				$memo = mb_convert_encoding($memo, "SJIS-win", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode");
-				echo str_replace("\n","<br>",$memo);
+				$markdown = mb_convert_encoding(file_get_contents("../../data/memo/".$_POST['file']), "UTF-8", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode");
+				$parser = new \cebe\markdown\GithubMarkdown();
+				$memo = $parser->parse($markdown);
+				$memo = mb_convert_encoding($memo, "SJIS-win", "UTF-8");
+				$memo = str_replace("<table>","<table class='table table-striped table-bordered table-hover table-condensed'>",$memo);
+
+				echo $memo;
 			} else {
 				echo 'errorエラーが発生いたしました';
 			}
