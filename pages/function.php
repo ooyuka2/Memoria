@@ -763,7 +763,7 @@ function equal_word_str($word, $searchtext) {
 	
 	if( strcmp($word, $searchtext) == 0 ) return true;
 	else return false;
-
+}
 
 ?>
 
