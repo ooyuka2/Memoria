@@ -688,6 +688,8 @@ function calendar($year, $month, $todo) {
 <?php
 }
 
+
+
 //##################################################################
 //				デバッグ用関数
 //##################################################################
@@ -742,13 +744,25 @@ function check2array($array, $text, $num) {
 //##################################################################
 
 function serch_word_str($word, $searchtext) {
-	//strpos($todo[$j]['タイトル'],$searchtext) !== false
 	$word = mb_convert_kana($word, "asHc", "SJIS-win");
 	$word = mb_strtolower($word);
+	
+	$searchtext = mb_convert_kana($searchtext, "asHc", "SJIS-win");
+	$searchtext = mb_strtolower($searchtext);
 	
 	if(strpos($word,$searchtext) !== false) return true;
 	return false;
 }
+
+function equal_word_str($word, $searchtext) {
+	$word = mb_convert_kana($word, "asHc", "SJIS-win");
+	$word = mb_strtolower($word);
+	
+	$searchtext = mb_convert_kana($searchtext, "asHc", "SJIS-win");
+	$searchtext = mb_strtolower($searchtext);
+	
+	if( strcmp($word, $searchtext) == 0 ) return true;
+	else return false;
 
 
 ?>

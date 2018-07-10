@@ -16,9 +16,6 @@ table td {
 		text-align: center;
 		padding: 5px;
 }
-.calendar {
-	margin: 30px 10px;
-}
 </style>
 <body>
 <?php
@@ -32,10 +29,14 @@ table td {
 	<div class='bkcolor'>
 	<div class="container" style="padding:25px 0 50px 0">
 <?php
+	/*
 	echo "<h2>MyTool</h2>";
-	readTool($ini['dirWin']."/../data/tools/");
+	readTool($ini['dirWin']."/data/tools/", $ini['dirhtml']."/data/tools/");
 	echo "<h2>MemoriaTool</h2>";
-	readTool($ini['dirWin']."/pages/tools/");
+	readTool($ini['dirWin']."/pages/tools/", $ini['dirhtml']."/pages/tools/");
+	*/
+	select_page("tools", $_GET['page']);
+	
 ?>
 	</div>
 	</div>
@@ -54,28 +55,3 @@ table td {
 </body>
 </html>
 
-<?php
-	function readTool($dir) {
-		// ディレクトリの存在を確認し、ハンドルを取得
-		if( is_dir( $dir ) && $handle = opendir( $dir ) ) {
-			// [ul]タグ
-			echo "<ul>" ;
-
-			// ループ処理
-			while( ($file = readdir($handle)) !== false ) {
-				// ファイルのみ取得
-				if( filetype( $path = $dir . $file ) == "file" ) {
-					// [li]タグ
-					echo "<li>" ;
-					// ファイル名を出力する
-					echo "<a href='". $path. "'>".$file."</a>" ;
-					// [li]タグ
-					echo "</li>" ;
-				}
-			}
-
-			// [ul]タグ
-			echo "</ul>" ;
-		}
-	}
-?>
