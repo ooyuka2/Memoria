@@ -4,6 +4,7 @@
 	
  ?>
 <script language="javascript" type="text/javascript">
+
 $(document).ready( function(){
 // ページ読み込み時に実行したい処理
 	<?php echo "read_tool_php('".$ini['dirhtml']."/pages/tools/tools.php', 'toolstab');"; ?>
@@ -44,7 +45,6 @@ function read_tool_php(filepath, tabname) {
 }
 
 
-
 // ##############################################################################################################################
 //
 //            比較用php読み込み関数
@@ -52,7 +52,7 @@ function read_tool_php(filepath, tabname) {
 // ##############################################################################################################################
 function goto_compare() {
 
-
+	
 
 	$("#tools").css('background','url(\"../img/grid.svg\") center center no-repeat').css('background-size','20% auto');
 	$.ajax({
@@ -61,8 +61,8 @@ function goto_compare() {
 		},
 		type: "POST",
 		scriptCharset:'Shift_JIS',
-		url: '<?php echo $ini['dirhtml']."/pages/tools/tools/compare.php;";?>',
-		data: {"txtA":document.getElementById('txtA').value, "txtB":document.getElementById('txtB').value },
+		url: <?php echo $ini['dirhtml']."/pages/tools/tools/compare.php;?>,
+		//data: {"txtA":document.getElementById('txtA').value, "txtB":document.getElementById('txtB').value },
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 
@@ -83,7 +83,6 @@ function goto_compare() {
 }
 
 
-
 // ##############################################################################################################################
 //
 //            0以上ならマイナスをつける関数
@@ -92,35 +91,42 @@ function goto_compare() {
 function abs(val) {
   return val < 0 ? -val : val;
 };
+
 // ##############################################################################################################################
 //
 //            週報用の関数
 //
 // ##############################################################################################################################
+
 function writeweekly(val) {
 	document.getElementsByClassName('write')[val].value = 1;
 }
+
 // ##############################################################################################################################
 //
 //            テキストエリアの高さの関数
 //
 // ##############################################################################################################################
+
 function changetextform(element) {
 	var textarea = element;
 	if( textarea.scrollHeight != textarea.offsetHeight ){
 		textarea.style.height = textarea.scrollHeight+'px';
 	}
 }
+
 // ##############################################################################################################################
 //
 //            使わない関数
 //
 // ##############################################################################################################################
+
 function tree_operate(element) {
 	$(element).parent().children('div').stop().slideToggle(500);
 	element.classList.toggle("glyphicon-chevron-right");
 	element.classList.toggle("glyphicon-chevron-down");
 }
+
 function tree_open() {
 	while($(".glyphicon-chevron-right").length > 0) {
 		var element = document.getElementsByClassName("glyphicon-chevron-right")[0];
@@ -129,6 +135,7 @@ function tree_open() {
 		element.classList.toggle("glyphicon-chevron-right");
 	}
 }
+
 function tree_close() {
 	while($(".glyphicon-chevron-down").length > 0) {
 		var element = document.getElementsByClassName("glyphicon-chevron-down")[0];
@@ -137,6 +144,7 @@ function tree_close() {
 		element.classList.toggle("glyphicon-chevron-down");
 	}
 }
+
 function gotoid(todoid) {
 	// スクロールの速度
 	var speed = 400; // ミリ秒
@@ -150,11 +158,15 @@ function gotoid(todoid) {
 	$('body,html').animate({scrollTop:position}, speed, 'swing');
 	return false;
 }
+
+
+
 // ##############################################################################################################################
 //
 //            メモパネル用の関数
 //
 // ##############################################################################################################################
+
 function changeMempPanel(file, element, min, lock) {
 	//location.href = path;
 	//var data = {'memoform' : $('#memoform').val()};
@@ -174,6 +186,7 @@ function changeMempPanel(file, element, min, lock) {
 	var h = makeform.height();
 	
 	makeform.height(h).css('background','url(\"/Memoria/img/grid-gray.svg\") center center no-repeat').css('background-size','20% auto');
+
 	
 	$.ajax({
 		beforeSend: function(xhr){
@@ -185,6 +198,7 @@ function changeMempPanel(file, element, min, lock) {
 		data: {"file":file,"do":"readform"},
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+
 		// PHPから返ってきたデータの表示
 		if(min=='n') minstr = "/checked";
 		else minstr = "";
@@ -203,15 +217,21 @@ function changeMempPanel(file, element, min, lock) {
 		
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+
 		// this;
 		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+
 		// エラーメッセージの表示
 		alert('Error : ' + errorThrown);
 	});
 	// サブミット後、ページをリロードしないようにする
 	return false;
 }
+
+
+
 function reReadMemoPanel(){
+
 	file = $("#memoform").next().val();
 	var makeMemoPanel = $("#memoform").parent();
 	var h = makeMemoPanel.height();
@@ -234,16 +254,20 @@ function reReadMemoPanel(){
 		$("#memobotton").remove();
 		
 		window.location.hash = "#"+file;
+
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+
 		// this;
 		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+
 		// エラーメッセージの表示
 		alert('Error : ' + errorThrown);
 	});
 	// サブミット後、ページをリロードしないようにする
 	return false;
 }
+
 function saveMemoPanel() {
 	file = $("#memoform").next().val();
 	var makeMemoPanel = $("#memoform").parent();
@@ -256,7 +280,9 @@ function saveMemoPanel() {
 	else var min = "y";
 	
 	var h = makeMemoPanel.height();
+
 	makeMemoPanel.height(h).css('background','url(\"/Memoria/img/grid-gray.svg\") center center no-repeat').css('background-size','20% auto');
+
 	
 	$.ajax({
 		beforeSend: function(xhr){
@@ -268,28 +294,36 @@ function saveMemoPanel() {
 		data: {"file":file,"do":"change","txt":text,"min":min,"lockmemo":lockmemo},
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+
 		// PHPから返ってきたデータの表示
 		makeMemoPanel.html(data).height("auto").css('background','');
 		$("#memobotton").remove();
 		
 		window.location.hash = "#"+file;
+
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+
 		// this;
 		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+
 		// エラーメッセージの表示
 		alert('Error : ' + errorThrown);
 	});
 	// サブミット後、ページをリロードしないようにする
 	return false;
 }
+
 function deleteMemoPanel(path, file) {
 	ret = confirm(file + "を本当に削除しますか？よろしいですか？");
 	if (ret == true){
 		document.getElementById(file).style.display="none";
 		location.href = "./todo/changeMemo.php?path=../"+path+"&do=delete";
 	}
+
+
 }
+
 function switchingMemoPanel(element) {
 	$(element).parent().next('div').stop().slideToggle(500);
 	$(element).parent().next().next('div').stop().slideToggle(500);
@@ -297,4 +331,6 @@ function switchingMemoPanel(element) {
 	element.children[0].classList.toggle("glyphicon-resize-full");
 	element.children[0].classList.toggle("glyphicon-resize-small");
 }
+
+
 </script>

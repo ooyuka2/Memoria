@@ -20,7 +20,6 @@ phpの関数などのメモ
 ### CSVファイルの書き込み（見出しなし）
 	writeCsvFile($CSVcsv, $array);
 
-
 ---
 ### テキストファイルの読み込み
 	$text = file_get_contents($ini['dirWin'].'/data/tools/tools_data/a.txt');
@@ -41,6 +40,11 @@ phpの関数などのメモ
 ---
 ### 文字列の完全一致判定（大文字小文字などは判定しない）
 	equal_word_str($word, $searchtext)
+
+---
+### 配列のデバッグ
+	print_r_pre($array);
+
 
 
 

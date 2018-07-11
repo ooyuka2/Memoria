@@ -10,7 +10,7 @@
 			<ul class="nav nav-tabs clearfix">
 			<?php
 				echo "<li class='active' onclick='read_tool_php(\"".$ini['dirhtml']."/pages/tools/tools.php\", \"toolstab\")' id='toolstab'><a>tools</a></li>";
-				echo "<li onclick='' id='comparetab'><a>比較ツール</a></li>";
+				echo "<li onclick='read_tool_php(\"".$ini['dirhtml']."/pages/tools/tools/compare_form.php\", \"comparetab\")' id='comparetab'><a>比較ツール</a></li>";
 				echo "<li onclick='' id='resulttab'><a>結果表示</a></li>";
 				echo "<li onclick='read_tool_php(\"".$ini['dirhtml']."/pages/tools/read_phpfunction_memo.php\", \"memotab\")' id='memotab'><a>php関数メモ</a></li>";
 				
