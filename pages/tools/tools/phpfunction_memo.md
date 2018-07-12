@@ -1,6 +1,7 @@
 phpの関数などのメモ
 =============
 ### ファイルパスの取得と関数読み込み
+	header("Content-type: text/html; charset=SJIS-win");
 	if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\data\config.ini');
 	include_once($ini['dirWin'].'/pages/function.php');
 

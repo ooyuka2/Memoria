@@ -37,7 +37,8 @@ function read_tool_php(filepath, tabname) {
 		// this;
 		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
 		// エラーメッセージの表示
-		alert('Error : ' + errorThrown);
+		//alert('Error : ' + errorThrown);
+		read_tool_php(filepath, tabname);
 	});
 	// サブミット後、ページをリロードしないようにする
 	return false;
@@ -50,10 +51,7 @@ function read_tool_php(filepath, tabname) {
 //            比較用php読み込み関数
 //
 // ##############################################################################################################################
-function goto_compare() {
-
-
-
+function goto_compare(type) {
 	$("#tools").css('background','url(\"../img/grid.svg\") center center no-repeat').css('background-size','20% auto');
 	$.ajax({
 		beforeSend: function(xhr){
@@ -61,7 +59,7 @@ function goto_compare() {
 		},
 		type: "POST",
 		scriptCharset:'Shift_JIS',
-		url: '<?php echo $ini['dirhtml']."/pages/tools/tools/compare.php;";?>',
+		url: '<?php echo $ini['dirhtml']."/pages/tools/tools/compare.php";?>',
 		data: {"txtA":document.getElementById('txtA').value, "txtB":document.getElementById('txtB').value },
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
@@ -76,12 +74,42 @@ function goto_compare() {
 		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
 
 		// エラーメッセージの表示
-		alert('Error : ' + errorThrown);
+		//alert('Error : ' + errorThrown);
+		goto_compare();
 	});
 	// サブミット後、ページをリロードしないようにする
 	return false;
 }
 
+function return_compareform(txtA, txtB) {
+	$("#tools").css('background','url(\"../img/grid.svg\") center center no-repeat').css('background-size','20% auto');
+	$.ajax({
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+		},
+		type: "POST",
+		scriptCharset:'Shift_JIS',
+		url: '<?php echo $ini['dirhtml']."/pages/tools/tools/compare_form.php";?>',
+		data: {"txtA":txtA, "txtB":txtB , "type":type},
+	}).done(function(data, dataType) {
+		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+
+		// PHPから返ってきたデータの表示
+		$("#tools").html(data).css('background','');
+
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+
+		// this;
+		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+
+		// エラーメッセージの表示
+		//alert('Error : ' + errorThrown);
+		goto_compare();
+	});
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}
 
 
 // ##############################################################################################################################
@@ -207,6 +235,7 @@ function changeMempPanel(file, element, min, lock) {
 		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
 		// エラーメッセージの表示
 		alert('Error : ' + errorThrown);
+		$("#tools").css('background','');
 	});
 	// サブミット後、ページをリロードしないようにする
 	return false;
@@ -240,6 +269,7 @@ function reReadMemoPanel(){
 		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
 		// エラーメッセージの表示
 		alert('Error : ' + errorThrown);
+		$("#tools").css('background','');
 	});
 	// サブミット後、ページをリロードしないようにする
 	return false;
@@ -279,6 +309,7 @@ function saveMemoPanel() {
 		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
 		// エラーメッセージの表示
 		alert('Error : ' + errorThrown);
+		$("#tools").css('background','');
 	});
 	// サブミット後、ページをリロードしないようにする
 	return false;

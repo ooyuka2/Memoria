@@ -127,7 +127,7 @@ function last_todo_panel($todo, $i, $pattern, $file) {
 			
 			echo "<div class='panel-heading'>";
 			if($todo[$i]['level'] == 1) {
-				echo "<a href='./todo.php?d=detail&p={$i}' ";
+				echo "<a href='./todo.php?d=detail&p={$i}&file={$file}' ";
 				if($pattern=='primary') echo "style='color:#ffffff;'";
 				if($pattern=='warning') echo "style='color:#fa8072;'";
 				else if($pattern=='info') echo "style='color:#87ceeb;'";
@@ -137,7 +137,7 @@ function last_todo_panel($todo, $i, $pattern, $file) {
 			else {
 				//$b = $todo[$i]['top'];
 				//echo "<a href='./todo.php?d=detail&p={$b}'";
-				echo "<a href='./todo.php?d=detail&p={$i}'";
+				echo "<a href='./todo.php?d=detail&p={$i}&file={$file}'";
 				if($pattern=='primary') echo "style='color:#ffffff;'";
 				if($pattern=='warning') echo "style='color:#fa8072;'";
 				else if($pattern=='info') echo "style='color:#87ceeb;'";

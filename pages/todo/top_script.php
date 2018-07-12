@@ -35,7 +35,8 @@ function todo_serch(searchtext){
 			// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
 
 			// エラーメッセージの表示
-			alert('Error : ' + errorThrown);
+			//alert('Error : ' + errorThrown);
+			todo_serch(searchtext):
 		});
 	} else {
 		
@@ -73,7 +74,8 @@ function todo_serch(searchtext){
 			// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
 
 			// エラーメッセージの表示
-			alert('Error : ' + errorThrown);
+			//alert('Error : ' + errorThrown);
+			todo_serch(searchtext):
 		});
 	}
 	// サブミット後、ページをリロードしないようにする
@@ -483,7 +485,8 @@ function changeMempPanel(file, element, min, lock) {
 		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
 
 		// エラーメッセージの表示
-		alert('Error : ' + errorThrown);
+		//alert('Error : ' + errorThrown);
+		changeMempPanel(file, element, min, lock);
 	});
 	// サブミット後、ページをリロードしないようにする
 	return false;
@@ -528,7 +531,8 @@ function reReadMemoPanel(){
 		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
 
 		// エラーメッセージの表示
-		alert('Error : ' + errorThrown);
+		//alert('Error : ' + errorThrown);
+		reReadMemoPanel();
 	});
 	// サブミット後、ページをリロードしないようにする
 	return false;
@@ -574,7 +578,8 @@ function saveMemoPanel() {
 		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
 
 		// エラーメッセージの表示
-		alert('Error : ' + errorThrown);
+		//alert('Error : ' + errorThrown);
+		saveMemoPanel();
 	});
 	// サブミット後、ページをリロードしないようにする
 	return false;

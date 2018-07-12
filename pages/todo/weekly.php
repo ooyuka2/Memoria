@@ -124,7 +124,7 @@
 						
 					}
 					
-					$ary = array();
+					//$ary = array();
 					$c = 0;
 					for($i=1; $i<count($working); $i++) {
 						

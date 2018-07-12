@@ -2,13 +2,10 @@
 	header("Content-type: text/plain; charset=SJIS-win");
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\..\data\config.ini');
 	include($ini['dirWin'].'/pages/function.php');
-	if(isset($_POST['txtA'])) {
-		$txtA = $_POST['txtA'];
-		$txtB = $_POST['txtB'];
-	} else {
-		$txtA = "";
-		$txtB = "";
-	}
+	if(isset($_POST['txtA'])) $txtA = mb_convert_encoding($_POST['txtA'], "SJIS-win", "UTF-8");
+	else $txtA = "";
+	if(isset($_POST['txtB'])) $txtB = mb_convert_encoding($_POST['txtB'], "SJIS-win", "UTF-8");
+	else $txtB = "";
 ?>
 
 
@@ -34,11 +31,11 @@
 </div>
 
 <div class="form-group" style="margin-bottom:0; position: fixed; bottom: 20px;right:0;width:1000px;">
-	<div class="col-xs-offset-3 col-xs-3">
-		<button type="button" class="btn btn-default btn-block" onClick="goto_compare();">•¶Žš—ñ‚Ìˆê’v”»’è</button>
+	<div class="col-xs-offset-6 col-xs-3">
+		<button type="button" class="btn btn-default btn-block" onClick="goto_compare('equal');">•¶Žš—ñ‚Ìˆê’v”»’è</button>
 	</div>
 	<div class="col-xs-3">
-		<button type="button" class="btn btn-primary btn-block" onClick="goto_compare();">•¶Žš—ñ‚ÌŠ®‘Sˆê’v”»’è</button>
+		<button type="button" class="btn btn-primary btn-block" onClick="goto_compare('all');">•¶Žš—ñ‚ÌŠ®‘Sˆê’v”»’è</button>
 	</div>
 </div>
 <div style="height: 100px"></div>
