@@ -9,25 +9,51 @@
 	else $txtB = "";
 	
 	
-	if(strpos($txtA , '\r\n') !== false && strpos($txtB, '\r\n') !== false) {
-		echo "データがあります";
+	$txtA = str_replace("\n","<br>",$txtA );
+	$txtB = str_replace("\n","<br>",$txtB );
+	if(strpos($txtA , '<br>') !== false && strpos($txtB, '<br>') !== false) {
+		//echo "データがあります";
+		
+		$arrayA = explode("<br>", $txtA);
+		$arrayB = explode("<br>", $txtB);
+		
+		$compareA = "";
+		$compareB = "";
+		$compareAB = "";
+		
+		
+		for($i=0; $i<count($arrayA); $i++) {
+			$flug = 0;
+			for($j=0; $j<count($arrayB); $j++) {
+				if($_POST['type'] == "equal" && equal_word_str($arrayA[$i], $arrayB[$j])) $flug = 1;
+				if($_POST['type'] == "allequal" && allequal_word_str($arrayA[$i], $arrayB[$j])) $flug = 1;
+			}
+			if($flug == 0 && $arrayA[$i] != "") $compareA .= $arrayA[$i]."<br>";
+			else if($arrayA[$i] != "") $compareAB .= $arrayA[$i]."<br>";
+		}
+		
+		for($i=0; $i<count($arrayB); $i++) {
+			$flug = 0;
+			for($j=0; $j<count($arrayA); $j++) {
+				if($_POST['type'] == "equal" && equal_word_str($arrayA[$j], $arrayB[$i])) $flug = 1;
+				if($_POST['type'] == "allequal" && allequal_word_str($arrayA[$j], $arrayB[$i])) $flug = 1;
+			}
+			if($flug == 0 && $arrayB[$i] != "") $compareB .= $arrayB[$i]."<br>";
+		}
+		
+		
+		echo "<div class = 'col-xs-6'>";
+		echo_panel("テキストエリアAのみ", $compareA, "info");
+		echo "</div><div class = 'col-xs-6'>";
+		echo_panel("テキストエリアBのみ", $compareB, "success");
+		echo "</div><div class = 'col-xs-12'>";
+		echo_panel("共通", $compareAB, "warning");
+		echo "</div>";
 
 	} else {
 		echo "データが足りません。";
 
 	}
-	
-	/*
-	
-	
-	
-		if($_POST['type'] == "equal") 
-		else 
-	
-	
-	
-	
-	*/
 ?>
 
 <div class="form-group" style="margin-bottom:0; position: fixed; bottom: 20px;right:0;width:1000px;">

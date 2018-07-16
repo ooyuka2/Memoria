@@ -1,14 +1,19 @@
-<div class='panel panel-default'>
-	<div class='panel-body'>
-		<div class='clearfix'>
-			<button class='btn btn-default pull-right btn-xs' onclick='tree_close()'>•Â‚¶‚é</button>
-			<button class='btn btn-default pull-right btn-xs' style='margin:0 10px' onclick='tree_open()'>ŠJ‚­</button>
-			<a href="/Memoria/pages/todo.php?page=whatdo&p=deskwork&f=0" class="btn btn-link active btn-xs">’èŠúì‹Æ</a>
-			<a href="/Memoria/pages/todo.php?page=whatTodayDo" class="btn btn-link active btn-xs">¡“ú‚â‚é‚±‚Æ</a>
-		</div>
 <?php
+	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+	if(!isset($todo)) {
+		include_once($ini['dirWin'].'/pages/function.php');
+		header("Content-type: text/html; charset=SJIS-win");
+		$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
+		if(isset($_GET['file']) && $_GET['file'] == "old201804") {
+			$todo = readCsvFile2($ini['dirWin'].'/data/old201804todo.csv');
+			$file = "old201804";
+		} else {
+			$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
+			$file = "todo";
+		}
+	}
 	if(isset($_GET['d']) && $_GET['d']=="detail" && isset($_GET['p'])) $sa[0] = $todo[$_GET['p']]['top'];
-	else if((isset($_GET['list']) && $_GET['list']=="finishlist") || (isset($_GET['p']) && $todo[$todo[$_GET['p']]['top']]['Š®—¹']==1))
+	else if((isset($_GET['list']) && $_GET['list']=="finishlist") || (isset($_GET['p']) && $_GET['p'] != 0 && $todo[$todo[$_GET['p']]['top']]['Š®—¹']==1))
 		$sa = sort_by_noki_todo_priority($todo, false);
 	else $sa = sort_by_noki_todo_priority($todo, true);
 	for($i=0; $i<count($sa); $i++) {
@@ -18,6 +23,7 @@
 			echo "<hr>";
 		}
 	}
+	//$_GET['d']
+	//$_GET['p']
+	//$_GET['list']
 ?>
-	</div>
-</div>

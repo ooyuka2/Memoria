@@ -39,7 +39,10 @@ phpの関数などのメモ
 	serch_word_str($word, $searchtext)
 
 ---
-### 文字列の完全一致判定（大文字小文字などは判定しない）
+### 文字列の完全一致判定（大文字小文字などは区別する）
+	allequal_word_str($word, $searchtext)
+
+### 文字列の完全一致判定（大文字小文字などは区別しない）
 	equal_word_str($word, $searchtext)
 
 ---

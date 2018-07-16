@@ -1,12 +1,15 @@
 <?php
-	if(!isset($_GET['day']) && !isset($_GET['mounth']) && !isset($_GET['year'])) {
+	set_time_limit(120);
+	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+	if(!isset($todo)) {
+		include_once($ini['dirWin'].'/pages/function.php');
+		header("Content-type: text/html; charset=SJIS-win");
+	}
 ?>
 	<div class="row">
-		<div class="col-lg-12">
+		<div class="col-lg-12" id="show_calender">
 			<?php
-			$year = date('Y');
-			$month = date('n');
-			calendar($year, $month, $todo);
+				calendar($_POST['year'], $_POST['mounth']);
 			?>
 		</div>
 		<!--
@@ -18,20 +21,7 @@
 		-->
 	</div>
 <?php
-	} else if(isset($_GET['mounth']) && isset($_GET['year'])) {
-?>
-	<div class="row">
-		<div class="col-lg-12">
-			<?php
-				calendar($_GET['year'], $_GET['mounth'], $todo);
-			?>
-		</div>
-	</div>
-<?php
-	}
-	//if(isset($_GET['day']) && isset($_GET['mounth']) && isset($_GET['year'])) {
-?>
-<?php
+
 		////$sa = sort_by_noki_priority($todo);
 		//$day = $_GET['year'] ."/". $_GET['mounth'] ."/". $_GET['day'];
 		////$whatday = new DateTime($day);

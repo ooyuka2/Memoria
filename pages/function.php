@@ -584,11 +584,92 @@ function makeDialogs($path, $memo, $memolist) {
 	echo "</div>";
 	echo "</div>";
 }
+
+
+//##################################################################
+//				週報用関数
+//##################################################################
+
+function write_weekly($todo, $working, $weekly, $i, $weeklyid, $workK) {
+	
+	if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
+	$TodayS = date('Ymd');
+	$today = new DateTime($TodayS);
+	$monday = $today->modify('monday this week')->setTime(0,0,0);
+	//if($weekly[$weeklyid]['parentid'] == 0) echo "KPI：{$weekly[$weeklyid]['KPI']}<br>";
+	$flug = $workK;
+	if($flug == 0) {
+		for($j=1; $j<count($working); $j++) {
+			if($working[$j]['id'] != "periodically" && $todo[$working[$j]['id']]['top'] == $i) {
+				$workday = new DateTime($working[$j]['day']);
+				if($workday->diff($monday)->format('%R%a') <= 0) {
+					$flug = 1;
+					break;
+				}
+			}
+		}
+	}
+	if($weeklyid != -1) {
+		$lastday = new DateTime($weekly[$weeklyid]['最終更新日時']);
+		if(($lastday->diff($monday)->format('%R%a')) <= 0) echo "<span class='text-info'>";
+		else echo "<span class='text-danger'>";
+	} else echo "<span class='text-info'>";
+	if((($weeklyid != -1) && $weekly[$weeklyid]['parentid'] == 0) || ($weeklyid == -1)) {
+		if($flug == 0) echo "〇";
+		else echo "●";
+	} else {
+		if($flug == 0) echo "　□";
+		else echo "　■";
+	}
+
+	echo "{$todo[$i]['タイトル']}：";
+	if($weeklyid != -1) echo "{$weekly[$weeklyid]['担当']}";
+	else echo $ini['myname'];
+	if($todo[$i]['完了']==1) echo "【：完了】</span><br>";
+	else echo "</span><br>";
+	if($weeklyid != -1) $workdetail = str_replace('<br>', '<br>　　　', $weekly[$weeklyid]['テーマ概要']);
+	else $workdetail = str_replace('<br>', '<br>　　　', $todo[$i]['作業内容']);
+	echo "　＜テーマ概要＞<br>　　　{$workdetail}<br>";
+	if($weeklyid != -1 && $weekly[$weeklyid]['済み'] != "") {
+		echo "　＜済み＞<br>";
+		$workdetail = str_replace('<br>', '<br>　　　', $weekly[$weeklyid]['済み']);
+		echo "　　　{$workdetail}<br>";
+	}
+	if($flug != 0) {
+		echo "　＜進捗＞<br>";
+		if($weeklyid != -1) {
+			$workdetail = str_replace('<br>', '<br>　　　', $weekly[$weeklyid]['進捗']);
+			echo "　　　{$workdetail}<br>";
+		} else {
+			for($j=1; $j<count($working); $j++) {
+				$workday = new DateTime($working[$j]['day']);
+				if($working[$j]['id'] != "periodically" && $workday->diff($monday)->format('%R%a') <= 0 && $todo[$working[$j]['id']]['top'] == $i) {
+					echo "　　　{$workday->format('n/d')}：{$todo[$working[$j]['id']]['タイトル']}→<br>";
+				}
+			}
+		}
+	}
+	if($todo[$i]['完了'] == 0) {
+		echo "　＜今後の予定＞<br>";
+		if($weeklyid != -1) {
+			$workdetail = str_replace('<br>', '<br>　　　', $weekly[$weeklyid]['今後の予定']);
+			echo "　　　{$workdetail}<br>";
+		} else {
+			for($j=1; $j<count($todo); $j++) {
+				if($todo[$j]['top'] == $todo[$i]['id'] && $todo[$j]['完了']==0) {
+					$temp = new DateTime($todo[$j]['納期']);
+					echo "　　　～{$temp->format('n/d')}　：{$todo[$j]['タイトル']}→<br>";
+				}
+			}
+		}
+	}
+	
+}
 //##################################################################
 //				カレンダー用関数
 //##################################################################
 // 現在の年月を取得
-function calendar($year, $month, $todo) {
+function calendar($year, $month) {
 	// 月末日を取得
 	$last_day = date('j', mktime(0, 0, 0, $month + 1, 0, $year));
 	$calendar = array();
@@ -645,7 +726,7 @@ function calendar($year, $month, $todo) {
 			<?php foreach ($calendar as $key => $value): ?>
 	 
 			<?php
-				$sa = sort_by_noki_priority($todo);
+				//$sa = sort_by_noki_priority($todo);
 				if($value['day']!="") {
 					if($thisyear == $year && $thismonth == $month && $thisday == $value['day'])
 						echo "<td style='background: #fff352;'>";
@@ -688,6 +769,22 @@ function calendar($year, $month, $todo) {
 <?php
 }
 
+//##################################################################
+//				パネル表示用関数
+//##################################################################
+
+function echo_panel($title, $txt, $pattern) {
+			echo "<div class='panel panel-{$pattern}' style='text-align:start;'>";
+			
+			echo "<div class='panel-heading'>";
+			echo "<h3 class='panel-title'>{$title}</h3>";
+			echo "</div>";
+			echo "<div class='panel-body'>";
+			echo $txt;
+			echo "</div>";
+			echo "</div>";
+	
+}
 
 
 //##################################################################
@@ -760,6 +857,12 @@ function equal_word_str($word, $searchtext) {
 	
 	$searchtext = mb_convert_kana($searchtext, "asHc", "SJIS-win");
 	$searchtext = mb_strtolower($searchtext);
+	
+	if( strcmp($word, $searchtext) == 0 ) return true;
+	else return false;
+}
+
+function allequal_word_str($word, $searchtext) {
 	
 	if( strcmp($word, $searchtext) == 0 ) return true;
 	else return false;

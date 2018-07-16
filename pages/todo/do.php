@@ -10,7 +10,7 @@
 		} else {
 			$working[$www]['id'] = "periodically";
 		}
-		if(isset($_POST['date'])) $working[$www]['day'] = date($_POST['date']);
+		if(isset($_POST['date'])) $working[$www]['day'] = date($_POST['date']." ".$_POST['finishTime'].":00");
 		else $working[$www]['day'] = date('Y/m/d H:i:s');
 		$working[$www]['per'] = $_POST['f'];
 		$working[$www]['startTime'] = $_POST['startTime'];

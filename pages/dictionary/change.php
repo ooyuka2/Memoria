@@ -7,8 +7,8 @@
 	if(isset($_GET['toroku'])) {
 		$dictionary[$_GET['toroku']][0] = $_POST['name'];
 		$dictionary[$_GET['toroku']][1] = $_POST['furi'];
-		$dictionary[$_GET['toroku']][2] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary']);
-		$dictionary[$_GET['toroku']][3] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail']);
+		$dictionary[$_GET['toroku']][2] = rtrim(str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary']), '\\');
+		$dictionary[$_GET['toroku']][3] = rtrim(str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail']), '\\');
 		$dictionary[$_GET['toroku']][4] = $_POST['genre'];
 		//$dictionary[$_GET['toroku']][5] = date('Y/m/d H:i:s');
 		$dictionary[$_GET['toroku']][6] = 0;

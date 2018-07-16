@@ -13,7 +13,7 @@
 				echo "<li onclick='read_tool_php(\"".$ini['dirhtml']."/pages/tools/tools/compare_form.php\", \"comparetab\")' id='comparetab'><a>”äŠrƒc[ƒ‹</a></li>";
 				echo "<li onclick='' id='resulttab'><a>Œ‹‰Ê•\Ž¦</a></li>";
 				echo "<li onclick='read_tool_php(\"".$ini['dirhtml']."/pages/tools/read_phpfunction_memo.php\", \"memotab\")' id='memotab'><a>phpŠÖ”ƒƒ‚</a></li>";
-				
+				echo "<li onclick='read_tool_php(\"".$ini['dirhtml']."/pages/tools/read_phpfunction_memo.php\", \"Programtab\")' id='Programtab'><a>Program</a></li>";
 				
 				
 			?>

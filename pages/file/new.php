@@ -10,8 +10,8 @@
 		if($_POST['name']!="") {
 			$file[$_GET['toroku']]['name'] = $_POST['name'];
 			$file[$_GET['toroku']]['furi'] = $_POST['furi'];
-			$file[$_GET['toroku']]['summary'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary']);
-			$file[$_GET['toroku']]['detail'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail']);
+			$file[$_GET['toroku']]['summary'] = rtrim(str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['summary']), '\\');
+			$file[$_GET['toroku']]['detail'] = rtrim(str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail']), '\\');
 			$file[$_GET['toroku']]['count'] = 0;
 			$file[$_GET['toroku']]['syurui'] = $_POST['genre'];
 			$file[$_GET['toroku']]['date'] = date('Y/m/d H:i:s');

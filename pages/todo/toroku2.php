@@ -5,6 +5,7 @@
 	
 	include('../function.php');
 	$todo = readCsvFile2('../../data/todo.csv');
+	if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
 	$id=$_POST['id'][0];
 	$number = $id;
 	date_default_timezone_set('Asia/Tokyo');
@@ -160,11 +161,12 @@
 			$weekly[$c]["todoid"] = $number;
 			$weekly[$c]["テーマ概要"] = $todo[$number]['作業内容'];
 			$weekly[$c]["KPI"] = "";
-			$weekly[$c]["担当"] = $myname;
+			$weekly[$c]["担当"] = $ini['myname'];
 			$weekly[$c]["済み"] = "";
 			$weekly[$c]["進捗"] = "";
 			$weekly[$c]["今後の予定"] = "";
-			$weekly[$c]["parentid"] = "0";
+			if($_POST['theme2'][0] == $ini['incidentID'] || $_POST['theme2'][0] == $ini['servicesID']) $weekly[$c]["parentid"] = $_POST['theme2'][0];
+			else $weekly[$c]["parentid"] = "0";
 			$weekly[$c]["最終更新日時"] = date('Y/m/d H:i:s');
 			$weekly[$c]["表示"] = "0";
 			writeCsvFile2("../../data/weekly.csv", $weekly);

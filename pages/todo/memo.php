@@ -46,8 +46,8 @@
 			$i++;
 		} else {
 			unset($memolist[$i]);
-	$memolist = array_values($memolist);
-	writeCsvFile2($memocsv, $memolist);
+			$memolist = array_values($memolist);
+			writeCsvFile2($memocsv, $memolist);
 		}
 	}
 

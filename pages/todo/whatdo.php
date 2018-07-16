@@ -61,7 +61,7 @@
 	</div>
 <?php
 	date_default_timezone_set('Asia/Tokyo');
-	$today=date('Y/m/d H:i:s');
+	$today=date('Y/m/d');
 ?>
 	<div class="row">
 	<div class='form-group col-sm-4'>

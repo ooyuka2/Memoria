@@ -60,7 +60,7 @@ function goto_compare(type) {
 		type: "POST",
 		scriptCharset:'Shift_JIS',
 		url: '<?php echo $ini['dirhtml']."/pages/tools/tools/compare.php";?>',
-		data: {"txtA":document.getElementById('txtA').value, "txtB":document.getElementById('txtB').value },
+		data: {"txtA":document.getElementById('txtA').value, "txtB":document.getElementById('txtB').value, "type":type },
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 
@@ -90,7 +90,7 @@ function return_compareform(txtA, txtB) {
 		type: "POST",
 		scriptCharset:'Shift_JIS',
 		url: '<?php echo $ini['dirhtml']."/pages/tools/tools/compare_form.php";?>',
-		data: {"txtA":txtA, "txtB":txtB , "type":type},
+		data: {"txtA":txtA, "txtB":txtB},
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 
@@ -105,7 +105,7 @@ function return_compareform(txtA, txtB) {
 
 		// エラーメッセージの表示
 		//alert('Error : ' + errorThrown);
-		goto_compare();
+		return_compareform(txtA, txtB);
 	});
 	// サブミット後、ページをリロードしないようにする
 	return false;

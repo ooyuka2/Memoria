@@ -71,7 +71,7 @@
 </li>
 <?php
 				if(!isset($_GET['d']) || $_GET['d']=="todo" || $_GET['d']=="detail") {
-					echo "<li class='pull-right'><input type='text' onKeyUp='todo_serch(this)' class='form-control input-sm' style='width:250px;margin:0' placeholder='ŒŸõ'></li>";
+					echo "<li class='pull-right'><input type='text' onKeyUp='todo_serch(this.value)' onMouseUp = 'todo_serch(this.value)' class='form-control input-sm' style='width:250px;margin:0' placeholder='ŒŸõ'></li>";
 				}
 ?>
 	  </ul>
@@ -83,9 +83,15 @@
 				include('todo/todo.php');
 				echo "</div>";
 			}
+			if(!isset($_GET['d']) || $_GET['d']=="todo") {
+				echo "<div class='tab-pane fade active in' id='todo'>";
+				include('todo/todo.php');
+			}
+			else echo "<div class='tab-pane fade' id='todo'>";
+			echo "</div>";
 			if(isset($_GET['d']) && $_GET['d']=="calendar") {
 				echo "<div class='tab-pane fade active in' id='calendar'>";
-				include('todo/calendar.php');
+				//include('todo/calendar.php');
 			}
 			else echo "<div class='tab-pane fade' id='calendar'>";
 			
@@ -134,12 +140,7 @@
 			}
 			else echo "<div class='tab-pane fade' id='keeper'>";
 			echo "</div>";
-			if(!isset($_GET['d']) || $_GET['d']=="todo") {
-				echo "<div class='tab-pane fade active in' id='todo'>";
-				include('todo/todo.php');
-			}
-			else echo "<div class='tab-pane fade' id='todo'>";
-			echo "</div>";
+
 			/*
 			if(isset($_GET['d']) && $_GET['d']=="todo_make") {
 				echo "<div class='tab-pane fade active in' id='todo_make'>";
