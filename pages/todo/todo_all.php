@@ -1,4 +1,17 @@
 <?php
+	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+	if(!isset($todo)) {
+		include_once($ini['dirWin'].'/pages/function.php');
+		header("Content-type: text/html; charset=SJIS-win");
+		$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
+		if(isset($_GET['file']) && $_GET['file'] == "old201804") {
+			$todo = readCsvFile2($ini['dirWin'].'/data/old201804todo.csv');
+			$file = "old201804";
+		} else {
+			$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
+			$file = "todo";
+		}
+	}
 	$sa = sort_by_noki_priority($todo);
 	for($i=0; $i<count($sa); $i++) {
 		if($todo[$sa[$i]]['level'] == 1 && $todo[$sa[$i]]['Š®—¹']==0 && $todo[$sa[$i]]['íœ']==0) {
