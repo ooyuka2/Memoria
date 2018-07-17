@@ -55,13 +55,14 @@
 		}
 	}
 	else if (isset($_GET['path']) && $_GET['do']=="delete") {
-		unlink ( $_GET['path'] );
+		unlink ( "../../data/memo/".$_GET['path'] );
 		$memolist = readCsvFile2('../../data/memo.csv');
-		$file = explode("/", $_GET['path']);
-		$num = check2array($memolist, $file[(count($file)-1)], "filename");
+		//$file = explode("/", $_GET['path']);
+		$num = check2array($memolist, $_GET['path'], "filename");
 		$templist = array_splice($memolist,$num,1);
 		writeCsvFile2('../../data/memo.csv', $memolist);
-		header( "Location: /Memoria/pages/todo.php" );
+		//header( "Location: /Memoria/pages/todo.php" );
+		//exit();
 	}
 	
 ?>

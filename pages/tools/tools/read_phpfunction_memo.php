@@ -1,5 +1,5 @@
 <?php
-	if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+	if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\..\data\config.ini');
 	require_once($ini['dirWin']."/md/md.php");
 	
 	$markdown = file_get_contents($ini['dirWin']."/pages/tools/tools/phpfunction_memo.md");

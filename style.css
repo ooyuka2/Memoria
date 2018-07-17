@@ -35,9 +35,7 @@
 }
 body {
 	font-size:100%;
-}
-
-
+}}
 
 
 /*	作業ボタンや完了ボタンの先のラジオボタン	*/
@@ -176,7 +174,7 @@ select{
     color: inherit;
     -webkit-appearance: button;
     -moz-appearance: button;
-    appearance: button;
+    /*appearance: button;*/
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -284,4 +282,23 @@ select::-ms-expand {
 
 .form-control {
 	font-size: 10px;
+}
+
+/* ##############################################################################################################################
+//
+//            印刷画面用CSS
+//
+// ############################################################################################################################*/
+
+
+@media print {
+	body {
+		zoom: 45%; /*←いー感じに調整してください*/
+	}
+	.nav, .no_print {
+		display: none;
+	}
+}
+@page {
+  size: A4;
 }

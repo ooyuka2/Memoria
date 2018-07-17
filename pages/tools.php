@@ -16,6 +16,7 @@ table td {
 		text-align: center;
 		padding: 5px;
 }
+
 </style>
 <body>
 <?php

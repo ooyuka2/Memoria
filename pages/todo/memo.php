@@ -42,7 +42,7 @@
 			//$memo = $parser->parseParagraph($markdown);
 			$memo = mb_convert_encoding($memo, "SJIS-win", "UTF-8");
 			
-			makeDialogs($path, $memo, $memolist[$i]);
+			makeMemoPanel($memolist[$i]['filename'], $memo, $memolist[$i]);
 			$i++;
 		} else {
 			unset($memolist[$i]);

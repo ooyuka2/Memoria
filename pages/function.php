@@ -95,7 +95,7 @@ function json_safe_encode($data){
 
 function write_ini_file($filename, $ini){
 	$fp = fopen($filename, 'w');
-	foreach ($ini as $k => $i) fputs($fp, "$k=$i\n");
+	foreach ($ini as $k => $i) fputs($fp, "$k=\"".str_replace("\\", "\\\\", rtrim($i, '\\'))."\"\n");
 	fclose($fp);
 }
 
@@ -546,7 +546,7 @@ function todo_next_child($todo, $parent, $next) {
 
 
 
-function makeDialogs($path, $memo, $memolist) {
+function makeMemoPanel($path, $memo, $memolist) {
 	if($memolist['big'] == "y") echo "<div class='bs-component col-sm-12' id='{$memolist['filename']}'>";
 	else echo "<div class='bs-component col-sm-6' id='{$memolist['filename']}'>";
 	echo "<div class='modal'>";

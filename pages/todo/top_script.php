@@ -25,7 +25,7 @@ $(document).ready( function(){
 	//$_GET['p']
 	//$_GET['list']
 			if(isset($_GET['d'])) $d = $_GET['d'];
-			else $d = "";
+			else $d = "todo";
 			if(isset($_GET['p'])) $p = $_GET['p'];
 			else $p = 0;
 			if(isset($_GET['list'])) $list = $_GET['list'];
@@ -666,7 +666,7 @@ function deleteMemoPanel(path, file) {
 	ret = confirm(file + "Çñ{ìñÇ…çÌèúÇµÇ‹Ç∑Ç©ÅHÇÊÇÎÇµÇ¢Ç≈Ç∑Ç©ÅH");
 	if (ret == true){
 		document.getElementById(file).style.display="none";
-		location.href = "./todo/changeMemo.php?path=../"+path+"&do=delete";
+		location.href = "./todo/changeMemo.php?path="+path+"&do=delete";
 	}
 
 

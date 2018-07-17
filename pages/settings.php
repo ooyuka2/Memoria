@@ -14,11 +14,13 @@
 	} else if(isset($_POST["default-ini"])) {
 		$ini['myname'] = $_POST['myname'];
 		$ini['weeklyTo'] = $_POST['weeklyTo'];
-		$ini['thema1'] = rtrim(str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['thema1']), '\\');
+		$ini['thema1'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['thema1']);
 		$ini['incidentID'] = $_POST['incidentID'];
 		$ini['incidentKPI'] = $_POST['incidentKPI'];
 		$ini['servicesID'] = $_POST['servicesID'];
-		$ini['servicesKPI'] = $_POST['servicesKPI'];
+		$ini['incidentTheme'] = $_POST['incidentTheme'];
+		$ini['servicesTheme'] = $_POST['servicesTheme'];
+		//$ini['servicesKPI'] = $_POST['servicesKPI'];
 		
 		write_ini_file($ini['dirWin'].'/data/config.ini', $ini);
 		header( "Location: ".$ini['dirhtml']."/pages/settings.php" );
@@ -70,22 +72,9 @@
 					$txt .= "</div>";
 					
 					$txt .= '<div class="form-group">';
-					$txt .= '<label class="control-label">インシデントID</label>';
-					$txt .= "<select class='form-control' name='incidentID'>";
-					$txt .= "<option value='0'>時間管理テーマの選択</option>";
-					for($i=1;$i<count($keeper_theme);$i++) {
-						if($ini['incidentID'] == $keeper_theme[$i]['id']) {
-							$txt .= "<option value='{$keeper_theme[$i]['id']}' selected>{$keeper_theme[$i]['テーマ']}</option>";
-						} else {
-							$txt .= "<option value='{$keeper_theme[$i]['id']}'>{$keeper_theme[$i]['テーマ']}</option>";//col-sm-2
-						}
-					}
-					$txt .= "</select>";
-					$txt .= "</div>";
-					$txt .= '<div class="form-group">';
-					$txt .= '<label class="control-label">インシデントKPI</label>';
+					$txt .= '<label class="control-label">週報表示KPI</label>';
 					$txt .= '<input type="text" class="form-control" name="incidentKPI" value="'.$ini['incidentKPI'].'">';
-					$txt .= "</div>";
+					$txt .= "</div>";					
 					
 					$txt .= '<div class="form-group">';
 					$txt .= '<label class="control-label">サービス改善ID</label>';
@@ -101,8 +90,26 @@
 					$txt .= "</select>";
 					$txt .= "</div>";
 					$txt .= '<div class="form-group">';
-					$txt .= '<label class="control-label">サービス改善KPI</label>';
-					$txt .= '<input type="text" class="form-control" name="servicesKPI" value="'.$ini['servicesKPI'].'">';
+					$txt .= '<label class="control-label">サービス改善テーマ</label>';
+					$txt .= '<input type="text" class="form-control" name="servicesTheme" value="'.$ini['servicesTheme'].'">';
+					$txt .= "</div>";
+
+					$txt .= '<div class="form-group">';
+					$txt .= '<label class="control-label">インシデントID</label>';
+					$txt .= "<select class='form-control' name='incidentID'>";
+					$txt .= "<option value='0'>時間管理テーマの選択</option>";
+					for($i=1;$i<count($keeper_theme);$i++) {
+						if($ini['incidentID'] == $keeper_theme[$i]['id']) {
+							$txt .= "<option value='{$keeper_theme[$i]['id']}' selected>{$keeper_theme[$i]['テーマ']}</option>";
+						} else {
+							$txt .= "<option value='{$keeper_theme[$i]['id']}'>{$keeper_theme[$i]['テーマ']}</option>";//col-sm-2
+						}
+					}
+					$txt .= "</select>";
+					$txt .= "</div>";
+					$txt .= '<div class="form-group">';
+					$txt .= '<label class="control-label">インシデントテーマ</label>';
+					$txt .= '<input type="text" class="form-control" name="incidentTheme" value="'.$ini['incidentTheme'].'">';
 					$txt .= "</div>";
 					
 					$txt .= '<div class="form-group pull-right">';
@@ -112,12 +119,16 @@
 					echo_panel("基本的な設定項目の更新(主に週報で利用)", $txt, "info");
 					
 					//dataファイルの更新
-					if($ini['datavarsion'] == "20180716") $txt = "データは最新の状態です";
+					if($ini['datavarsion'] == "20180717") $txt = "データは最新の状態です";
 					else {
 						$txt = "データの更新が必要です。今のバージョンは{$ini['datavarsion']}分です。<br><br>";
 						if($ini['datavarsion'] == "20180707") {
 							$txt .= '<div id="sampleWrap">';
 							$txt .= '<a href="/Memoria/pages/settings/20180716.php" class="btn btn-danger btn-block btn-sm">var.20180716更新</a>';
+							$txt .= '</div>';
+						} else if($ini['datavarsion'] == "20180716") {
+							$txt .= '<div id="sampleWrap">';
+							$txt .= '<a href="/Memoria/pages/settings/20180717.php" class="btn btn-danger btn-block btn-sm">var.20180717更新</a>';
 							$txt .= '</div>';
 						}
 					}

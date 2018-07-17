@@ -37,24 +37,62 @@
 					
 					$monday = $today->modify('monday this week')->setTime(0,0,0);
 					
-					echo "KPI：{$ini['incidentKPI']}<br>";
-					for($i=1; $i<count($todo); $i++) {
-						$weeklyid = check2array($weekly, $i, "todoid");
-						if($todo[$i]['時間管理テーマ'] == $ini['incidentID'] && $weeklyid != -1 && $weekly[$weeklyid]['表示'] == 0) {
-						write_weekly($todo, $working, $weekly, $i, $weeklyid, 0);
-						}
-						
-					}
-					echo "<br><br>";
-					echo "KPI：{$ini['servicesKPI']}<br>";
+					$flug = 0;
 					for($i=1; $i<count($todo); $i++) {
 						$weeklyid = check2array($weekly, $i, "todoid");
 						if($todo[$i]['時間管理テーマ'] == $ini['servicesID'] && $weeklyid != -1 && $weekly[$weeklyid]['表示'] == 0) {
-						write_weekly($todo, $working, $weekly, $i, $weeklyid, 0);
+							for($j=1; $j<count($working); $j++) {
+								if($working[$j]['id'] != "periodically" && $todo[$working[$j]['id']]['top'] == $i) {
+									$workday = new DateTime($working[$j]['day']);
+									if($workday->diff($monday)->format('%R%a') <= 0) {
+										$flug = 1;
+										break;
+									}
+								}
+							}
+						}
+					}
+					
+					echo "KPI：{$ini['incidentKPI']}<br>";
+					if($flug == 1) echo "●".$ini['servicesTheme']."<br>";
+					else echo "〇".$ini['servicesTheme']."<br>";
+					for($i=1; $i<count($todo); $i++) {
+						$weeklyid = check2array($weekly, $i, "todoid");
+						if($todo[$i]['時間管理テーマ'] == $ini['servicesID'] && $weeklyid != -1 && $weekly[$weeklyid]['表示'] == 0) {
+							write_weekly($todo, $working, $weekly, $i, $weeklyid, 0);
 						}
 						
 					}
 					echo "<br><br>";
+					
+					$flug = 0;
+					for($i=1; $i<count($todo); $i++) {
+						$weeklyid = check2array($weekly, $i, "todoid");
+						if($todo[$i]['時間管理テーマ'] == $ini['incidentID'] && $weeklyid != -1 && $weekly[$weeklyid]['表示'] == 0) {
+							for($j=1; $j<count($working); $j++) {
+								if($working[$j]['id'] != "periodically" && $todo[$working[$j]['id']]['top'] == $i) {
+									$workday = new DateTime($working[$j]['day']);
+									if($workday->diff($monday)->format('%R%a') <= 0) {
+										$flug = 1;
+										break;
+									}
+								}
+							}
+						}
+					}
+					
+					echo "KPI：{$ini['incidentKPI']}<br>";
+					if($flug == 1) echo "●".$ini['incidentTheme']."<br>";
+					else echo "〇".$ini['incidentTheme']."<br>";
+					for($i=1; $i<count($todo); $i++) {
+						$weeklyid = check2array($weekly, $i, "todoid");
+						if($todo[$i]['時間管理テーマ'] == $ini['incidentID'] && $weeklyid != -1 && $weekly[$weeklyid]['表示'] == 0) {
+							write_weekly($todo, $working, $weekly, $i, $weeklyid, 0);
+						}
+						
+					}
+					echo "<br><br>";
+					
 					$ary = array();
 					$c = 0;
 					for($i=1; $i<count($working); $i++) {
