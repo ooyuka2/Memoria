@@ -11,7 +11,7 @@
 	//$todo = readCsvFile2('../data/todo.csv');
 	//include('../data/weekly.php');
 	$ini = parse_ini_file('../data/config.ini');
-	
+	date_default_timezone_set('Asia/Tokyo');
 	
 	if(isset($_GET['day']) && $_GET['day'] == 'old201804working') {
 		$working = readCsvFile2('../data/old201804working.csv');
@@ -27,6 +27,7 @@
 	$copytext = $when."	";
 	$last = count($working)-1;
 	$day = 1;
+	$lastTime = $working[(count($working)-1)]['day'];
 	
 	$countday = 7;
 	if(isset($_GET['day']) && $_GET['day'] == 'old201804working') $countday = $last;
@@ -37,6 +38,7 @@
 	for($i=count($working)-1; $i>0; $i--) {
 		$comDay = new DateTime($working[$i]['day']);
 		$comDay = $comDay->format('Y/m/d');
+		
 		if($comDay != $when || $i==1) {
 			$first = $i+1;
 			for($j=$first; $j<=$last; $j++) {
@@ -66,11 +68,15 @@
 				$keeper .= "</tbody></table>";
 				echo '<div class="clearfix"><h3>'.$when.'<button onClick="execCopy(\''.$copytext.'\')" class="pull-right btn btn-sm btn-primary">copy</button></h3></div>';
 				
+				
+				//echo $working[$first]['day'].":::".$lastTime."<br>";
+				//echo time_diff(strtotime($lastTime), strtotime($working[$first]['day']));
+				
 				echo $keeper;
-
 				
 				$when = new DateTime($working[$i]['day']);
 				$when = $when->format('Y/m/d');
+				//$lastTime = $working[$i]['day'];
 				$keeper = "<table class='table table-condensed'><thead><tr><th class='col-md-2'>開始時間-終了時間</th><th class='col-md-8'>タイトル</th><th class='col-md-2'>時間管理テーマ</th></tr></thead><tbody>";
 				$copytext = $when."	";
 				$last = $i;
@@ -81,6 +87,12 @@
 		}
 	}
 	echo '<div class="clearfix"><h3>'.$when.'</h3><button onClick="execCopy(\''.$copytext.'\')" class="pull-right btn btn-sm btn-primary">copy</button></div>';
+	//$day1 = new DateTime($lastTime);
+	//$day2 = new DateTime($working[($i+1)]['day']);
+	//$interval = $day1->diff($day2);
+
+	//echo $interval->format('%R%d日 %H時%i分');
+
 	echo $keeper;
 ?>
 	</tbody>

@@ -142,8 +142,8 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 		}
 	}
 	
-	echo "<fieldset style='position: relative'>";
-	echo "<div class='well bs-component'>";
+	echo "<fieldset style='position: relative' >";
+	echo "<div class='well bs-component' >";
 	echo "<div class='form-group'>";
 	
 	if($level != 1) echo "<div class='clearfix'><span class='pull-right close' onClick='minus({$count});'>&times;</span><span class='pull-right close'>Å@</span><span class='pull-right close' onClick='plus2({$count});'>+</span></div>";

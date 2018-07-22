@@ -31,7 +31,10 @@
 				
 			} else if($_POST['do']=="change") {
 				$memo = mb_convert_encoding($_POST['txt'], "SJIS-win", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode");
-				file_put_contents("../../data/memo/".$_POST['file'], str_replace("\n","\r\n",$memo ));
+				file_put_contents("../../data/memo/".$_POST['file'], str_replace("\n","  \r\n", str_replace("  \n", "\n", $memo)));
+				
+				
+				
 				
 				$memolist = readCsvFile2('../../data/memo.csv');
 				$num = check2array($memolist, $_POST['file'], "filename");

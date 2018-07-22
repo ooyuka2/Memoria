@@ -57,30 +57,32 @@ document.onkeypress =
 	}
 
 function setDateTime_start() {
-	$(".noki").datepicker();
-	$(".kaisi").datepicker();
-	$(".syuryo").datepicker();
-	
-	
-	for(var i=document.getElementsByClassName("td-n2").length-1; i>=0; i--) {
-		document.body.removeChild(document.getElementsByClassName("td-n2")[i]);
-	}
-	
-	$( ".time" ).timeDropper({
-		//機能オプション
-		autoswitch: false,					//クリック位置移動
-		meridians: false,					 //12時間 / 24時間表示
-		format: "HH:mm",					 //時刻フォーマット
-		mousewheel: false,					//マウスホイール可否
-		init_animation: "fadeIn",	 //初期アニメーション
-		setCurrentTime: false,			 //現在時刻の設定
+	if($(".noki").size() && $(".kaisi").size() && $(".syuryo").size()) {
+		$(".noki").datepicker();
+		$(".kaisi").datepicker();
+		$(".syuryo").datepicker();
+		
+		
+		for(var i=document.getElementsByClassName("td-n2").length-1; i>=0; i--) {
+			document.body.removeChild(document.getElementsByClassName("td-n2")[i]);
+		}
+		
+		$( ".time" ).timeDropper({
+			//機能オプション
+			autoswitch: false,					//クリック位置移動
+			meridians: false,					 //12時間 / 24時間表示
+			format: "HH:mm",					 //時刻フォーマット
+			mousewheel: false,					//マウスホイール可否
+			init_animation: "fadeIn",	 //初期アニメーション
+			setCurrentTime: false,			 //現在時刻の設定
 
-		//スタイルオプション
-		primaryColor: "#1977cc",		//設定中の文字
-		textColor: "#555555",			 //設定後の文字
-		backgroundColor: "#ffffff", //背景
-		borderColor: "#1977cc"			//枠線
-	});
+			//スタイルオプション
+			primaryColor: "#1977cc",		//設定中の文字
+			textColor: "#555555",			 //設定後の文字
+			backgroundColor: "#ffffff", //背景
+			borderColor: "#1977cc"			//枠線
+		});
+	}
 }
 
 function execCopy(string){

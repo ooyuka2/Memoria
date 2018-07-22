@@ -21,15 +21,23 @@
 		$compareB = "";
 		$compareAB = "";
 		
-		
+		$array = array();
 		for($i=0; $i<count($arrayA); $i++) {
 			$flug = 0;
 			for($j=0; $j<count($arrayB); $j++) {
 				if($_POST['type'] == "equal" && equal_word_str($arrayA[$i], $arrayB[$j])) $flug = 1;
 				if($_POST['type'] == "allequal" && allequal_word_str($arrayA[$i], $arrayB[$j])) $flug = 1;
 			}
-			if($flug == 0 && $arrayA[$i] != "") $compareA .= $arrayA[$i]."<br>";
-			else if($arrayA[$i] != "") $compareAB .= $arrayA[$i]."<br>";
+			
+			
+			if($flug == 0 && $arrayA[$i] != "" && serch_word($arrayA[$i], $array)==0) {
+				$compareA .= $arrayA[$i]."<br>";
+				$array[count($array)] = $arrayA[$i];
+			}
+			else if($arrayA[$i] != "" && serch_word($arrayA[$i], $array)==0) {
+				$compareAB .= $arrayA[$i]."<br>";
+				$array[count($array)] = $arrayA[$i];
+			}
 		}
 		
 		for($i=0; $i<count($arrayB); $i++) {
@@ -38,7 +46,10 @@
 				if($_POST['type'] == "equal" && equal_word_str($arrayA[$j], $arrayB[$i])) $flug = 1;
 				if($_POST['type'] == "allequal" && allequal_word_str($arrayA[$j], $arrayB[$i])) $flug = 1;
 			}
-			if($flug == 0 && $arrayB[$i] != "") $compareB .= $arrayB[$i]."<br>";
+			if($flug == 0 && $arrayB[$i] != "" && serch_word($arrayB[$i], $array)==0) {
+				$compareB .= $arrayB[$i]."<br>";
+				$array[count($array)] = $arrayB[$i];
+			}
 		}
 		
 		

@@ -37,6 +37,10 @@ body {
 	font-size:100%;
 }}
 
+table {
+	width: 100%;
+	background: #f5f5f5;
+}
 
 /*	作業ボタンや完了ボタンの先のラジオボタン	*/
 .keeper-btn input {
@@ -292,9 +296,12 @@ select::-ms-expand {
 
 
 @media print {
-	body {
-		zoom: 45%; /*←いー感じに調整してください*/
+	@media print and (-webkit-min-device-pixel-ratio:0) {
+		body {
+			zoom: 45%; /*←いー感じに調整してください*/
+		}
 	}
+
 	.nav, .no_print {
 		display: none;
 	}

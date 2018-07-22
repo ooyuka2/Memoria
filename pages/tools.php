@@ -4,9 +4,12 @@
 	include($ini['dirWin'].'/pages/hedder.php');
 ?>
 <style type="text/css">
+
 table {
 		width: 100%;
+		background: #f5f5f5;
 }
+/*
 table th {
 		background: #87cefa;
 }
@@ -15,7 +18,7 @@ table td {
 		border: 1px solid #CCCCCC;
 		text-align: center;
 		padding: 5px;
-}
+}*/
 
 </style>
 <body>

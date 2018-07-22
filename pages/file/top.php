@@ -4,25 +4,18 @@
 	$group = readCsvFile2('../data/file_group.csv');
 	//group,abc,detail
 ?>
-<?php include('file/table.php'); ?>
-    <div class="row">
-      <div class="col-lg-12">
-        <p id="nav-tabs"></p>
-        <div class="bs-component">
-          <ul class="nav nav-tabs">
-          	<?php
-          		if(!isset($_GET['d']) || $_GET['d']=="home") echo "<li class='active'><a href='#home'>home</a></li>";
-          		else echo "<li><a href='./file.php?d=home'>home</a></li>";
-	        	for($i=1; $i<count($group); $i++) {
-	        		$tab = "tab_".$group[$i]['abc'];
-	          		if(!isset($_GET['d']) || $_GET['d']!=$group[$i]['abc'])
-	          			echo "<li><a href='./file.php?d={$group[$i]['abc']}'>{$group[$i]['group']}</a></li>";
-	          		else if(isset($_GET['d']) && $_GET['d']==$group[$i]['abc'])
-	          			echo "<li class='active'><a href='./file.php?d={$group[$i]['abc']}'>{$group[$i]['group']}</a></li>";
-	        	}
-            
-            ?>
-		  </ul>
+<div class="row">
+	<div class="col-lg-12">
+		<p id="nav-tabs"></p>
+		<div class="bs-component">
+			<ul class="nav nav-tabs">
+			<?php
+				echo "<li class='active' id='home'><a onclick='move_tab(\"home\")'>home</a></li>";
+				for($i=1; $i<count($group); $i++) {
+					echo "<li id='syurui{$i}'><a onclick='move_tab(\"syurui{$i}\")'>{$group[$i]['group']}</a></li>";
+				}
+			?>
+			</ul>
 			<?php
 				//変更動作についての文章。
 				if(isset($_SESSION['change'])) {
@@ -36,29 +29,56 @@
 					unset($_SESSION['delete']);
 				}
 			?>
-			
-          <div id="myTabContent" class="tab-content">
-          	<?php
-	            
-				if(!isset($_GET['d']) || $_GET['d']=="home") echo "<div class='tab-pane fade active in' id='home'>";
-          		else echo "<div class='tab-pane fade' id='home'>";
-          	?>
-          		<?php read_table('home', 0); ?>
-	            </div>
-          	<?php
-	        	for($i=1; $i<count($group); $i++) {
-	        		$tab = "tab_".$group[$i]['abc'];
-	          			if(!isset($_GET['d']) || $_GET['d']!=$group[$i]['abc'])
-	          				echo "<div class='tab-pane fade' id='{$tab}'>";
-	          			else if(isset($_GET['d']) && $_GET['d']==$group[$i]['abc'])
-	          				echo "<div class='tab-pane fade active in' id='{$tab}'>";
-	          			read_table($group[$i]['abc'], $i);
-	          			echo "</div>";
-	        	}
-            
-            ?>
-          </div>
-        </div>
-      </div>
-    </div>
-	  
+				
+			<div id="myTabContent" class="tab-content">
+				<div class='tab-pane fade active in' id='home'>
+					<div class="bs-docs-section" style="margin:0">
+					<a href="./file.php?page=new" class="btn btn-info">新規</a>　
+					<a href="./file.php?page=reset" class="btn btn-primary">再読み込み</a>
+					<p></p>
+					<div class='container-fluid'>
+						<div class="bs-component table-responsive">
+							<table class='table table-striped table-hover ' id='dictionary'>
+								<thead>
+									<tr>
+										<th>メモ</th>
+										<th>内容</th>
+										<th>登録日時</th>
+										<th>編集</th>
+										<th>削除</th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php
+									for($i = 1; $i<count($file); $i++) {
+										if(!isset($_GET['search']) && $file[$i]['delete']!=1) {
+										//name,furi,summary,detail,count,syurui,date,delete
+											echo "<tr class='syurui".$file[$i]['syurui']."'><td>";
+											echo $file[$i]['name'];
+											echo "</td><td>";
+											if($file[$i]['syurui'] == 2) 
+												echo "<a href='".$file[$i]['summary']."' onClick='move(".$i.")'>".$file[$i]['summary']."</a>";
+											else
+												echo "<a href='".$file[$i]['summary']."' target='_blank' onClick='move(".$i.")'>".$file[$i]['summary']."</a>";
+											if($file[$i]['detail']!="")
+											//echo "<span style='float: right;'><a href='./file.php?page=detail&p=".$i."'>詳細</span></td><td>";
+											echo "<br>{$file[$i]['detail']}</td><td>";
+											else { echo "</td><td>"; }
+											echo $file[$i]['count'];
+											echo "</td><td><a href='./file.php?page=change&p=".$i."' class='btn btn-info'>編集</a>";
+											echo "</td><td><a href='./file.php?page=delete&p=".$i."' class='btn btn-danger'>削除</a>";
+											echo "</td></tr>";
+										}
+									}
+									
+								?>
+								</tbody>
+							</table>
+						</div><!-- /example -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	

@@ -593,7 +593,8 @@ function makeMemoPanel($path, $memo, $memolist) {
 function write_weekly($todo, $working, $weekly, $i, $weeklyid, $workK) {
 	
 	if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
-	$TodayS = date('Ymd');
+	if(isset($_GET['day'])) $TodayS = $_GET['day'];
+	else $TodayS = date('Ymd');
 	$today = new DateTime($TodayS);
 	$monday = $today->modify('monday this week')->setTime(0,0,0);
 	//if($weekly[$weeklyid]['parentid'] == 0) echo "KPI：{$weekly[$weeklyid]['KPI']}<br>";
@@ -866,6 +867,21 @@ function allequal_word_str($word, $searchtext) {
 	
 	if( strcmp($word, $searchtext) == 0 ) return true;
 	else return false;
+}
+
+//##################################################################
+//				日時の差を計算用関数
+//##################################################################
+
+function time_diff($time_from, $time_to) {
+	//date_default_timezone_set('Asia/Tokyo');
+	// 日時差を秒数で取得
+	$dif = $time_to - $time_from;
+	// 時間単位の差
+	$dif_time = date("H:i:s", $dif);
+	// 日付単位の差
+	$dif_days = (strtotime(date("Y-m-d", $dif)) - strtotime("1970-01-01")) / 86400;
+	return "{$dif_days}days {$dif_time}";
 }
 
 ?>

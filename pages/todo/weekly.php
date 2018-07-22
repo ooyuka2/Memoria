@@ -207,7 +207,7 @@
 				}
 			}
 		}
-		if($weekly[$i]['表示'] == 0 && ($todo[$weekly[$i]['todoid']]['時間管理テーマ'] != 0 && ($todo[$weekly[$i]['todoid']]['時間管理テーマ'] < 30)) || $flug != 0) {
+		if($weekly[$i]['表示'] == 0 && $todo[$weekly[$i]['todoid']]['時間管理テーマ'] != 0 && ($todo[$weekly[$i]['todoid']]['時間管理テーマ'] == $ini['servicesID'] || $todo[$weekly[$i]['todoid']]['時間管理テーマ'] == $ini['incidentID'] || ($todo[$weekly[$i]['todoid']]['時間管理テーマ'] >= 30) && $flug != 0)) {
 			
 			echo "<tr><td rowspan='9'>";
 			

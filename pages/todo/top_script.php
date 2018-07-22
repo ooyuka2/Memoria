@@ -21,9 +21,6 @@
 $(document).ready( function(){
 	<?php
 		if((isset($_GET['d']) && $_GET['d']=="detail") && (isset($_GET['p']) && $_GET['p']<count($todo)) || !isset($_GET['d']) || $_GET['d']=="todo") {
-	//$_GET['d']
-	//$_GET['p']
-	//$_GET['list']
 			if(isset($_GET['d'])) $d = $_GET['d'];
 			else $d = "todo";
 			if(isset($_GET['p'])) $p = $_GET['p'];

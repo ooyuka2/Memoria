@@ -4,6 +4,7 @@
 	<?php
 		session_start();
 		header("Content-type: text/html; charset=SJIS-win");
+		date_default_timezone_set('Asia/Tokyo');
 		$now = new DateTime();
 		$updatefiletime = $now->format('Y-m-d-h-i-s');
 		
