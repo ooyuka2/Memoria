@@ -1,5 +1,7 @@
 PHP Markdown  
 ============  
+C:\Users\yukako oya\AppData\Local\Android\Sdk  
+  
   
 ### 右クリックメニューにｔｏｄｏfile名入れる  
   

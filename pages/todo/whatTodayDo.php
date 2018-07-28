@@ -4,7 +4,42 @@
 		$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
 		include_once($ini['dirWin'].'/pages/function.php');
 	}
+	
+	if(isset($_GET['auto'])) {
+	
+		$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
+		$sa = sort_by_noki_todo_priority($todo, true);
+		$pid = "";
+		$today = new DateTime(date('Ymd'));
+		
+		
+		for($i=0; $i<count($sa); $i++) {
+			
+			if($sa[$i]!=0 && $todo[$sa[$i]]['çÌèú'] != 1) { 
+				$flug = 0;
+				
+				for($j=1; $j<count($todo); $j++) {
+					if($todo[$j]['top'] == $sa[$i]) {
+						$workday = new DateTime($todo[$j]['äJénó\íËì˙']);
 
+						if($today->diff($workday)->format('%r%a ì˙') == 0) {
+							$flug = 1;
+							break;
+						}
+					}
+				}
+				if($todo[$sa[$i]]['ç°ì˙Ç‚ÇÈÇ±Ç∆'] == 1 || $flug == 1) {
+					$pid = $pid . "@". $sa[$i];
+				}
+			}
+		}
+	
+		header( "Location: /Memoria/pages/todo.php?page=whatTodayDo&pid=".$pid );
+		exit();
+	}
+	
+	
+	
 	if(isset($_GET['pid'])) {
 		$ids = explode("@", $_GET['pid']);
 		//echo $_GET['pid'];

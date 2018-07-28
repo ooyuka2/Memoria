@@ -16,7 +16,7 @@
 			for($i=0; $i<count($temp); $i++) if($temp[$i] != "") $arrayCSV[$i] = explode ( "," , $temp[$i] );
 		
 		} else $arrayCSV[0][0] = "";
-		writeCsvFile($ini['dirWin'].'/data/tools/tools_data/tempcsv.csv', $arrayCSV);
+		writeCsvFile($ini['dirWin'].'/data/tools/tool_data/tempcsv.csv', $arrayCSV);
 		echo "<br><div class='alert alert-dismissible alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button><p>ï€ë∂Ç…ê¨å˜ÇµÇ‹ÇµÇΩ</p></div>";
 		
 	} else {

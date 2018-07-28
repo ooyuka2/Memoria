@@ -69,14 +69,20 @@
 				echo '<div class="clearfix"><h3>'.$when.'<button onClick="execCopy(\''.$copytext.'\')" class="pull-right btn btn-sm btn-primary">copy</button></h3></div>';
 				
 				
-				//echo $working[$first]['day'].":::".$lastTime."<br>";
-				//echo time_diff(strtotime($lastTime), strtotime($working[$first]['day']));
+				$day1 = new DateTime($lastTime);
+				$day2 = new DateTime($working[($i+1)]['day']);
+				$interval = $day2->diff($day1);
+				
+				echo $working[($i+1)]['day']. ":::". $lastTime."<br>";
+
+				echo $interval->format('%R%d日 %H時%i分');
+				
 				
 				echo $keeper;
 				
 				$when = new DateTime($working[$i]['day']);
 				$when = $when->format('Y/m/d');
-				//$lastTime = $working[$i]['day'];
+				$lastTime = $working[$i]['day'];
 				$keeper = "<table class='table table-condensed'><thead><tr><th class='col-md-2'>開始時間-終了時間</th><th class='col-md-8'>タイトル</th><th class='col-md-2'>時間管理テーマ</th></tr></thead><tbody>";
 				$copytext = $when."	";
 				$last = $i;
@@ -87,17 +93,22 @@
 		}
 	}
 	echo '<div class="clearfix"><h3>'.$when.'</h3><button onClick="execCopy(\''.$copytext.'\')" class="pull-right btn btn-sm btn-primary">copy</button></div>';
-	//$day1 = new DateTime($lastTime);
-	//$day2 = new DateTime($working[($i+1)]['day']);
-	//$interval = $day1->diff($day2);
+	
+	$day1 = new DateTime($lastTime);
+	$day2 = new DateTime($working[($i+2)]['day']);
+	$interval = $day2->diff($day1);
+	
+	echo $working[($i+2)]['day']. ":::". $lastTime."<br>";
 
-	//echo $interval->format('%R%d日 %H時%i分');
+	echo $interval->format('%R%d日 %H時%i分');
+	//echo time_diff(strtotime('2015-01-02 15:04:05'), strtotime('2015-01-02 16:04:05'));
 
 	echo $keeper;
 ?>
 	</tbody>
 </table>
 </div>
+
 
 <?php
 	//https://www.hotpepper.jp/strJ000758708/course/

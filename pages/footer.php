@@ -57,7 +57,7 @@ document.onkeypress =
 	}
 
 function setDateTime_start() {
-	if($(".noki").size() && $(".kaisi").size() && $(".syuryo").size()) {
+	if($(".noki").size() || $(".kaisi").size() || $(".syuryo").size()) {
 		$(".noki").datepicker();
 		$(".kaisi").datepicker();
 		$(".syuryo").datepicker();

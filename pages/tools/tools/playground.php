@@ -5,9 +5,9 @@
 	
 	if(file_exists($ini['dirWin'].'/data/tools/temp.php')) {
 		$program = file_get_contents($ini['dirWin'].'/data/tools/temp.php');
-		$csvtxt = file_get_contents($ini['dirWin'].'/data/tools/tools_data/tempcsv.csv');
+		$csvtxt = file_get_contents($ini['dirWin'].'/data/tools/tool_data/tempcsv.csv');
 		if($csvtxt == "" || $csvtxt == "\n") $CSV[0][0] = "";
-		else $CSV = readCsvFile($ini['dirWin'].'/data/tools/tools_data/tempcsv.csv');
+		else $CSV = readCsvFile($ini['dirWin'].'/data/tools/tool_data/tempcsv.csv');
 	} else {
 		$program = file_get_contents($ini['dirWin'].'/pages/tools/tools/template_php.php');
 		$CSV[0][0] = "";

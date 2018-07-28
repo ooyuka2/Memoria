@@ -3,7 +3,7 @@
 	if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
 	include_once($ini['dirWin'].'/pages/function.php');
 	
-	$programcsv = $ini['dirWin'].'/data/tools/tools_data/tempcsv.csv';
+	$programcsv = $ini['dirWin'].'/data/tools/tool_data/tempcsv.csv';
 	
 	$array = readCsvFile($programcsv);
 	
