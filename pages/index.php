@@ -14,8 +14,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 outline">
-				<h1>Memoria for <?php echo $ini['myname']; ?>.</h1>
-				<p>分からない単語のメモや自分のタスクを管理しよう！！</p>
+				<h1>Memoria for <?php echo $ini['myname']; ?>!</h1>
+				<p>自分のタスクやフォルダーのリンク、分からない単語のメモなどを管理しよう</p>
 				<div class="download">
 				<?php
 					//echo '<a href="'.$ini['dirhtml'].'/pages/todo.php" class="btn btn-warning btn-lg last-release-download-link"><i class="fa fa-github-alt"></i> Go to ToDo List</a>';

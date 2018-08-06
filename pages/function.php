@@ -342,15 +342,9 @@ function write_todo_tree($todo, $id, $date) {
 	if($color != "") {
 		write_todo_tree_title($todo, $id, $color);
 		if($todo[$id]['child'] != 0) {
-			/*
-			for($i=0; $i<count($todo); $i++) {
-				if($todo[$i]['parent'] == $todo[$id]['id'] && $todo[$i]['íœ'] == 0) write_todo_tree($todo, $i, $date);
-			}
-			*/
 			$next_id = todo_next_child($todo, $id, $count);
 			while($next_id != 0) {
 				$count = write_todo_tree($todo, $next_id, $date);
-				//$count++;
 				$next_id = todo_next_child($todo, $id, $count);
 			}
 
@@ -370,21 +364,16 @@ function check_todo_tree($todo, $id , $date) {
 		$finishday = new DateTime($todo[$id]['”[Šú']);
 		$today = new DateTime(date('Y/m/d'));
 		if($todo[$id]['Š®—¹'] == 1) {
-			//write_todo_tree($todo, $id, 'success');
 			$color = 'success';
 		} else if($todo[$id]['•Û—¯'] == 1) {
-			//write_todo_tree($todo, $id, 'muted');
 			$color = 'muted';
 		} else if($interval->format('%r%a “ú')<0) { //–¢—ˆ
 			$color = 'future';
 		} else if($finishday->diff($day2->modify('+1 day'))->format('%r%a “ú') >= 0) {
-			//write_todo_tree($todo, $id, 'danger');
 			$color = 'danger';
 		}else if($finishday->diff($today->modify('+7 day'))->format('%r%a “ú') >= 0) {
-			//write_todo_tree($todo, $id, 'warning');
 			$color = 'warning';
 		} else {
-			//write_todo_tree($todo, $id, 'primary');
 			$color = 'primary';
 		}
 	}
