@@ -555,10 +555,10 @@ function makeMemoPanel($path, $memo, $memolist) {
 	echo "</div>";
 	if($memolist['lock'] == "n") echo "<div class='modal-body'>";
 	else echo "<div class='modal-body' style='display:none;'>";
-	$hyouzi = str_replace("<table>","<table class='table table-striped table-bordered table-hover table-condensed'>",$memo);
-	$hyouzi = str_replace("<a href=\"http","<a target='_blank' href=\"http",$hyouzi);
+//	$hyouzi = str_replace("<table>","<table class='table table-striped table-bordered table-hover table-condensed'>",$memo);
+//	$hyouzi = str_replace("<a href=\"http","<a target='_blank' href=\"http",$hyouzi);
 
-	echo "<p>{$hyouzi}</p>";
+	echo "<p>{$memo}</p>";
 	echo "</div>";
 	
 	if($memolist['lock'] == "n") echo "<div class='modal-footer'>";

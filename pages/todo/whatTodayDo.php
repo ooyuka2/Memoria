@@ -15,7 +15,7 @@
 		
 		for($i=0; $i<count($sa); $i++) {
 			
-			if($sa[$i]!=0 && $todo[$sa[$i]]['íœ'] != 1) { 
+			if($sa[$i]!=0 && $todo[$sa[$i]]['íœ'] != 1 && $todo[$sa[$i]]['•Û—¯'] != 1 && $todo[$sa[$i]]['Š®—¹'] != 1) { 
 				$flug = 0;
 				
 				for($j=1; $j<count($todo); $j++) {
@@ -95,7 +95,7 @@
 				
 				for($i=0; $i<count($sa); $i++) {
 					
-					if($sa[$i]!=0 && $todo[$sa[$i]]['íœ'] != 1) { 
+					if($sa[$i]!=0 && $todo[$sa[$i]]['íœ'] != 1 && $todo[$sa[$i]]['•Û—¯'] != 1 && $todo[$sa[$i]]['Š®—¹'] != 1) { 
 						$flug = 0;
 						
 						for($j=1; $j<count($todo); $j++) {

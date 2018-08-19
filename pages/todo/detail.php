@@ -1,5 +1,6 @@
 <?php
 	if(!isset($todo)) $todo = readCsvFile2('../data/todo.csv');
+	date_default_timezone_set('Asia/Tokyo');
 ?>
 
 <?php
@@ -22,6 +23,7 @@
 <?php
 
 function panel_child($todo, $todoid, $working, $file) {
+	date_default_timezone_set('Asia/Tokyo');
 	//echo $todo[12]['child'];
 //	if($todo[$todoid]['child'] != 0) {
 //		for($todoid=1; $todoid<count($todo); $todoid++) {
@@ -92,6 +94,34 @@ function panel_child($todo, $todoid, $working, $file) {
 					$count = panel_child($todo, $todo[$next_id]['id'], $working, $file);
 					//$count++;
 					$next_id = todo_next_child($todo, $todoid, $count);
+				}
+				if($todo[$todoid]['level']==1) {
+					date_default_timezone_set('Asia/Tokyo');
+					if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+					$weekly = readCsvFile2($ini['dirWin'].'/data/weekly.csv');
+					$weeklyid = check2array($weekly, $todoid, "todoid");
+					if($weeklyid != -1 && $weekly[$weeklyid]['表示'] == 0) {
+						
+						echo "<div class='alert alert-info' role='alert'><h5>週報（{$weekly[$weeklyid]['最終更新日時']}）</h5>";
+						echo "<strong>KPI</strong>：　{$weekly[$weeklyid]['KPI']}<br>";
+						echo "<strong>テーマ概要</strong>：　{$weekly[$weeklyid]['テーマ概要']}<br>";
+						echo "<strong>担当</strong>：　{$weekly[$weeklyid]['担当']}<br>";
+						echo "<strong>済み</strong>：　<br>";
+						$workdetail = str_replace('<br>', '<br>　　　　', $weekly[$weeklyid]['済み']);
+						echo "　　　　{$workdetail}<br><br>";
+						echo "<strong>進捗</strong>：　<br>";
+						$workdetail = str_replace('<br>', '<br>　　　　', $weekly[$weeklyid]['進捗']);
+						echo "　　　　{$workdetail}<br><br>";
+						echo "<strong>今後の予定</strong>：　<br>";
+						$workdetail = str_replace('<br>', '<br>　　　　　　', $weekly[$weeklyid]['今後の予定']);
+						echo "　　　　　　{$workdetail}<br><br>";
+						
+						
+						echo "</div>";
+					}
+					
+					
+					
 				}
 				
 				

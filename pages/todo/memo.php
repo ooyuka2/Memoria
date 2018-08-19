@@ -35,12 +35,7 @@
 	while($i<count($memolist)) {
 		if(file_exists ($dir.$memolist[$i]['filename'])) {
 			$markdown = file_get_contents($dir.$memolist[$i]['filename']);
-			$markdown = mb_convert_encoding($markdown, "UTF-8", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode");
-			$parser = new \cebe\markdown\GithubMarkdown();
-			//$parser = new \cebe\markdown\MarkdownExtra();
-			$memo = $parser->parse($markdown);
-			//$memo = $parser->parseParagraph($markdown);
-			$memo = mb_convert_encoding($memo, "SJIS-win", "UTF-8");
+			$memo = read_md($markdown);
 			
 			makeMemoPanel($memolist[$i]['filename'], $memo, $memolist[$i]);
 			$i++;

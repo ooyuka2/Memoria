@@ -19,5 +19,20 @@
 	require_once(dirname ( __FILE__ )."/GithubMarkdown.php");
 	require_once(dirname ( __FILE__ )."/MarkdownExtra.php");
 
+	function read_md($markdown) {
+		if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
+		
+		
+		$markdown = mb_convert_encoding($markdown, "UTF-8", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode");
+		$parser = new \cebe\markdown\GithubMarkdown();
+		
+		$memo = $parser->parse($markdown);
+		$memo = mb_convert_encoding($memo, "SJIS-win", "UTF-8");
+		
+		$hyouzi = str_replace("<table>","<table class='table table-striped table-bordered table-hover table-condensed'>",$memo);
+		$hyouzi = str_replace("<a href=\"http","<a target='_blank' href=\"http",$hyouzi);
+		
+		return $hyouzi;
+	}
 
 ?>

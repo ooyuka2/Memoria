@@ -299,6 +299,7 @@ select::-ms-expand {
 	@media print and (-webkit-min-device-pixel-ratio:0) {
 		body {
 			zoom: 45%; /*©‚¢[Š´‚¶‚É’²®‚µ‚Ä‚­‚¾‚³‚¢*/
+			margin: 0;
 		}
 	}
 
