@@ -298,13 +298,16 @@ select::-ms-expand {
 @media print {
 	@media print and (-webkit-min-device-pixel-ratio:0) {
 		body {
-			zoom: 45%; /*©‚¢[Š´‚¶‚É’²®‚µ‚Ä‚­‚¾‚³‚¢*/
-			margin: 0;
+			zoom: 45% !important;/*©‚¢[Š´‚¶‚É’²®‚µ‚Ä‚­‚¾‚³‚¢*/
+			margin: 0 !important;
 		}
 	}
 
 	.nav, .no_print {
-		display: none;
+		display: none !important;
+	}
+	abbr[title]:after {
+		content: "" !important;
 	}
 }
 @page {
