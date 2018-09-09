@@ -1,0 +1,47 @@
+@charset "UTF-8";
+main { padding: 80px 20px 20px 20px; }
+
+li, h1, h2, h3, h4, h5, h6, p, a, .drawer-menu-item { color: #fff; }
+
+/******************************************************************************************************************************/
+/******************************************************************************************************************************/
+/* ナビゲーションバー　*/
+/******************************************************************************************************************************/
+/******************************************************************************************************************************/
+.navbar { background-color: rgba(0, 0, 0, 0.5); }
+
+.top-nav-collapse { background-color: rgba(0, 0, 0, 0.5); }
+
+.sn-bg-4 { background-image: none; }
+
+.side-nav { background-color: transparent; }
+
+.side-nav .sidenav-bg.mask-strong:after, .mdb-skin .side-nav .sidenav-bg:after { background-color: rgba(0, 0, 0, 0.5); }
+
+.logo-wrapper { background-color: black; }
+
+@media only screen and (max-width: 768px) { .navbar { background-color: rgba(0, 0, 0, 0.8); } }
+.navbar.scrolling-navbar { padding-top: 6px; padding-bottom: 6px; }
+.navbar.scrolling-navbar form { margin-top: 6px; margin-bottom: 6px; }
+.navbar.scrolling-navbar img { width: auto; max-height: 40px; }
+
+.drawer-nav { background-color: rgba(0, 0, 0, 0.7); width: 180px; }
+.drawer-nav li { padding-left: 10px; }
+.drawer-nav li a:hover, .drawer-nav li .parent:hover { color: #26a69a; border-right: 3px solid #26a69a; }
+.drawer-nav li .fa { margin-left: 0px; margin-top: 4px; }
+.drawer-nav li .fa-angle-down { margin-top: 3px; }
+.drawer-nav li li { padding-left: 0; display: none; }
+.drawer-nav li li a { padding-left: 7px; }
+
+.drawer-menu-icon, .fa.pull-left { margin-right: 20px; }
+
+.drawer-menu-icon.fa-graduation-cap { margin-right: 14px; }
+
+.drawer-hamburger { color: #fff; }
+.drawer-hamburger:hover { color: #ffd54f; }
+
+.drawer-menu-item { height: 40px; }
+
+.drawer-dropdown ul { list-style: none; }
+
+/*# sourceMappingURL=style.css.map */

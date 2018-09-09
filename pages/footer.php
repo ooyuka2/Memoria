@@ -114,5 +114,5 @@ function execCopy(string){
 
 <?php
 	//include('../data/setting.php');
-	echo '<script src="'.$ini['dirhtml'].'/img/'.$ini['csstype'].'/js/bootstrap.min.js"></script>';
+	echo '<script src="'.$ini['dirhtml'].'/img/bootstrap3/'.$ini['csstype'].'/js/bootstrap.min.js"></script>';
 ?>

@@ -39,11 +39,11 @@
 					//Memoriaのテーマ編集
 					$txt = "<form class='form-horizontal' method='post' action='./settings.php'>";
 					$txt .= '<div class="form-group">';
-					$txt .= "<button type='button' class=\"btn btn-default\" onclick=\"setHref('../img/honoka/css/bootstrap.css'); setHref2('../img/honoka/css/example.css'); setValue('honoka')\" style='margin: 0 5px auto; background-color: #ffd700;'>オレンジ</button>";
-					$txt .= "<button type='button' class=\"btn btn-default\" onclick=\"setHref('../img/niko/css/bootstrap.css'); setHref2('../img/niko/css/example.css');setValue('niko')\" style='margin: 0 5px auto; background-color: #f3d4df;'>ピンク</button>";
-					$txt .= "<button type='button' class=\"btn btn-default\" onclick=\"setHref('../img/rin/css/bootstrap.css'); setHref2('../img/rin/css/example.css');setValue('rin')\" style='margin: 0 5px auto; background-color: #ffff99;'>黄色</button>";
-					$txt .= "<button type='button' class=\"btn btn-default\" onclick=\"setHref('../img/umi/css/bootstrap.css'); setHref2('../img/umi/css/example.css');setValue('umi')\" style='margin: 0 5px auto;background-color: #add8ff;'>青色</button>";
-					$txt .= "<button type='button' class=\"btn btn-default\" onclick=\"setHref('../img/frandre/css/bootstrap.css'); setHref2('../img/frandre/css/example.css');setValue('frandre')\" style='margin: 0 5px auto; background-color: #dd4814;'>赤色</button>";
+					$txt .= "<button type='button' class=\"btn btn-default\" onclick=\"setHref('../img/bootstrap3/honoka/css/bootstrap.css'); setHref2('../img/bootstrap3/honoka/css/example.css'); setValue('honoka')\" style='margin: 0 5px auto; background-color: #ffd700;'>オレンジ</button>";
+					$txt .= "<button type='button' class=\"btn btn-default\" onclick=\"setHref('../img/bootstrap3/niko/css/bootstrap.css'); setHref2('../img/bootstrap3/niko/css/example.css');setValue('niko')\" style='margin: 0 5px auto; background-color: #f3d4df;'>ピンク</button>";
+					$txt .= "<button type='button' class=\"btn btn-default\" onclick=\"setHref('../img/bootstrap3/rin/css/bootstrap.css'); setHref2('../img/bootstrap3/rin/css/example.css');setValue('rin')\" style='margin: 0 5px auto; background-color: #ffff99;'>黄色</button>";
+					$txt .= "<button type='button' class=\"btn btn-default\" onclick=\"setHref('../img/bootstrap3/umi/css/bootstrap.css'); setHref2('../img/bootstrap3/umi/css/example.css');setValue('umi')\" style='margin: 0 5px auto;background-color: #add8ff;'>青色</button>";
+					$txt .= "<button type='button' class=\"btn btn-default\" onclick=\"setHref('../img/bootstrap3/frandre/css/bootstrap.css'); setHref2('../img/bootstrap3/frandre/css/example.css');setValue('frandre')\" style='margin: 0 5px auto; background-color: #dd4814;'>赤色</button>";
 					$txt .= '</div><div class="form-group pull-right">';
 					$txt .= "<button type='submit' value='niko' class='btn btn-danger' id='csstype' name='csstype' style='margin: 0 10px auto'>確定</button></div>";
 					$txt .= "</form>";

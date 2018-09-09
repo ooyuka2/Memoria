@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="shist-jis">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Memoria</title>
+	<!-- drawer.css -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/css/drawer.min.css">
+	<!-- Font Awesome -->
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+	<!-- Bootstrap core CSS -->
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<!--<link href="../css/mdb.min.css" rel="stylesheet">-->
+	<link href="../css/mdb.css" rel="stylesheet">
+	
+	<link href="../css/fairly.css" rel="stylesheet">
+</head>
+
+<body class="drawer drawer--left">
+
+	<!--Double navigation-->
+	<header role="banner">
+		<nav class="drawer-nav side-nav " role="navigation">
+			<ul class="drawer-menu">
+				<li><a class="drawer-brand" style="height:65px">　</a></li>
+				<li class="drawer-dropdown todonav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
+					<span class="fa fa-check-square-o pull-left drawer-menu-icon"></span>todo<span class="fa fa-angle-down pull-right"></span></a>
+					<ul>
+						<li><a class="drawer-menu-item" href="#">Top</a></li>
+						<li><a class="drawer-menu-item" href="#">Left</a></li>
+						<li><a class="drawer-menu-item" href="#">Right</a></li>
+					</ul>
+				</li>
+				<li class="drawer-dropdown linknav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
+					<span class="fa fa-link pull-left drawer-menu-icon"></span>link<span class="fa fa-angle-down pull-right"></span></a>
+					<ul>
+						<li><a class="drawer-menu-item" href="#">Top</a></li>
+						<li><a class="drawer-menu-item" href="#">Left</a></li>
+						<li><a class="drawer-menu-item" href="#">Right</a></li>
+					</ul>
+				</li>
+				<li class="drawer-dropdown toolsnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
+					<span class="fa fa-wrench pull-left drawer-menu-icon"></span>tools<span class="fa fa-angle-down pull-right"></span></a>
+					<ul>
+						<li><a class="drawer-menu-item" href="#">Top</a></li>
+						<li><a class="drawer-menu-item" href="#">Left</a></li>
+						<li><a class="drawer-menu-item" href="#">Right</a></li>
+					</ul>
+				</li>
+				<li class="drawer-dropdown dictionarynav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
+					<span class="fa fa-graduation-cap pull-left drawer-menu-icon"></span>dictionary<span class="fa fa-angle-down pull-right"></span></a>
+					<ul>
+						<li><a class="drawer-menu-item" href="#">Top</a></li>
+						<li><a class="drawer-menu-item" href="#">Left</a></li>
+						<li><a class="drawer-menu-item" href="#">Right</a></li>
+					</ul>
+				</li>
+				
+				<li class="drawer-dropdown mailnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
+					<span class="fa fa-envelope-o pull-left drawer-menu-icon"></span>mail<span class="fa fa-angle-down pull-right"></span></a>
+					<ul>
+						<li><a class="drawer-menu-item" href="#">Top</a></li>
+						<li><a class="drawer-menu-item" href="#">Left</a></li>
+						<li><a class="drawer-menu-item" href="#">Right</a></li>
+					</ul>
+				</li>
+				<li class="drawer-dropdown settingsnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
+					<span class="fa fa-cogs pull-left drawer-menu-icon"></span>settings<span class="fa fa-angle-down pull-right"></span></a>
+					<ul>
+						<li><a class="drawer-menu-item" href="#">Top</a></li>
+						<li><a class="drawer-menu-item" href="#">Left</a></li>
+						<li><a class="drawer-menu-item" href="#">Right</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<!-- Navbar -->
+		<nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+			<!-- SideNav slide-out button -->
+			<div class="float-left">
+				<a href="#" data-activates="slide-out" class="button-collapse drawer-toggle drawer-hamburger" onclick='$(".drawer-hamburger").css("display","none");'><i class="fa fa-bars"></i></a>
+			</div>
+			<!-- Breadcrumb-->
+			<div class="breadcrumb-dn mr-auto" >
+				<a href="#"><img src="../img/logo.png" class="img-fluid flex-center"  style="margin-left:20px"></a>
+			</div>
+			<!-- Search form -->
+			<form class="form-inline">
+				<div class="md-form my-0">
+				<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+				</div>
+			</form>
+			<!--/.Search Form-->
+		</nav>
+		<!-- /.Navbar -->
+	</header>
+	<!--/.Double navigation-->
+	
+	<!--Main Layout-->
+	<main>
+		<div class="container-fluid">
+			<h2>Advanced Double Navigation with hidden SideNav & fixed Navbar:</h2>
+			<br>
+			<h5>1. Hidden side menu. Click "hamburger" icon in the top left corner to open it.</h5>
+			<h5>2. Fixed navbar. It will always stay visible on the top, even when you scroll down.</h5>
+			
+		</div>
+		<div class="row">
+			<!--Panel-->
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="card-body">
+						<h3 class="card-title">Special title treatment</h3>
+						<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+			</div>
+			<!--/.Panel-->
+
+			<!--Panel-->
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="card-body">
+						<h3 class="card-title">Special title treatment</h3>
+						<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+			</div>
+			<!--/.Panel-->
+		</div>
+		<div style="height: 2000px"></div>
+	</main>
+	<!--Main Layout-->
+	
+	<!-- SCRIPTS -->
+	<!-- JQuery -->
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+
+	<!-- Tooltips -->
+	<script type="text/javascript" src="../js/popper.min.js"></script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="../js/mdb.min.js"></script>
+	<!-- jquery & iScroll -->
+	
+	<script src="../js/iscroll.min.js"></script>
+	<!-- drawer.js -->
+	<script src="../js/drawer.min.js"></script>
+	<script>
+		
+	$(document).ready(function() {
+		// Drawer読み込み
+		$('.drawer').drawer();
+		
+		if($('.activenav').length) {
+			$('.activenav').find('li').slideToggle(500);
+			document.getElementsByClassName('activenav')[0].children[0].children[1].classList.toggle("fa-angle-down");
+			document.getElementsByClassName('activenav')[0].children[0].children[1].classList.toggle("fa-angle-up");
+		}
+		// ドロワーメニューが開いたとき
+		$('.drawer').on('drawer.opened', function(){
+			//alert('ドロワーが開きました');
+			
+		});
+	 
+		// ドロワーメニューが閉じたとき
+		$('.drawer').on('drawer.closed', function(){
+			//alert('ドロワーが閉じられました');
+			 $(".drawer-hamburger").css("display","");
+		});
+	});
+	
+	function navToggle(element) {
+		$(element).parent().find('li').slideToggle(500);
+		element.children[1].classList.toggle("fa-angle-down");
+		element.children[1].classList.toggle("fa-angle-up");
+	}
+
+
+	</script>
+</body>
+</html>

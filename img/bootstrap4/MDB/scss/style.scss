@@ -1,0 +1,111 @@
+// Your custom styles
+
+main {
+	padding: 80px 20px 20px 20px;
+}
+
+li, h1, h2, h3, h4, h5, h6, p, a, .drawer-menu-item {
+	color:#fff;
+}
+
+
+/******************************************************************************************************************************/
+/******************************************************************************************************************************/
+/* ナビゲーションバー　*/
+/******************************************************************************************************************************/
+/******************************************************************************************************************************/
+
+
+.navbar {
+	background-color:rgba(0,0,0,0.5);
+}
+
+.top-nav-collapse {
+	background-color:rgba(0,0,0,0.5);
+}
+
+.sn-bg-4 {
+	background-image: none;
+}
+
+.side-nav {
+	background-color: transparent;
+}
+
+.side-nav .sidenav-bg.mask-strong:after, .mdb-skin .side-nav .sidenav-bg:after {
+	background-color:rgba(0,0,0,0.5);
+}
+
+.logo-wrapper {
+	background-color:rgb(0,0,0);
+}
+
+@media only screen and (max-width: 768px) {
+	.navbar {
+		background-color: rgba(0,0,0,0.8);
+	}
+}
+
+.navbar.scrolling-navbar {
+	padding-top: 6px;
+	padding-bottom: 6px;
+	form {
+		margin-top: 6px;
+		margin-bottom: 6px;
+	}
+	img {
+		width: auto;
+		max-height: 40px;
+	}
+}
+
+.drawer-nav {
+	background-color:rgba(0,0,0,0.7);
+	width: 180px;
+	li {
+		padding-left:10px;
+		a:hover, .parent:hover{
+			color:#26a69a ;
+			border-right: 3px solid #26a69a;
+		}
+		.fa {
+			margin-left: 0px;
+			margin-top: 4px;
+		}
+		.fa-angle-down {
+			margin-top: 3px;
+		}
+		li {
+			padding-left:0;
+			display: none;
+			a {
+				padding-left:7px;
+			}
+		}
+	}
+}
+
+.drawer-menu-icon, .fa.pull-left {
+	margin-right: 20px;
+}
+.drawer-menu-icon.fa-graduation-cap {
+	margin-right: 14px;
+}
+
+.drawer-hamburger {
+	color:#fff;
+	&:hover {
+		color:#ffd54f ;
+	}
+}
+
+.drawer-menu-item {
+	height:40px
+}
+
+.drawer-dropdown {
+
+	ul {
+	  list-style: none;
+	}
+}
