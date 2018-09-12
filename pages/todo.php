@@ -1,7 +1,6 @@
 <?php
 	
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
-	include_once($ini['dirWin'].'/pages/function.php');
 	include($ini['dirWin'].'/pages/hedder.php');
 ?>
 <style type="text/css">
@@ -37,7 +36,7 @@
 	<div class='bkcolor'>
 	<div class="container" style="margin:0 auto; padding:0 0 0 0; width:95%; max-width:1500px">
 		<?php
-			select_page("todo", $_GET['page']);
+			select_page($link_pages_Win . "todo", $_GET['page']);
 		?>
 	</div>
 	</div>
@@ -46,7 +45,7 @@
 <?php
 	
 	include($ini['dirWin'].'/pages/footer.php');
-	select_script_page("todo", $_GET['page']);
+	select_script_page($link_pages_Win . "todo", $_GET['page']);
 ?>
 <script>
 	window.onload = function(){

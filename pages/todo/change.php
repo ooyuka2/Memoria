@@ -63,7 +63,7 @@
 						</div>
 						<div class="col-xs-12" style="margin-bottom:5px">
 							<textarea class="form-control input-normal input-sm detail" rows="3" name="detail[]"><?php 
-			                  	$detail = str_replace('<br>', '&#13;',$todo[$_GET['p']]['ì‹Æ“à—e']); 
+			                  	$detail = str_replace('<br>', '&#10;',$todo[$_GET['p']]['ì‹Æ“à—e']); 
 			                  	echo $detail;
 			                  	?></textarea>
 						</div>
@@ -120,7 +120,7 @@
 	    	$count=1;
 		    for($i=1; $i<count($todo);$i++) {
 		    	if($todo[$i]['top']==$_GET['p'] && $todo[$i]['level']!=1 && $todo[$i]['íœ']==0) {
-		    		$detail = str_replace('<br>', '&#13;',$todo[$i]['ì‹Æ“à—e']);
+		    		$detail = str_replace('<br>', '&#10;',$todo[$i]['ì‹Æ“à—e']);
 		    		$nokidate = date('Y/m/d',  strtotime($todo[$i]['”[Šú']));
 		    		$startdate = date('Y/m/d',  strtotime($todo[$i]['ŠJŽn—\’è“ú']));
 		    		$finishdate = date('Y/m/d',  strtotime($todo[$i]['I—¹—\’è“ú']));

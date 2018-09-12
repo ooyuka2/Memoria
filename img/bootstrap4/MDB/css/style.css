@@ -1,7 +1,9 @@
 @charset "UTF-8";
-main { padding: 80px 20px 20px 20px; }
+main { padding: 80px 40px 20px 40px; min-height: 100vh; margin: 0 0 0 0; }
 
-li, h1, h2, h3, h4, h5, h6, p, a, .drawer-menu-item { color: #fff; }
+.row { margin: 0; }
+
+body, li, h1, h2, h3, h4, h5, h6, p, a, .drawer-menu-item { color: #fff; }
 
 /******************************************************************************************************************************/
 /******************************************************************************************************************************/
@@ -43,5 +45,11 @@ li, h1, h2, h3, h4, h5, h6, p, a, .drawer-menu-item { color: #fff; }
 .drawer-menu-item { height: 40px; }
 
 .drawer-dropdown ul { list-style: none; }
+
+.main-contents { overflow: hidden; }
+
+.drawer-hover { height: 100vh; width: 40px; padding-bottom: 10000px; margin-bottom: -10000px; }
+
+.navbar.scrolling-navbar form, .md-form, .md-form .form-control { width: 300px; color: #689f38; }
 
 /*# sourceMappingURL=style.css.map */

@@ -5,36 +5,38 @@
 	<nav class="drawer-nav side-nav " role="navigation">
 		<ul class="drawer-menu">
 			<li><a class="drawer-brand" style="height:65px">　</a></li>
-			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
+			<li class="drawer-dropdown todonav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
 				<span class="fa fa-check-square-o pull-left drawer-menu-icon"></span>todo<span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
-					<li><a class="drawer-menu-item" href="#">Top</a></li>
-					<li><a class="drawer-menu-item" href="#">Left</a></li>
-					<li><a class="drawer-menu-item" href="#">Right</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>">Top</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=new">add</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=weekly">週報</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=keeper">時間管理</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=calendar">カレンダー</a></li>
 				</ul>
 			</li>
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
 				<span class="fa fa-link pull-left drawer-menu-icon"></span>link<span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>
-					<li><a class="drawer-menu-item" href="#">Left</a></li>
-					<li><a class="drawer-menu-item" href="#">Right</a></li>
+					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
+					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
 				</ul>
 			</li>
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
 				<span class="fa fa-wrench pull-left drawer-menu-icon"></span>tools<span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>
-					<li><a class="drawer-menu-item" href="#">Left</a></li>
-					<li><a class="drawer-menu-item" href="#">Right</a></li>
+					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
+					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
 				</ul>
 			</li>
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
 				<span class="fa fa-graduation-cap pull-left drawer-menu-icon"></span>dictionary<span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>
-					<li><a class="drawer-menu-item" href="#">Left</a></li>
-					<li><a class="drawer-menu-item" href="#">Right</a></li>
+					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
+					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
 				</ul>
 			</li>
 			
@@ -42,16 +44,16 @@
 				<span class="fa fa-envelope-o pull-left drawer-menu-icon"></span>mail<span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>
-					<li><a class="drawer-menu-item" href="#">Left</a></li>
-					<li><a class="drawer-menu-item" href="#">Right</a></li>
+					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
+					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
 				</ul>
 			</li>
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
 				<span class="fa fa-cogs pull-left drawer-menu-icon"></span>settings<span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>
-					<li><a class="drawer-menu-item" href="#">Left</a></li>
-					<li><a class="drawer-menu-item" href="#">Right</a></li>
+					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
+					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -64,7 +66,7 @@
 		</div>
 		<!-- Breadcrumb-->
 		<div class="breadcrumb-dn mr-auto" >
-			<a href="#"><img src="../img/logo.png" class="img-fluid flex-center"  style="margin-left:20px"></a>
+			<a href="<?php echo $link_pages_html; ?>"><img src="../img/logo.png" class="img-fluid flex-center"  style="margin-left:20px"></a>
 		</div>
 		<!-- Search form -->
 		<form class="form-inline">

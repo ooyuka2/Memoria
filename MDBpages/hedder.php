@@ -8,7 +8,8 @@
 		$now = new DateTime();
 		$updatefiletime = "?" . $now->format('Y-m-d-h-i-s');
 		$ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
-		include $ini['dirWin']. "/MDBpages/rooting.php";
+		$pagetype = "MDBpages";
+		include_once($ini['dirWin'].'/pages/function.php');
 	?>
 	<!-- Required meta tags always come first -->
 	<meta charset="shist-jis">

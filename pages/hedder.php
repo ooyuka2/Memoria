@@ -6,8 +6,9 @@
 		header("Content-type: text/html; charset=SJIS-win");
 		date_default_timezone_set('Asia/Tokyo');
 		$now = new DateTime();
-		$updatefiletime = $now->format('Y-m-d-h-i-s');
-		
+		$updatefiletime = "?" . $now->format('Y-m-d-h-i-s');
+		$pagetype = "pages";
+		include_once($ini['dirWin'].'/pages/function.php');
 	?>
 	<!-- <meta http-equiv="Content-Type" content="text/html; charset=shift_jis">-->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,10 +20,10 @@
 	<link rel="stylesheet" type="text/css" href="http://felicegattuso.com/projects/timedropper/js/timedropper/timedropper.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo $ini['dirhtml']."/DataTables/datatables.min.css";?>"/>
 	<?php
-		echo '<link id="sampleLink" rel="stylesheet" type="text/css" href="'.$ini['dirhtml'].'/img/bootstrap3/'.$ini['csstype'].'/css/bootstrap.css?'.$updatefiletime.'">';
-		echo '<link id="sampleLink2" rel="stylesheet" type="text/css" href="'.$ini['dirhtml'].'/img/bootstrap3/'.$ini['csstype'].'/css/example.css?'.$updatefiletime.'">';
+		echo '<link id="sampleLink" rel="stylesheet" type="text/css" href="'.$ini['dirhtml'].'/img/bootstrap3/'.$ini['csstype'].'/css/bootstrap.css'.$updatefiletime.'">';
+		echo '<link id="sampleLink2" rel="stylesheet" type="text/css" href="'.$ini['dirhtml'].'/img/bootstrap3/'.$ini['csstype'].'/css/example.css'.$updatefiletime.'">';
 	?>
-	<?php echo '<link rel="stylesheet" type="text/css" href="'.$ini['dirhtml'].'/style.css?'.$updatefiletime.';"/>';
+	<?php echo '<link rel="stylesheet" type="text/css" href="'.$ini['dirhtml'].'/style.css'.$updatefiletime.';"/>';
 	//echo '<link rel="stylesheet" href="'.$ini['dirhtml'].'/md/github-markdown.css">';
 	 ?>
 	

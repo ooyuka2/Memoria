@@ -117,7 +117,7 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 		$count = 0;
 	} else {
 		$title = $todo[$p]['タイトル'];
-		$detail = str_replace('<br>', '&#13;',$todo[$p]['作業内容']); 
+		$detail = str_replace('<br>', '&#10;',$todo[$p]['作業内容']); 
 		$mono = $todo[$p]['成果物'];
 		$priority = $todo[$p]['優先度'];
 		$count = $todo[$p]['順番'];
@@ -182,8 +182,8 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 	echo "<input type='hidden' name='id[]' value='{$id}' class='id'>";
 	echo "</div>";
 	
-	echo "<div class='col-xs-12' style='margin-bottom:5px'>";
-	echo "<textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'>{$detail}</textarea>";
+	echo "<div class='col-xs-12' style='margin-bottom:5px; whtie-space:nowrap;'>";
+	echo "<textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'  style='white-space:pre-wrap;width: 100%'>{$detail}</textarea>";
 	echo "</div>";
 	
 	echo "<div class='col-xs-12' style='margin-bottom:5px'>";

@@ -23,35 +23,9 @@
 	<?php
 		echo '<script type="text/javascript" src="' . $link_drawer_js .'"></script>';
 	?>
-	<script>
-		
-	$(document).ready(function() {
-		// Drawer読み込み
-		$('.drawer').drawer();
-		
-		if($('.activenav').length) {
-			$('.activenav').find('li').slideToggle(500);
-			document.getElementsByClassName('activenav')[0].children[0].children[1].classList.toggle("fa-angle-down");
-			document.getElementsByClassName('activenav')[0].children[0].children[1].classList.toggle("fa-angle-up");
-		}
-		// ドロワーメニューが開いたとき
-		$('.drawer').on('drawer.opened', function(){
-			//alert('ドロワーが開きました');
-			
-		});
-	 
-		// ドロワーメニューが閉じたとき
-		$('.drawer').on('drawer.closed', function(){
-			//alert('ドロワーが閉じられました');
-			 $(".drawer-hamburger").css("display","");
-		});
-	});
 	
-	function navToggle(element) {
-		$(element).parent().find('li').slideToggle(500);
-		element.children[1].classList.toggle("fa-angle-down");
-		element.children[1].classList.toggle("fa-angle-up");
-	}
-
-
-	</script>
+	<!-- 全体的に反映させたい.js -->
+	<?php
+		echo '<script type="text/javascript" src="' . $link_javascript_js . $updatefiletime . '"></script>';
+		echo '<script type="text/javascript" src="' . $link_javascriptpages_js . $updatefiletime . '"></script>';
+	?>

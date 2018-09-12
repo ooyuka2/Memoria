@@ -1,6 +1,5 @@
 <?php
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
-	include_once($ini['dirWin'].'/pages/function.php');
 	include($ini['dirWin'].'/pages/hedder.php');
 ?>
 <style type="text/css">
@@ -39,7 +38,7 @@ table td {
 	echo "<h2>MemoriaTool</h2>";
 	readTool($ini['dirWin']."/pages/tools/", $ini['dirhtml']."/pages/tools/");
 	*/
-	select_page("tools", $_GET['page']);
+	select_page($link_pages_Win . "tools", $_GET['page']);
 	
 ?>
 	</div>
@@ -49,7 +48,7 @@ table td {
 <?php
 	
 	include($ini['dirWin'].'/pages/footer.php');
-	select_script_page("tools", $_GET['page']);
+	select_script_page($link_pages_Win . "tools", $_GET['page']);
 ?>
 <script>
 	window.onload = function(){

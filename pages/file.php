@@ -18,7 +18,7 @@
 			//name,furi,summary,detail,count,syurui,date,delete
 			$group = readCsvFile2($ini['dirWin'].'/../data/file_group.csv');
 			//group,abc,detail
-			select_page("file", $_GET['page']);
+			select_page($link_pages_Win . "file", $_GET['page']);
 		?>
 	</div>
 </section>
@@ -26,7 +26,7 @@
 <?php
 	
 	include($ini['dirWin'].'/pages/footer.php');
-	select_script_page("file", $_GET['page']);
+	select_script_page($link_pages_Win . "file", $_GET['page']);
 ?>
 <script>
 	window.onload = function(){

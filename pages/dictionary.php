@@ -1,6 +1,5 @@
 <?php
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
-	include_once($ini['dirWin'].'/pages/function.php');
 	include($ini['dirWin'].'/pages/hedder.php');
 ?>
 <body>
@@ -15,7 +14,7 @@
 	<div class='bkcolor'>
 	<div class="container" style="padding:0 0 50px 0">
 		<?php
-			select_page("dictionary", $_GET['page']);
+			select_page($link_pages_Win . "dictionary", $_GET['page']);
 		?>
 	</div>
 </section>
@@ -23,7 +22,7 @@
 <?php
 	
 	include($ini['dirWin'].'/pages/footer.php');
-	select_script_page("dictionary", $_GET['page']);
+	select_script_page($link_pages_Win . "dictionary", $_GET['page']);
 ?>
 <script>
 	window.onload = function(){

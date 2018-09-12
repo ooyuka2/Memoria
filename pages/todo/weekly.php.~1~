@@ -247,7 +247,7 @@
 
 			echo "テーマ概要";
 			echo "</td><td>";
-			$temp = str_replace('<br>', '&#10;',$weekly[$i]['テーマ概要']);
+			$temp = str_replace('<br>', '&#13;',$weekly[$i]['テーマ概要']);
 			echo "<textarea class='form-control input-normal input-sm detail' name='detail[]' onChange='writeweekly({$count})'>{$temp}</textarea>";
 			echo "</td><td>";
 			echo $todo[$weekly[$i]['todoid']]['作業内容'];
@@ -262,7 +262,7 @@
 			
 			echo "済み";
 			echo "</td><td>";
-			$temp = str_replace('<br>', '&#10;',$weekly[$i]['済み']);
+			$temp = str_replace('<br>', '&#13;',$weekly[$i]['済み']);
 			echo "<textarea class='form-control input-normal input-sm finish' name='finish[]' onChange='writeweekly({$count})'>{$temp}</textarea>";
 			echo "</td><td>";
 			echo $weekly[$i]['済み'];
@@ -270,7 +270,7 @@
 			
 			echo "進捗";
 			echo "</td><td>";
-			$temp = str_replace('<br>', '&#10;',$weekly[$i]['進捗']);
+			$temp = str_replace('<br>', '&#13;',$weekly[$i]['進捗']);
 			echo "<textarea class='form-control input-normal input-sm step' name='step[]' onChange='writeweekly({$count})'>{$temp}</textarea>";
 			echo "</td><td>";
 			if($flug != 0) {
@@ -285,7 +285,7 @@
 			
 			echo "今後の予定";
 			echo "</td><td>";
-			$temp = str_replace('<br>', '&#10;',$weekly[$i]['今後の予定']);
+			$temp = str_replace('<br>', '&#13;',$weekly[$i]['今後の予定']);
 			echo "<textarea class='form-control input-normal input-sm plan' name='plan[]' onChange='writeweekly({$count})'>{$temp}</textarea>";
 			echo "</td><td>";
 			if($todo[$weekly[$i]['todoid']]['完了']==0) {

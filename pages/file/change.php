@@ -81,7 +81,7 @@
                 <label for="textArea" class="col-lg-2 control-label">URL</label>
                 <div class="col-lg-10">
                   <textarea class="form-control" rows="3" id="textArea" name="summary"><?php 
-                  	$summary = str_replace('<br>', '&#13;',$file[$_GET['p']]['summary']); 
+                  	$summary = str_replace('<br>', '&#10;',$file[$_GET['p']]['summary']); 
                   	echo $summary;
                   	
                   	?></textarea>
@@ -91,7 +91,7 @@
                 <label for="textArea" class="col-lg-2 control-label">îıçl</label>
                 <div class="col-lg-10">
                   <textarea class="form-control" rows="3" id="textArea" name="detail"><?php 
-                  	$detail = str_replace('<br>', '&#13;',$file[$_GET['p']]['detail']); 
+                  	$detail = str_replace('<br>', '&#10;',$file[$_GET['p']]['detail']); 
                   	echo $detail;
                   	
                   	?></textarea>

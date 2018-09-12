@@ -45,8 +45,15 @@ body {
 	background-color: #464646;
 	
 	margin-bottom: 20px;
+	
+}
+
+.card .card-body .card-text {
+	color: #cfd8dc;
 }
 
 .container-fluid {
 	padding: 20px;
 }
+
+
