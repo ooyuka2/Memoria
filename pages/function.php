@@ -3,6 +3,7 @@
 	include $ini['dirWin']. "/pages/rooting.php";
 	
 	include $link_function;
+	//echo $link_function;
 
 
 //##################################################################

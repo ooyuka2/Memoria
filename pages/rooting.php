@@ -6,6 +6,11 @@
 	
 	//$ini['dirhtml']="/Memoria"
 	//$ini['dirWin']="C:/xampp/htdocs/Memoria"
+	
+	//dataフォルダ
+	$link_data = $ini['dirWin'] . "/data/";
+	
+	
 	if(!isset($pagetype)) $pagetype = "pages";
 	
 	if($pagetype == "pages") {
@@ -63,4 +68,6 @@
 	//todoページへのリンク
 	$link_todo_html = $link_pages_html . "todo.php";
 	$link_todo_Win = $link_pages_Win . "todo.php";
+	
+	$link_todo_tree_Win =  $link_pages_Win . "todo/todo_tree.php";
 ?>

@@ -1,5 +1,10 @@
 // Your custom styles
 
+@media ( min-width: 768px ) {
+body {
+	font-size:12px;
+}}
+
 main {
 	padding: 80px 40px 20px 40px;
 	min-height:100vh;
@@ -131,4 +136,20 @@ body, li, h1, h2, h3, h4, h5, h6, p, a, .drawer-menu-item {
 .navbar.scrolling-navbar form, .md-form , .md-form .form-control{
 	width: 300px;
 	color: #689f38;
+}
+/*
+// ##############################################################################################################################
+//            todoのリスト構造用
+// ##############################################################################################################################
+*/
+.tree-child-space {
+	border-left: solid 2px #c0a2c7;/* #f6cfff;/*#a4d5bd;*/
+}
+
+.tree-mark {
+	color: #c0a2c7;/*#f6cfff;/*#00947a;*/
+}
+
+.text-future {
+	color: #c0a2c7;/*#f19ca7;*/
 }
