@@ -27,8 +27,11 @@
 		<div class='clearfix'>
 			<button class='btn btn-default pull-right btn-sm' onclick='tree_close()'>•Â‚¶‚é</button>
 			<button class='btn btn-default pull-right btn-sm' style='' onclick='tree_open()'>ŠJ‚­</button>
-			<a href="/Memoria/pages/todo.php?page=whatdo&p=deskwork&f=0" class="">’èŠúì‹Æ</a>
-			<a href="/Memoria/pages/todo.php?page=whatTodayDo" class="">¡“ú‚â‚é‚±‚Æ</a>
+			<a class='pull-left' href="/Memoria/mdbpages/todo.php?page=whatdo&p=deskwork&f=0" style="margin:15px 5px">’èŠúì‹Æ</a>
+			<a class='pull-left' href="/Memoria/mdbpages/todo.php?page=whatTodayDo" style="margin:15px 5px">¡“ú‚â‚é‚±‚Æ</a>
+		</div>
+		<div>
+
 		</div>
 		<div id="todo_tree">
 <?php
@@ -43,3 +46,4 @@
 		</div>
 	</div>
 </div>
+<div id="todo_tree_menu"></div>
