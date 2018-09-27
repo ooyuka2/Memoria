@@ -128,7 +128,10 @@
 							echo "<button type='button' id='doButton{$sa[$i]}' class='btn btn-success' onClick='doBotton({$sa[$i]})'>やる</button>　<button type='button' id='donotButton{$sa[$i]}'  class='btn btn-info disabled' onClick='donotBotton({$sa[$i]})'>やらない!</button></td><td>";
 							
 						}
-						write_todo_tree($todo, $sa[$i], date('Y/m/d'));
+						//write_todo_tree($todo, $sa[$i], date('Y/m/d'));
+						echo "<span class='text-primary'> {$todo[$sa[$i]]['タイトル']}</span><br>";
+						$temp = str_split( $todo[$sa[$i]]['作業内容'] , 250);
+						echo "<span><strong>作業内容　: </strong>{$temp[0]}</span>";
 						echo "</td></tr>";
 					} else {
 						echo "<tr><td></td><td></td></tr>";
