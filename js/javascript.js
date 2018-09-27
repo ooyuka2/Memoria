@@ -1,7 +1,7 @@
 $(document).ready(function(){
-  //textareaãƒ•ã‚©ãƒ¼ã‚«ã‚¹æ™‚ã«æ–‡å­—æ•°ã®é«˜ã•è¦‹ã¦ãƒªã‚µã‚¤ã‚º
+  //textareaƒtƒH[ƒJƒX‚É•¶š”‚Ì‚‚³Œ©‚ÄƒŠƒTƒCƒY
   $('textarea').keyup(function(e) {
-    //æ–‡å­—æ•°ã‹ã‚‰é«˜ã•å–å¾—
+    //•¶š”‚©‚ç‚‚³æ“¾
     var height=this.scrollHeight + 'px';
     $(this).css("height", height);
     })
@@ -44,19 +44,19 @@ function setDateTime_start() {
 		}
 		
 		$( ".time" ).timeDropper({
-			//æ©Ÿèƒ½ã‚ªãƒ—ã‚·ãƒ§ãƒ³
-			autoswitch: false,					//ã‚¯ãƒªãƒƒã‚¯ä½ç½®ç§»å‹•
-			meridians: false,					 //12æ™‚é–“ / 24æ™‚é–“è¡¨ç¤º
-			format: "HH:mm",					 //æ™‚åˆ»ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
-			mousewheel: false,					//ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«å¯å¦
-			init_animation: "fadeIn",	 //åˆæœŸã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
-			setCurrentTime: false,			 //ç¾åœ¨æ™‚åˆ»ã®è¨­å®š
+			//‹@”\ƒIƒvƒVƒ‡ƒ“
+			autoswitch: false,					//ƒNƒŠƒbƒNˆÊ’uˆÚ“®
+			meridians: false,					 //12ŠÔ / 24ŠÔ•\¦
+			format: "HH:mm",					 //ƒtƒH[ƒ}ƒbƒg
+			mousewheel: false,					//ƒ}ƒEƒXƒzƒC[ƒ‹‰Â”Û
+			init_animation: "fadeIn",	 //‰ŠúƒAƒjƒ[ƒVƒ‡ƒ“
+			setCurrentTime: false,			 //Œ»İ‚Ìİ’è
 
-			//ã‚¹ã‚¿ã‚¤ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³
-			primaryColor: "#1977cc",		//è¨­å®šä¸­ã®æ–‡å­—
-			textColor: "#555555",			 //è¨­å®šå¾Œã®æ–‡å­—
-			backgroundColor: "#ffffff", //èƒŒæ™¯
-			borderColor: "#1977cc"			//æ ç·š
+			//ƒXƒ^ƒCƒ‹ƒIƒvƒVƒ‡ƒ“
+			primaryColor: "#1977cc",		//İ’è’†‚Ì•¶š
+			textColor: "#555555",			 //İ’èŒã‚Ì•¶š
+			backgroundColor: "#ffffff", //”wŒi
+			borderColor: "#1977cc"			//˜gü
 		});
 	}
 }
@@ -79,15 +79,15 @@ function execCopy(string){
 	temp.blur();
 	
 	document.body.removeChild(temp);
-	// true ãªã‚‰å®Ÿè¡Œã§ãã¦ã„ã‚‹ falseãªã‚‰å¤±æ•—ã‹å¯¾å¿œã—ã¦ã„ãªã„ã‹
+	// true ‚È‚çÀs‚Å‚«‚Ä‚¢‚é false‚È‚ç¸”s‚©‘Î‰‚µ‚Ä‚¢‚È‚¢‚©
 	return result;
 }
 
 /**
  * Get the URL parameter value
  *
- * @param  name {string} ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚­ãƒ¼æ–‡å­—åˆ—
- * @return  url {url} å¯¾è±¡ã®URLæ–‡å­—åˆ—ï¼ˆä»»æ„ï¼‰
+ * @param  name {string} ƒpƒ‰ƒ[ƒ^‚ÌƒL[•¶š—ñ
+ * @return  url {url} ‘ÎÛ‚ÌURL•¶š—ñi”CˆÓj
  */
 function getParam(name, url) {
 	if (!url) url = window.location.href;
@@ -101,9 +101,100 @@ function getParam(name, url) {
 
 // ##############################################################################################################################
 //
-//            0ä»¥ä¸Šãªã‚‰ãƒã‚¤ãƒŠã‚¹ã‚’ã¤ã‘ã‚‹é–¢æ•°
+//            0ˆÈã‚È‚çƒ}ƒCƒiƒX‚ğ‚Â‚¯‚éŠÖ”
 //
 // ##############################################################################################################################
 function abs(val) {
   return val < 0 ? -val : val;
 };
+
+// ##############################################################################################################################
+//
+//            ‰EƒNƒŠƒbƒNƒƒjƒ…[—p‚ÌŠÖ”
+//
+// ##############################################################################################################################
+function gotoid(todoid) {
+	// ƒXƒNƒ[ƒ‹‚Ì‘¬“x
+	var speed = 400; // ƒ~ƒŠ•b
+	// ƒAƒ“ƒJ[‚Ì’læ“¾
+	var href = todoid;
+	// ˆÚ“®æ‚ğæ“¾
+	var target = $(href == "#" || href == "" ? 'html' : href);
+	// ˆÚ“®æ‚ğ”’l‚Åæ“¾
+	var position = target.offset().top;
+	// ƒXƒ€[ƒXƒXƒNƒ[ƒ‹
+	$('body,html').animate({scrollTop:position}, speed, 'swing');
+	return false;
+}
+
+document.onmousemove = function (e){
+	if(document.getElementById("tree_menu")) {
+	var mouse_x=document.body.scrollLeft+event.clientX;
+	var mouse_y=document.body.scrollTop+event.clientY;
+	if(abs(mouse_x-tree_menu_x)>150 && abs(mouse_y-tree_menu_y)>150) document.getElementById("todo_tree_menu").innerHTML = "";
+	}
+};
+
+if(document.getElementById("todo_tree_menu")) {
+	$('#myTabContent').on('dblclick', function() {
+		document.getElementById("todo_tree_menu").innerHTML = "";
+	});
+}
+
+var tree_menu_x = 0;
+var tree_menu_y = 0;
+
+function tree_menu(id, top, pre, child, wait, whatdotoday, todofile) {
+	tree_menu_x=event.clientX;//document.body.scrollLeft+
+	tree_menu_y=event.clientY;//document.body.scrollTop+
+	
+	var menu = "<div class='btn-group-vertical' style='position: fixed; z-index: 1;' id='tree_menu'>";//
+
+	if(pre!=100) { //child == 0 && 
+		menu = menu + "<div class='btn-group' role='group'><button type='button' class='btn btn-default dropdown-toggle btn-xs btn-block' data-toggle='dropdown' aria-expanded='false'>ì‹Æİ’è<span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
+		
+		for(j=Math.ceil(pre/10)*10; j<100; j+=10) 
+		menu = menu + "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=whatdo&p="+id+"&f="+j+"' class='text-dark' style='padding-left:20px;'>"+j+"“‚Ü‚ÅŠ®—¹</a></li>";
+		menu = menu + "</ul>";
+		menu = menu + "</div>";
+	}
+	
+	if(wait == "") wait = 0;
+	
+	if(todofile  === "todo") menu = menu + "<a href='todo.php?page=whatdo&f=100&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>Š®—¹İ’è</a>";
+	if(todofile  === "todo" && pre==100) menu = menu + "<a href='./todo/nofinish.php?p="+id+"' class='btn btn-default btn-xs btn-block'>–¢Š®—¹İ’è</a>";
+	menu = menu + "<a href='todo.php?d=todo&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>ƒŠƒ“ƒN‚ğŠJ‚­</a>";
+	menu = menu + "<a href='todo.php?d=todo&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block' target='_blank' >V‚µ‚¢ƒ^ƒu‚ÅƒŠƒ“ƒN‚ğŠJ‚­</a>";
+	menu = menu + "<a href='todo.php?d=todo&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>Ú×‰æ–Ê‚ğŠJ‚­</a>";
+	if(todofile  === "todo") menu = menu + "<a href='todo.php?d=change&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>•ÒW‚ğŠJ‚­</a>";
+	menu = menu + "<a href='todo.php?d=renew&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>—¬—p‚·‚é</a>";
+	menu = menu + "<a href='todo.php?d=detail&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>ƒtƒBƒ‹ƒ^[</a>";
+	if((whatdotoday == 0 || whatdotoday == 2) && pre!=100) menu = menu + "<a href='todo.php?page=whatTodayDo&turn=1&p="+top+"' class='btn btn-default btn-xs btn-block'>¡“úŠæ’£‚é</a>";
+	else if(whatdotoday == 1 && pre!=100) {
+		menu = menu + "<a href='todo.php?page=whatTodayDo&turn=2&p="+top+"' class='btn btn-default btn-xs btn-block'>–¾“úŠæ’£‚é</a>";
+		menu = menu + "<a href='todo.php?page=whatTodayDo&turn=0&p="+top+"' class='btn btn-default btn-xs btn-block'>¡“xŠæ’£‚é</a>";
+	}
+	if(wait == 0 && pre!=100) menu = menu + "<a href='todo.php?page=wait&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>•Û—¯İ’è</a></div>";
+	else if(pre!=100) menu = menu + "<a href='todo.php?page=wait&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>‰ğœİ’è</a></div>";
+	
+	document.getElementById("todo_tree_menu").innerHTML = menu;
+	document.getElementById("tree_menu").style.left=tree_menu_x+"px";
+	if(tree_menu_y < 500) document.getElementById("tree_menu").style.top=tree_menu_y+"px";
+	else document.getElementById("tree_menu").style.top=tree_menu_y-150+"px";
+}
+
+
+
+// ##############################################################################################################################
+//
+//            ƒƒ‚ƒpƒlƒ‹—p‚ÌŠÖ”
+//
+// ##############################################################################################################################
+
+
+function changeMemoform() {
+	var textarea = document.getElementById("memoform");
+	if( textarea.scrollHeight > textarea.offsetHeight ){
+		textarea.style.height = textarea.scrollHeight+'px';
+	}
+}

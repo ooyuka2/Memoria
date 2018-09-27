@@ -204,7 +204,7 @@ function sort_by_noki_todo_priority($todo, $flag) {
 		$tmpcount = count($tmparray);
 	}
 	for($i=1; $i<count($todo); $i++) {
-		if($todo[$i]['Š®—¹'] == 0 && $todo[$i]['•Û—¯'] == 0 && $todo[$i]['íœ'] != 1 && $flag && $todo[$todo[$i]['top']]['¡“ú‚â‚é‚±‚Æ'] == 0) {
+		if($todo[$i]['Š®—¹'] == 0 && $todo[$i]['•Û—¯'] == 0 && $todo[$i]['íœ'] != 1 && $flag && $todo[$todo[$i]['top']]['¡“ú‚â‚é‚±‚Æ'] != 1) {
 			$tmparray[count($tmparray)] = $todo[$i]['id'];
 		} else if($todo[$todo[$i]['top']]['Š®—¹'] == 1 && $todo[$i]['íœ'] != 1 && !$flag) {
 			$tmparray[count($tmparray)] = $todo[$i]['id'];

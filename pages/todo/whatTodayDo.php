@@ -28,7 +28,7 @@
 						}
 					}
 				}
-				if($todo[$sa[$i]]['ç°ì˙Ç‚ÇÈÇ±Ç∆'] == 1 || $flug == 1) {
+				if($todo[$sa[$i]]['ç°ì˙Ç‚ÇÈÇ±Ç∆'] != 0 || $flug == 1) {
 					$pid = $pid . "@". $sa[$i];
 				}
 			}
@@ -45,7 +45,7 @@
 		//echo $_GET['pid'];
 		$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
 		for($i=1; $i<count($todo); $i++) {
-			if($todo[$i]['level'] == 1) $todo[$i]['ç°ì˙Ç‚ÇÈÇ±Ç∆'] = 0;
+			if($todo[$i]['level'] == 1 && $todo[$i]['ç°ì˙Ç‚ÇÈÇ±Ç∆'] != 2) $todo[$i]['ç°ì˙Ç‚ÇÈÇ±Ç∆'] = 0;
 		}
 		for($i=1; $i<count($ids); $i++) {
 			$todo[$ids[$i]]['ç°ì˙Ç‚ÇÈÇ±Ç∆'] = 1;
@@ -72,6 +72,17 @@
 			writeCsvFile2($ini['dirWin']."/data/working.csv", $working);
 		}
 		
+		header( "Location: /Memoria/pages/todo.php" );
+		exit();
+	}
+	
+	if(isset($_GET['turn'])) {
+		$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
+		
+		if(isset($_GET['p'])) {
+			$todo[$_GET['p']]['ç°ì˙Ç‚ÇÈÇ±Ç∆'] = $_GET['turn'];
+			writeCsvFile2($ini['dirWin']."/data/todo.csv", $todo);
+		}
 		header( "Location: /Memoria/pages/todo.php" );
 		exit();
 	}

@@ -1,6 +1,9 @@
+
+
 body {
 	/* 画像ファイルの指定 */
-	background-image: url(../img/blur-bg.jpg);
+	/*background-image: url(../img/blur-bg.jpg);*/
+	background-image: url(../img/blue-fairly.jpg);
 	/* 画像を常に天地左右の中央に配置 */
 	background-position: center center;
 
@@ -18,7 +21,9 @@ body {
 	
 }
 
-
+body, li, h1, h2, h3, h4, h5, h6, p, a, .drawer-menu-item {
+	color:#fff;
+}
 
 
 /******************************************************************************************************************************/
@@ -28,7 +33,8 @@ body {
 /******************************************************************************************************************************/
 .card, .container-fluid {
 	/* 画像ファイルの指定 */
-	background-image: url(../img/blur-bg-blurred4.jpg);
+	/*background-image: url(../img/blur-bg-blurred4.jpg);*/
+	background-image: url(../img/blue-fairly-blurred.jpg);
 	/* 画像を常に天地左右の中央に配置 */
 	background-position: center center;
 
@@ -44,16 +50,9 @@ body {
 	/* 背景画像が読み込まれる前に表示される背景のカラー */
 	background-color: #464646;
 	
-	margin-bottom: 20px;
-	
 }
 
 .card .card-body .card-text {
 	color: #cfd8dc;
 }
-
-.container-fluid {
-	padding: 20px;
-}
-
 
