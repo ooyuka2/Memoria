@@ -1,7 +1,7 @@
 filename,big,type,lock
 mdmemo.txt,y,txt,y
 memo.txt,n,txt,n
-memo0.txt,n,txt,n
+memo0.txt,n,txt,y
 memo3.txt,y,txt,n
 memo6.txt,y,txt,n
 memo7.txt,y,txt,n
