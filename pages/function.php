@@ -438,6 +438,103 @@ function todo_next_child($todo, $parent, $next) {
 	return $id;
 }
 
+//##################################################################
+//				今日やること整理のページ用の関数
+//##################################################################
+
+function whatTodayDo_Registration($ini) {
+	if(isset($_GET['auto'])) {
+	
+		$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
+		$sa = sort_by_noki_todo_priority($todo, true);
+		$pid = "";
+		$today = new DateTime(date('Ymd'));
+		
+		
+		for($i=0; $i<count($sa); $i++) {
+			
+			if($sa[$i]!=0 && $todo[$sa[$i]]['削除'] != 1 && $todo[$sa[$i]]['保留'] != 1 && $todo[$sa[$i]]['完了'] != 1) { 
+				$flug = 0;
+				
+				for($j=1; $j<count($todo); $j++) {
+					if($todo[$j]['top'] == $sa[$i]) {
+						$workday = new DateTime($todo[$j]['開始予定日']);
+
+						if($today->diff($workday)->format('%r%a 日') == 0) {
+							$flug = 1;
+							break;
+						}
+					}
+				}
+				if($todo[$sa[$i]]['今日やること'] != 0 || $flug == 1) {
+					$pid = $pid . "@". $sa[$i];
+				}
+			}
+		}
+	//echo $pid;
+		header( "Location: ./whatTodayDo.php?pid=".$pid );
+		exit();
+	}
+	
+	
+	
+	if(isset($_GET['pid'])) {
+		$ids = explode("@", $_GET['pid']);
+		//echo $_GET['pid'];
+		$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
+		for($i=1; $i<count($todo); $i++) {
+			if($todo[$i]['level'] == 1 && $todo[$i]['今日やること'] != 2) $todo[$i]['今日やること'] = 0;
+		}
+		for($i=1; $i<count($ids); $i++) {
+			$todo[$ids[$i]]['今日やること'] = 1;
+		}
+		writeCsvFile2($ini['dirWin']."/data/todo.csv", $todo);
+		
+		$TodayS = date('Ymd');
+		$today = new DateTime($TodayS);
+		
+		$working = readCsvFile2($ini['dirWin'].'/data/working.csv');
+		$workday = new DateTime($working[(count($working)-1)]['day']);
+		$workday = $workday->setTime(0,0,0);
+		
+		if($workday->diff($today)->format('%R%a') != 0) {
+			$www = count($working);
+			$working[$www]['file'] = "todo";
+			$working[$www]['id'] = "periodically";
+			$working[$www]['day'] = date('Y/m/d H:i:s', strtotime('-5 minute'));
+			$working[$www]['per'] = 0;
+			$working[$www]['startTime'] = date('H:i', strtotime('-5 minute'));
+			$working[$www]['finishTime'] = date('H:i', strtotime('-5 minute'));
+			$working[$www]['keeper'] = 1;
+			$working[$www]['note'] = "";
+			writeCsvFile2($ini['dirWin']."/data/working.csv", $working);
+		}
+		
+		header( "Location: ../todo.php" );
+		exit();
+	}
+	
+	if(isset($_GET['turn'])) {
+		$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
+		
+		if(isset($_GET['p'])) {
+			$todo[$_GET['p']]['今日やること'] = $_GET['turn'];
+			writeCsvFile2($ini['dirWin']."/data/todo.csv", $todo);
+		}
+		header( "Location: ../todo.php" );
+		exit();
+	}
+
+}
+
+//##################################################################
+//				todo/do.php用関数
+//##################################################################
+function dophp ($pagetype) {
+
+}
+
+
 
 //##################################################################
 //				デバッグ用関数

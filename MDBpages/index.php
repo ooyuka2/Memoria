@@ -18,7 +18,8 @@
 		<p>自分のタスクやフォルダーのリンク、分からない単語のメモなどを管理しよう</p>
 		<div class="download">
 		<?php
-			echo '<a href="'.$link_todo_html.'?page=whatTodayDo&auto=OK" class="btn btn-warning btn-lg last-release-download-link"><i class="fa fa-github-alt"></i>一日の始まり</a>';
+			echo '<a href="'.$link_pages_html.'todo/whatTodayDo.php?auto=OK" class="btn btn-warning btn-lg last-release-download-link"><i class="fa fa-github-alt"></i>一日の始まり</a>';
+			echo '<a href="'.$link_pages_html.'todo.php" class="btn btn-default btn-lg last-release-download-link"><i class="fa fa-github-alt"></i>やることリスト</a>';
 			echo '<a href="'.$ini['dirhtml'].'/MDBpages/dictionary.php" class="btn btn-primary btn-lg"><i class="fa fa-play"></i> Watch Dictionary</a>';
 		?>
 		</div>

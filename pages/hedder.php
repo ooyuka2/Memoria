@@ -9,6 +9,9 @@
 		$updatefiletime = "?" . $now->format('Y-m-d-h-i-s');
 		$pagetype = "pages";
 		include_once($ini['dirWin'].'/pages/function.php');
+		if($_SERVER['SERVER_ADDR'] != $_SERVER['REMOTE_ADDR']) {
+			$ini['csstype'] = "umi";
+		}
 	?>
 	<!-- <meta http-equiv="Content-Type" content="text/html; charset=shift_jis">-->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">

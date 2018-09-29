@@ -14,11 +14,9 @@
 
 </div>
 <div class="col-md-12 col-xl-2">
-		<div class="card">
-			<div class="card-body">
-				eee
-			</div>
-		</div>
+
+	<div id="todo_keeper_comp"></div>
+
 </div>
 <?php
 	//echo $globals['$link_todo_Win'];

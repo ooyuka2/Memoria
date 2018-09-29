@@ -17,7 +17,7 @@
 				<p>自分のタスクやフォルダーのリンク、分からない単語のメモなどを管理しよう</p>
 				<div class="download">
 				<?php
-					echo '<a href="'.$ini['dirhtml'].'/pages/todo.php?page=whatTodayDo&auto=OK" class="btn btn-warning btn-lg last-release-download-link"><i class="fa fa-github-alt"></i>一日のはじまり</a>';
+					echo '<a href="'.$ini['dirhtml'].'/pages/todo/whatTodayDo.php?auto=OK" class="btn btn-warning btn-lg last-release-download-link"><i class="fa fa-github-alt"></i>一日のはじまり</a>';
 					//echo '<a href="'.$ini['dirhtml'].'/pages/dictionary.php" class="btn btn-primary btn-lg"><i class="fa fa-play"></i> Watch Dictionary</a>';
 				?>
 				</div>

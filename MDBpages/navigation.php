@@ -11,7 +11,7 @@
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>">Top</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=new">add</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=weekly">T•ñ</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=keeper">ŽžŠÔŠÇ—</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?page=keeper">ŽžŠÔŠÇ—</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=calendar">ƒJƒŒƒ“ƒ_[</a></li>
 				</ul>
 			</li>

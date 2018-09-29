@@ -13,7 +13,8 @@
 <div class="pull-left drawer-hover"></div>
 <main class="row">
 	<?php
-		select_page($link_pages_Win . "todo", $_GET['page']);
+		$pass = $link_pages_Win . "todo/".$_GET['page'].".php";
+		include($pass);
 	?>
 </main>
 </div>

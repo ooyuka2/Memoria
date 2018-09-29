@@ -171,7 +171,7 @@ function tree_menu(id, top, pre, child, wait, whatdotoday, todofile) {
 	menu = menu + "<a href='todo.php?d=detail&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>フィルター</a>";
 	if((whatdotoday == 0 || whatdotoday == 2) && pre!=100) menu = menu + "<a href='todo.php?page=whatTodayDo&turn=1&p="+top+"' class='btn btn-default btn-xs btn-block'>今日頑張る</a>";
 	else if(whatdotoday == 1 && pre!=100) {
-		menu = menu + "<a href='todo.php?page=whatTodayDo&turn=2&p="+top+"' class='btn btn-default btn-xs btn-block'>明日頑張る</a>";
+		menu = menu + "<a href='todo/whatTodayDo.php?turn=2&p="+top+"' class='btn btn-default btn-xs btn-block'>明日頑張る</a>";
 		menu = menu + "<a href='todo.php?page=whatTodayDo&turn=0&p="+top+"' class='btn btn-default btn-xs btn-block'>今度頑張る</a>";
 	}
 	if(wait == 0 && pre!=100) menu = menu + "<a href='todo.php?page=wait&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>保留設定</a></div>";
@@ -357,3 +357,54 @@ function changeMemoform() {
 		textarea.style.height = textarea.scrollHeight+'px';
 	}
 }
+
+
+// ##############################################################################################################################
+//
+//            今日やること整理のページ用の関数
+//
+// ##############################################################################################################################
+
+
+function doBotton(id) {
+	var pid = document.getElementById('pid').value;
+	pid = pid + "@" + id;
+	document.getElementById('pid').value = pid;
+	dobuttonname = "doButton" + id;
+	donotbuttonname = "donotButton" + id;
+	document.getElementById(dobuttonname).classList.toggle("disabled");
+	document.getElementById(donotbuttonname).classList.toggle("disabled");
+	document.getElementById(dobuttonname).innerHTML = "やる!";
+	document.getElementById(donotbuttonname).innerHTML = "やらない";
+}
+function donotBotton(id) {
+	var pid = document.getElementById('pid').value;
+	pid = pid.replace("@"+id, "");
+	document.getElementById('pid').value = pid;
+	dobuttonname = "doButton" + id;
+	donotbuttonname = "donotButton" + id;
+	document.getElementById(dobuttonname).classList.toggle("disabled");
+	document.getElementById(donotbuttonname).classList.toggle("disabled");
+	document.getElementById(dobuttonname).innerHTML = "やる";
+	document.getElementById(donotbuttonname).innerHTML = "やらない!";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

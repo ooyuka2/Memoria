@@ -7,12 +7,12 @@
 	whatTodayDo_Registration($ini);
 ?>
 
-<div class="bs-component table-responsive">
+<div class="table-responsive card">
 	<table class='table table-striped table-hover table-condensed'>
-		<thead>
+		<thead  class="thead-dark">
 			<tr>
-				<th class="col-md-3">チェックボックス</th>
-				<th class="col-md-9">やること</th>
+				<th class="col-3" scope="col">チェックボックス</th>
+				<th class="col-9" scope="col">やること</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -38,28 +38,29 @@
 								}
 							}
 						}
-						echo "<tr><td style='text-align: center; vertical-align: middle;'>";
+						echo "<tr><th scope='row' style='text-align: center; vertical-align: middle;'>";
 						//echo $workday->diff($today)->format('%r%a 日');
 						if($todo[$sa[$i]]['今日やること'] == 1 || $flug == 1) {
-							echo "<button type='button' id='doButton{$sa[$i]}'  class='btn btn-success disabled' onClick='doBotton({$sa[$i]})'>やる!</button>　<button type='button' id='donotButton{$sa[$i]}'  class='btn btn-info' onClick='donotBotton({$sa[$i]})'>やらない</button></td><td>";
+							echo "<button type='button' id='doButton{$sa[$i]}'  class='btn btn-success disabled' onClick='doBotton({$sa[$i]})'>やる!</button><button type='button' id='donotButton{$sa[$i]}'  class='btn btn-info' onClick='donotBotton({$sa[$i]})'>やらない</button></th><td>";
 							$pid = $pid . "@". $sa[$i];
 						} else {
-							echo "<button type='button' id='doButton{$sa[$i]}' class='btn btn-success' onClick='doBotton({$sa[$i]})'>やる</button>　<button type='button' id='donotButton{$sa[$i]}'  class='btn btn-info disabled' onClick='donotBotton({$sa[$i]})'>やらない!</button></td><td>";
+							echo "<button type='button' id='doButton{$sa[$i]}' class='btn btn-success' onClick='doBotton({$sa[$i]})'>やる</button><button type='button' id='donotButton{$sa[$i]}'  class='btn btn-info disabled' onClick='donotBotton({$sa[$i]})'>やらない!</button></th><td>";
 							
 						}
 						//write_todo_tree($todo, $sa[$i], date('Y/m/d'));
-						echo "<span class='text-primary'> {$todo[$sa[$i]]['タイトル']}</span><br>";
+						echo "<span class='text-default text-nowrap'> {$todo[$sa[$i]]['タイトル']}</span><br>";
 						$temp = str_split( $todo[$sa[$i]]['作業内容'] , 250);
 						echo "<span><strong>作業内容　: </strong>{$temp[0]}</span>";
 						echo "</td></tr>";
 					} else {
-						echo "<tr><td></td><td></td></tr>";
+						echo "<tr><th></th><td></td><td></td></tr>";
 					}
 				}
 			?>
 		</tbody>
 	</table>
 </div>
+
 <form method='get' action='todo/whatTodayDo.php'>
 	<div class="form-group" style="margin-bottom:0; position: fixed; top: 100px;right:0;width:300px;">
 		<?php echo "<input type='hidden' name='pid' value='{$pid}' id='pid'>"; ?>

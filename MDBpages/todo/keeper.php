@@ -1,29 +1,50 @@
-
-<div id='keeper' class="table-responsive">
-	<div class='clearfix'>
-		<button style='margin:10px 0' class='btn btn-default pull-right btn-xs' onClick='location.href = "/Memoria/pages/todo.php?d=keeper&day=all"'>すべて</button>
-		<button style='margin:10px 10px' class='btn btn-default pull-right btn-xs' onClick='location.href = "/Memoria/pages/todo.php?d=keeper&day=31"'>31日間</button>
-		<button style='margin:10px 10px' class='btn btn-default pull-right btn-xs' onClick='location.href = "/Memoria/pages/todo.php?d=keeper&day=7"'>7日間</button>
-		<button style='margin:10px 0' class='btn btn-default pull-right btn-xs' onClick='location.href = "/Memoria/pages/todo.php?d=keeper&day=old201804working"'>201804まで</button>
-	</div>
+<?php
+	$pagetype = "MDBpages";
+	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+	if(!isset($todo)) {
+		include_once($ini['dirWin'].'/pages/function.php');
+		
+		if(isset($_GET['file']) && $_GET['file'] == "old201804") {
+			$todo = readCsvFile2($link_data . 'old201804todo.csv');
+			$file = "old201804";
+		} else {
+			$todo = readCsvFile2($link_data . 'todo.csv');
+			$file = "todo";
+		}
+	}
+?>
+<div class="card col-xl-12">
+	<div class="card-body">
+		<div id='keeper' class="table-responsive">
+		<?php
+			if(isset($_GET['day']) && !equal_word_str($_GET['day'], '1')) {
+		?>
+			<div class='clearfix'>
+				<button style='margin:10px 0' class='btn btn-default pull-right btn-sm' onClick='location.href = "/Memoria/MDBpages/todo.php?d=keeper&day=all"'>すべて</button>
+				<button style='margin:10px 10px' class='btn btn-default pull-right btn-sm' onClick='location.href = "/Memoria/MDBpages/todo.php?d=keeper&day=31"'>31日間</button>
+				<button style='margin:10px 10px' class='btn btn-default pull-right btn-sm' onClick='location.href = "/Memoria/MDBpages/todo.php?d=keeper&day=7"'>7日間</button>
+				<button style='margin:10px 0' class='btn btn-default pull-right btn-sm' onClick='location.href = "/Memoria/MDBpages/todo.php?d=keeper&day=old201804working"'>201804まで</button>
+			</div>
+			<br><div class='clearfix'><a href='{$ini['keeperpage']}' class='pull-right'>時間管理</a></div>
+		<?php } ?>
 
 <?php
-	if(!isset($todo)) $todo = readCsvFile2('../data/todo.csv');
-	//include('../data/weekly.php');
-	$ini = parse_ini_file('../data/config.ini');
-	date_default_timezone_set('Asia/Tokyo');
 	
 	if(isset($_GET['day']) && $_GET['day'] == 'old201804working') {
-		$working = readCsvFile2('../data/old201804working.csv');
-		$todo = readCsvFile2('../data/todo.csv');
-		$old201804todo = readCsvFile2('../data/old201804todo.csv');
+		$working = readCsvFile2($link_data . 'old201804working.csv');
+		$todo = readCsvFile2($link_data . 'todo.csv');
+		$old201804todo = readCsvFile2($link_data . 'old201804todo.csv');
 	}
-	else $working = readCsvFile2('../data/working.csv');
-
-	echo "<br><div class='clearfix'><a href='{$ini['keeperpage']}' class='pull-right'>時間管理</a></div>";
+	else $working = readCsvFile2($link_data . 'working.csv');
+		
 	$when = new DateTime($working[(count($working)-1)]['day']);
 	$when = $when->format('Y/m/d');
-	$keeper = "<table class='table table-condensed'><thead><tr><th class='col-md-2'>開始時間-終了時間</th><th class='col-md-8'>タイトル</th><th class='col-md-1'>ざっくり時間</th><th class='col-md-1'>時間管理テーマ</th></tr></thead><tbody>";
+	if(isset($_GET['day']) && !equal_word_str($_GET['day'], '1')) {
+		$tableHeadder = "<table class='table table-condensed table-striped table-hover table-sm'><thead class='thead-dark'><tr><th class='col-md-2'>開始時間-終了時間</th><th class='col-md-8'>タイトル</th><th class='col-md-2'>ざっくり時間</th></tr></thead><tbody>";
+	} else {
+		$tableHeadder = "<table class='table table-condensed table-striped table-hover table-sm'><thead class='thead-dark'><tr><th class='col-md-3'>作業時間</th><th class='col-md-6'>タイトル</th><th class='col-md-3'>時間</th></tr></thead><tbody>";
+	}
+	$keeper = "";
 	$copytext = $when."	";
 	$last = count($working)-1;
 	$day = 1;
@@ -58,7 +79,7 @@
 				if($working[$j]['id'] == "periodically") {
 					$keeper .= "<td><span>{$working[$j]['note']}</span></td>";
 					$keeper .= "<td>".$interval->format('%H時%i分')."</td>";
-					$keeper .= "<td>{$working[$j]['keeper']}</td></tr>";
+					$keeper .= "</tr>";
 					if(strpos($working[$j]['note'], '<br>') !== false){
 						$note = str_replace("<br>", "\\n", "&quot".$working[$j]['note']."&quot");//\\\'
 					} else $note = $working[$j]['note'];
@@ -66,12 +87,12 @@
 				} else if($working[$j]['file'] == "todo") {
 					$keeper .= "<td><span onClick='goto_detail({$todo[$working[$j]['id']]['top']})'>{$todo[$todo[$working[$j]['id']]['top']]['タイトル']}</span></td>";
 					$keeper .= "<td>".$interval->format('%H時%i分')."</td>";
-					$keeper .= "<td>{$todo[$todo[$working[$j]['id']]['top']]['時間管理テーマ']}</td></tr>";
+					$keeper .= "</tr>";
 					$copytext .= $todo[$todo[$working[$j]['id']]['top']]['タイトル'] . "	" . $todo[$todo[$working[$j]['id']]['top']]['時間管理テーマ']. "\\n	";
 				} else if($working[$j]['file'] == "old201804") {
 					$keeper .= "<td><span onClick='goto_detail({$old201804todo[$working[$j]['id']]['top']})'>{$old201804todo[$old201804todo[$working[$j]['id']]['top']]['タイトル']}</span></td>";
 					$keeper .= "<td>".$interval->format('%H時%i分')."</td>";
-					$keeper .= "<td>{$old201804todo[$old201804todo[$working[$j]['id']]['top']]['時間管理テーマ']}</td></tr>";
+					$keeper .= "</tr>";
 					$copytext .= $old201804todo[$old201804todo[$working[$j]['id']]['top']]['タイトル'] . "	" . $old201804todo[$old201804todo[$working[$j]['id']]['top']]['時間管理テーマ']. "\\n	";
 					//$old201804todo
 				}
@@ -88,17 +109,15 @@
 				$interval = $day2->diff($day1);
 				
 				//echo $working[($i+1)]['startTime']. ":::". $lastTime."<br>";
-
-				echo $interval->format('%R%d日 %H時%i分');
 				
 				
 				
-				echo $keeper;
+				echo $tableHeadder. "<caption>".$interval->format('%H時%i分')."</caption>" .$keeper;
 				
 				$when = new DateTime($working[$i]['day']);
 				$when = $when->format('Y/m/d');
 				$lastTime = $working[$i]['day'];
-				$keeper = "<table class='table table-condensed'><thead><tr><th class='col-md-2'>開始時間-終了時間</th><th class='col-md-8'>タイトル</th><th class='col-md-1'>ざっくり時間</th><th class='col-md-1'>時間管理テーマ</th></tr></thead></tr></thead><tbody>";
+				$keeper = "";
 				$copytext = $when."	";
 				$last = $i;
 			} else if($day == $countday) {
@@ -107,6 +126,7 @@
 		$day ++;
 		}
 	}
+	if(isset($_GET['day']) && !equal_word_str($_GET['day'], '1')) 
 	echo '<div class="clearfix"><h3>'.$when.'</h3><button onClick="execCopy(\''.$copytext.'\')" class="pull-right btn btn-sm btn-primary">copy</button></div>';
 	
 	
@@ -118,17 +138,10 @@
 	
 	//echo $working[($i+1)]['startTime']. ":::". $lastTime."<br>";
 
-	echo $interval->format('%R%d日 %H時%i分');
-	//echo time_diff(strtotime('2015-01-02 15:04:05'), strtotime('2015-01-02 16:04:05'));
-
-	echo $keeper;
+	echo $tableHeadder. "<caption>".$interval->format('%H時%i分')."</caption>" .$keeper;
 ?>
 	</tbody>
 </table>
 </div>
-
-
-<?php
-	//https://www.hotpepper.jp/strJ000758708/course/
-	//https://r.gnavi.co.jp/a81kzjy90000/menu4/
-?>
+</div>
+</div>

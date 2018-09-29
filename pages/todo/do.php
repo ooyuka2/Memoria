@@ -1,7 +1,11 @@
 <?php
-	include('../function.php');
-	$working = readCsvFile2('../../data/working.csv');
-	$periodically = readCsvFile2('../../data/periodically.csv');
+	//dophp ("MDBpages");
+	if(!isset($ini)) {
+		$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+		include_once($ini['dirWin'].'/pages/function.php');
+	}
+	$working = readCsvFile2($ini['dirWin'].'/data/working.csv');
+	$periodically = readCsvFile2($ini['dirWin'].'/data/periodically.csv');
 	if(isset($_POST['p']) && isset($_POST['startTime'])) {
 		$www = count($working);
 		$working[$www]['file'] = "todo";
@@ -27,7 +31,7 @@
 			if(isset($_POST['note'])) $working[$www]['note'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['note']);
 			else $working[$www]['note'] = "";//$_POST['note'];
 		}else {
-			$todo = readCsvFile2('../../data/todo.csv');
+			$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
 			$fdo = $_POST['f']-$todo[$_POST['p']]['パーセンテージ'];
 			$todo[$_POST['p']]['パーセンテージ'] = $_POST['f'];
 			if(isset($_POST['note'])) {
@@ -43,25 +47,24 @@
 				$todo = check_parent_finish($todo, $_POST['p'], $fdo);
 			}
 			
-			writeCsvFile2("../../data/todo.csv", $todo);
+			writeCsvFile2($ini['dirWin']."/data/todo.csv", $todo);
 		}
 		
 		mb_convert_variables('SJIS-win',"SJIS-win, UTF-8, Unicode",$working);
 		writeWorking($working);
 	} else {
-		header( "Location: /Memoria/pages/todo.php" );
+		header( "Location: " . $link_pages_html . "todo.php" );
 	}
 	
 	if(isset($_POST['goto']) && $_POST['goto']=="today") {
-		header( "Location: /Memoria/pages/todo.php" );
+		header( "Location: " . $link_pages_html . "todo.php" );
 	} else if(isset($_POST['goto']) && $_POST['goto']=="todo") {
-		header( "Location: /Memoria/pages/todo.php?p=".$todo[$_POST['p']]['top'] );
+		header( "Location: " . $link_pages_html . "todo.php?p=".$todo[$_POST['p']]['top'] );
 	}else if(isset($_POST['goto']) && $_POST['goto']=="detail") {
-		header( "Location: /Memoria/pages/todo.php?d=detail&p=".$todo[$_POST['p']]['top'] );
+		header( "Location: " . $link_pages_html . "todo.php?d=detail&p=".$todo[$_POST['p']]['top'] );
 	} else {
-		header( "Location: /Memoria/pages/todo.php?d=keeper" );
+		header( "Location: " . $link_pages_html . "todo.php?d=keeper" );
 	}
 	exit();
-
 ?>
 		
