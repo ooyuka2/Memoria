@@ -16,6 +16,7 @@
 	else if((isset($_GET['list']) && $_GET['list']=="finishlist") || (isset($_GET['p']) && $_GET['p'] != 0 && $todo[$todo[$_GET['p']]['top']]['äÆóπ']==1))
 		$sa = sort_by_noki_todo_priority($todo, false);
 	else $sa = sort_by_noki_todo_priority($todo, true);
+	if($sa[0]==0) echo "<h3>ç°ì˙ÇÃédéñèIóπÅI</h3>";
 	for($i=0; $i<count($sa); $i++) {
 		if($sa[$i]!=0) { 
 			write_todo_tree($todo, $sa[$i], date('Y/m/d'));

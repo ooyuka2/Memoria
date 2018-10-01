@@ -221,7 +221,7 @@ function read_keeper(days){
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 		// PHPから返ってきたデータの表示
-		$("#todo_keeper_comp").html(data).css('background','');
+		$("#todo_keeper_comp").html(data).css('background','').css('min-height','');
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
 		// this;

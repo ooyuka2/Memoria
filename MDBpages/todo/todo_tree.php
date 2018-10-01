@@ -35,6 +35,7 @@
 		</div>
 		<div id="todo_tree">
 <?php
+	if($sa[0]==0) echo "<h3>¡“ú‚ÌŽdŽ–I—¹I</h3>";
 	for($i=0; $i<count($sa); $i++) {
 		if($sa[$i]!=0) { 
 			write_todo_tree($todo, $sa[$i], date('Y/m/d'));
