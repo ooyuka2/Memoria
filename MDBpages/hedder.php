@@ -10,9 +10,9 @@
 		$ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
 		$pagetype = "MDBpages";
 		include_once($ini['dirWin'].'/pages/function.php');
-		if($_SERVER['SERVER_ADDR'] != $_SERVER['REMOTE_ADDR']) {
+		//if($_SERVER['SERVER_ADDR'] != $_SERVER['REMOTE_ADDR']) {
 			$ini['csstype'] = "honoka";
-		}
+		//}
 	?>
 	<!-- Required meta tags always come first -->
 	<meta charset="shist-jis">

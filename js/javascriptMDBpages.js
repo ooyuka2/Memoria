@@ -29,6 +29,8 @@ $(document).ready(function(){
 		read_keeper("1");
 	}
 	
+	
+	
 });
 /*
 	<?php
@@ -75,15 +77,15 @@ $(document).ready(function() {
 function navOnload() {
 	if($('.activenav').length) {
 		$('.activenav').find('li').slideToggle(500);
-		document.getElementsByClassName('activenav')[0].children[0].children[1].classList.toggle("fa-angle-down");
-		document.getElementsByClassName('activenav')[0].children[0].children[1].classList.toggle("fa-angle-up");
+		document.getElementsByClassName('activenav')[0].children[0].children[2].classList.toggle("fa-angle-down");
+		document.getElementsByClassName('activenav')[0].children[0].children[2].classList.toggle("fa-angle-up");
 	}
 }
 
 function navToggle(element) {
 	$(element).parent().find('li').slideToggle(500);
-	element.children[1].classList.toggle("fa-angle-down");
-	element.children[1].classList.toggle("fa-angle-up");
+	element.children[2].classList.toggle("fa-angle-down");
+	element.children[2].classList.toggle("fa-angle-up");
 }
 
 $(".box__area").hover(function() {

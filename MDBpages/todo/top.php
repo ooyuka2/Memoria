@@ -9,15 +9,16 @@
 
 </div>
 <div class="col-md-8 col-xl-7">
-
+	
 	<div id="todo_space_comp"></div>
-
 </div>
 <div class="col-md-12 col-xl-2">
-
+	
 	<div id="todo_keeper_comp"></div>
+	<div id="weather_comp"></div>
 
 </div>
+
 <?php
 	//echo $globals['$link_todo_Win'];
 ?>

@@ -183,7 +183,19 @@ function tree_menu(id, top, pre, child, wait, whatdotoday, todofile) {
 	else document.getElementById("tree_menu").style.top=tree_menu_y-150+"px";
 }
 
+// ##############################################################################################################################
+//
+//            読み込み時の関数
+//
+// ##############################################################################################################################
+//$("#todo_tree_comp")があれば読み込む関数
+$(document).ready(function(){
 
+	
+	if($("#weather_comp").length) {
+		read_weather();
+	}
+});
 
 // ##############################################################################################################################
 //
@@ -392,7 +404,35 @@ function donotBotton(id) {
 
 
 
+// ##############################################################################################################################
+//
+//            時間管理の表示用の関数
+//
+// ##############################################################################################################################
 
+function read_weather(){
+	$("#weather_comp").css('background','url(\"../img/grid-gray.svg\") center center no-repeat').css('background-size','20% auto').css('min-height','100px').css('min-width','20px');
+	$.ajax({
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+		},
+		type: "GET",
+		scriptCharset:'Shift_JIS',
+		url: '/Memoria/pages/other/weather.php',
+	}).done(function(data, dataType) {
+		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+		// PHPから返ってきたデータの表示
+		$("#weather_comp").html(data).css('background','');
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+		// this;
+		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+		// エラーメッセージの表示
+		read_weather();
+	});
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}
 
 
 

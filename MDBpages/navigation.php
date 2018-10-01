@@ -6,17 +6,16 @@
 		<ul class="drawer-menu">
 			<li><a class="drawer-brand" style="height:65px">　</a></li>
 			<li class="drawer-dropdown todonav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-check-square-o pull-left drawer-menu-icon"></span>todo<span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-check-square-o pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_todo_html; ?>'">todo</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
-					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>">Top</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=new">add</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=weekly">週報</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?page=keeper">時間管理</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=new">新規追加</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=calendar">カレンダー</a></li>
 				</ul>
 			</li>
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-link pull-left drawer-menu-icon"></span>link<span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-link pull-left drawer-menu-icon"></span><span>link</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>
 					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
@@ -24,7 +23,7 @@
 				</ul>
 			</li>
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-wrench pull-left drawer-menu-icon"></span>tools<span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-wrench pull-left drawer-menu-icon"></span><span>tools</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>
 					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
@@ -32,7 +31,7 @@
 				</ul>
 			</li>
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-graduation-cap pull-left drawer-menu-icon"></span>dictionary<span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-graduation-cap pull-left drawer-menu-icon"></span><span>dictionary</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>
 					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
@@ -41,7 +40,7 @@
 			</li>
 			
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-envelope-o pull-left drawer-menu-icon"></span>mail<span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-envelope-o pull-left drawer-menu-icon"></span><span>mail</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>
 					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
@@ -49,7 +48,7 @@
 				</ul>
 			</li>
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-cogs pull-left drawer-menu-icon"></span>settings<span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-cogs pull-left drawer-menu-icon"></span><span>settings</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>
 					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
