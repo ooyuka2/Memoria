@@ -42,7 +42,7 @@
 	?>
 	
 	<?php
-		echo '<link href="' . $link_css . 'fairly.css'. $updatefiletime . '" rel="stylesheet">';
+		//echo '<link href="' . $link_css . 'fairly.css'. $updatefiletime . '" rel="stylesheet">';
 	?>
 </head>
 

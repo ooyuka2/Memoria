@@ -54,6 +54,7 @@
 	} else {
 		echo "<p>ネットにうまく繋がってないかも……</p>";
 	}
+	//参考：https://webrawl.org/weather-haks-api/
 
 ?>
 	</div>

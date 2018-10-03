@@ -15,7 +15,7 @@
 <div class="col-md-12 col-xl-2">
 	
 	<div id="todo_keeper_comp"></div>
-	<div id="weather_comp"></div>
+	<!-- <div id="weather_comp"></div> -->
 
 </div>
 

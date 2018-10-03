@@ -169,19 +169,60 @@ function tree_menu(id, top, pre, child, wait, whatdotoday, todofile) {
 	if(todofile  === "todo") menu = menu + "<a href='todo.php?d=change&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>編集を開く</a>";
 	menu = menu + "<a href='todo.php?d=renew&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>流用する</a>";
 	menu = menu + "<a href='todo.php?d=detail&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>フィルター</a>";
-	if((whatdotoday == 0 || whatdotoday == 2) && pre!=100) menu = menu + "<a href='todo.php?page=whatTodayDo&turn=1&p="+top+"' class='btn btn-default btn-xs btn-block'>今日頑張る</a>";
+	if((whatdotoday == 0 || whatdotoday == 2) && pre!=100) menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+top+", \"turn\", 1)'>今日頑張る</button>";
 	else if(whatdotoday == 1 && pre!=100) {
-		menu = menu + "<a href='todo/whatTodayDo.php?turn=2&p="+top+"' class='btn btn-default btn-xs btn-block'>明日頑張る</a>";
-		menu = menu + "<a href='todo.php?page=whatTodayDo&turn=0&p="+top+"' class='btn btn-default btn-xs btn-block'>今度頑張る</a>";
+		menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+top+", \"turn\", 2)'>明日頑張る</button>";
+		menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+top+", \"turn\", 0)'>今度頑張る</button>";
 	}
-	if(wait == 0 && pre!=100) menu = menu + "<a href='todo.php?page=wait&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>保留設定</a></div>";
-	else if(pre!=100) menu = menu + "<a href='todo.php?page=wait&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>解除設定</a></div>";
+	if(wait == 0 && pre!=100) menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+id+", \"wait\", 0)'>保留設定</button></div>";
+	else if(pre!=100) //menu = menu + "<a href='todo.php?page=wait&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>解除設定</a></div>";
+	menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+id+", \"wait\", 0)'>解除設定</button></div>";
 	
 	document.getElementById("todo_tree_menu").innerHTML = menu;
 	document.getElementById("tree_menu").style.left=tree_menu_x+"px";
 	if(tree_menu_y < 500) document.getElementById("tree_menu").style.top=tree_menu_y+"px";
 	else document.getElementById("tree_menu").style.top=tree_menu_y-150+"px";
 }
+
+//保留・保留解除・今日か明日か今度やるのための関数
+function todo_tree_wait(p, type, turn) {
+	document.getElementById("todo_tree_menu").innerHTML = "";
+	$.ajax({
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+		},
+		type: "GET",
+		scriptCharset:'Shift_JIS',
+		url: '/Memoria/pages/todo/change_todo_tree.php',
+		data: {"type":type, "p":p, "turn":turn},
+	}).done(function(data, dataType) {
+		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+		// PHPから返ってきたデータの表示
+		if(getParam('d') == "detail" || getParam('d') == null  || getParam('d') =="todo") {
+			if(getParam('d') != null) var d = getParam('d');
+			else var d = "todo";
+			if(getParam('p') != null) var p = getParam('p');
+			else var p = 0;
+			if(getParam('list') != null) var list = getParam('list');
+			else var list = "";
+			if(getParam('file') != null) var file = getParam('file');
+			else var file = "todo";
+			
+			read_todo_tree(d, p, list, file);
+		}
+		
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+		// this;
+		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+		// エラーメッセージの表示
+		//alert('Error : ' + errorThrown);
+		$("#todo_tree_comp").html('Error : ' + errorThrown);
+	});
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}
+
 
 // ##############################################################################################################################
 //
@@ -406,12 +447,12 @@ function donotBotton(id) {
 
 // ##############################################################################################################################
 //
-//            時間管理の表示用の関数
+//            天気予報の表示用の関数
 //
 // ##############################################################################################################################
 
 function read_weather(){
-	$("#weather_comp").css('background','url(\"../img/grid-gray.svg\") center center no-repeat').css('background-size','20% auto').css('min-height','100px').css('min-width','20px');
+	$("#weather_comp").css('background','url(\"../img/grid-gray.svg\") center center no-repeat').css('background-size','20% auto').css('min-height','100px').css('max-width','100px');
 	$.ajax({
 		beforeSend: function(xhr){
 			xhr.overrideMimeType('text/html;charset=Shift_JIS');
@@ -422,7 +463,7 @@ function read_weather(){
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 		// PHPから返ってきたデータの表示
-		$("#weather_comp").html(data).css('background','').css('min-height','');
+		$("#weather_comp").html(data).css('background','').css('min-height','').css('max-width','');
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
 		// this;

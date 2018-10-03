@@ -514,16 +514,6 @@ function whatTodayDo_Registration($ini) {
 		exit();
 	}
 	
-	if(isset($_GET['turn'])) {
-		$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
-		
-		if(isset($_GET['p'])) {
-			$todo[$_GET['p']]['ç°ì˙Ç‚ÇÈÇ±Ç∆'] = $_GET['turn'];
-			writeCsvFile2($ini['dirWin']."/data/todo.csv", $todo);
-		}
-		header( "Location: ../todo.php" );
-		exit();
-	}
 
 }
 

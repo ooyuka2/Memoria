@@ -24,7 +24,7 @@
 			</div>
 			<div class="col-xs-4 col-xs-offset-8 row">
 			<?php
-				echo_panel("“V‹C—\•ñ", "<div id='weather_comp'></div>", "info");
+				//echo_panel("“V‹C—\•ñ", "<div id='weather_comp'></div>", "info");
 			?>
 			</div>
 		</div>
