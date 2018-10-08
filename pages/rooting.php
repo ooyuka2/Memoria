@@ -33,7 +33,7 @@
 	
 		//cssファイルのルート
 		$link_css = $ini['dirhtml']."/img/bootstrap4/MDB/css/";
-		$link_bootstrap_type_css = $ini['dirhtml']."/img/bootstrap4/". $ini['csstype'] . "/css/";
+		$link_bootstrap_type_css = $ini['dirhtml']."/img/bootstrap4/honoka/css/";
 		
 		//cssファイルのリンク
 		$link_drawer_css = $link_css. "drawer.min.css";
@@ -44,7 +44,7 @@
 		
 		//jsファイルのルート
 		$link_js = $ini['dirhtml']."/img/bootstrap4/MDB/js/";
-		$link_bootstrap_type_js = $ini['dirhtml']."/img/bootstrap4/". $ini['csstype'] . "/js/";
+		$link_bootstrap_type_js = $ini['dirhtml']."/img/bootstrap4/honoka/js/";
 		
 		//jsファイルのリンク
 		$link_iscroll_js = $link_js. "iscroll.min.js";
@@ -68,6 +68,14 @@
 	//todoページへのリンク
 	$link_todo_html = $link_pages_html . "todo.php";
 	$link_todo_Win = $link_pages_Win . "todo.php";
+	
+	//todoページの週報ヘリンク
+	if($pagetype == "pages") {
+		$link_todo_weekly_html = $link_todo_html . "?d=weekly";
+
+	} else if($pagetype == "MDBpages") {
+		$link_todo_weekly_html = $link_todo_html . "?page=weekly";
+	}
 	
 	$link_todo_tree_Win =  $link_pages_Win . "todo/todo_tree.php";
 ?>

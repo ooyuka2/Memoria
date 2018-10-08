@@ -42,7 +42,13 @@
 	    <div class="form-group">
 	    	<button class="btn btn-success center-block" type="button" onClick='plus();'><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Å@í«â¡</button>
 	    </div>
-	    
+		<div class="" id="new_field_set">
+		
+		<?php
+			//todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 2, "new_field", $id, $id, 0, $weekly); //
+		?>
+		
+		</div>
         <div class="form-group" style="margin-bottom:0; position: fixed; bottom: 20px;right:0;width:500px;">
             <div class="col-xs-offset-3 col-xs-3">
                 <button type="reset" class="btn btn-default btn-block">Reset</button>
@@ -102,7 +108,7 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 	else $time_theme = 0;
 	
 	date_default_timezone_set('Asia/Tokyo');
-	if($_GET['d'] == "new") {
+	if($_GET['d'] == "new" || $type=="new_field") {
 		$title = "";
 		$detail = "";
 		$mono = "";

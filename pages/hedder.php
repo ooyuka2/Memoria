@@ -19,8 +19,11 @@
 	<link rel="shortcut icon" href="<?php echo $ini['dirhtml']."/favicon.ico";?>">
 
 	<title>Memoria</title>
+	<!--
 	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/cupertino/jquery-ui.css" >
-	<link rel="stylesheet" type="text/css" href="http://felicegattuso.com/projects/timedropper/js/timedropper/timedropper.css">
+	-->
+	<link rel="stylesheet" type="text/css" href="/Memoria/js/jquery-ui-1.12.1.custom/jquery-ui.min.css">	
+	<link rel="stylesheet" type="text/css" href="/Memoria/img/timedropper/timedropper.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo $ini['dirhtml']."/DataTables/datatables.min.css";?>"/>
 	<?php
 		echo '<link id="sampleLink" rel="stylesheet" type="text/css" href="'.$ini['dirhtml'].'/img/bootstrap3/'.$ini['csstype'].'/css/bootstrap.css'.$updatefiletime.'">';

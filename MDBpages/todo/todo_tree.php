@@ -4,7 +4,6 @@
 ?>
 <div class="card">
 	<div class="card-body">
-
 		
 <?php
 	if(!isset($todo)) {
@@ -48,3 +47,32 @@
 	</div>
 </div>
 <div id="todo_tree_menu"></div>
+<div class="modal fade" id="orangeModalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-side modal-bottom-left modal-notify modal-info " role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header text-center">
+                <h4 class="modal-title white-text w-100 font-weight-bold py-2">Ç¢Ç¬äÊí£ÇÈÅH</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <div class="md-form mb-5">
+                    <i class="fa fa-user prefix grey-text"></i>
+                    <input type="text" id="form3" class="form-control validate kaisi">
+                    <!-- <label data-error="wrong" data-success="right" for="form3">Your name</label> -->
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn btn-amber waves-effect">Send <i class="fa fa-paper-plane-o ml-1"></i></a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>

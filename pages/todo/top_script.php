@@ -135,6 +135,8 @@ function todo_serch(searchtext){
 
 
 
+	//var new_field = document.getElementById("new_field_set").innerHTML;
+	
 	var new_field = "<fieldset style='position: relative'><div class='well bs-component'><div class='clearfix'><span class='pull-right close' onClick='minus( minusnumber );'>&times;</span><span class='pull-right close'>　</span><span class='pull-right close' onClick='plus2( plusnumber );'>+</span></div><div class='form-group'><div class='col-xs-8'><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='タイトル' required><input type='hidden' name='id[]' class='id'></div><div class='col-xs-12' style='margin-bottom:5px'><textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'></textarea></div><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='成果物'></div><div class='col-xs-2' style='margin-bottom:5px'><button type='button' class='btn btn-warning btn-xs' onClick='level_down(this)'>▲</button><button type='button' class='btn btn-warning btn-xs eee' onClick='level_up(this)'>▼</button></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>レベル</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm level' name='level[]' value='2' min='2' max='10' readonly></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>優先度</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm priority' name='priority[]' min='1' max='10'></div></div><div class='col-xs-4'><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期</label><input type='text' class='form-control input-normal input-sm noki' name='noki[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期の時間</label><input type='time' class='form-control input-normal input-sm time' name='time[]' step='900'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>開始予定時刻</label><input type='text' class='form-control input-normal input-sm kaisi' name='kaisi[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>終了予定日時</label><input type='text' class='form-control input-normal input-sm syuryo' name='syuryo[]'></div></div></div></div></fieldset>";
 	//<div class='form-group' style='margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;'><div class='col-xs-offset-3 col-xs-3'><button type='reset' class='btn btn-default btn-block'>Reset</button></div><div class='col-xs-3'><button type='submit' class='btn btn-primary btn-block'>Submit</button></div></div>
 	
@@ -270,6 +272,7 @@ function todo_serch(searchtext){
 		for(var i=1; i<array.length+1; i++) {
 			document.getElementsByClassName("new")[0].innerHTML += new_field.replace("minusnumber", String(i)).replace("plusnumber", String(i));
 		}
+		resize_textarea();
 		write_form(array, 0);
 		setDateTime_start();
 		change_level();
@@ -281,6 +284,7 @@ function todo_serch(searchtext){
 		for(var i=1; i<array.length-1; i++) {
 			document.getElementsByClassName("new")[0].innerHTML += new_field.replace("minusnumber", String(i)).replace("plusnumber", String(i));
 		}
+		resize_textarea();
 		write_form_delete(array, number);
 		setDateTime_start();
 		change_level();
@@ -292,6 +296,7 @@ function todo_serch(searchtext){
 		for(var i=1; i<array.length+1; i++) {
 			document.getElementsByClassName("new")[0].innerHTML += new_field.replace("minusnumber", String(i)).replace("plusnumber", String(i));
 		}
+		resize_textarea();
 		write_form_plus(array, pluskey);
 		setDateTime_start();
 		change_level();
@@ -325,14 +330,7 @@ function todo_serch(searchtext){
 		change_level();
 	}
 	
-	function setDateTime(){
-		for(var i=1; i<document.getElementsByClassName("name").length; i++) {
-			document.getElementsByClassName("noki")[i].value = document.getElementsByClassName("noki")[0].value;
-			document.getElementsByClassName("time")[i].value = document.getElementsByClassName("time")[0].value;
-			document.getElementsByClassName("kaisi")[i].value = document.getElementsByClassName("kaisi")[0].value;
-			document.getElementsByClassName("syuryo")[i].value = document.getElementsByClassName("syuryo")[0].value;
-		}
-	}
+
 	
 
 	
@@ -340,32 +338,32 @@ function todo_serch(searchtext){
 		location.href = '/Memoria/pages/todo.php?page=select_theme&theme='+theme;
 	}
 
-function todo_delete_check(tilte, id){
-	ret = confirm(tilte + "を本当に削除しますか？よろしいですか？");
-	if (ret == true){
-		location.href = '/Memoria/pages/todo.php?page=delete&delete=OK&id='+id;
+	function todo_delete_check(tilte, id){
+		ret = confirm(tilte + "を本当に削除しますか？よろしいですか？");
+		if (ret == true){
+			location.href = '/Memoria/pages/todo.php?page=delete&delete=OK&id='+id;
+		}
 	}
-}
 
-function finisflist_search(searchtext) {
-	if(searchtext.value != "") {
-		location.href = '/Memoria/pages/todo.php?list=finishlist&finisflist_search='+searchtext.value;
-	} else {
-		location.href = '/Memoria/pages/todo.php?list=finishlist';
+	function finisflist_search(searchtext) {
+		if(searchtext.value != "") {
+			location.href = '/Memoria/pages/todo.php?list=finishlist&finisflist_search='+searchtext.value;
+		} else {
+			location.href = '/Memoria/pages/todo.php?list=finishlist';
+		}
 	}
-}
 
-function goto_detail(id) {
-	location.href = '/Memoria/pages/todo.php?d=detail&p='+id;
-}
+	function goto_detail(id) {
+		location.href = '/Memoria/pages/todo.php?d=detail&p='+id;
+	}
 
-if(document.getElementById("finisflist_search")) {
-	var elm = document.getElementById('finisflist_search');
-	var val = elm.value;
-	elm.value = '';
-	elm.focus();
-	elm.value = val;
-}
+	if(document.getElementById("finisflist_search")) {
+		var elm = document.getElementById('finisflist_search');
+		var val = elm.value;
+		elm.value = '';
+		elm.focus();
+		elm.value = val;
+	}
 
 // ##############################################################################################################################
 //
@@ -444,23 +442,6 @@ function switchingMemoPanel(element) {
 	element.children[0].classList.toggle("glyphicon-resize-small");
 }
 
-
-
-// ##############################################################################################################################
-//
-//            週報用の関数
-//
-// ##############################################################################################################################
-
-function writeweekly(val) {
-	document.getElementsByClassName('write')[val].value = 1;
-}
-
-// ##############################################################################################################################
-//
-//            テキストエリアの高さの関数
-//
-// ##############################################################################################################################
 
 // ##############################################################################################################################
 //

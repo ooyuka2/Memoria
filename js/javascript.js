@@ -1,15 +1,38 @@
+
+// ##############################################################################################################################
+//
+//            読み込み時の関数
+//
+// ##############################################################################################################################
+//$("#todo_tree_comp")があれば読み込む関数
 $(document).ready(function(){
-  //textareaフォーカス時に文字数の高さ見てリサイズ
-  $('textarea').keyup(function(e) {
-    //文字数から高さ取得
-    var height=this.scrollHeight + 'px';
-    $(this).css("height", height);
-    })
-    .blur(function(e) {
-    //$(this).css("height", "auto");
-  });
+
+	
+	if($("#weather_comp").length) {
+		read_weather();
+	}
+	resize_textarea();
+	setDateTime_start();
 });
 
+
+// ##############################################################################################################################
+//
+//            全体的によく使う関数
+//
+// ##############################################################################################################################
+
+function resize_textarea() {
+	//textareaフォーカス時に文字数の高さ見てリサイズ
+	$('textarea').keyup(function(e) {
+		//文字数から高さ取得
+		var height=this.scrollHeight + 'px';
+		$(this).css("height", height);
+		})
+		.blur(function(e) {
+		//$(this).css("height", "auto");
+	});
+}
 
 document.onkeydown = 
 	function (e) {
@@ -20,29 +43,29 @@ document.onkeydown =
 				return false;
 			 }
 		}
-	}
-
-document.onkeypress = 
-	function (e) {
 		if (e != null){
 			if ((e.ctrlKey || e.metaKey) && e.which == 115){
 				//alert("Crtl + S");
 				return false;
 			}
 		}
+		
 	}
+
 
 function setDateTime_start() {
 	if($(".noki").size() || $(".kaisi").size() || $(".syuryo").size()) {
-		$(".noki").datepicker();
-		$(".kaisi").datepicker();
-		$(".syuryo").datepicker();
+		$(".noki").datepicker({ dateFormat: "yy/mm/dd" });
+		$(".kaisi").datepicker({ dateFormat: "yy/mm/dd" });
+		$(".syuryo").datepicker({ dateFormat: "yy/mm/dd" });
 		
 		
 		for(var i=document.getElementsByClassName("td-n2").length-1; i>=0; i--) {
 			document.body.removeChild(document.getElementsByClassName("td-n2")[i]);
 		}
-		
+	}
+	
+	if($(".time").size()) {	
 		$( ".time" ).timeDropper({
 			//機能オプション
 			autoswitch: false,					//クリック位置移動
@@ -98,6 +121,9 @@ function getParam(name, url) {
 	if (!results[2]) return '';
 	return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
+
+
+ 
 
 // ##############################################################################################################################
 //
@@ -170,10 +196,8 @@ function tree_menu(id, top, pre, child, wait, whatdotoday, todofile) {
 	menu = menu + "<a href='todo.php?d=renew&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>流用する</a>";
 	menu = menu + "<a href='todo.php?d=detail&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>フィルター</a>";
 	if((whatdotoday == 0 || whatdotoday == 2) && pre!=100) menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+top+", \"turn\", 1)'>今日頑張る</button>";
-	else if(whatdotoday == 1 && pre!=100) {
-		menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+top+", \"turn\", 2)'>明日頑張る</button>";
-		menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+top+", \"turn\", 0)'>今度頑張る</button>";
-	}
+	menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+top+", \"turn\", 2)'>明日頑張る</button>";
+	menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+top+", \"turn\", 0)'>今度頑張る</button>";
 	if(wait == 0 && pre!=100) menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+id+", \"wait\", 0)'>保留設定</button></div>";
 	else if(pre!=100) //menu = menu + "<a href='todo.php?page=wait&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>解除設定</a></div>";
 	menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+id+", \"wait\", 0)'>解除設定</button></div>";
@@ -223,20 +247,6 @@ function todo_tree_wait(p, type, turn) {
 	return false;
 }
 
-
-// ##############################################################################################################################
-//
-//            読み込み時の関数
-//
-// ##############################################################################################################################
-//$("#todo_tree_comp")があれば読み込む関数
-$(document).ready(function(){
-
-	
-	if($("#weather_comp").length) {
-		read_weather();
-	}
-});
 
 // ##############################################################################################################################
 //
@@ -411,6 +421,23 @@ function changeMemoform() {
 	}
 }
 
+// ##############################################################################################################################
+//
+//            todo編集用の関数
+//
+// ##############################################################################################################################
+
+
+	function setDateTime(){
+		for(var i=1; i<document.getElementsByClassName("name").length; i++) {
+			document.getElementsByClassName("noki")[i].value = document.getElementsByClassName("noki")[0].value;
+			document.getElementsByClassName("time")[i].value = document.getElementsByClassName("time")[0].value;
+			document.getElementsByClassName("kaisi")[i].value = document.getElementsByClassName("kaisi")[0].value;
+			document.getElementsByClassName("syuryo")[i].value = document.getElementsByClassName("syuryo")[0].value;
+		}
+	}
+
+
 
 // ##############################################################################################################################
 //
@@ -443,7 +470,15 @@ function donotBotton(id) {
 }
 
 
+// ##############################################################################################################################
+//
+//            週報用の関数
+//
+// ##############################################################################################################################
 
+function writeweekly(val) {
+	document.getElementsByClassName('write')[val].value = 1;
+}
 
 // ##############################################################################################################################
 //
@@ -477,9 +512,155 @@ function read_weather(){
 
 
 
+// ##############################################################################################################################
+//
+//            やったこと表示のためのページの関数
+//
+// ##############################################################################################################################
 
 
+function toggleMail() {
+	var flug = document.getElementById('work_mail').checked;
+	if(flug) {
+		var note = document.getElementById('note').value;
+		if (note.match(/（etc）/)) {
+			note = note.replace("（etc）", "（メール対応etc）");
+		} else {
+			note = note.replace("etc）", "・メール対応etc）");
+		}
+		document.getElementById('note').value = note;
+	} else {
+		var note = document.getElementById('note').value;
+		note = note.replace("・メール対応", "");
+		note = note.replace("メール対応", "");
+		document.getElementById('note').value = note;
+	}
+}
 
+function toggleDoc() {
+	var flug = document.getElementById('work_doc').checked;
+	if(flug) {
+		var note = document.getElementById('note').value;
+		if (note.match(/（etc）/)) {
+			note = note.replace("（etc）", "（ドキュメント更新etc）");
+		} else {
+			note = note.replace("etc）", "・ドキュメント更新etc）");
+		}
+		document.getElementById('note').value = note;
+	} else {
+		var note = document.getElementById('note').value;
+		note = note.replace("・ドキュメント更新", "");
+		note = note.replace("ドキュメント更新", "");
+		document.getElementById('note').value = note;
+	}
+}
+
+function toggleMake() {
+	var flug = document.getElementById('work_make').checked;
+	if(flug) {
+		var note = document.getElementById('note').value;
+		if (note.match(/（etc）/)) {
+			note = note.replace("（etc）", "（申請書作成etc）");
+		} else {
+			note = note.replace("etc）", "・申請書作成etc）");
+		}
+		document.getElementById('note').value = note;
+	} else {
+		var note = document.getElementById('note').value;
+		note = note.replace("・申請書作成", "");
+		note = note.replace("申請書作成", "");
+		document.getElementById('note').value = note;
+	}
+}
+
+function toggleTime() {
+	var flug = document.getElementById('work_time').checked;
+	if(flug) {
+		var note = document.getElementById('note').value;
+		if (note.match(/（etc）/)) {
+			note = note.replace("（etc）", "（時間管理etc）");
+		} else {
+			note = note.replace("etc）", "・時間管理etc）");
+		}
+		document.getElementById('note').value = note;
+	} else {
+		var note = document.getElementById('note').value;
+		note = note.replace("・時間管理", "");
+		note = note.replace("時間管理", "");
+		document.getElementById('note').value = note;
+	}
+}
+
+function toggleWeekly() {
+	var flug = document.getElementById('work_weekly').checked;
+	if(flug) {
+		var note = document.getElementById('note').value;
+		if (note.match(/（etc）/)) {
+			note = note.replace("（etc）", "（週報etc）");
+		} else {
+			note = note.replace("etc）", "・週報etc）");
+		}
+		document.getElementById('note').value = note;
+	} else {
+		var note = document.getElementById('note').value;
+		note = note.replace("・週報", "");
+		note = note.replace("週報", "");
+		document.getElementById('note').value = note;
+	}
+}
+
+function checkNote() {
+	var note = document.getElementById('note').value;
+	if (note.match(/メール対応/)) {
+		document.getElementById('work_mail').checked = true;
+	} else {
+		document.getElementById('work_mail').checked = false;
+	}
+	if (note.match(/ドキュメント更新/)) {
+		document.getElementById('work_doc').checked = true;
+	} else {
+		document.getElementById('work_doc').checked = false;
+	}
+	if (note.match(/申請書作成/)) {
+		document.getElementById('work_make').checked = true;
+	} else {
+		document.getElementById('work_make').checked = false;
+	}
+	if (note.match(/時間管理/)) {
+		document.getElementById('work_time').checked = true;
+	} else {
+		document.getElementById('work_time').checked = false;
+	}
+	if (note.match(/週報/)) {
+		document.getElementById('work_weekly').checked = true;
+	} else {
+		document.getElementById('work_weekly').checked = false;
+	}
+}
+
+//startTimeChange()
+
+function finishTimeChange() {
+	var finishTime = document.getElementById('finishTime').value;
+	
+	document.getElementById('finishTime').value = "13:00";
+}
+
+function changePID() {
+	//document.getElementById('pid').value;
+	var options = document.getElementById('selectPeriodically').options;
+	for(var i = 0; i < options.length; i++){
+		if(options[i].selected == true){
+			document.getElementById('pid').value = options[i].value;
+			document.getElementById('note').value = options[i].text;
+			if(document.getElementById('note').value == "事務仕事") {
+				document.getElementById('note').value = "事務作業（メール対応etc）";
+			}
+			checkNote();
+		};
+	};
+	
+}
 
 
 

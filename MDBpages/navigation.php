@@ -8,7 +8,7 @@
 			<li class="drawer-dropdown todonav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
 				<span class="fa fa-check-square-o pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_todo_html; ?>'">todo</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
-					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=weekly">週報</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?page=weekly">週報</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?page=keeper">時間管理</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=new">新規追加</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=calendar">カレンダー</a></li>

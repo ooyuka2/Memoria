@@ -53,17 +53,17 @@
 		mb_convert_variables('SJIS-win',"SJIS-win, UTF-8, Unicode",$working);
 		writeWorking($working);
 	} else {
-		header( "Location: " . $link_pages_html . "todo.php" );
+		header( "Location: ../todo.php" );
 	}
 	
 	if(isset($_POST['goto']) && $_POST['goto']=="today") {
-		header( "Location: " . $link_pages_html . "todo.php" );
+		header( "Location: ../todo.php" );
 	} else if(isset($_POST['goto']) && $_POST['goto']=="todo") {
-		header( "Location: " . $link_pages_html . "todo.php?p=".$todo[$_POST['p']]['top'] );
+		header( "Location: ../todo.php?p=".$todo[$_POST['p']]['top'] );
 	}else if(isset($_POST['goto']) && $_POST['goto']=="detail") {
-		header( "Location: " . $link_pages_html . "todo.php?d=detail&p=".$todo[$_POST['p']]['top'] );
+		header( "Location: ../todo.php?d=detail&p=".$todo[$_POST['p']]['top'] );
 	} else {
-		header( "Location: " . $link_pages_html . "todo.php?d=keeper" );
+		header( "Location: ../todo.php?d=keeper" );
 	}
 	exit();
 ?>

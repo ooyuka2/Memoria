@@ -6,9 +6,15 @@
 	}
 	whatTodayDo_Registration($ini);
 ?>
+<div class="col-md-4 col-xl-3">
 
-<div class="table-responsive card">
-	<table class='table table-striped table-hover table-condensed'>
+	<div id="todo_tree_comp"></div>
+
+</div>
+<div class="col-md-8 col-xl-7">
+
+<div class="table-responsive container-fluid">
+	<table class='table table-hover table-condensed'>
 		<thead  class="thead-dark">
 			<tr>
 				<th class="col-3" scope="col">チェックボックス</th>
@@ -53,7 +59,7 @@
 						echo "<span><strong>作業内容　: </strong>{$temp[0]}</span>";
 						echo "</td></tr>";
 					} else {
-						echo "<tr><th></th><td></td><td></td></tr>";
+						echo "<tr><th></th><td></td></tr>";
 					}
 				}
 			?>
@@ -61,13 +67,16 @@
 	</table>
 </div>
 
-<form method='get' action='todo/whatTodayDo.php'>
-	<div class="form-group" style="margin-bottom:0; position: fixed; top: 100px;right:0;width:300px;">
-		<?php echo "<input type='hidden' name='pid' value='{$pid}' id='pid'>"; ?>
-		<input type='hidden' name='page' value='whatTodayDo'>
-		<button type="submit" class="btn btn-primary btn-block">Submit</button>
-	</div>
-</form>
-<script>
 
-</script>
+</div>
+<div class="col-md-12 col-xl-2">
+	
+	<form method='get' action='todo/whatTodayDo.php'>
+		<div class="form-group" style="margin-bottom:0; position: fixed; top: 100px;right:0;width:300px;">
+			<?php echo "<input type='hidden' name='pid' value='{$pid}' id='pid'>"; ?>
+			<input type='hidden' name='page' value='whatTodayDo'>
+			<button type="submit" class="btn btn-primary btn-block">Submit</button>
+		</div>
+	</form>
+
+</div>

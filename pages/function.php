@@ -9,8 +9,8 @@
 //##################################################################
 //				csv読み込み/書き込み用関数
 //##################################################################
-//ファイル読み込んで配列に入れる
-function readCsvFile($filepath) {
+
+function readCsvFile($filepath) {	//ファイル読み込んで配列に入れる
 	mb_internal_encoding("SJIS-win");
 	if (is_readable($filepath)) {
 		$file = new SplFileObject($filepath); 
@@ -29,8 +29,8 @@ function readCsvFile($filepath) {
 	return $records;
 }
 
-//ファイル読み込んで配列に入れる
-function readCsvFile2($filepath) {
+
+function readCsvFile2($filepath) {	//ファイル読み込んで配列に入れる
 	mb_internal_encoding("SJIS-win");
 	if (is_readable($filepath)) {
 		$file = new SplFileObject($filepath); 
@@ -58,8 +58,8 @@ function readCsvFile2($filepath) {
 	return $ary;
 }
 
-//csvファイル書き込み
-function writeCsvFile($filepath, $records) {
+
+function writeCsvFile($filepath, $records) {	//csvファイル書き込み
 	//mb_convert_variables('SJIS-win','UTF-8',$records);
 	$fp = fopen($filepath, 'w');
 	foreach ($records as $fields) {
@@ -67,8 +67,8 @@ function writeCsvFile($filepath, $records) {
 	}
 	fclose($fp);
 }
-//csvファイル書き込み
-function writeCsvFile2($filepath, $records) {
+
+function writeCsvFile2($filepath, $records) {	//csvファイル書き込み
 	//print_r($records);
 	//echo "<br><br>";
 	//$line[] = array_keys($records[0]);
@@ -87,8 +87,8 @@ function writeCsvFile2($filepath, $records) {
 	fclose($fp);
 }
 
-function json_safe_encode($data){
-		return json_encode($data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+function json_safe_encode($data){	//jsonの文字コード変換
+	return json_encode($data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
 }
 
 
@@ -97,7 +97,7 @@ function json_safe_encode($data){
 //##################################################################
 
 
-function write_ini_file($filename, $ini){
+function write_ini_file($filename, $ini){	//iniファイル書き込み用関数
 	$fp = fopen($filename, 'w');
 	foreach ($ini as $k => $i) fputs($fp, "$k=\"".str_replace("\\", "\\\\", rtrim($i, '\\'))."\"\n");
 	fclose($fp);
@@ -196,7 +196,7 @@ function sort_by_noki_todo_priority($todo, $flag) {
 	$tmpcount = 0;
 	if($flag) {
 		for($i=1; $i<count($todo); $i++) {
-			if($todo[$i]['今日やること'] == 1 && $todo[$i]['完了'] == 0 && !check1array($tmparray, $todo[$i]['top'])) {
+			if($todo[$i]['今日やること'] == 1 && $todo[$i]['完了'] == 0 && $todo[$i]['保留'] == 0 && $todo[$i]['削除'] != 1 && !check1array($tmparray, $todo[$i]['top'])) {
 				$tmparray[count($tmparray)] = $todo[$i]['top'];
 			}
 		}
@@ -464,8 +464,17 @@ function whatTodayDo_Registration($ini) {
 							$flug = 1;
 							break;
 						}
+
 					}
 				}
+				
+				if(validateDate($todo[$sa[$i]]['今日やること'], 'Y/m/d')) {
+					$workday = new DateTime($todo[$sa[$i]]['今日やること']);
+					if($today->diff($workday)->format('%r%a 日') == 0) {
+						$flug = 1;
+					}
+				}
+				
 				if($todo[$sa[$i]]['今日やること'] != 0 || $flug == 1) {
 					$pid = $pid . "@". $sa[$i];
 				}
@@ -483,7 +492,7 @@ function whatTodayDo_Registration($ini) {
 		//echo $_GET['pid'];
 		$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
 		for($i=1; $i<count($todo); $i++) {
-			if($todo[$i]['level'] == 1 && $todo[$i]['今日やること'] != 2) $todo[$i]['今日やること'] = 0;
+			if($todo[$i]['level'] == 1 && $todo[$i]['今日やること'] == 1) $todo[$i]['今日やること'] = 0;
 		}
 		for($i=1; $i<count($ids); $i++) {
 			$todo[$ids[$i]]['今日やること'] = 1;
@@ -518,10 +527,84 @@ function whatTodayDo_Registration($ini) {
 }
 
 //##################################################################
-//				todo/do.php用関数
+//				週報用関数
 //##################################################################
-function dophp ($pagetype) {
 
+function write_weekly($todo, $working, $weekly, $i, $weeklyid, $workK) {
+	
+	if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
+	if(isset($_GET['day'])) $TodayS = $_GET['day'];
+	else $TodayS = date('Ymd');
+	$today = new DateTime($TodayS);
+	$monday = $today->modify('monday this week')->setTime(0,0,0);
+	//if($weekly[$weeklyid]['parentid'] == 0) echo "KPI：{$weekly[$weeklyid]['KPI']}<br>";
+	$flug = $workK;
+	if($flug == 0) {
+		for($j=1; $j<count($working); $j++) {
+			if($working[$j]['id'] != "periodically" && $todo[$working[$j]['id']]['top'] == $i) {
+				$workday = new DateTime($working[$j]['day']);
+				if($workday->diff($monday)->format('%R%a') <= 0) {
+					$flug = 1;
+					break;
+				}
+			}
+		}
+	}
+	if($weeklyid != -1) {
+		$lastday = new DateTime($weekly[$weeklyid]['最終更新日時']);
+		if(($lastday->diff($monday)->format('%R%a')) <= 0) echo "<span class='text-info'>";
+		else echo "<span class='text-danger'>";
+	} else echo "<span class='text-info'>";
+	if((($weeklyid != -1) && $weekly[$weeklyid]['parentid'] == 0) || ($weeklyid == -1)) {
+		if($flug == 0) echo "〇";
+		else echo "●";
+	} else {
+		if($flug == 0) echo "　□";
+		else echo "　■";
+	}
+
+	echo "{$todo[$i]['タイトル']}：";
+	if($weeklyid != -1) echo "{$weekly[$weeklyid]['担当']}";
+	else echo $ini['myname'];
+	if($todo[$i]['完了']==1) echo "【：完了】</span><br>";
+	else echo "</span><br>";
+	if($weeklyid != -1) $workdetail = str_replace('<br>', '<br>　　　', $weekly[$weeklyid]['テーマ概要']);
+	else $workdetail = str_replace('<br>', '<br>　　　', $todo[$i]['作業内容']);
+	echo "　＜テーマ概要＞<br>　　　{$workdetail}<br>";
+	if($weeklyid != -1 && $weekly[$weeklyid]['済み'] != "") {
+		echo "　＜済み＞<br>";
+		$workdetail = str_replace('<br>', '<br>　　　', $weekly[$weeklyid]['済み']);
+		echo "　　　{$workdetail}<br>";
+	}
+	if($flug != 0) {
+		echo "　＜進捗＞<br>";
+		if($weeklyid != -1) {
+			$workdetail = str_replace('<br>', '<br>　　　', $weekly[$weeklyid]['進捗']);
+			echo "　　　{$workdetail}<br>";
+		} else {
+			for($j=1; $j<count($working); $j++) {
+				$workday = new DateTime($working[$j]['day']);
+				if($working[$j]['id'] != "periodically" && $workday->diff($monday)->format('%R%a') <= 0 && $todo[$working[$j]['id']]['top'] == $i) {
+					echo "　　　{$workday->format('n/d')}：{$todo[$working[$j]['id']]['タイトル']}→<br>";
+				}
+			}
+		}
+	}
+	if($todo[$i]['完了'] == 0) {
+		echo "　＜今後の予定＞<br>";
+		if($weeklyid != -1) {
+			$workdetail = str_replace('<br>', '<br>　　　', $weekly[$weeklyid]['今後の予定']);
+			echo "　　　{$workdetail}<br>";
+		} else {
+			for($j=1; $j<count($todo); $j++) {
+				if($todo[$j]['top'] == $todo[$i]['id'] && $todo[$j]['完了']==0) {
+					$temp = new DateTime($todo[$j]['納期']);
+					echo "　　　～{$temp->format('n/d')}　：{$todo[$j]['タイトル']}→<br>";
+				}
+			}
+		}
+	}
+	
 }
 
 
@@ -620,6 +703,16 @@ function time_diff($time_from, $time_to) {
 	// 日付単位の差
 	$dif_days = (strtotime(date("Y-m-d", $dif)) - strtotime("1970-01-01")) / 86400;
 	return "{$dif_days}days {$dif_time}";
+}
+
+
+
+//##################################################################
+//				DateTimeクラスでcheckdate()より汎用性のある日付チェックを行う関数
+//##################################################################
+function validateDate($date, $format = 'Y-m-d H:i:s') {
+	$d = DateTime::createFromFormat($format, $date);
+	return $d && $d->format($format) == $date;
 }
 
 ?>

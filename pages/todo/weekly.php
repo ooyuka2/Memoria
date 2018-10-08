@@ -3,6 +3,7 @@
 	//$todo = readCsvFile2('../data/todo.csv');
 	date_default_timezone_set('Asia/Tokyo');
 	if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+	
 	//$week_str_list = array( '日', '月', '火', '水', '木', '金', '土');//$week_str = $week_str_list[ $datetime->format('w') ];
 	
 	if(isset($_GET['day'])) $TodayS = $_GET['day'];
@@ -12,13 +13,15 @@
 	
 	
 	if(!isset($_GET['change'])) {
+		if(!isset($todo)) $todo = readCsvFile2('../data/todo.csv');
 		$todo_theme = readCsvFile2('../data/todo_theme.csv');
 		$working = readCsvFile2('../data/working.csv');
 		$periodically = readCsvFile2('../data/periodically.csv');
 		$weekly = readCsvFile2('../data/weekly.csv');
 		$ini = parse_ini_file('../data/config.ini');
+		if(!isset($link_todo_weekly_html)) $link_todo_weekly_html = "/Memoria/pages/todo.php?d=weekly";
 ?>
-	<div class="col-xs-12">
+	<div class="col-xs-12  container-fluid">
 		<fieldset>
 			<div class="well bs-component">
 				
@@ -165,11 +168,12 @@
 		<div style="height: 100px"></div>
 	</div>
 	<div class="form-group" style="margin-bottom:0; position: fixed; top: 100px;right:0;width:300px;">
-		<button type="button" class="btn btn-primary btn-block" onclick="location.href = '/Memoria/pages/todo.php?d=weekly&change=change';">編集</button>
+		<button type="button" class="btn btn-primary btn-block" onclick="location.href = '<?php echo $link_todo_weekly_html; ?>&change=change';">編集</button>
 	</div>
 
 <?php
 	} else if($_GET['change'] == "change") {
+		if(!isset($todo)) $todo = readCsvFile2('../data/todo.csv');
 		$todo_theme = readCsvFile2('../data/todo_theme.csv');
 		$working = readCsvFile2('../data/working.csv');
 		$periodically = readCsvFile2('../data/periodically.csv');
@@ -177,7 +181,7 @@
 		$ini = parse_ini_file('../data/config.ini');
 		$monday = $today->modify('monday this week')->setTime(0,0,0);
 ?>
-<form class='form-horizontal' method='post' action='todo/weekly.php?change=go'>
+<form class='form-horizontal container-fluid' method='post' action='todo/weekly.php?change=go' >
 <div class="form-group">
 <div class="bs-component table-responsive">
 	<table class='table table-striped table-hover table-condensed'>
@@ -318,11 +322,11 @@
 <form>
 <?php
 	} else if($_GET['change'] == "go") {
-				header("Content-type: text/html; charset=SJIS-win");
+		header("Content-type: text/html; charset=SJIS-win");
+		echo $_POST['id'][0];
 		if(isset($_POST['id'][0])) {
-			include('../function.php');
-			$weekly = readCsvFile2('../../data/weekly.csv');
-			
+			include_once($ini['dirWin'].'/pages/function.php');
+			$weekly = readCsvFile2($ini['dirWin'].'/data/weekly.csv');
 			for($i=0; $i<count($_POST['id']); $i++) {
 				if($_POST['write'][$i] == 1) {
 					$weekly[$_POST['id'][$i]]["テーマ概要"] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['detail'][$i]);
@@ -341,15 +345,16 @@
 				
 			}
 			
-			writeCsvFile2('../../data/weekly.csv', $weekly);
-			header( "Location: /Memoria/pages/todo.php?d=weekly" );
+			writeCsvFile2($ini['dirWin'].'/data/weekly.csv', $weekly);
+			//print_r_pre($weekly);
+			header( "Location: " . $link_todo_weekly_html );
 			exit();
 			
 			//print_r_pre($_POST['make_weekly']);
 			//print_r_pre($weekly);
 			
 		} else {
-			echo "<script>alert('なんかおかしい？');location.href = '/Memoria/pages/todo.php?d=weekly';</script>";
+			echo "<script>alert('なんかおかしい？');location.href = '<?php echo $link_todo_weekly_html; ?>';</script>";
 		}
 	
 	}

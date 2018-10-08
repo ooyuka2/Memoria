@@ -2,17 +2,21 @@
 <html lang="ja">
 <head>
 	<?php
+		
 		session_start();
 		header("Content-type: text/html; charset=SJIS-win");
 		date_default_timezone_set('Asia/Tokyo');
 		$now = new DateTime();
 		$updatefiletime = "?" . $now->format('Y-m-d-h-i-s');
 		$ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
+		
+		//if($_SERVER['SERVER_ADDR'] != $_SERVER['REMOTE_ADDR']) {
+			
+		//}
+		
 		$pagetype = "MDBpages";
 		include_once($ini['dirWin'].'/pages/function.php');
-		//if($_SERVER['SERVER_ADDR'] != $_SERVER['REMOTE_ADDR']) {
-			$ini['csstype'] = "honoka";
-		//}
+
 	?>
 	<!-- Required meta tags always come first -->
 	<meta charset="shist-jis">
@@ -20,6 +24,9 @@
 	<link rel="shortcut icon" href="<?php echo $ini['dirhtml']."/favicon.ico";?>">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>Memoria</title>
+	
+	<link rel="stylesheet" type="text/css" href="/Memoria/js/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="/Memoria/img/timedropper/timedropper.css">
 	<!-- drawer.css -->
 	<?php 
 		echo '<link rel="stylesheet" href="' . $link_drawer_css . '">';
@@ -42,7 +49,9 @@
 	?>
 	
 	<?php
-		//echo '<link href="' . $link_css . 'fairly.css'. $updatefiletime . '" rel="stylesheet">';
+		echo '<link href="' . $link_css . 'fairly.css'. $updatefiletime . '" rel="stylesheet">';
 	?>
+	
+
 </head>
 

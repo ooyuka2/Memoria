@@ -1,10 +1,11 @@
 <?php
 //id,タイトル,作業内容,納期,納期時間,開始予定日,終了予定日,パーセンテージ,
 //完了,所感,level,top,parent,child,成果物,テーマ,優先度,登録日
-	
-	include('../function.php');
-	$todo = readCsvFile2('../../data/todo.csv');
+
 	if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+	include($ini['dirWin'].'/pages/function.php');
+	$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
+
 	
 	$id = $_POST['id'][0];
 	$number = $id;
@@ -67,8 +68,8 @@
 	}
 	
 	if($_POST['name'][0]!="" && isset($_POST['make_weekly']) && $_POST['make_weekly']==-1) {
-		$weekly = readCsvFile2('../../data/weekly.csv');
-		$ini = parse_ini_file('../../data/config.ini');
+		$weekly = readCsvFile2($ini['dirWin'].'/data/weekly.csv');
+		$ini = parse_ini_file($ini['dirWin'].'/data/config.ini');
 		
 		$c = count($weekly);
 		$weekly[$c]["todoid"] = $number;
@@ -82,10 +83,10 @@
 		else $weekly[$c]["parentid"] = "0";
 		$weekly[$c]["最終更新日時"] = date('Y/m/d H:i:s');
 		$weekly[$c]["表示"] = "0";
-		writeCsvFile2("../../data/weekly.csv", $weekly);
+		writeCsvFile2($ini['dirWin']."/data/weekly.csv", $weekly);
 	} else if($_POST['name'][0]!="" && isset($_POST['make_weekly'])) {
-		$weekly = readCsvFile2('../../data/weekly.csv');
-		include('../../weekly.php');
+		$weekly = readCsvFile2($ini['dirWin'].'/data/weekly.csv');
+		include($ini['dirWin'].'/pages/todo/weekly.php');
 		
 		$weeklyid = check2array($weekly, $_POST['make_weekly'], "todoid");
 		
@@ -100,15 +101,15 @@
 		$weekly[$c]["parentid"] = $weekly[$weeklyid]["parentid"];
 		$weekly[$c]["最終更新日時"] = date('Y/m/d H:i:s');
 		$weekly[$c]["表示"] = "0";
-		writeCsvFile2("../../data/weekly.csv", $weekly);
+		writeCsvFile2($ini['dirWin']."/data/weekly.csv", $weekly);
 	}
 	
 	/*echo "<pre>";
 	print_r($todo);
 	echo "</pre>";*/
-	writeCsvFile2("../../data/todo.csv", $todo);
-	if($_POST['name'][0] == "") header( "Location: ../todo.php" );
-	else header( "Location: ../todo.php?p={$_POST['id'][0]}" );
+	writeCsvFile2($ini['dirWin']."/data/todo.csv", $todo);
+	if($_POST['name'][0] == "") header( "Location: " . $link_todo_html );
+	else header( "Location: " . $link_todo_html . "?p={$_POST['id'][0]}" );
 	exit();
 
 ?>

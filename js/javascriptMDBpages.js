@@ -5,7 +5,7 @@
 // ##############################################################################################################################
 //$("#todo_tree_comp")があれば読み込む関数
 $(document).ready(function(){
-
+	
 	if($("#todo_tree_comp").length) {
 		if(getParam('d') == "detail" || getParam('d') == null  || getParam('d') =="todo") {
 			if(getParam('d') != null) var d = getParam('d');
@@ -29,7 +29,10 @@ $(document).ready(function(){
 		read_keeper("1");
 	}
 	
-	
+	DD = new Date();
+	if(DD.getHours() == 12) {
+	$('head link:last').after('<link rel="stylesheet" href="/Memoria/img/bootstrap4/MDB/css/fairly.css">');
+	}
 	
 });
 /*
@@ -123,6 +126,7 @@ function read_todo_tree(d, p, list, todofile) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 		// PHPから返ってきたデータの表示
 		$("#todo_tree_comp").html(data).css('background','');
+		setDateTime_start();
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
 		// this;
@@ -232,3 +236,6 @@ function read_keeper(days){
 	// サブミット後、ページをリロードしないようにする
 	return false;
 }
+
+
+

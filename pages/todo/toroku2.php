@@ -2,10 +2,10 @@
 //id,タイトル,作業内容,納期,納期時間,開始予定日,終了予定日,パーセンテージ,
 //完了,所感,level,top,parent,child,成果物,テーマ,優先度,登録日
 
-	
-	include('../function.php');
-	$todo = readCsvFile2('../../data/todo.csv');
 	if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+	include($ini['dirWin'].'/pages/function.php');
+	$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
+
 	$id=$_POST['id'][0];
 	$number = $id;
 	date_default_timezone_set('Asia/Tokyo');
@@ -151,8 +151,8 @@
 	*/
 	
 	if(isset($_POST['make_weekly'])) {
-		$weekly = readCsvFile2('../../data/weekly.csv');
-		include('../../weekly.php');
+		$weekly = readCsvFile2($ini['dirWin'].'/data/weekly.csv');
+		include($ini['dirWin'].'/pages/todo/weekly.php');
 		
 		$weeklyid = check2array($weekly, $_POST['make_weekly'], "todoid");
 		
@@ -169,25 +169,25 @@
 			else $weekly[$c]["parentid"] = "0";
 			$weekly[$c]["最終更新日時"] = date('Y/m/d H:i:s');
 			$weekly[$c]["表示"] = "0";
-			writeCsvFile2("../../data/weekly.csv", $weekly);
+			writeCsvFile2($ini['dirWin']."/data/weekly.csv", $weekly);
 		} else if($weekly[$weeklyid]["表示"] == 1) {
 			$weekly[$weeklyid]["表示"] = "0";
-			writeCsvFile2("../../data/weekly.csv", $weekly);
+			writeCsvFile2($ini['dirWin']."/data/weekly.csv", $weekly);
 		}
 	} else {
-		$weekly = readCsvFile2('../../data/weekly.csv');
+		$weekly = readCsvFile2($ini['dirWin'].'/data/weekly.csv');
 		$weeklyid = check2array($weekly, $number, "todoid");
 		
 		if($weeklyid != -1) {
 			$weekly[$weeklyid]["表示"] = "1";
-			writeCsvFile2("../../data/weekly.csv", $weekly);
+			writeCsvFile2($ini['dirWin']."/data/weekly.csv", $weekly);
 		}
 	}
 	
 	
-	writeCsvFile2("../../data/todo.csv", $todo);
+	writeCsvFile2($ini['dirWin']."/data/todo.csv", $todo);
 	
-	header( "Location: ../todo.php?p={$_POST['id'][0]}" );
+	header( "Location: " . $link_todo_html . "?p={$_POST['id'][0]}" );
 	exit();
 
 ?>

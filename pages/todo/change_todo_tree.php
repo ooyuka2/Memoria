@@ -18,6 +18,7 @@
 			$todo[$_GET['p']]['¡“ú‚â‚é‚±‚Æ'] = 0;
 		}
 		writeCsvFile2($link_data . 'todo.csv', $todo);
+
 	}
 
 	if($_GET['type'] == "nowait" && isset($_GET['p'])) {//id,dictionary,author,year,commentary,floor,place,img
@@ -36,4 +37,6 @@
 		}
 		return $todo;
 	}
+	
+
 ?>
