@@ -135,25 +135,23 @@ function todo_serch(searchtext){
 
 
 
-	var new_field = document.getElementById("new_field_set").innerHTML;
-	document.getElementById("new_field_set").innerHTML = document.getElementById("new_field_set").innerHTML.replace("required", "");
-	 
+	//var new_field = document.getElementById("new_field_set").innerHTML;
 	
-	//var new_field = "<fieldset style='position: relative'><div class='well bs-component'><div class='clearfix'><span class='pull-right close' onClick='minus( minusnumber );'>&times;</span><span class='pull-right close'>　</span><span class='pull-right close' onClick='plus2( plusnumber );'>+</span></div><div class='form-group'><div class='col-xs-8'><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='タイトル' required><input type='hidden' name='id[]' class='id'></div><div class='col-xs-12' style='margin-bottom:5px'><textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'></textarea></div><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='成果物'></div><div class='col-xs-2' style='margin-bottom:5px'><button type='button' class='btn btn-warning btn-xs' onClick='level_down(this)'>▲</button><button type='button' class='btn btn-warning btn-xs eee' onClick='level_up(this)'>▼</button></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>レベル</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm level' name='level[]' value='2' min='2' max='10' readonly></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>優先度</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm priority' name='priority[]' min='1' max='10'></div></div><div class='col-xs-4'><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期</label><input type='text' class='form-control input-normal input-sm noki' name='noki[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期の時間</label><input type='time' class='form-control input-normal input-sm time' name='time[]' step='900'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>開始予定時刻</label><input type='text' class='form-control input-normal input-sm kaisi' name='kaisi[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>終了予定日時</label><input type='text' class='form-control input-normal input-sm syuryo' name='syuryo[]'></div></div></div></div></fieldset>";
+	var new_field = "<fieldset style='position: relative'><div class='well bs-component'><div class='clearfix'><span class='pull-right close' onClick='minus( minusnumber );'>&times;</span><span class='pull-right close'>　</span><span class='pull-right close' onClick='plus2( plusnumber );'>+</span></div><div class='form-group'><div class='col-xs-8'><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm name' name='name[]' placeholder='タイトル' required><input type='hidden' name='id[]' class='id'></div><div class='col-xs-12' style='margin-bottom:5px'><textarea class='form-control input-normal input-sm detail' rows='3' name='detail[]'></textarea></div><div class='col-xs-12' style='margin-bottom:5px'><input type='text' class='form-control input-normal input-sm mono' name='mono[]' placeholder='成果物'></div><div class='col-xs-2' style='margin-bottom:5px'><button type='button' class='btn btn-warning btn-xs' onClick='level_down(this)'>▲</button><button type='button' class='btn btn-warning btn-xs eee' onClick='level_up(this)'>▼</button></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>レベル</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm level' name='level[]' value='2' min='2' max='10' readonly></div><label class='col-sm-2 control-label' style='margin-bottom:5px'>優先度</label><div class='col-xs-3' style='margin-bottom:5px'><input type='number' class='form-control input-normal input-sm priority' name='priority[]' min='1' max='10'></div></div><div class='col-xs-4'><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期</label><input type='text' class='form-control input-normal input-sm noki' name='noki[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>納期の時間</label><input type='time' class='form-control input-normal input-sm time' name='time[]' step='900'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>開始予定時刻</label><input type='text' class='form-control input-normal input-sm kaisi' name='kaisi[]'></div><div class='col-xs-12' style='margin-bottom:5px'><label class='control-label'>終了予定日時</label><input type='text' class='form-control input-normal input-sm syuryo' name='syuryo[]'></div></div></div></div></fieldset>";
 	//<div class='form-group' style='margin-bottom:0; position: fixed; bottom: 50px;right:0;width:500px;'><div class='col-xs-offset-3 col-xs-3'><button type='reset' class='btn btn-default btn-block'>Reset</button></div><div class='col-xs-3'><button type='submit' class='btn btn-primary btn-block'>Submit</button></div></div>
 	
 	if(document.getElementsByClassName("new")) change_level();
 	
 	
 	//<button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>×</span></button>
-	var new_id = document.getElementsByClassName("name").length-1;
+	var new_id = document.getElementsByClassName("name").length;
 	<?php
 		//if()
 	?>
 	var last_id = <?php echo count($todo); ?>;
 	function read_form() {
 		var array = new Array();
-		for(var i=0; i<document.getElementsByClassName("name").length-1; i++) {
+		for(var i=0; i<document.getElementsByClassName("name").length; i++) {
 			array[i] = new Array();
 			array[i][0] = document.getElementsByClassName("name")[i].value;
 			document.getElementsByClassName("name")[i].value = "";
@@ -181,8 +179,8 @@ function todo_serch(searchtext){
 	
 	function write_form(array, deletekey) {
 		var j = 0;
-		for(var i=0; i<(document.getElementsByClassName("name").length-1); i++) {
-			if((deletekey!=0 && i!=deletekey) || deletekey==0 && i!=(document.getElementsByClassName("name").length-2)) {
+		for(var i=0; i<(document.getElementsByClassName("name").length); i++) {
+			if((deletekey!=0 && i!=deletekey) || deletekey==0 && i!=(document.getElementsByClassName("name").length-1)) {
 				document.getElementsByClassName("name")[j].value = array[i][0];
 				document.getElementsByClassName("detail")[j].value = array[i][1];
 				document.getElementsByClassName("mono")[j].value = array[i][2];
@@ -213,8 +211,8 @@ function todo_serch(searchtext){
 	}
 	function write_form_delete(array, deletekey) {
 		var j = 0;
-		for(var i=0; i<(document.getElementsByClassName("name").length); i++) {
-			if((deletekey!=0 && i!=deletekey) || deletekey==0 && i!=(document.getElementsByClassName("name").length-2)) {
+		for(var i=0; i<(document.getElementsByClassName("name").length+1); i++) {
+			if((deletekey!=0 && i!=deletekey) || deletekey==0 && i!=(document.getElementsByClassName("name").length-1)) {
 				document.getElementsByClassName("name")[j].value = array[i][0];
 				document.getElementsByClassName("detail")[j].value = array[i][1];
 				document.getElementsByClassName("mono")[j].value = array[i][2];
@@ -231,7 +229,7 @@ function todo_serch(searchtext){
 		new_id = new_id-1;
 	}
 	function write_form_plus(array, pluskey) {
-		for(var i=0; i<(document.getElementsByClassName("name").length-1); i++) {
+		for(var i=0; i<(document.getElementsByClassName("name").length); i++) {
 			if(i<pluskey) {
 				document.getElementsByClassName("name")[i].value = array[i][0];
 				document.getElementsByClassName("detail")[i].value = array[i][1];

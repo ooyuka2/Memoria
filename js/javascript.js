@@ -663,6 +663,268 @@ function changePID() {
 }
 
 
+// ##############################################################################################################################
+//
+//            todo編集用の関数
+//
+// ##############################################################################################################################
+	
+	
+	var last_id = 0;
+	if($("#new_field_set").length) {
+		var new_field = document.getElementById("new_field_set").innerHTML;
+		document.getElementById("new_field_set").innerHTML = "";
+		return_count_todo();
+	}
+	
+	function return_count_todo() {
+	$.ajax({
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+		},
+		type: "POST",
+		scriptCharset:'Shift_JIS',
+		url: '/Memoria/pages/todo/return_count_todo.php',
+	}).done(function(data, dataType) {
+		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+		// PHPから返ってきたデータの表示
+		last_id = Number(data);
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		location.reload();
+	});
+	// サブミット後、ページをリロードしないようにする
+	return false;
+	}
+	
+	
+	if(document.getElementsByClassName("new")) change_level();
+	
+	//<button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>×</span></button>
+	var new_id = document.getElementsByClassName("name").length;
+	
+	function read_form() {
+		var array = new Array();
+		for(var i=0; i<document.getElementsByClassName("name").length; i++) {
+			array[i] = new Array();
+			array[i][0] = document.getElementsByClassName("name")[i].value;
+			document.getElementsByClassName("name")[i].value = "";
+			array[i][1] = document.getElementsByClassName("detail")[i].value;
+			document.getElementsByClassName("detail")[i].value = "";
+			array[i][2] = document.getElementsByClassName("mono")[i].value;
+			document.getElementsByClassName("mono")[i].value = "";
+			array[i][3] = document.getElementsByClassName("level")[i].value;
+			document.getElementsByClassName("level")[i].value = "";
+			array[i][4] = document.getElementsByClassName("priority")[i].value;
+			document.getElementsByClassName("priority")[i].value = "";
+			array[i][5] = document.getElementsByClassName("noki")[i].value;
+			document.getElementsByClassName("noki")[i].value = "";
+			array[i][6] = document.getElementsByClassName("time")[i].value;
+			document.getElementsByClassName("time")[i].value = "";
+			array[i][7] = document.getElementsByClassName("kaisi")[i].value;
+			document.getElementsByClassName("kaisi")[i].value = "";
+			array[i][8] = document.getElementsByClassName("syuryo")[i].value;
+			document.getElementsByClassName("syuryo")[i].value = "";
+			array[i][9] = document.getElementsByClassName("id")[i].value;
+			document.getElementsByClassName("id")[i].value = "";
+		}
+		return array;
+	}
+	
+	function write_form(array, deletekey) {
+		var j = 0;
+		for(var i=0; i<(document.getElementsByClassName("name").length); i++) {
+			if((deletekey!=0 && i!=deletekey) || deletekey==0 && i!=(document.getElementsByClassName("name").length-1)) {
+				document.getElementsByClassName("name")[j].value = array[i][0];
+				document.getElementsByClassName("detail")[j].value = array[i][1];
+				document.getElementsByClassName("mono")[j].value = array[i][2];
+				document.getElementsByClassName("level")[j].value = array[i][3];
+				document.getElementsByClassName("priority")[j].value = array[i][4];
+				document.getElementsByClassName("noki")[j].value = array[i][5];
+				document.getElementsByClassName("time")[j].value = array[i][6];
+				document.getElementsByClassName("kaisi")[j].value = array[i][7];
+				document.getElementsByClassName("syuryo")[j].value = array[i][8];
+				document.getElementsByClassName("id")[j].value = array[i][9];
+				j++;
+			}
+		}
+		if(deletekey==0) {
+			if(document.getElementsByClassName("level")[(new_id-1)].value != 1)
+				document.getElementsByClassName("level")[new_id].value = document.getElementsByClassName("level")[(new_id-1)].value;
+			document.getElementsByClassName("priority")[new_id].value = document.getElementsByClassName("priority")[(new_id-1)].value;
+			document.getElementsByClassName("noki")[new_id].value = document.getElementsByClassName("noki")[(new_id-1)].value;
+			document.getElementsByClassName("time")[new_id].value = document.getElementsByClassName("time")[(new_id-1)].value;
+			document.getElementsByClassName("kaisi")[new_id].value = document.getElementsByClassName("kaisi")[(new_id-1)].value;
+			document.getElementsByClassName("syuryo")[new_id].value = document.getElementsByClassName("syuryo")[(new_id-1)].value;
+			document.getElementsByClassName("id")[new_id].value = last_id;
+			last_id++;
+			new_id++;
+		} else {
+			new_id = new_id-1;
+		}
+	}
+	function write_form_delete(array, deletekey) {
+		var j = 0;
+		for(var i=0; i<(document.getElementsByClassName("name").length+1); i++) {
+			if((deletekey!=0 && i!=deletekey) || deletekey==0 && i!=(document.getElementsByClassName("name").length-1)) {
+				document.getElementsByClassName("name")[j].value = array[i][0];
+				document.getElementsByClassName("detail")[j].value = array[i][1];
+				document.getElementsByClassName("mono")[j].value = array[i][2];
+				document.getElementsByClassName("level")[j].value = array[i][3];
+				document.getElementsByClassName("priority")[j].value = array[i][4];
+				document.getElementsByClassName("noki")[j].value = array[i][5];
+				document.getElementsByClassName("time")[j].value = array[i][6];
+				document.getElementsByClassName("kaisi")[j].value = array[i][7];
+				document.getElementsByClassName("syuryo")[j].value = array[i][8];
+				document.getElementsByClassName("id")[j].value = array[i][9];
+				j++;
+			}
+		}
+		new_id = new_id-1;
+	}
+	function write_form_plus(array, pluskey) {
+		for(var i=0; i<(document.getElementsByClassName("name").length); i++) {
+			if(i<pluskey) {
+				document.getElementsByClassName("name")[i].value = array[i][0];
+				document.getElementsByClassName("detail")[i].value = array[i][1];
+				document.getElementsByClassName("mono")[i].value = array[i][2];
+				document.getElementsByClassName("level")[i].value = array[i][3];
+				document.getElementsByClassName("priority")[i].value = array[i][4];
+				document.getElementsByClassName("noki")[i].value = array[i][5];
+				document.getElementsByClassName("time")[i].value = array[i][6];
+				document.getElementsByClassName("kaisi")[i].value = array[i][7];
+				document.getElementsByClassName("syuryo")[i].value = array[i][8];
+				document.getElementsByClassName("id")[i].value = array[i][9];
+			}
+			else if (i==pluskey) {
+				document.getElementsByClassName("level")[i].value = array[i][3];
+				document.getElementsByClassName("priority")[i].value = array[i][4];
+				document.getElementsByClassName("noki")[i].value = array[i][5];
+				document.getElementsByClassName("time")[i].value = array[i][6];
+				document.getElementsByClassName("kaisi")[i].value = array[i][7];
+				document.getElementsByClassName("syuryo")[i].value = array[i][8];
+				document.getElementsByClassName("id")[i].value = last_id;
+				last_id++;
+				new_id++;
+			} else {
+				document.getElementsByClassName("name")[i].value = array[(i-1)][0];
+				document.getElementsByClassName("detail")[i].value = array[(i-1)][1];
+				document.getElementsByClassName("mono")[i].value = array[(i-1)][2];
+				document.getElementsByClassName("level")[i].value = array[(i-1)][3];
+				document.getElementsByClassName("priority")[i].value = array[(i-1)][4];
+				document.getElementsByClassName("noki")[i].value = array[(i-1)][5];
+				document.getElementsByClassName("time")[i].value = array[(i-1)][6];
+				document.getElementsByClassName("kaisi")[i].value = array[(i-1)][7];
+				document.getElementsByClassName("syuryo")[i].value = array[(i-1)][8];
+				document.getElementsByClassName("id")[i].value = array[(i-1)][9];
+			}
+		}
+	}
+	function plus() {
+		var array = read_form();
+		document.getElementsByClassName("new")[0].innerHTML = "";
+		for(var i=1; i<array.length+1; i++) {
+			document.getElementsByClassName("new")[0].innerHTML += new_field.replace("minus(0", "minus(" + String(i)).replace("plus2(0", "plus2(" + String(i));
+		}
+		resize_textarea();
+		write_form(array, 0);
+		setDateTime_start();
+		change_level();
+	}
+	function minus(number) {
+		//var array = ['', '','','','','','','',''];
+		var array = read_form();
+		document.getElementsByClassName("new")[0].innerHTML = "";
+		for(var i=1; i<array.length-1; i++) {
+			document.getElementsByClassName("new")[0].innerHTML += new_field.replace("minus(0", "minus(" + String(i)).replace("plus2(0", "plus2(" + String(i));
+		}
+		resize_textarea();
+		write_form_delete(array, number);
+		setDateTime_start();
+		change_level();
+	}
+	function plus2(pluskey) {
+		//var array = ['', '','','','','','','',''];
+		var array = read_form();
+		document.getElementsByClassName("new")[0].innerHTML = "";
+		for(var i=1; i<array.length+1; i++) {
+			document.getElementsByClassName("new")[0].innerHTML += new_field.replace("minus(0", "minus(" + String(i)).replace("plus2(0", "plus2(" + String(i));
+		}
+		resize_textarea();
+		write_form_plus(array, pluskey);
+		setDateTime_start();
+		change_level();
+	}
+	
+	function change_level() {
+		
+		for(var i=0; i<(document.getElementsByClassName("level").length); i++) {
+			var element = document.getElementsByClassName("level")[i];
+			var level = element.value;
+			if($(".bs-component").length) {
+				var parent = element.parentNode.parentNode.parentNode.parentNode.parentNode; 
+			} else {
+				var parent = element.parentNode.parentNode.parentNode.parentNode; 
+			}
+			if(level < 2)		parent.style.right = parseInt(level * 40) + "px";
+			else if(level > 2)	parent.style.left = parseInt((level - 2) * 40) + "px";
+			else parent.style.left = 0 + "px";
+		}
+	}
+	function level_up(btnnode) {
+		//var element = btnnode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1];
+		var element = btnnode.parentNode.nextSibling.nextSibling.childNodes[0];
+		var index = $('.level').index(element);
+		if(element.value != 1 && parseInt(document.getElementsByClassName("level")[(index-1)].value) + 1 != parseInt(element.value)) 
+		element.value = parseInt(element.value) + 1;
+		change_level();
+	}
+	
+	function level_down(btnnode) {
+		if($(".bs-component").length) {
+			var element = btnnode.parentNode.nextSibling.nextSibling.childNodes[0];
+		} else {
+			var element = btnnode.parentNode.nextSibling.nextSibling.nextSibling.childNodes[0];
+		}
+		//var element = btnnode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1];
+		if(element.value > 2) element.value = parseInt(element.value) - 1;
+		change_level();
+	}
+
+	
+	function select_theme(theme) {
+		if($(".bs-component").length) {
+			location.href = './todo.php?page=select_theme&theme='+theme;
+		} else {
+			location.href = './todo/select_theme.php?theme='+theme;
+		}
+	}
+
+	function todo_delete_check(tilte, id){
+		ret = confirm(tilte + "を本当に削除しますか？よろしいですか？");
+		if (ret == true){
+			location.href = './todo.php?page=delete&delete=OK&id='+id;
+		}
+	}
+
+	function finisflist_search(searchtext) {
+		if(searchtext.value != "") {
+			location.href = './todo.php?list=finishlist&finisflist_search='+searchtext.value;
+		} else {
+			location.href = './todo.php?list=finishlist';
+		}
+	}
+
+	function goto_detail(id) {
+		location.href = './todo.php?d=detail&p='+id;
+	}
+
+	if(document.getElementById("finisflist_search")) {
+		var elm = document.getElementById('finisflist_search');
+		var val = elm.value;
+		elm.value = '';
+		elm.focus();
+		elm.value = val;
+	}
 
 
 

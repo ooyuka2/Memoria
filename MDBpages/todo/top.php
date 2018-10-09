@@ -8,6 +8,16 @@
 	<div id="todo_tree_comp"></div>
 
 </div>
+<?php
+	if(isset($_GET['d']) && (($_GET['d']=="renew" && isset($_GET['p'])) || ($_GET['d']=="new") || ($_GET['d']=="change" && isset($_GET['p'])))) {
+		echo '<div class="col-md-8 col-xl-9">';
+		include('todo/todo_make.php');
+		echo '</div>';
+	} else {
+	
+	
+	 
+?>
 <div class="col-md-8 col-xl-7">
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orangeModalSubscription">
@@ -25,5 +35,5 @@
 
 
 <?php
-	//echo $globals['$link_todo_Win'];
+	}
 ?>

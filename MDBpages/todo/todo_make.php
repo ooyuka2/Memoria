@@ -43,10 +43,10 @@
 			<button class="btn btn-success center-block" type="button" onClick='plus();'><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Å@í«â¡</button>
 		</div>
 		
-		<div class="" id="new_field_set">
+		<div class="d-none" id="new_field_set">
 		
 		<?php
-			todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 2, "new_field", $id, $id, 0, $weekly); //d-none
+			todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 2, "new_field", $id, $id, 0, $weekly);
 		?>
 		
 		</div>

@@ -62,8 +62,8 @@
             <!--Body-->
             <div class="modal-body">
                 <div class="md-form mb-5">
-                    <i class="fa fa-user prefix grey-text"></i>
-                    <input type="text" id="form3" class="form-control validate kaisi">
+                    <i class="fa fa-calendar prefix grey-text"></i>
+                    <input type="text" id="form3" class="form-control validate kaisi form-control-success">
                     <!-- <label data-error="wrong" data-success="right" for="form3">Your name</label> -->
                 </div>
             </div>
