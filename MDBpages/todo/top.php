@@ -17,7 +17,16 @@
 ?>
 <div class="col-md-4 col-xl-3">
 
-	<div id="todo_tree_comp"></div>
+<?php
+	echo  '<div id="todo_tree_comp"></div>';
+	/*
+			if((isset($_GET['d']) && $_GET['d']=="detail") && (isset($_GET['p']) && $_GET['p']<count($todo))) {
+				echo "<div class='tab-pane fade active in' id='detail'>";
+				include('todo/todo.php');
+				echo "</div>";
+			}*/
+?>
+	
 
 </div>
 <div class="col-md-8 col-xl-7">
