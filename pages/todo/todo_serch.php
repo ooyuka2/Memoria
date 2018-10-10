@@ -1,9 +1,11 @@
 
 <?php
+	if(!isset($_GET['pagetype'])) $pagetype = "MDBpages";
 	header("Content-type: text/html; charset=SJIS-win");
-	include('../function.php');
-	$todo = readCsvFile2('../../data/todo.csv');
-	$working = readCsvFile2('../../data/working.csv');
+	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+	include_once($ini['dirWin'].'/pages/function.php');
+	$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
+	$working = readCsvFile2($ini['dirWin'].'/data/working.csv');
 	$file = "todo";
 	if(isset($_GET['search'])) {
 		$searchtext=mb_convert_encoding($_GET['search'], "SJIS-win", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode");
@@ -74,8 +76,8 @@
 		}
 	}
 
-	$todo = readCsvFile2('../../data/old201804todo.csv');
-	$working = readCsvFile2('../../data/old201804working.csv');
+	$todo = readCsvFile2($ini['dirWin'].'/data/old201804todo.csv');
+	$working = readCsvFile2($ini['dirWin'].'/data/old201804working.csv');
 	$file = "old201804";
 	$c = 0;
 	$ary = array();

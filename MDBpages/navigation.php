@@ -70,7 +70,7 @@
 		<!-- Search form -->
 		<form class="form-inline">
 			<div class="md-form my-0">
-			<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+			<input class="form-control" type="text" placeholder="Search" aria-label="Search" onkeyup="todo_serch(this.value)">
 			</div>
 		</form>
 		<!--/.Search Form-->

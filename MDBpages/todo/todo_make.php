@@ -106,6 +106,7 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 		$make_weekly = "-1";
 		$make_weekly_select = "";
 		$count = 0;
+		$finish = 0;
 	} else {
 		$title = $todo[$p]['タイトル'];
 		$detail = str_replace('<br>', '&#10;',$todo[$p]['作業内容']); 
@@ -113,6 +114,9 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 		$priority = $todo[$p]['優先度'];
 		$count = $todo[$p]['順番'];
 		$make_weekly = $_GET['p'];
+		
+		if ($_GET['d'] == "renew") $finish = 0;
+		else $finish = $todo[$p]['完了'];
 		
 		$weeklyid = check2array($weekly, $make_weekly, "todoid");
 		
@@ -133,7 +137,10 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 		}
 	}
 	
-	echo "<div class='card' style='position: relative' >";
+	if ($finish == 0) echo "<div class='card' style='position: relative' >";
+	else echo "<div class='card border-success' style='position: relative' >";
+	
+	
 	echo "<div class='form-group card-body row'>";
 	
 	if($level != 1) echo "<div class='clearfix col-12'><span class='pull-right close' onClick='minus({$count});'>&times;</span><span class='pull-right close'>　</span><span class='pull-right close' onClick='plus2({$count});'>+</span></div>";
@@ -185,12 +192,12 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 	//<div class='col'>
 	echo "<div class='col-1' style='margin-bottom:5px'><button type='button' class='btn btn-warning btn-xs' onClick='level_down(this)'>▲</button></div>";
 	echo "<div class='col-1' style='margin-bottom:5px'><button type='button' class='btn btn-warning btn-xs eee' onClick='level_up(this)'>▼</button></div>";
-	echo "<label class='col-2 control-label' style='margin-bottom:5px'>レベル</label>";
+	echo "<label class='col-2 control-label text-right' style='margin-bottom:5px'>レベル</label>";
 	echo "<div class='col-3' style='margin-bottom:5px'>";
 	echo "<input type='number' class='form-control input-normal input-sm level' name='level[]' min='1' max='10' value='{$level}' readonly>";
 	echo "</div>";
 	
-	echo "<label class='col-sm-2 control-label' style='margin-bottom:5px'>優先度</label>";
+	echo "<label class='col-sm-2 control-label text-right' style='margin-bottom:5px'>優先度</label>";
 	echo "<div class='col-3' style='margin-bottom:5px'>";
 	echo "<input type='number' class='form-control input-normal input-sm priority' name='priority[]' value='{$priority}' min='1' max='10'>";
 	echo "</div></div>";

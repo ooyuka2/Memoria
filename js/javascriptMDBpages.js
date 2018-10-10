@@ -238,3 +238,87 @@ function read_keeper(days){
 
 
 
+// ##############################################################################################################################
+//
+//            todoの検索用の関数
+//
+// ##############################################################################################################################
+function todo_serch(searchtext){
+	if(searchtext != "") {
+		//var h = makeform.height();
+		$("#todo_space_comp").css('background','url(\"../img/grid.svg\") center center no-repeat').css('background-size','20% auto').css('min-height','500px');
+		
+		$.ajax({
+			beforeSend: function(xhr){
+				xhr.overrideMimeType('text/html;charset=Shift_JIS');
+			},
+			type: "GET",
+			scriptCharset:'Shift_JIS',
+			url: "/Memoria/pages/todo/todo_serch.php",
+			data: {"search":searchtext,"pagetype":"MDBpages"},
+		}).done(function(data, dataType) {
+			// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+
+			// PHPから返ってきたデータの表示
+			$("#todo_space_comp").html(data).height("auto").css('background','');
+
+		}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+			// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+
+			// this;
+			// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+
+			// エラーメッセージの表示
+			//alert('Error : ' + errorThrown);
+			todo_serch(searchtext);
+		});
+	} else {
+		
+		var arg  = new Object;
+		url = location.search.substring(1).split('&');
+		
+		for(i=0; url[i]; i++) {
+			var k = url[i].split('=');
+			arg[k[0]] = k[1];
+		}
+		if(arg.list != undefined) {
+			var url = "./todo/" + arg.list + ".php";
+			}
+		/*
+		} elseif(arg.p != undefined && arg.d == "todo") {
+			var url = "./todo/todo.php?d=todo&p=" + arg.p;
+		}
+		*/
+		 else {
+			var url = "./todo/memo.php";
+		}
+		
+		$.ajax({
+			beforeSend: function(xhr){
+				xhr.overrideMimeType('text/html;charset=Shift_JIS');
+			},
+			type: "GET",
+			scriptCharset:'Shift_JIS',
+			url: url,
+			data: {"search":searchtext},
+		}).done(function(data, dataType) {
+			// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+
+			// PHPから返ってきたデータの表示
+			$("#todo_space").html(data);
+
+		}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+			// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+
+			// this;
+			// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+
+			// エラーメッセージの表示
+			//alert('Error : ' + errorThrown);
+			todo_serch(searchtext);
+		});
+	}
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}
+

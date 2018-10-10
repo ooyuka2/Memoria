@@ -121,6 +121,7 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 		$make_weekly = "-1";
 		$make_weekly_select = "";
 		$count = 0;
+		$finish = 0;
 	} else {
 		$title = $todo[$p]['タイトル'];
 		$detail = str_replace('<br>', '&#10;',$todo[$p]['作業内容']); 
@@ -128,6 +129,9 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 		$priority = $todo[$p]['優先度'];
 		$count = $todo[$p]['順番'];
 		$make_weekly = $_GET['p'];
+		
+		if ($_GET['d'] == "renew") $finish = 0;
+		else $finish = $todo[$p]['完了'];
 		
 		$weeklyid = check2array($weekly, $make_weekly, "todoid");
 		
@@ -147,10 +151,11 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 			$syuryo = date('Y/m/d',  strtotime($todo[$p]['終了予定日']));
 		}
 	}
-	
+	#007E33
 	echo "<fieldset style='position: relative' >";
 	echo "<div class='well bs-component' >";
-	echo "<div class='form-group'>";
+	if ($finish == 0) echo "<div class='form-group'>";
+	else echo "<div class='form-group has-success'>";
 	
 	if($level != 1) echo "<div class='clearfix'><span class='pull-right close' onClick='minus({$count});'>&times;</span><span class='pull-right close'>　</span><span class='pull-right close' onClick='plus2({$count});'>+</span></div>";
 	

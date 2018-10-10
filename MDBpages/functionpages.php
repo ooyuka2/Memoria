@@ -1,5 +1,53 @@
 <?php
 
+
+//##################################################################
+//				todo用関数
+//##################################################################
+
+function last_todo_panel($todo, $i, $pattern, $file) {
+			echo "<div class='card card-{$pattern}' id='todoid{$todo[$i]['id']}'>";
+			
+			if($todo[$i]['保留'] == "") $todo[$i]['保留'] = 0;
+			
+			echo "<div class='card-header'>";
+			if($todo[$i]['level'] == 1) {
+				echo "<a href='./todo.php?d=detail&p={$i}&file={$file}' ";
+				if($pattern=='primary') echo "style='color:#afafaf;'";
+				if($pattern=='warning') echo "style='color:#fa8072;'";
+				else if($pattern=='info') echo "style='color:#87ceeb;'";
+				echo ">";
+				echo "<h3 class='card-title' oncontextmenu='tree_menu({$todo[$i]['id']}, {$todo[$i]['top']}, {$todo[$i]['パーセンテージ']}, {$todo[$i]['child']}, {$todo[$i]['保留']}, \"{$file}\");return false' >{$todo[$i]['タイトル']}</h3>";
+			}
+			else {
+				//$b = $todo[$i]['top'];
+				//echo "<a href='./todo.php?d=detail&p={$b}'";
+				echo "<a href='./todo.php?d=detail&p={$i}&file={$file}'";
+				if($pattern=='primary') echo "style='color:#ffffff;'";
+				if($pattern=='warning') echo "style='color:#fa8072;'";
+				else if($pattern=='info') echo "style='color:#87ceeb;'";
+				echo ">";
+				echo "<h3 class='card-title' oncontextmenu='tree_menu({$todo[$i]['id']}, {$todo[$i]['top']}, {$todo[$i]['パーセンテージ']}, {$todo[$i]['child']}, {$todo[$i]['保留']}, \"{$file}\");return false'>{$todo[$i]['タイトル']}<span class='pull-right'>{$todo[$todo[$i]['top']]['タイトル']}</span></h3>";
+			}
+			echo "</a></div>";
+			echo "<div class='card-body'>";
+			echo "";
+			echo "<div class='col-md-9 col-xs-6'><strong>作業内容　: </strong>{$todo[$i]['作業内容']}<br><strong>成果物　　: </strong>{$todo[$i]['成果物']}<br><strong>期間　　　: </strong>{$todo[$i]['開始予定日']}　～　{$todo[$i]['納期']}</div>";
+			echo "<div class='col-md-1 col-xs-2 pull-right'><a href='todo.php?page=whatdo&f=100&p={$i}' class='btn btn-success btn-sm'>完了</a></div>";
+			if($todo[$i]['完了'] != 1) {
+				if($todo[$i]['保留'] == 0) echo "<div class='col-md-1 col-xs-2 pull-right'><a href='todo.php?page=wait&p={$i}' class='btn btn-info btn-sm'>保留</a></div>";
+				else echo "<div class='col-md-1 col-xs-2 pull-right'><a href='todo.php?page=wait&p={$i}' class='btn btn-link btn-sm'>解除</a></div>";
+				echo "<div class='col-md-1 col-xs-2 pull-right'><button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown' aria-expanded='false'>作業 <span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
+				for($j=ceil($todo[$i]['パーセンテージ']/10)*10; $j<100; $j+=10) 
+				echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=whatdo&p={$i}&f={$j}'>{$j}％まで完了</a></li>";
+				echo "</ul></div>";
+			} else if($file == "todo") {
+				echo "<div class='col-md-1 col-xs-2 pull-right'><a href='./todo/nofinish.php?p={$i}' class='btn btn-warning btn-sm'>未完了</a></div>";
+			}
+			echo "</div>";
+			echo "</div>";
+	
+}
 // ##############################################################################################################################
 //            todo_treeの関数
 // ##############################################################################################################################

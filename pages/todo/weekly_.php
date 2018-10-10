@@ -183,7 +183,7 @@
 <form class='form-horizontal container-fluid' method='post' action='todo/weekly.php?change=go' >
 <div class="form-group">
 <div class="bs-component table-responsive">
-	<table class='table table-striped table-condensed'>
+	<table class='table table-striped table-hover table-condensed'>
 		<thead>
 			<tr>
 				<th class="col-md-3">ÉeÅ[É}</th>
