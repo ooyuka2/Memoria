@@ -6,7 +6,7 @@
 //##################################################################
 
 function last_todo_panel($todo, $i, $pattern, $file) {
-			echo "<div class='card card-{$pattern}' id='todoid{$todo[$i]['id']}'>";
+			echo "<div class='card border-{$pattern}' id='todoid{$todo[$i]['id']}'>";
 			
 			if($todo[$i]['保留'] == "") $todo[$i]['保留'] = 0;
 			
@@ -32,17 +32,17 @@ function last_todo_panel($todo, $i, $pattern, $file) {
 			echo "</a></div>";
 			echo "<div class='card-body'>";
 			echo "";
-			echo "<div class='col-md-9 col-xs-6'><strong>作業内容　: </strong>{$todo[$i]['作業内容']}<br><strong>成果物　　: </strong>{$todo[$i]['成果物']}<br><strong>期間　　　: </strong>{$todo[$i]['開始予定日']}　～　{$todo[$i]['納期']}</div>";
-			echo "<div class='col-md-1 col-xs-2 pull-right'><a href='todo.php?page=whatdo&f=100&p={$i}' class='btn btn-success btn-sm'>完了</a></div>";
+			echo "<div class='col-md-9 col-6'><strong>作業内容　: </strong>{$todo[$i]['作業内容']}<br><strong>成果物　　: </strong>{$todo[$i]['成果物']}<br><strong>期間　　　: </strong>{$todo[$i]['開始予定日']}　～　{$todo[$i]['納期']}</div>";
+			echo "<div class='col-md-1 col-2 pull-right'><a href='todo.php?page=whatdo&f=100&p={$i}' class='btn btn-success btn-sm'>完了</a></div>";
 			if($todo[$i]['完了'] != 1) {
-				if($todo[$i]['保留'] == 0) echo "<div class='col-md-1 col-xs-2 pull-right'><a href='todo.php?page=wait&p={$i}' class='btn btn-info btn-sm'>保留</a></div>";
-				else echo "<div class='col-md-1 col-xs-2 pull-right'><a href='todo.php?page=wait&p={$i}' class='btn btn-link btn-sm'>解除</a></div>";
-				echo "<div class='col-md-1 col-xs-2 pull-right'><button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown' aria-expanded='false'>作業 <span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
+				if($todo[$i]['保留'] == 0) echo "<div class='col-md-1 col-2 pull-right'><a href='todo.php?page=wait&p={$i}' class='btn btn-info btn-sm'>保留</a></div>";
+				else echo "<div class='col-md-1 col-2 pull-right'><a href='todo.php?page=wait&p={$i}' class='btn btn-link btn-sm'>解除</a></div>";
+				echo "<div class='col-md-1 col-2 pull-right'><button type='button' class='btn btn-default dropdown-toggle btn-sm' data-toggle='dropdown' aria-expanded='false'>作業 <span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
 				for($j=ceil($todo[$i]['パーセンテージ']/10)*10; $j<100; $j+=10) 
 				echo "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=whatdo&p={$i}&f={$j}'>{$j}％まで完了</a></li>";
 				echo "</ul></div>";
 			} else if($file == "todo") {
-				echo "<div class='col-md-1 col-xs-2 pull-right'><a href='./todo/nofinish.php?p={$i}' class='btn btn-warning btn-sm'>未完了</a></div>";
+				echo "<div class='col-md-1 col-2 pull-right'><a href='./todo/nofinish.php?p={$i}' class='btn btn-warning btn-sm'>未完了</a></div>";
 			}
 			echo "</div>";
 			echo "</div>";

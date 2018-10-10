@@ -244,7 +244,7 @@ function read_keeper(days){
 //
 // ##############################################################################################################################
 function todo_serch(searchtext){
-	if(searchtext != "") {
+	if(searchtext != "" && $("#todo_space_comp").length) {
 		//var h = makeform.height();
 		$("#todo_space_comp").css('background','url(\"../img/grid.svg\") center center no-repeat').css('background-size','20% auto').css('min-height','500px');
 		
@@ -272,11 +272,11 @@ function todo_serch(searchtext){
 			//alert('Error : ' + errorThrown);
 			todo_serch(searchtext);
 		});
-	} else {
-		
+	} else if($("#todo_space_comp").length) {
+
 		var arg  = new Object;
 		url = location.search.substring(1).split('&');
-		
+		/*
 		for(i=0; url[i]; i++) {
 			var k = url[i].split('=');
 			arg[k[0]] = k[1];
@@ -284,14 +284,14 @@ function todo_serch(searchtext){
 		if(arg.list != undefined) {
 			var url = "./todo/" + arg.list + ".php";
 			}
-		/*
+
 		} elseif(arg.p != undefined && arg.d == "todo") {
 			var url = "./todo/todo.php?d=todo&p=" + arg.p;
 		}
-		*/
-		 else {
-			var url = "./todo/memo.php";
-		}
+
+		 else {		*/
+			var url = "/Memoria/MDBpages/todo/memo.php";
+		//}
 		
 		$.ajax({
 			beforeSend: function(xhr){
@@ -305,7 +305,7 @@ function todo_serch(searchtext){
 			// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 
 			// PHPから返ってきたデータの表示
-			$("#todo_space").html(data);
+			$("#todo_space_comp").html(data);
 
 		}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 			// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。

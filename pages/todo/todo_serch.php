@@ -1,6 +1,6 @@
 
 <?php
-	if(!isset($_GET['pagetype'])) $pagetype = "MDBpages";
+	if(isset($_GET['pagetype']) && $_GET['pagetype'] == "MDBpages") $pagetype = "MDBpages";
 	header("Content-type: text/html; charset=SJIS-win");
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
 	include_once($ini['dirWin'].'/pages/function.php');

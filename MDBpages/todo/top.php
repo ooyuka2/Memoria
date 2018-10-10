@@ -21,10 +21,11 @@
 
 </div>
 <div class="col-md-8 col-xl-7">
-
+<!--
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orangeModalSubscription">
   Launch demo modal
 </button>
+-->
 
 	<div id="todo_space_comp"></div>
 </div>
