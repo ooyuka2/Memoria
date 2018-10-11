@@ -7,7 +7,7 @@
 $(document).ready(function(){
 	
 	if($("#todo_tree_comp").length) {
-		if(getParam('d') == "detail" || getParam('d') == null  || getParam('d') =="todo") {
+		if(getParam('d') == "detail" || getParam('d') == null  || getParam('d') == "todo") {
 			if(getParam('d') != null) var d = getParam('d');
 			else var d = "todo";
 			if(getParam('p') != null) var p = getParam('p');
@@ -16,12 +16,11 @@ $(document).ready(function(){
 			else var list = "";
 			if(getParam('file') != null) var file = getParam('file');
 			else var file = "todo";
-			
 			read_todo_tree(d, p, list, file);
 		}
 	}
 	
-	if($("#todo_space_comp").length) {
+	if($("#todo_space_comp").length && $("#todo_space_comp").innerHTML === undefined) {
 		read_memo();
 	}
 	
