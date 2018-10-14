@@ -93,12 +93,20 @@ thead tr {
 	color: #fff !important;
 	background-color: #ff80ac !important;
 	border-color: #ff80ac !important;
+	&:not([disabled]):not(.disabled):active {
+		background-color: #ff80c1 !important;
+	}
 }
 
 .btn-primary, .btn-primary.dropdown-toggle {
 	color: #fff !important;
 	background-color: #ff92cb !important;
 	border-color: #ff92cb !important;
+	&:hover {
+		color: #fff;
+		background-color: #ff80c1 !important;
+		border-color: #ff80c1 !important;
+	}
 }
 
 .btn-secondary, .btn-secondary.dropdown-toggle {
