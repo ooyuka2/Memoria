@@ -13,7 +13,7 @@
 <div class="main-contents">
 <div class="pull-left drawer-hover"></div>
 <main class="row">
-	<div class="container-fluid">
+	<div class="container-fluid col-12">
 		<h1>Memoria for <?php echo $ini['myname']; ?>!</h1>
 		<p>自分のタスクやフォルダーのリンク、分からない単語のメモなどを管理しよう</p>
 		<div class="download">
@@ -24,19 +24,8 @@
 		?>
 		</div>
 	</div>
-	<!--Panel-->
-	<div class="col-sm-6">
-		<div class="card">
-			<div class="card-body">
-				<h3 class="card-title">Special title treatment</h3>
-				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-				<a href="#" class="btn btn-secondary">Go somewhere</a>
-			</div>
-		</div>
-	</div>
-	<!--/.Panel-->
 
-	<!--Panel-->
+	<!--Panel
 	<div class="col-sm-6">
 		<div class="card">
 			<div class="card-body">
@@ -47,7 +36,7 @@
 		</div>
 	</div>
 	<!--/.Panel-->
-	<div style="height: 2000px"></div>
+	<div class="col-12" style="height: 2000px"></div>
 </main>
 </div>
 <!--Main Layout-->

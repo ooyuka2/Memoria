@@ -27,6 +27,11 @@
 	
 	<link rel="stylesheet" type="text/css" href="/Memoria/js/jquery-ui-1.12.1.custom/jquery-ui.min.css">
 	<link rel="stylesheet" type="text/css" href="/Memoria/img/timedropper/timedropper.css">
+	<!-- datatable -->
+	<?php
+		//echo '<link rel="stylesheet" href="' . $link_datatable_css . '">';
+	?>
+	
 	<!-- drawer.css -->
 	<?php 
 		echo '<link rel="stylesheet" href="' . $link_drawer_css . '">';
@@ -46,6 +51,7 @@
 	<!-- ‘S‘Ì“I‚É”½‰f‚³‚¹‚½‚¢css -->
 	<?php
 		echo '<link href="' . $link_style_css . $updatefiletime .'" rel="stylesheet">';
+		echo '<link id="sampleLink" href="' . $link_color_css . $updatefiletime .'" rel="stylesheet">';
 	?>
 	
 	<?php

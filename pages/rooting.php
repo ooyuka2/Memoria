@@ -14,6 +14,7 @@
 	if(!isset($pagetype)) $pagetype = "pages";
 	
 	if($pagetype == "pages") {
+		if( $ini['csstype'] == "white") $ini['csstype'] = "niko";
 		//cssファイルのルート
 		
 		//cssファイルのリンク
@@ -30,21 +31,25 @@
 		$link_function = $link_pages_Win . "functionpages.php";
 		
 	} else if($pagetype == "MDBpages") {
-	
+		if($_SERVER['SERVER_ADDR'] != $_SERVER['REMOTE_ADDR']) {
+			$ini['csstype'] = "umi";
+		}
 		//cssファイルのルート
 		$link_css = $ini['dirhtml']."/img/bootstrap4/MDB/css/";
 		$link_bootstrap_type_css = $ini['dirhtml']."/img/bootstrap4/honoka/css/";
+		
+		//jsファイルのルート
+		$link_js = $ini['dirhtml']."/img/bootstrap4/MDB/js/";
+		$link_bootstrap_type_js = $ini['dirhtml']."/img/bootstrap4/honoka/js/";
 		
 		//cssファイルのリンク
 		$link_drawer_css = $link_css. "drawer.min.css";
 		$link_bootstrap_css = $link_bootstrap_type_css. "bootstrap.min.css";
 		$link_mdb_css = $link_css. "mdb.css";
 		$link_style_css = $link_css. "style.css";
+		$link_color_css = $link_css. $ini['csstype'] . ".css";
+		$link_datatable_css = $link_js. "addons/datatables.min.css";
 		
-		
-		//jsファイルのルート
-		$link_js = $ini['dirhtml']."/img/bootstrap4/MDB/js/";
-		$link_bootstrap_type_js = $ini['dirhtml']."/img/bootstrap4/honoka/js/";
 		
 		//jsファイルのリンク
 		$link_iscroll_js = $link_js. "iscroll.min.js";
@@ -53,6 +58,7 @@
 		$link_bootstrap_js = $link_bootstrap_type_js. "bootstrap.min.js";
 		$link_popper_js = $link_js. "popper.min.js";
 		$link_mdb_js = $link_js. "mdb.min.js";
+		$link_datatable_js = $link_js. "addons/datatables.min.js";
 		$link_javascript_js = $ini['dirhtml'] . "/js/javascript.js";
 		$link_javascriptpages_js = $ini['dirhtml'] . "/js/javascriptMDBpages.js";
 		
@@ -78,4 +84,13 @@
 	}
 	
 	$link_todo_tree_Win =  $link_pages_Win . "todo/todo_tree.php";
+	
+	//linkページへのリンク
+	$link_link_html = $link_pages_html . "file.php";
+	$link_link_Win = $link_pages_Win . "file.php";
+	
+	//設定ページへのリンク
+	$link_settings_html = $link_pages_html . "settings.php";
+	$link_settings_Win = $link_pages_Win . "settings.php";
+	
 ?>

@@ -1,8 +1,4 @@
 /*
- * MDBootstrap integration with Datatables
- * Learn more: https://mdbootstrap.com/content/bootstrap-datatables/
- * About MDBootstrap: https://mdbootstrap.com/
- *
  * This combined file was created by the DataTables downloader builder:
  *   https://datatables.net/download
  *

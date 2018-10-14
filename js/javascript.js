@@ -122,7 +122,12 @@ function getParam(name, url) {
 	return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-
+function setHref( $href ) {
+		jQuery( '#sampleLink' ).attr( 'href', $href );
+}
+function setHref2( $href ) {
+		jQuery( '#sampleLink2' ).attr( 'href', $href );
+}
  
 
 // ##############################################################################################################################
@@ -177,7 +182,7 @@ function tree_menu(id, top, pre, child, wait, whatdotoday, todofile) {
 	var menu = "<div class='btn-group-vertical' style='position: fixed; z-index: 1;' id='tree_menu'>";//
 
 	if(pre!=100) { //child == 0 && 
-		menu = menu + "<div class='btn-group' role='group'><button type='button' class='btn btn-default dropdown-toggle btn-xs btn-block' data-toggle='dropdown' aria-expanded='false'>作業設定<span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
+		menu = menu + "<div class='btn-group' role='group'><button type='button' class='btn btn-default dropdown-toggle btn-xs btn-sm btn-block' data-toggle='dropdown' aria-expanded='false'>作業設定<span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
 		
 		for(j=Math.ceil(pre/10)*10; j<100; j+=10) 
 		menu = menu + "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=whatdo&p="+id+"&f="+j+"' class='text-dark' style='padding-left:20px;'>"+j+"％まで完了</a></li>";
@@ -187,20 +192,20 @@ function tree_menu(id, top, pre, child, wait, whatdotoday, todofile) {
 	
 	if(wait == "") wait = 0;
 	
-	if(todofile  === "todo") menu = menu + "<a href='todo.php?page=whatdo&f=100&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>完了設定</a>";
-	if(todofile  === "todo" && pre==100) menu = menu + "<a href='./todo/nofinish.php?p="+id+"' class='btn btn-default btn-xs btn-block'>未完了設定</a>";
-	menu = menu + "<a href='todo.php?d=todo&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>リンクを開く</a>";
-	menu = menu + "<a href='todo.php?d=todo&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block' target='_blank' >新しいタブでリンクを開く</a>";
-	menu = menu + "<a href='todo.php?d=todo&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>詳細画面を開く</a>";
-	if(todofile  === "todo") menu = menu + "<a href='todo.php?d=change&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>編集を開く</a>";
-	menu = menu + "<a href='todo.php?d=renew&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>流用する</a>";
-	menu = menu + "<a href='todo.php?d=detail&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>フィルター</a>";
-	if((whatdotoday == 0 || whatdotoday == 2) && pre!=100) menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+top+", \"turn\", 1)'>今日頑張る</button>";
-	menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+top+", \"turn\", 2)'>明日頑張る</button>";
-	menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+top+", \"turn\", 0)'>今度頑張る</button>";
-	if(wait == 0 && pre!=100) menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+id+", \"wait\", 0)'>保留設定</button></div>";
-	else if(pre!=100) //menu = menu + "<a href='todo.php?page=wait&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-block'>解除設定</a></div>";
-	menu = menu + "<button class='btn btn-default btn-xs btn-block' onclick='todo_tree_wait("+id+", \"wait\", 0)'>解除設定</button></div>";
+	if(todofile  === "todo") menu = menu + "<a href='todo.php?page=whatdo&f=100&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-sm btn-block'>完了設定</a>";
+	if(todofile  === "todo" && pre==100) menu = menu + "<button class='btn btn-default btn-xs btn-sm btn-block' onclick='todo_tree_wait("+id+", \"nofinish\", 0)'>未完了設定</button>";
+	menu = menu + "<a href='todo.php?d=todo&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-sm btn-block'>リンクを開く</a>";
+	menu = menu + "<a href='todo.php?d=todo&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-sm btn-block' target='_blank' >新しいタブでリンクを開く</a>";
+	menu = menu + "<a href='todo.php?d=todo&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-sm btn-block'>詳細画面を開く</a>";
+	if(todofile  === "todo") menu = menu + "<a href='todo.php?d=change&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-sm btn-block'>編集を開く</a>";
+	menu = menu + "<a href='todo.php?d=renew&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-sm btn-block'>流用する</a>";
+	menu = menu + "<a href='todo.php?d=detail&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-sm btn-block'>フィルター</a>";
+	if((whatdotoday == 0 || whatdotoday == 2) && pre!=100) menu = menu + "<button class='btn btn-default btn-xs btn-sm btn-block' onclick='todo_tree_wait("+top+", \"turn\", 1)'>今日頑張る</button>";
+	menu = menu + "<button class='btn btn-default btn-xs btn-sm btn-block' onclick='todo_tree_wait("+top+", \"turn\", 2)'>明日頑張る</button>";
+	menu = menu + "<button class='btn btn-default btn-xs btn-sm btn-block' onclick='todo_tree_wait("+top+", \"turn\", 0)'>今度頑張る</button>";
+	if(wait == 0 && pre!=100) menu = menu + "<button class='btn btn-default btn-xs btn-sm btn-block' onclick='todo_tree_wait("+id+", \"wait\", 0)'>保留設定</button></div>";
+	else if(pre!=100) //menu = menu + "<a href='todo.php?page=wait&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-sm btn-block'>解除設定</a></div>";
+	menu = menu + "<button class='btn btn-default btn-xs btn-sm btn-block' onclick='todo_tree_wait("+id+", \"wait\", 0)'>解除設定</button></div>";
 	
 	document.getElementById("todo_tree_menu").innerHTML = menu;
 	document.getElementById("tree_menu").style.left=tree_menu_x+"px";
@@ -899,13 +904,6 @@ function changePID() {
 		}
 	}
 
-	function todo_delete_check(tilte, id){
-		ret = confirm(tilte + "を本当に削除しますか？よろしいですか？");
-		if (ret == true){
-			location.href = './todo.php?page=delete&delete=OK&id='+id;
-		}
-	}
-
 	function finisflist_search(searchtext) {
 		if(searchtext.value != "") {
 			location.href = './todo.php?list=finishlist&finisflist_search='+searchtext.value;
@@ -925,9 +923,6 @@ function changePID() {
 		elm.focus();
 		elm.value = val;
 	}
-
-
-
 
 
 

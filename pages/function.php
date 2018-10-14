@@ -287,7 +287,7 @@ function sort_by_noki_todo_priority($todo, $flag) {
 }
 
 
-function check_todo_tree($todo, $id , $date) {
+function check_todo_color($todo, $id , $date) {
 	date_default_timezone_set('Asia/Tokyo');
 	$day1 = new DateTime($todo[$id]['ŠJŽn—\’è“ú']);
 	$day2 = new DateTime($date);

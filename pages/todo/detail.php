@@ -68,12 +68,12 @@ function panel_child($todo, $todoid, $working, $file) {
 					}
 					echo "</div>";
 
-					if($todo[$todoid]['•Û—¯'] == 0) echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$todoid}&file={$file}' class='btn btn-info btn-xs'>•Û—¯</a></div>";
-					else echo "<div class='col-xs-1'><a href='todo.php?page=wait&p={$todoid}&file={$file}' class='btn btn-link btn-xs'>‰ğœ</a></div>";
+					if($todo[$todoid]['•Û—¯'] == 0) echo "<div class='col-xs-1'><button class='btn btn-info btn-xs' onclick='todo_tree_wait({$todoid}, \"wait\", 0);setTimeout(\"location.reload()\",1000)'>•Û—¯</button></div>";
+					else echo "<div class='col-xs-1'><button class='btn btn-link btn-xs' onclick='todo_tree_wait({$todoid}, \"wait\", 0);setTimeout(\"location.reload()\",1000)'>‰ğœ</button></div>";
 					echo "<div class='col-xs-1'><a href='todo.php?page=whatdo&f=100&p={$todoid}&file={$file}' class='btn btn-success btn-xs'>Š®—¹</a></div>";
 				} else {
 					echo "<div class='col-xs-1 pull-right'><a href='todo.php?page=whatdo&f=100&p={$todoid}&file={$file}' class='btn btn-success btn-xs'>Š®—¹</a></div>";
-					echo "<div class='col-md-1 pull-right'><a href='./todo/nofinish.php?p={$todoid}' class='btn btn-warning btn-xs'>–¢Š®—¹</a></div>";
+					echo "<div class='col-md-1 pull-right'><button class='btn btn-warning btn-xs' onclick='todo_tree_wait({$todoid}, \"nofinish\", 0);setTimeout(\"location.reload()\",1000)'>–¢Š®—¹</button></div>";
 				}
 				echo "<div style='height:50px;'></div>";
 				//panel_child($todo, $todo[$todoid]['id']);

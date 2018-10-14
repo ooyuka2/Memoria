@@ -1,5 +1,7 @@
 <?php
-	$todo = readCsvFile2('../data/todo.csv');
+	if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
+	include($ini['dirWin'].'/pages/function.php');
+	$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
 	if($_GET['delete']=="wait") {
 		echo "<button onClick='todo_delete_check('{$todo[$_GET['id']]['タイトル']}', '{$_GET['id']}')'>削除確認ページ</button>";
 	} else if($_GET['delete']=="OK"){
@@ -38,9 +40,9 @@
 		}
 	}
 	echo "</pre>";*/
-		writeCsvFile2("../data/todo.csv", $todo);
-		if($_GET['id'] == $top) header( "Location: ./todo.php" );
-		else header( "Location: /Memoria/pages/todo.php?d=detail&p=".$top );
+		writeCsvFile2($ini['dirWin']."/data/todo.csv", $todo);
+		if($_GET['id'] == $top) header( "Location: /Memoria/" . $_GET['pages'] . "/todo.php" );
+		else header( "Location: /Memoria/" . $_GET['pages'] . "/todo.php?d=detail&p=".$top );
 		exit();
 	} else {
 		echo "削除に失敗しました。プログラムを確認してください。";

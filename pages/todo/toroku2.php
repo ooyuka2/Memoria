@@ -150,10 +150,12 @@
 	echo "</pre>";
 	*/
 	
+	$weekly = readCsvFile2($ini['dirWin'].'/data/weekly.csv');
+	
+	
 	if(isset($_POST['make_weekly'])) {
-		$weekly = readCsvFile2($ini['dirWin'].'/data/weekly.csv');
-		include($ini['dirWin'].'/pages/todo/weekly.php');
 		
+		//include($ini['dirWin'].'/pages/todo/weekly.php');
 		$weeklyid = check2array($weekly, $_POST['make_weekly'], "todoid");
 		
 		if($weeklyid == -1) {
@@ -175,7 +177,6 @@
 			writeCsvFile2($ini['dirWin']."/data/weekly.csv", $weekly);
 		}
 	} else {
-		$weekly = readCsvFile2($ini['dirWin'].'/data/weekly.csv');
 		$weeklyid = check2array($weekly, $number, "todoid");
 		
 		if($weeklyid != -1) {

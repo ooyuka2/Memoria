@@ -15,45 +15,38 @@
 
 	if(isset($_GET['d']) && (($_GET['d']=="renew" && isset($_GET['p'])) || ($_GET['d']=="new") || ($_GET['d']=="change" && isset($_GET['p'])))) {
 		
-		echo '<div class="col-md-3 col-xl-2"></div>';
+		echo '<div class="col-md-3 col-xl-2"><div id="todo_memo_comp"></div><div id="todo_keeper_comp"></div></div>';
 		
-		echo '<div class="col-md-8 col-xl-9 offset-md-1 offset-xl-1">';
+		echo '<div class="col-md-8 col-xl-9 offset-md-1 offset-xl-1"  id="todo_space_comp">';
 		include('todo/todo_make.php');
 		echo '</div>';
 	} else {
 	
+		echo '<div class="col-md-4 col-xl-3">';
+			echo '<div id="todo_tree_comp"></div>';
+		echo '</div>';
+		echo '<div class="col-md-8 col-xl-7">';
+			if(isset($_GET['p']) && $_GET['p']<count($todo)) {
+				echo '<div id="todo_space_comp">';
+				include('todo/detail.php');
+				echo '</div>';
+			} else echo '<div id="todo_space_comp"></div>';
+		
+		
+		echo '</div>';
+		echo '<div class="col-md-12 col-xl-2">';
+			echo '<div id="todo_memo_comp"></div><div id="todo_keeper_comp"></div>';
+		echo '</div>';
+	}
+	
 ?>
-<div class="col-md-4 col-xl-3">
-	<div id="todo_tree_comp"></div>
-</div>
-<div class="col-md-8 col-xl-7">
+
+	
+
+
 <!--
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orangeModalSubscription">
   Launch demo modal
 </button>
 -->
 
-
-<?php
-
-		if(isset($_GET['p']) && $_GET['p']<count($todo)) {
-		/*
-			echo '<div id="todo_space_comp">';
-			include('todo/detail.php');
-			echo '</div>';
-		*/	include('todo/detail.php');
-		} else echo '<div id="todo_space_comp">vvv</div>';
-?>
-	
-</div>
-<div class="col-md-12 col-xl-2">
-	
-	<div id="todo_keeper_comp"></div>
-	<!-- <div id="weather_comp"></div> -->
-
-</div>
-
-
-<?php
-	}
-?>

@@ -309,11 +309,11 @@
 </div>
 </div>
 
-	<div class="form-group" style="margin-bottom:0; position: fixed; bottom: 20px;right:0;width:500px;">
-	    <div class="col-xs-offset-3 col-xs-3">
+	<div class="form-group row" style="margin-bottom:0; position: fixed; bottom: 20px;right:0;width:500px;">
+	    <div class="col-xs-offset-3 col-xs-3 offset-3 col-3">
 	        <button type="reset" class="btn btn-default btn-block">Reset</button>
 	    </div>
-		<div class="col-xs-3">
+		<div class="col-xs-offset-1 col-xs-3 offset-1 col-3">
 	        <button type="submit" class="btn btn-primary btn-block">Submit</button>
 	    </div>
 	</div>

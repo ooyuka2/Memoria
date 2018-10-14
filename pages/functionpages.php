@@ -49,7 +49,7 @@ function last_todo_panel($todo, $i, $pattern, $file) {
 
 
 function write_todo_tree($todo, $id, $date) {
-	$color = check_todo_tree($todo, $id, $date);
+	$color = check_todo_color($todo, $id, $date);
 	$count = $todo[$id]['èáî‘']+1;
 	if($color != "") {
 		write_todo_tree_title($todo, $id, $color);

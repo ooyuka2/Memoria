@@ -14,8 +14,8 @@
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=calendar">ÉJÉåÉìÉ_Å[</a></li>
 				</ul>
 			</li>
-			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-link pull-left drawer-menu-icon"></span><span>link</span><span class="fa fa-angle-down pull-right"></span></a>
+			<li class="drawer-dropdown filenav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
+				<span class="fa fa-link pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_link_html; ?>'">link</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>
 					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
@@ -47,13 +47,15 @@
 					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
 				</ul>
 			</li>
-			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-cogs pull-left drawer-menu-icon"></span><span>settings</span><span class="fa fa-angle-down pull-right"></span></a>
+			<li class="drawer-dropdown settingsnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
+				<span class="fa fa-cogs pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_settings_html; ?>'">settings</span><span class="fa fa-angle-down pull-right"></span></a>
+				<!--
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>
 					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
 					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
 				</ul>
+				-->
 			</li>
 		</ul>
 	</nav>

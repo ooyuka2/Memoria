@@ -21,7 +21,6 @@
 <!--Main Layout-->
 <?php
 	include($ini['dirWin'].'/MDBpages/footer.php');
-	select_script_page($link_pages_Win . "todo", $_GET['page']);
 ?>
 
 <script>

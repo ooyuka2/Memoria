@@ -1,0 +1,312 @@
+main {
+	background-color: #fffccc;
+}
+
+/******************************************************************************************************************************/
+/******************************************************************************************************************************/
+/* カードの表示携帯　*/
+/******************************************************************************************************************************/
+/******************************************************************************************************************************/
+.container-fluid {
+	background-color: #ffffff;
+}
+/******************************************************************************************************************************/
+/******************************************************************************************************************************/
+/* ナビゲーションバー　*/
+/******************************************************************************************************************************/
+/******************************************************************************************************************************/
+
+
+.navbar {
+	background-color: rgba(255, 220, 0, 0.8);
+}
+
+.top-nav-collapse {
+	background-color: rgba(255, 220, 0, 0.5);
+}
+
+@media only screen and (max-width: 768px) {
+	.navbar {
+		background-color: rgba(255, 220, 0, 0.8);
+	}
+}
+
+.drawer-nav {
+	background-color: rgba(255, 200, 0, 0.9);
+}
+
+
+.navbar.scrolling-navbar form, .md-form , .md-form .form-control {
+	color: #8f6552;
+	.md-form input[type=text]:focus:not([readonly]) {
+		box-shadow: 0 1px 0 0 #8f6552;
+		border-bottom: 1px solid #8f6552;
+	}
+}
+
+
+/******************************************************************************************************************************/
+/******************************************************************************************************************************/
+/* その他　*/
+/******************************************************************************************************************************/
+/******************************************************************************************************************************/
+/*テーブルの色*/
+tr:nth-child(odd), .table-striped tbody tr:nth-of-type(odd){
+	background: rgba(255, 248, 153, 0.5);
+}
+
+thead tr {
+	background: #ffec47 !important;
+}
+/*テキストの色*/
+
+.text-muted {
+	color: #818a91 !important;
+}
+
+.text-primary {
+	color: #3b9ae0 !important;
+}
+
+.text-warning {
+	color: #ffc107 !important;
+}
+
+.text-danger {
+	color: #ea4b94 !important;
+}
+
+.text-success {
+	color: #b2cf3e !important;
+}
+
+.text-info {
+	color: #a4a9cf !important;
+}
+
+/*ボタンの色*/
+.btn-group .btn {
+	box-shadow: none !important;
+}
+
+.btn-default, .btn-default.dropdown-toggle {
+	color: #fff !important;
+	background-color: #ffdc00 !important;
+	border-color: #ffdc00 !important;
+}
+
+.btn-primary, .btn-primary.dropdown-toggle {
+	color: #fff !important;
+	background-color: #3b9ae0 !important;
+	border-color: #3b9ae0 !important;
+}
+
+.btn-secondary, .btn-secondary.dropdown-toggle {
+	color: #fff !important;
+	background-color: #818a91 !important;
+	border-color: #818a91 !important;
+}
+
+.btn-success, .btn-success.dropdown-toggle {
+	color: #fff !important;
+	background-color: #b2cf3e !important;
+	border-color: #b2cf3e !important;
+}
+
+.btn-info, .btn-info.dropdown-toggle {
+	color: #fff !important;
+	background-color: #a4a9cf !important;
+	border-color: #a4a9cf !important;
+}
+
+.btn-warning, .btn-warning.dropdown-toggle {
+	color: #fff !important;
+	background-color: #ffc107 !important;
+	border-color: #ffc107 !important;
+}
+
+.btn-danger, .btn-danger.dropdown-toggle {
+	color: #fff !important;
+	background-color: #ea4b94 !important;
+	border-color: #ea4b94 !important;
+}
+
+
+.btn-outline-default {
+	color: #ffdc00 !important;
+	background-color: transparent !important;
+	background-image: none !important;
+	border-color: #ffdc00 !important;
+}
+
+.btn-outline-primary {
+	color: #3b9ae0 !important;
+	background-color: transparent !important;
+	background-image: none !important;
+	border-color: #3b9ae0 !important;
+}
+
+.btn-outline-secondary {
+	color: #818a91 !important;
+	background-color: transparent !important;
+	background-image: none !important;
+	border-color: #818a91 !important;
+}
+
+.btn-outline-success {
+	color: #b2cf3e !important;
+	background-color: transparent !important;
+	background-image: none !important;
+	border-color: #b2cf3e !important;
+}
+
+.btn-outline-info {
+	color: #a4a9cf !important;
+	background-color: transparent !important;
+	background-image: none !important;
+	border-color: #a4a9cf !important;
+}
+
+.btn-outline-warning {
+	color: #ffc107 !important;
+	background-color: transparent !important;
+	background-image: none !important;
+	border-color: #ffc107 !important;
+}
+
+.btn-outline-danger {
+	color: #ea4b94 !important;
+	background-color: transparent !important;
+	background-image: none !important;
+	border-color: #ea4b94 !important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+	color: #fff;
+	background-color: #3b9ae0;
+}
+
+.page-item.active .page-link {
+	z-index: 1;
+	color: #fff;
+	background-color: #3b9ae0;
+	border-color: #3b9ae0;
+}
+
+.progress-bar {
+	background-color: #3b9ae0;
+}
+
+.list-group-item.active {
+	z-index: 2;
+	color: #fff;
+	background-color: #3b9ae0;
+	border-color: #3b9ae0;
+}
+
+/*バッチの色*/
+
+.badge-primary {
+	color: #fff !important;
+	background-color: #3b9ae0 !important;
+}
+
+.badge-secondary {
+	color: #fff !important;
+	background-color: #818a91 !important;
+}
+
+.badge-success {
+	color: #fff !important;
+	background-color: #b2cf3e !important;
+}
+
+.badge-danger {
+	color: #fff !important;
+	background-color: #ea4b94 !important;
+}
+
+.badge-warning {
+	color: #fff !important;
+	background-color: #ffc107 !important;
+}
+
+.badge-info {
+	color: #fff !important;
+	background-color: #a4a9cf !important;
+}
+
+.badge-light {
+	color: #f0ba32 !important;
+	background-color: #f8f9fa !important;
+}
+
+.badge-dark {
+	color: #fff !important;
+	background-color: #343a40 !important;
+}
+
+/*カードの色*/
+
+
+.border-default .card-header {
+	background-color: rgba(0, 0, 0, 0.03);
+}
+
+.border-primary {
+	border-color: #3b9ae0 !important;
+	.card-header {
+		background-color: rgba(204, 229, 255, 0.4);
+	}
+}
+
+.border-secondary {
+	border-color: #818a91 !important;
+	.card-header {
+		background-color: rgba(175, 191, 204, 0.2);
+	}
+}
+
+.border-success {
+	border-color: #b2cf3e !important;
+	.card-header {
+		background-color: rgba(61, 255, 106, 0.1);
+	}
+}
+
+.border-danger {
+	border-color: #ea4b94 !important;
+	.card-header {
+		background-color: rgba(219, 88, 101, 0.1);
+	}
+}
+
+.border-warning {
+	border-color: #ffc107 !important;
+	.card-header {
+		background-color: rgba(255, 230, 153, 0.3);
+	}
+}
+
+.border-info {
+	border-color: #a4a9cf !important;
+	.card-header {
+		background-color: rgba(110, 174, 184, 0.15);
+	}
+}
+
+.border-light {
+	border-color: #f8f9fa !important;
+	.card-header {
+		background-color: rgba(0, 0, 0, 0.03);
+	}
+}
+
+.border-dark {
+	border-color: #343a40 !important;
+	.card-header {
+		background-color: rgba(207, 231, 255, 0.3);
+	}
+}
+
+

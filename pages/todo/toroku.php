@@ -67,9 +67,12 @@
 		}
 	}
 	
-	if($_POST['name'][0]!="" && isset($_POST['make_weekly']) && $_POST['make_weekly']==-1) {
-		$weekly = readCsvFile2($ini['dirWin'].'/data/weekly.csv');
-		$ini = parse_ini_file($ini['dirWin'].'/data/config.ini');
+	$weekly = readCsvFile2($ini['dirWin'].'/data/weekly.csv');
+	
+	if( isset($_POST['make_weekly']) && $_POST['make_weekly']==-1) $weeklyid = -1;
+	else if( isset($_POST['make_weekly']) ) $weeklyid = check2array($weekly, $_POST['make_weekly'], "todoid");
+	
+	if($_POST['name'][0]!="" && isset($_POST['make_weekly']) && $weeklyid==-1) {
 		
 		$c = count($weekly);
 		$weekly[$c]["todoid"] = $number;
@@ -85,10 +88,8 @@
 		$weekly[$c]["•\Ž¦"] = "0";
 		writeCsvFile2($ini['dirWin']."/data/weekly.csv", $weekly);
 	} else if($_POST['name'][0]!="" && isset($_POST['make_weekly'])) {
-		$weekly = readCsvFile2($ini['dirWin'].'/data/weekly.csv');
-		include($ini['dirWin'].'/pages/todo/weekly.php');
-		
-		$weeklyid = check2array($weekly, $_POST['make_weekly'], "todoid");
+
+		//include($ini['dirWin'].'/pages/todo/weekly.php');
 		
 		$c = count($weekly);
 		$weekly[$c]["todoid"] = $number;

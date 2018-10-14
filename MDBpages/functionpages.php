@@ -52,7 +52,7 @@ function last_todo_panel($todo, $i, $pattern, $file) {
 //            todo_treeの関数
 // ##############################################################################################################################
 function write_todo_tree($todo, $id, $date) {
-	$color = check_todo_tree($todo, $id, $date);
+	$color = check_todo_color($todo, $id, $date);
 	$count = $todo[$id]['順番']+1;
 	if($color != "") {
 		write_todo_tree_title($todo, $id, $color);
@@ -144,6 +144,21 @@ function makeMemoCard($path, $memo, $memolist) {
 }
 
 
+//##################################################################
+//				パネル表示用関数
+//##################################################################
 
+function echo_panel($title, $txt, $pattern) {
+			echo "<div class='card  border-{$pattern}' style='text-align:start;'>";
+			
+			echo "<div class='card-header'>";
+			echo "<h3 class='card-title'>{$title}</h3>";
+			echo "</div>";
+			echo "<div class='card-body'>";
+			echo $txt;
+			echo "</div>";
+			echo "</div>";
+	
+}
 
 ?>

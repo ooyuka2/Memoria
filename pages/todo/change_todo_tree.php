@@ -38,5 +38,14 @@
 		return $todo;
 	}
 	
+	if($_GET['type'] == "nofinish" && isset($_GET['p'])) {//id,dictionary,author,year,commentary,floor,place,img
+		
+		$todo[$_GET['p']]['パーセンテージ'] = 90;
+		$todo[$_GET['p']]['完了'] = 0;
+
+		$todo = check_parent_nofinish($todo, $_GET['p'], -10);
+		writeCsvFile2($link_data . 'todo.csv', $todo);
+	}
+	
 
 ?>

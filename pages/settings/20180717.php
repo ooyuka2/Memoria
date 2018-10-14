@@ -16,8 +16,8 @@
 		header( "Location: ".$ini['dirhtml']."/pages/settings.php" );
 		exit();
 	} else if($ini['datavarsion'] == "20180717") {
-		echo "<script>alert('更新済み'); location.href = '{$ini['dirhtml']}/pages/settings.php';</script>";
+		echo "<script>alert('更新済み'); location.href = '{$_SERVER['HTTP_REFERER']}';</script>";
 	} else {
-		echo "<script>alert('別のバージョンを先に適応させてください');location.href = '{$ini['dirhtml']}/pages/settings.php';</script>";
+		echo "<script>alert('別のバージョンを先に適応させてください');location.href = '{$_SERVER['HTTP_REFERER']}';</script>";
 	}
 ?>

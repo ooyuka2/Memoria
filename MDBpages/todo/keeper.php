@@ -42,7 +42,7 @@
 	if(isset($_GET['day']) && !equal_word_str($_GET['day'], '1')) {
 		$tableHeadder = "<table class='table table-condensed table-striped table-hover table-sm'><thead class='thead-dark'><tr><th class='col-md-2'>開始時間-終了時間</th><th class='col-md-8'>タイトル</th><th class='col-md-2'>ざっくり時間</th></tr></thead><tbody>";
 	} else {
-		$tableHeadder = "<table class='table table-condensed table-striped table-hover table-sm'><thead class='thead-dark'><tr><th class='col-md-3'>作業時間</th><th class='col-md-6'>タイトル</th><th class='col-md-3'>時間</th></tr></thead><tbody>";
+		$tableHeadder = "<table class='table table-condensed table-striped table-hover table-xs table-sm'><thead class='thead-dark'><tr><th class='col-md-3'>作業時間</th><th class='col-md-6'>タイトル</th><th class='col-md-3'>時間</th></tr></thead><tbody>";
 	}
 	$keeper = "";
 	$copytext = $when."	";
