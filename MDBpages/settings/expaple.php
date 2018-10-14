@@ -1,8 +1,9 @@
-<h1>•\Ž¦—á</h1>
+<div class="container">
+<h1 class="co-12">•\Ž¦—á</h1>
 
   <!-- Typography
   ================================================== -->
-  <section class="bs-docs-section">
+  <section class="co-12 bs-docs-section">
     <div class="row">
       <div class="col-lg-12">
         <div class="page-header">
@@ -56,7 +57,7 @@
 
   <!-- Buttons
   ================================================== -->
-  <section class="bs-docs-section">
+  <section class="co-12 bs-docs-section">
     <div class="page-header">
       <div class="row">
         <div class="col-lg-12">
@@ -232,7 +233,7 @@
 
   <!-- Tables
   ================================================== -->
-  <section class="bs-docs-section">
+  <section class="co-12 bs-docs-section">
 
     <div class="row">
       <div class="col-lg-12">
@@ -320,7 +321,7 @@
 
   <!-- Forms
   ================================================== -->
-  <section class="bs-docs-section">
+  <section class="co-12 bs-docs-section">
     <div class="row">
       <div class="col-lg-12">
         <div class="page-header">
@@ -543,7 +544,7 @@
 
   <!-- Navs
   ================================================== -->
-  <section class="bs-docs-section">
+  <section class="co-12 bs-docs-section">
 
     <div class="row">
       <div class="col-lg-12">
@@ -764,7 +765,7 @@
 
   <!-- Indicators
   ================================================== -->
-  <section class="bs-docs-section">
+  <section class="co-12 bs-docs-section">
 
     <div class="row">
       <div class="col-lg-12">
@@ -839,7 +840,7 @@
 
   <!-- Progress bars
   ================================================== -->
-  <section class="bs-docs-section">
+  <section class="co-12 bs-docs-section">
 
     <div class="row">
       <div class="col-lg-12">
@@ -910,7 +911,7 @@
 
   <!-- Containers
   ================================================== -->
-  <section class="bs-docs-section">
+  <section class="co-12 bs-docs-section">
 
     <div class="row">
       <div class="col-lg-12">
@@ -1182,7 +1183,7 @@
 
   <!-- Dialogs
   ================================================== -->
-  <section class="bs-docs-section">
+  <section class="co-12 bs-docs-section">
 
     <div class="row">
       <div class="col-lg-12">
@@ -1275,3 +1276,4 @@
       </div>
     </div>
   </section>
+</div>
