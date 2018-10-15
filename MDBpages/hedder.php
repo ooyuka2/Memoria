@@ -29,7 +29,7 @@
 	<link rel="stylesheet" type="text/css" href="/Memoria/img/timedropper/timedropper.css">
 	<!-- datatable -->
 	<?php
-		//echo '<link rel="stylesheet" href="' . $link_datatable_css . '">';
+		echo '<link rel="stylesheet" href="' . $link_datatable_css . '">';
 	?>
 	
 	<!-- drawer.css -->

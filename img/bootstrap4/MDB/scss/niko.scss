@@ -18,21 +18,21 @@ main {
 
 
 .navbar {
-	background-color: rgba(255, 182, 193, 0.8);
+	background-color: rgba(255, 128, 147, 0.75);
 }
 
 .top-nav-collapse {
-	background-color: rgba(255, 182, 193, 0.5);
+	background-color: rgba(255, 128, 147, 0.5);
 }
 
 @media only screen and (max-width: 768px) {
 	.navbar {
-		background-color: rgba(255, 182, 193, 0.8);
+		background-color: rgba(255, 128, 147, 0.75);
 	}
 }
 
 .drawer-nav {
-	background-color: rgba(255, 182, 193, 0.9);
+	background-color: rgba(255, 128, 147, 0.8);
 }
 
 
@@ -89,13 +89,16 @@ thead tr {
 	box-shadow: none !important;
 }
 
-.btn-default, .btn-default.dropdown-toggle {
+.btn-default, .btn-default.dropdown-toggle, .show>.btn-default.dropdown-toggle {
 	color: #fff !important;
 	background-color: #ff80ac !important;
 	border-color: #ff80ac !important;
 	&:not([disabled]):not(.disabled):active {
 		background-color: #ff80c1 !important;
 	}
+}
+.btn-default.dropdown-toggle:hover, .btn-default.dropdown-toggle:focus, .btn-default:not([disabled]):not(.disabled):active, .btn-default:not([disabled]):not(.disabled).active {
+	background-color: #ff80c1 !important;
 }
 
 .btn-primary, .btn-primary.dropdown-toggle {
@@ -131,6 +134,9 @@ thead tr {
 	color: #212529 !important;
 	background-color: #ffc107 !important;
 	border-color: #ffc107 !important;
+	&:not([disabled]):not(.disabled):active {
+		background-color: #f8b500 !important;
+	}
 }
 
 .btn-danger, .btn-danger.dropdown-toggle {

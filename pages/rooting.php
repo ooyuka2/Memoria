@@ -58,7 +58,8 @@
 		$link_bootstrap_js = $link_bootstrap_type_js. "bootstrap.min.js";
 		$link_popper_js = $link_js. "popper.min.js";
 		$link_mdb_js = $link_js. "mdb.min.js";
-		$link_datatable_js = $link_js. "addons/datatables.min.js";
+		$link_datatable_js = $link_js. "addons/datatables.js";
+		$link_datatable_js = $ini['dirhtml'] . "/DataTables/datatables.js";
 		$link_javascript_js = $ini['dirhtml'] . "/js/javascript.js";
 		$link_javascriptpages_js = $ini['dirhtml'] . "/js/javascriptMDBpages.js";
 		
