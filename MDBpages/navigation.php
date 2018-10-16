@@ -23,7 +23,7 @@
 				</ul>
 			</li>
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-wrench pull-left drawer-menu-icon"></span><span>tools</span><span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-wrench pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $ini['dirhtml']."/pages/tools.php"; ?>'">tools</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>
 					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
@@ -31,7 +31,7 @@
 				</ul>
 			</li>
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-graduation-cap pull-left drawer-menu-icon"></span><span>dictionary</span><span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-graduation-cap pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $ini['dirhtml']."/pages/dictionary.php"; ?>'">dictionary</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>
 					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
@@ -40,7 +40,7 @@
 			</li>
 			
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-envelope-o pull-left drawer-menu-icon"></span><span>mail</span><span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-envelope-o pull-left drawer-menu-icon"></span><span onclick="">mail</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>
 					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>

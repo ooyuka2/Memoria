@@ -31,6 +31,7 @@
 		
 		$hyouzi = str_replace("<table>","<table class='table table-striped table-bordered table-hover table-condensed'>",$memo);
 		$hyouzi = str_replace("<a href=\"http","<a target='_blank' href=\"http",$hyouzi);
+		$hyouzi = str_replace("<blockquote>","<blockquote class='blockquote'>",$hyouzi);
 		
 		return $hyouzi;
 	}

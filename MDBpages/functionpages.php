@@ -96,7 +96,10 @@ function write_todo_tree_title($todo, $id, $color) {
 	else if($color == "muted") $textcolor_class = "text-wait";
 	else $textcolor_class = "text-{$color}";
 	
-	echo "<span class='{$textcolor_class}' onDblClick='location.href = \"/Memoria/mdbpages/todo.php?d={$_GET['d']}&p={$todo[$id]['id']}\"'	onMouseOver='this.classList.add(\"bg-info\")' onMouseOut='this.classList.remove(\"bg-info\")' onClick='gotoid(todoid{$todo[$id]['id']})' oncontextmenu='tree_menu({$todo[$id]['id']}, {$todo[$id]['top']}, {$todo[$id]['パーセンテージ']}, {$todo[$id]['child']}, {$todo[$id]['保留']}, {$todo[$todo[$id]['top']]['今日やること']},\"{$file}\");return false' style='cursor: pointer;'>{$todo[$id]['タイトル']}</span>";
+	echo "<span class='{$textcolor_class} bg-line' onDblClick='location.href = \"/Memoria/mdbpages/todo.php?d={$_GET['d']}&p={$todo[$id]['id']}\"' ";
+	if($todo[$id]['child'] != 0) echo "onClick='tree_operate(this.previousElementSibling)'";
+	else  echo "onClick='gotoid(todoid{$todo[$id]['id']})'";
+	echo "oncontextmenu='tree_menu({$todo[$id]['id']}, {$todo[$id]['top']}, {$todo[$id]['パーセンテージ']}, {$todo[$id]['child']}, {$todo[$id]['保留']}, {$todo[$todo[$id]['top']]['今日やること']},\"{$file}\");return false' style='cursor: pointer;'>{$todo[$id]['タイトル']}</span>";
 }
 
 /*

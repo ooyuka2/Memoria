@@ -1,3 +1,8 @@
+<!--
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orangeModalSubscription">
+  Launch demo modal
+</button>
+-->
 <?php
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
 	include_once($ini['dirWin'].'/pages/function.php');
@@ -43,10 +48,4 @@
 
 	
 
-
-<!--
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orangeModalSubscription">
-  Launch demo modal
-</button>
--->
 

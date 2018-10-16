@@ -11,10 +11,7 @@
 		echo '<script type="text/javascript" src="' . $link_popper_js .'"></script>';
 	?>
 	<!-- datatable -->
-	<?php
-		//echo '<script type="text/javascript" src="' . $link_datatable_js .'"></script>';
-	?>
-	
+
 	<!-- Bootstrap core JavaScript -->
 	<?php
 		echo '<script type="text/javascript" src="' . $link_bootstrap_js .'"></script>';
@@ -41,6 +38,9 @@
 	
 	
 	
+		<?php
+		echo '<script type="text/javascript" src="' . $link_datatable_js . $updatefiletime . '"></script>';
+	?>
 	
 	
 

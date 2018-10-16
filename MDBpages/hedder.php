@@ -51,11 +51,9 @@
 	<!-- ‘S‘Ì“I‚É”½‰f‚³‚¹‚½‚¢css -->
 	<?php
 		echo '<link href="' . $link_style_css . $updatefiletime .'" rel="stylesheet">';
-		echo '<link id="sampleLink" href="' . $link_color_css . $updatefiletime .'" rel="stylesheet">';
-	?>
-	
-	<?php
-		//echo '<link href="' . $link_css . 'fairly.css'. $updatefiletime . '" rel="stylesheet">';
+		
+		if(date('H')==12) echo '<link href="' . $link_css . 'fairly.css'. $updatefiletime . '" rel="stylesheet">';
+		else echo '<link id="sampleLink" href="' . $link_color_css . $updatefiletime .'" rel="stylesheet">';
 	?>
 	
 

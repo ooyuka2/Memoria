@@ -925,5 +925,22 @@ function changePID() {
 	}
 
 
-
+// ##############################################################################################################################
+//
+//            テーブル用の関数
+//
+// ##############################################################################################################################
+	function move(page) {
+		location.href = '/Memoria/pages/file.php?page=count&p=' + page;
+	}
+	
+	function move_tab(tabname) {
+		$("li.active").removeClass("active");
+		$("#"+tabname).addClass("active");
+		$(".hidden").removeClass("hidden");
+		if(tabname != "home") {
+			$("tr").addClass("hidden");
+			$("."+tabname).removeClass("hidden");
+		}
+	}
 

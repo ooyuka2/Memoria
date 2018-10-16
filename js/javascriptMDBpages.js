@@ -32,12 +32,13 @@ $(document).ready(function(){
 		read_keeper("1");
 	}
 	
+	/*
 	DD = new Date();
 	if(DD.getHours() == 12) {
 		$('head link:last').after('<link rel="stylesheet" href="/Memoria/img/bootstrap4/MDB/css/fairly.css">');
 		setHref( "" );
 	}
-	
+	*/
 });
 /*
 	<?php
@@ -414,7 +415,7 @@ function todo_serch(searchtext){
 $(document).ready(function(){
 	
 	if($("#dictionary").length) {
-/*
+
 		jQuery(function($){
 			$.extend( $.fn.dataTable.defaults, { 
 				language: {
@@ -435,6 +436,6 @@ $(document).ready(function(){
 			});
 
 		});
-		*/
+		
 	}
 });

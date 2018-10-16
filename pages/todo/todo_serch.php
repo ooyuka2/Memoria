@@ -1,5 +1,6 @@
 
 <?php
+	$flag = 0;
 	if(isset($_GET['pagetype']) && $_GET['pagetype'] == "MDBpages") $pagetype = "MDBpages";
 	header("Content-type: text/html; charset=SJIS-win");
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
@@ -50,6 +51,7 @@
 						last_todo_panel($todo, $todo[$top]['id'],'danger', $file);
 					}
 				}
+				$flag = 1;
 			}
 		}
 	}
@@ -72,6 +74,7 @@
 			
 			if($flug ==1) {
 				last_todo_panel($todo, $todo[$top]['id'],'success', $file);
+				$flag = 1;
 			}
 		}
 	}
@@ -99,7 +102,10 @@
 			
 			if($flug ==1) {
 				last_todo_panel($todo, $todo[$top]['id'],'success', $file);
+				$flag = 1;
 			}
 		}
 	}
+	if($flag == 0 && $pagetype == "MDBpages") echo "<div class=\"alert alert-danger alert-dismissible fade show col-12\" role=\"alert\" id=\"noserachalert\"><h4>データがありません。</h4><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>";
+	else if($flag == 0) echo "<div class='alert alert-dismissible alert-warning'><button type='button' class='close' data-dismiss='alert'>&times;</button><p class='text-danger'>データがありません。</p></div>";
 ?>
