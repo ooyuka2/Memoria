@@ -38,7 +38,7 @@
 	
 	
 	
-		<?php
+	<?php
 		echo '<script type="text/javascript" src="' . $link_datatable_js . $updatefiletime . '"></script>';
 	?>
 	
