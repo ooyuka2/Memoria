@@ -8,6 +8,6 @@
 	
 	
 	writeCsvFile("../data/file.csv", $file);
-	header( "Location: ./file.php" );
+	header( "Location: " . $_SERVER['HTTP_REFERER'] );
 	exit();
 ?>
