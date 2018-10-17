@@ -11,6 +11,10 @@ If ActiveSheet.AutoFilterMode Then  'シートにオートフィルタがかけられている場合'
 	End If  
 End If  
   
+> sssss  
+>> test  
+>>> trtrt  
+>>>> ssss  
   
 ActiveSheet.Cells.Clear 'アクティブシートのクリア'  
 Sheets("Sheet2").Cells.Clear     'シート名を指定してクリア'  

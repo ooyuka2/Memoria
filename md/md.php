@@ -23,6 +23,9 @@
 		if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
 		
 		
+		$markdown =  str_replace(">>","> >",$markdown);
+		$markdown =  str_replace(">>","> >",$markdown);
+		
 		$markdown = mb_convert_encoding($markdown, "UTF-8", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode");
 		$parser = new \cebe\markdown\GithubMarkdown();
 		

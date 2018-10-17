@@ -105,7 +105,7 @@
 				$day1 = new DateTime($lastTime);
 				$tmp = explode(":",$working[($i+1)]['startTime']);
 				$day2 = new DateTime($working[($i+1)]['day']);
-				$day2 = $day2->setTime($tmp[0], $tmp[1]);
+				$day2 = $day2->setTime($tmp[0], $tmp[1])->modify('+1 hours');
 				$interval = $day2->diff($day1);
 				
 				//echo $working[($i+1)]['startTime']. ":::". $lastTime."<br>";
@@ -133,10 +133,10 @@
 	$day1 = new DateTime($lastTime);
 	$day2 = new DateTime($working[($i+1)]['day']);
 	$tmp = explode(":",$working[($i+1)]['startTime']);
-	$day2 = $day2->setTime($tmp[0], $tmp[1]);
+	$day2 = $day2->setTime($tmp[0], $tmp[1])->modify('+1 hours');
 	$interval = $day2->diff($day1);
 	
-	//echo $working[($i+1)]['startTime']. ":::". $lastTime."<br>";
+	//echo $working[($i+1)]['startTime']. ":::". $lastTime."<br>";echo $interval->modify('+1 days')->format('%R%d“ú %HŽž%i•ª');
 
 	echo $tableHeadder. "<caption>".$interval->format('%HŽž%i•ª')."</caption>" .$keeper;
 ?>

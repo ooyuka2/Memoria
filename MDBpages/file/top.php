@@ -21,11 +21,12 @@
 		<a href="./file.php?page=new" class="btn btn-info">新規</a>　
 		<a href="./file.php?page=reset" class="btn btn-primary">再読み込み</a>
 		<div class='table-responsive container-fluid'>
-			<table class='table table-striped table-hover ' id='dictionary'>
+			<table class='table table-striped table-hover ' id='link'>
 				<thead>
 					<tr>
-						<th>メモ</th>
-						<th>内容</th>
+						<th class="col-3">メモ</th>
+						<th>ふりがな</th>
+						<th class="col-8">内容</th>
 						<th>登録日時</th>
 						<th>編集</th>
 						<th>削除</th>
@@ -38,6 +39,8 @@
 						//name,furi,summary,detail,count,syurui,date,delete
 							echo "<tr class='syurui".$file[$i]['syurui']."'><td>";
 							echo $file[$i]['name'];
+							echo "</td><td>";
+							echo $file[$i]['furi'];
 							echo "</td><td>";
 							if($file[$i]['syurui'] == 2) 
 								echo "<a href='".$file[$i]['summary']."' onClick='move(".$i.")'>".$file[$i]['summary']."</a>";
