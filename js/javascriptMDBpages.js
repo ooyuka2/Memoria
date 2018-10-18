@@ -108,8 +108,18 @@ $(function() {
 		}
 	);
 });
-
-
+/*
+$('#link').hover(function() {
+    var t = setTimeout(function() {
+      //マウスオーバー時に行いたいAjax処理
+      alert("ss");
+    }, 1000);
+    $(this).data('timeout', t);
+}, function() {
+    clearTimeout($(this).data('timeout'));
+});
+$(this)
+*/
 // ##############################################################################################################################
 //
 //            todo_treeの関数

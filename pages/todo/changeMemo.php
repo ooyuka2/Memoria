@@ -2,7 +2,7 @@
 	header("Content-type: text/plain; charset=SJIS-win");
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
 	include($ini['dirWin'].'/pages/function.php');
-	require_once($ini['dirWin']."/md/md.php");
+	
 
 	if(isset($_SERVER['HTTP_X_REQUESTED_WITH'])
 		&& strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {

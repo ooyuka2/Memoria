@@ -35,12 +35,12 @@ function panel_child($todo, $todoid, $working, $file) {
 				echo "<div class='clearfix'><span class='pull-right close' onClick='todo_delete_check(&quot;{$todo[$todoid]['タイトル']}&quot;, &quot;{$todoid}&quot;)'>&times;</span><h3 class='panel-title'>{$todo[$todoid]['タイトル']}</h3></div>";
 				echo "</div>";
 				echo "<div class='panel-body'>";
-				echo "<div class='alert alert-dismissible alert-warning' style='margin-bottom:0'>{$todo[$todoid]['作業内容']}</div>";
+				echo "<div class='alert alert-dismissible alert-warning' style='margin-bottom:0'>". read_md($todo[$todoid]['作業内容']) . "</div>";
 				if($todo[$todoid]['成果物']!="") {
-					echo "<div class='alert alert-dismissible alert-info' style='margin-bottom:0'><!--<strong style='font-size:150%'>成果物</strong>-->{$todo[$todoid]['成果物']}</div>";
+					echo "<div class='alert alert-dismissible alert-info' style='margin-bottom:0'><!--<strong style='font-size:150%'>成果物</strong>-->". read_md($todo[$todoid]['成果物']) . "</div>";
 				} 
 				if($todo[$todoid]['所感']!="" && $todo[$todoid]['所感']!="no comment") {
-					echo "<div class='alert alert-dismissible alert-danger' style='margin-bottom:0'><!--<strong style='font-size:150%'>コメント</strong>-->{$todo[$todoid]['所感']}</div>";
+					echo "<div class='alert alert-dismissible alert-danger' style='margin-bottom:0'><!--<strong style='font-size:150%'>コメント</strong>-->" . read_md($todo[$todoid]['所感']) . "</div>";
 				}
 				$whendo = "";
 				for($i=1; $i<count($working); $i++) {
