@@ -64,8 +64,8 @@
 		$num = check2array($memolist, $_GET['path'], "filename");
 		$templist = array_splice($memolist,$num,1);
 		writeCsvFile2('../../data/memo.csv', $memolist);
-		//header( "Location: /Memoria/pages/todo.php" );
-		//exit();
+		header( "Location: " . $_SERVER['HTTP_REFERER'] );
+		exit();
 	}
 	
 ?>

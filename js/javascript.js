@@ -182,7 +182,7 @@ function tree_menu(id, top, pre, child, wait, whatdotoday, todofile) {
 	var menu = "<div class='btn-group-vertical' style='position: fixed; z-index: 1;' id='tree_menu'>";//
 
 	if(pre!=100) { //child == 0 && 
-		menu = menu + "<div class='btn-group' role='group'><button type='button' class='btn btn-default dropdown-toggle btn-xs btn-sm btn-block' data-toggle='dropdown' aria-expanded='false'>ì‹Æİ’è<span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
+		menu = menu + "<div class='btn-group' role='group'><button type='button' class='btn btn-default dropdown-toggle btn-xs btn-sm btn-block' data-toggle='dropdown' aria-expanded='false' aria-haspopup='true' >ì‹Æİ’è<span class='caret'></span></button><ul class='dropdown-menu' role='menu'>";
 		
 		for(j=Math.ceil(pre/10)*10; j<100; j+=10) 
 		menu = menu + "<li role='presentation'><a role='menuitem' tabindex='-1' href='todo.php?page=whatdo&p="+id+"&f="+j+"' class='text-dark' style='padding-left:20px;'>"+j+"“‚Ü‚ÅŠ®—¹</a></li>";

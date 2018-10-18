@@ -188,7 +188,7 @@
 	
 	writeCsvFile2($ini['dirWin']."/data/todo.csv", $todo);
 	
-	header( "Location: " . $link_todo_html . "?p={$_POST['id'][0]}" );
+	header( "Location: " . $link_todo_html . "?d=todo&p={$_POST['id'][0]}" );
 	exit();
 
 ?>
