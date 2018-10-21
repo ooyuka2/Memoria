@@ -1,7 +1,7 @@
 <?php
-	$file = readCsvFile2($ini['dirWin'].'/data/file.csv');
+	$dictionary = readCsvFile2($ini['dirWin'].'/data/dictionary.csv');
 	//name,furi,summary,detail,count,syurui,date,delete
-	$group = readCsvFile2($ini['dirWin'].'/data/file_group.csv');
+	$group = readCsvFile2($ini['dirWin'].'/data/dictionary_group.csv');
 	//group,abc,detail
 
 	//変更動作についての文章。
@@ -18,7 +18,7 @@
 ?>
 
 	<div class="col-12">
-		<a href="./file.php?page=table_make&type=new" class="btn btn-info">新規</a>　
+		<a href="./dictionary.php?page=table_make&type=new" class="btn btn-info">新規</a>　
 		<button onclick="location.reload()" class="btn btn-primary">再読み込み</button>
 		<div class='table-responsive container-fluid'>
 			<table class='table table-striped table-hover ' id='datatable'>
@@ -34,26 +34,22 @@
 				</thead>
 				<tbody>
 				<?php
-					for($i = 1; $i<count($file); $i++) {
-						if((!isset($_GET['search']) || $_GET['search'] == $file[$i]['syurui']) && $file[$i]['delete']!=1) {
+					for($i = 1; $i<count($dictionary); $i++) {
+						if((!isset($_GET['search']) || $_GET['search'] == $dictionary[$i]['syurui']) && $dictionary[$i]['delete']!=1) {
 						//name,furi,summary,detail,count,syurui,date,delete
-							echo "<tr class='syurui".$file[$i]['syurui']."'><td>";
-							echo $file[$i]['name'];
+							echo "<tr class='syurui".$dictionary[$i]['syurui']."'><td>";
+							echo $dictionary[$i]['name'];
 							echo "</td><td>";
-							echo $file[$i]['furi'];
+							echo $dictionary[$i]['furi'];
 							echo "</td><td>";
-							if(serch_word_str($file[$i]['summary'], "http")) 
-								
-								echo "<a href='".$file[$i]['summary']."' target='_blank' onClick='move(".$i.")'>".$file[$i]['summary']."</a>";
-							else
-								echo "<a href='".$file[$i]['summary']."' onClick='move(".$i.")'>".$file[$i]['summary']."</a>";
-							if($file[$i]['detail']!="")
-							//echo "<span style='float: right;'><a href='./file.php?page=detail&p=".$i."'>詳細</span></td><td>";
-							echo "<br>{$file[$i]['detail']}</td><td>";
+							echo "<h4 class='text-primary'>".$dictionary[$i]['summary']."</h4>";
+							if($dictionary[$i]['detail']!="")
+							//echo "<span style='float: right;'><a href='./dictionary.php?page=detail&p=".$i."'>詳細</span></td><td>";
+							echo "<br>{$dictionary[$i]['detail']}</td><td>";
 							else { echo "</td><td>"; }
-							echo $file[$i]['count'];
-							echo "</td><td><a href='./file.php?page=table_make&type=change&p=".$i."' class='btn btn-info'>編集</a>";
-							echo "</td><td><button class='btn btn-danger' onclick='delete_check(\"".$file[$i]['name']."\", ".$i.", \"file\")' style='margin:0'>削除</button>";
+							echo $dictionary[$i]['date'];
+							echo "</td><td><a href='./dictionary.php?page=table_make&type=change&p=".$i."' class='btn btn-info'>編集</a>";
+							echo "</td><td><button class='btn btn-danger' onclick='delete_check(\"".$dictionary[$i]['name']."\", ".$i.", \"dictionary\")' style='margin:0'>削除</button>";
 							echo "</td></tr>";
 						}
 					}

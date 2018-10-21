@@ -90,6 +90,18 @@
 	$link_link_html = $link_pages_html . "file.php";
 	$link_link_Win = $link_pages_Win . "file.php";
 	
+	//dictionaryページへのリンク
+	$link_dictionary_html = $link_pages_html . "dictionary.php";
+	$link_dictionary_Win = $link_pages_Win . "dictionary.php";
+	
+	//toolsページへのリンク
+	$link_tools_html = $link_pages_html . "tools.php";
+	$link_tools_Win = $link_pages_Win . "tools.php";
+	
+	//mailページへのリンク
+	$link_mail_html = $link_pages_html . "mail.php";
+	$link_mail_Win = $link_pages_Win . "mail.php";
+	
 	//設定ページへのリンク
 	$link_settings_html = $link_pages_html . "settings.php";
 	$link_settings_Win = $link_pages_Win . "settings.php";

@@ -86,15 +86,19 @@ thead tr {
 }
 
 /*ƒ{ƒ^ƒ“‚ÌF*/
+
 .btn-group .btn {
 	box-shadow: none !important;
 }
 
 
-.btn-default, .btn-default.dropdown-toggle {
+.btn-default, .btn-default.dropdown-toggle, .show>.btn-default.dropdown-toggle {
 	color: #fff !important;
-	background-color: #2c3e50 !important;
-	border-color: #2c3e50 !important;
+	background-color: #00a1e9 !important;
+	border-color: #00a1e9 !important;
+	&:not([disabled]):not(.disabled):active {
+		background-color: #00afcc !important;
+	}
 }
 
 

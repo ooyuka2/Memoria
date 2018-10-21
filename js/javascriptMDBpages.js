@@ -24,12 +24,16 @@ $(document).ready(function(){
 		read_memo();
 	}
 	
-	if($("#todo_memo_comp").length) {
-		read_todo_memo();
+	if($("#todo_regularly_comp").length) {
+		read_todo_regularly();
 	}
 	
 	if($("#todo_keeper_comp").length) {
 		read_keeper("1");
+	}
+	
+	if($("#tools").length) {
+		read_tool_php('/Memoria/pages/tools/tools.php', 'toolstab');
 	}
 	
 	/*
@@ -259,50 +263,50 @@ function read_keeper(days){
 //
 // ##############################################################################################################################
 
-function read_todo_memo(){
-	$("#todo_memo_comp").css('background','url(\"../img/grid-gray.svg\") center center no-repeat').css('background-size','20% auto').css('min-height','200px');
+function read_todo_regularly(){
+	$("#todo_regularly_comp").css('background','url(\"../img/grid-gray.svg\") center center no-repeat').css('background-size','20% auto').css('min-height','200px');
 	$.ajax({
 		beforeSend: function(xhr){
 			xhr.overrideMimeType('text/html;charset=Shift_JIS');
 		},
 		type: "GET",
 		scriptCharset:'Shift_JIS',
-		url: '/Memoria/pages/todo/todo_memo.php',
+		url: '/Memoria/pages/todo/todo_regularly.php',
 		data: {"pagetype":"MDBpages"},
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
-		$("#todo_memo_comp").html(data).css('background','').css('min-height','');
+		$("#todo_regularly_comp").html(data).css('background','').css('min-height','');
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
 		// this;
 		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
 		// エラーメッセージの表示
-		read_todo_memo();
+		read_todo_regularly();
 	});
 	// サブミット後、ページをリロードしないようにする
 	return false;
 }
 
-function change_todo_memo_privateuser(change, numbers) {
+function change_todo_regularly_privateuser(change, numbers) {
 	$.ajax({
 		beforeSend: function(xhr){
 			xhr.overrideMimeType('text/html;charset=Shift_JIS');
 		},
 		type: "GET",
 		scriptCharset:'Shift_JIS',
-		url: '/Memoria/pages/todo/todo_memo.php',
+		url: '/Memoria/pages/todo/todo_regularly.php',
 		data: {"pagetype":"MDBpages", "change":change, "number":numbers},
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 		// PHPから返ってきたデータの表示
-		read_todo_memo();
+		read_todo_regularly();
 		
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
 		// this;
 		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
 		// エラーメッセージの表示
-		read_todo_memo();
+		read_todo_regularly();
 	});
 	// サブミット後、ページをリロードしないようにする
 	return false;
@@ -424,7 +428,7 @@ function todo_serch(searchtext){
 // ##############################################################################################################################
 $(document).ready(function(){
 	
-	if($("#link").length) {
+	if($("#datatable").length) {
 
 		jQuery(function($){
 			$.extend( $.fn.dataTable.defaults, { 
@@ -432,7 +436,7 @@ $(document).ready(function(){
 					url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
 				} 
 			}); 
-			$('#link').dataTable({
+			$('#datatable').dataTable({
 				// 件数切替の値を10～50の10刻みにする
 				lengthMenu: [ 50, 100, 150, 200, 250, 300, 500, 750, 1000 ],
 				// 件数のデフォルトの値を50にする
@@ -443,10 +447,237 @@ $(document).ready(function(){
 					{ targets: 1, visible: false },
 					{ targets: 3, visible: false },
 				],
-				responsive: true, order: [[2, 'desc']],
+				responsive: true, order: [[3, 'desc']],
 			});
 
 		});
 		
 	}
 });
+if($("#furi").length && $("#name").length) {
+	$(function() {
+		$.fn.autoKana('#name', '#furi', {
+			katakana : false  //true：カタカナ、false：ひらがな（デフォルト）
+		});
+	});
+}
+function check_furi() {
+	if($("#furi").length && document.getElementById("furi").value=="")
+	document.getElementById("furi").value=document.getElementById("name").value;
+}
+
+function delete_check(tilte, id, type){
+	ret = confirm(tilte + "を本当に削除しますか？よろしいですか？");
+	if (ret == true){
+		location.href = './' + type + '/table_make.php?type=delete&p=' + id;
+	}
+}
+
+// ##############################################################################################################################
+//
+//            ページを読み込む関数
+//
+// ##############################################################################################################################
+function read_tool_php(filepath, tabname) {
+	if(tabname == "resulttab") {
+		$("li.d-none").removeClass("d-none");
+		$("#"+tabname).addClass("d-block");
+	} else if($('li.d-block').get()) {
+		$("li.d-block").removeClass("d-block");
+		$("#resulttab").addClass("d-none");
+	}
+	if(!$("#"+tabname).hasClass('active')) {
+		$("a.active").removeClass("active");
+		$("#"+tabname+" a:first").addClass("active");
+		
+	}
+	$("#tools").css('background','url(\"../img/grid.svg\") center center no-repeat').css('background-size','20% auto');
+	$.ajax({
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+		},
+		type: "GET",
+		scriptCharset:'Shift_JIS',
+		url: filepath,
+		data: {"pagetype":"MDBpages"},
+	}).done(function(data, dataType) {
+		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+		// PHPから返ってきたデータの表示
+		$("#tools").html(data).css('background','');
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+		// this;
+		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+		// エラーメッセージの表示
+		//alert('Error : ' + errorThrown);
+		read_tool_php(filepath, tabname);
+	});
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}
+
+// ##############################################################################################################################
+//
+//            比較用php読み込み関数
+//
+// ##############################################################################################################################
+
+function goto_compare(type) {
+	$("#tools").css('background','url(\"../img/grid.svg\") center center no-repeat').css('background-size','20% auto');
+	$.ajax({
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+		},
+		type: "POST",
+		scriptCharset:'Shift_JIS',
+		url: "/Memoria/pages/tools/tools/compare.php",
+		data: {"txtA":document.getElementById('txtA').value, "txtB":document.getElementById('txtB').value, "type":type, "pagetype":"MDBpages" },
+	}).done(function(data, dataType) {
+		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+
+		// PHPから返ってきたデータの表示
+		$("#tools").html(data).css('background','');
+
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+
+		// this;
+		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+
+		// エラーメッセージの表示
+		//alert('Error : ' + errorThrown);
+		goto_compare();
+	});
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}
+
+function return_compareform(txtA, txtB) {
+	$("#tools").css('background','url(\"../img/grid.svg\") center center no-repeat').css('background-size','20% auto');
+	$.ajax({
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+		},
+		type: "POST",
+		scriptCharset:'Shift_JIS',
+		url: "/Memoria/pages/tools/tools/compare_form.php",
+		data: {"txtA":txtA, "txtB":txtB, "pagetype":"MDBpages"},
+	}).done(function(data, dataType) {
+		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+
+		// PHPから返ってきたデータの表示
+		$("#tools").html(data).css('background','');
+
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+
+		// this;
+		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+
+		// エラーメッセージの表示
+		//alert('Error : ' + errorThrown);
+		return_compareform(txtA, txtB);
+	});
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}
+
+// ##############################################################################################################################
+//
+//            MarkDownで読み込みページ用関数
+//
+// ##############################################################################################################################
+
+function read_md_php(filepath) {
+	$("#tools").css('background','url(\"../img/grid.svg\") center center no-repeat').css('background-size','20% auto');
+	$.ajax({
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+		},
+		type: "POST",
+		scriptCharset:'Shift_JIS',
+		url: "/Memoria/pages/tools/tools/read_md.php",
+		data: {"file":filepath, "pagetype":"MDBpages"},
+	}).done(function(data, dataType) {
+		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+		// PHPから返ってきたデータの表示
+		$("#tools").html(data).css('background','');
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+		// this;
+		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+		// エラーメッセージの表示
+		//alert('Error : ' + errorThrown);
+		read_md_php(filepath);
+	});
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}
+
+
+// ##############################################################################################################################
+//
+//            一時的なプログラムの保存用関数
+//
+// ##############################################################################################################################
+
+function playground_save() {
+	// HTMLでの送信をキャンセル
+	event.preventDefault();
+
+	// 操作対象のフォーム要素を取得
+	var $form = $("#program_form");
+
+	// 送信ボタンを取得
+	var $button = $('#submitbtn');
+
+	$.ajax({
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+			$button.attr('disabled', true);
+		},
+		// 応答後
+		complete: function(xhr, textStatus) {
+			// ボタンを有効化し、再送信を許可
+			$button.attr('disabled', false);
+		},
+		url: $form.attr('action'),
+		type: $form.attr('method'),
+		data: $form.serialize(),
+		timeout: 10000,  // 単位はミリ秒
+	}).done(function(data, dataType) {
+		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+		// PHPから返ってきたデータの表示
+
+		read_tool_php("/Memoria/data/tools/temp.php", "resulttab");
+		$("#tools").before(data);
+		//$("#tools").html(data + "<br><br>" + beforehtml).css('background','');
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		// 通信失敗時の処理
+		alert('NG...');
+	});
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}
+
+
+
+// ##############################################################################################################################
+//
+//            スマートテーブル用の関数
+//
+// ##############################################################################################################################
+$(document).ready(function(){
+	
+	if($("#smarttable").length) {
+		smartTable_hidden("#smarttable", 6, 2);
+		smartTable_hidden("#smarttable", 6, 4);
+	}
+});
+
+function smartTable_hidden(name, all, n) {
+	$( name + " tr > th:nth-child(" + all + "n + " + n + ")" ).addClass("d-none");
+	$( name + " tr > td:nth-child(" + all + "n + " + n + ")" ).addClass("d-none");
+	//$("#smarttable td:nth-child(6n+1)").addClass("d-none");
+}
+

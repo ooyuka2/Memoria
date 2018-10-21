@@ -1,5 +1,6 @@
 <?php
 	header("Content-type: text/html; charset=SJIS-win");
+	if(isset($_GET['pagetype'])) $pagetype = $_GET['pagetype'];
 	if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
 	include_once($ini['dirWin'].'/pages/function.php');
 	

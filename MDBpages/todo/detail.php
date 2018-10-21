@@ -43,13 +43,12 @@ function panel_child($todo, $todoid, $working, $file) {
 	echo "<div class='clearfix'><span class='pull-right close' onClick='todo_delete_check(&quot;{$todo[$todoid]['タイトル']}&quot;, &quot;{$todoid}&quot;)'>&times;</span><h3 class='card-title'>{$todo[$todoid]['タイトル']}</h3></div>";
 	echo "</div>";
 	echo "<div class='card-body row'>";
-	echo "<div class='alert alert-dismissible alert-warning col-12' style='margin-bottom:0'>". read_md($todo[$todoid]['作業内容']) . "</div>";
+	echo "<div class='alert alert-dismissible alert-warning col-12' style='margin-bottom:0;'><div style='min-height: 23px;'>". read_md(str_replace("<br>", "  \r\n", $todo[$todoid]['作業内容'])) . "</div><button type='button' class='close' data-dismiss='modal' aria-hidden='true' onclick='changeTodoPanel(this, {$todoid}, \"作業内容\")'><span class='fa fa-pencil' aria-hidden='true'></span></button><div></div></div>";
+	//if($todo[$todoid]['所感']!="" && $todo[$todoid]['所感']!="no comment") {
+	echo "<div class='alert alert-dismissible alert-danger col-12' style='margin-bottom:0;'><div style='min-height: 23px;'>" . read_md(str_replace("<br>", "  \r\n", $todo[$todoid]['所感'])) . "</div><button type='button' class='close' data-dismiss='modal' aria-hidden='true'  onclick='changeTodoPanel(this, {$todoid}, \"所感\")'><span class='fa fa-pencil' aria-hidden='true'></span></button><div></div></div>";
 	if($todo[$todoid]['成果物']!="") {
-		echo "<div class='alert alert-dismissible alert-info col-12' style='margin-bottom:0'><!--<strong style='font-size:150%'>成果物</strong>-->". read_md($todo[$todoid]['成果物']) . "</div>";
+		echo "<div class='alert alert-dismissible alert-info col-12' style='margin-bottom:0'><!--<strong style='font-size:150%'>成果物</strong>-->". read_md(str_replace("<br>", "  \r\n", $todo[$todoid]['成果物'])) . "</div>";
 	} 
-	if($todo[$todoid]['所感']!="" && $todo[$todoid]['所感']!="no comment") {
-		echo "<div class='alert alert-dismissible alert-danger col-12' style='margin-bottom:0'><!--<strong style='font-size:150%'>コメント</strong>-->" . read_md($todo[$todoid]['所感']) . "</div>";
-	}
 	$whendo = "";
 	for($i=1; $i<count($working); $i++) {
 		if ($working[$i]['id'] == $todoid) {

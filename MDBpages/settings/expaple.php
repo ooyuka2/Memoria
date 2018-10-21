@@ -70,6 +70,7 @@
       <div class="col-lg-7">
 
         <p class="bs-component">
+          <button type="button" class="btn btn-default">default</button>
           <button type="button" class="btn btn-primary">Primary</button>
           <button type="button" class="btn btn-secondary">Secondary</button>
           <button type="button" class="btn btn-success">Success</button>
@@ -80,6 +81,7 @@
         </p>
 
         <p class="bs-component">
+          <button type="button" class="btn btn-default disabled">default</button>
           <button type="button" class="btn btn-primary disabled">Primary</button>
           <button type="button" class="btn btn-secondary disabled">Secondary</button>
           <button type="button" class="btn btn-success disabled">Success</button>
@@ -90,6 +92,7 @@
         </p>
 
         <p class="bs-component">
+          <button type="button" class="btn btn-outline-default">default</button>
           <button type="button" class="btn btn-outline-primary">Primary</button>
           <button type="button" class="btn btn-outline-secondary">Secondary</button>
           <button type="button" class="btn btn-outline-success">Success</button>

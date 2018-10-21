@@ -40,7 +40,7 @@
 		
 		echo '</div>';
 		echo '<div class="col-md-12 col-xl-2">';
-			echo '<div id="todo_memo_comp"></div><div id="todo_keeper_comp"></div>';
+			echo '<div id="todo_regularly_comp"></div><div id="todo_keeper_comp"></div>';
 		echo '</div>';
 	}
 	

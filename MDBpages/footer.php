@@ -6,6 +6,8 @@
 	<script src="/Memoria/js/jquery-ui-1.12.1.custom/external/jquery/jquery.js"></script>
 	<script src="/Memoria/js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 	<script src="/Memoria/img/timedropper/timedropper.js"></script>
+	<script type="text/javascript" src="/Memoria/js/jquery.autoKana.js"></script>
+
 	<!-- Tooltips -->
 	<?php
 		echo '<script type="text/javascript" src="' . $link_popper_js .'"></script>';

@@ -1,5 +1,6 @@
 <?php
 	header("Content-type: text/plain; charset=SJIS-win");
+	if(isset($_POST['pagetype'])) $pagetype = $_POST['pagetype'];
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\..\data\config.ini');
 	include($ini['dirWin'].'/pages/function.php');
 	if(isset($_POST['txtA'])) $txtA = mb_convert_encoding(str_replace("<br>","\r\n",$_POST['txtA'] ), "SJIS-win", "UTF-8");

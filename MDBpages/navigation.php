@@ -11,40 +11,54 @@
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?page=weekly">週報</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?page=keeper">時間管理</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=new">新規追加</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?d=calendar">カレンダー</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>">カレンダー</a></li>
 				</ul>
 			</li>
 			<li class="drawer-dropdown filenav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
 				<span class="fa fa-link pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_link_html; ?>'">link</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
-					<li><a class="drawer-menu-item" href="#">Top</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_link_html; ?>">Top</a></li>
+					<?php
+						$filegroup = readCsvFile2($ini['dirWin'].'/data/file_group.csv');
+						for($i=1; $i<count($filegroup); $i++) {
+							echo '<li><a class="drawer-menu-item" href="' . $link_link_html . '?search=' . $i . '">' . $filegroup[$i]['group'] . '</a></li>';
+						}
+					?>
+				</ul>
+			</li>
+			<li class="drawer-dropdown toolsnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
+				<span class="fa fa-wrench pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_tools_html; ?>'">tools</span><span class="fa fa-angle-down pull-right"></span></a>
+				<!--
+				<ul>
+					<li><a class="drawer-menu-item" href="<?php echo $link_tools_html; ?>">Top</a></li>
 					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
 					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
 				</ul>
+				-->
 			</li>
-			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-wrench pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $ini['dirhtml']."/pages/tools.php"; ?>'">tools</span><span class="fa fa-angle-down pull-right"></span></a>
+			<li class="drawer-dropdown dictionarynav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
+				<span class="fa fa-graduation-cap pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_dictionary_html; ?>'">dictionary</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
-					<li><a class="drawer-menu-item" href="#">Top</a></li>
-					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
-					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
-				</ul>
-			</li>
-			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-graduation-cap pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $ini['dirhtml']."/pages/dictionary.php"; ?>'">dictionary</span><span class="fa fa-angle-down pull-right"></span></a>
-				<ul>
-					<li><a class="drawer-menu-item" href="#">Top</a></li>
-					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
-					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_dictionary_html; ?>">Top</a></li>
+					<?php
+						$dictionarygroup = readCsvFile2($ini['dirWin'].'/data/dictionary_group.csv');
+						for($i=1; $i<count($dictionarygroup); $i++) {
+							echo '<li><a class="drawer-menu-item" href="' . $link_dictionary_html . '?search=' . $i . '">' . $dictionarygroup[$i]['group'] . '</a></li>';
+						}
+					?>
 				</ul>
 			</li>
 			
-			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-envelope-o pull-left drawer-menu-icon"></span><span onclick="">mail</span><span class="fa fa-angle-down pull-right"></span></a>
+			<li class="drawer-dropdown mailnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
+				<span class="fa fa-envelope-o pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_mail_html; ?>'">mail</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
-					<li><a class="drawer-menu-item" href="#">Top</a></li>
-					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
-					<li><a class="drawer-menu-item" href="#">XXXXX</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_mail_html; ?>">Top</a></li>
+					<?php
+						$mailgroup = readCsvFile2($ini['dirWin'].'/data/mail_group.csv');
+						for($i=1; $i<count($mailgroup); $i++) {
+							echo '<li><a class="drawer-menu-item" href="' . $link_mail_html . '?search=' . $i . '">' . $mailgroup[$i]['group'] . '</a></li>';
+						}
+					?>
 				</ul>
 			</li>
 			<li class="drawer-dropdown settingsnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
@@ -70,11 +84,11 @@
 			<a href="<?php echo $link_pages_html; ?>"><img src="../img/logo.png" class="img-fluid flex-center"  style="margin-left:20px"></a>
 		</div>
 		<!-- Search form -->
-		<form class="form-inline">
-			<div class="md-form my-0">
-			<input class="form-control" type="text" placeholder="Search" aria-label="Search" onkeyup="todo_serch(this.value)">
-			</div>
-		</form>
+		
+		<div class="md-form my-0">
+		<input class="form-control" type="text" placeholder="Search" aria-label="Search" onkeyup="todo_serch(this.value)">
+		</div>
+		
 		<!--/.Search Form-->
 	</nav>
 	<!-- /.Navbar -->

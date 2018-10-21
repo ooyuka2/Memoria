@@ -1,4 +1,25 @@
 <?php
+	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
+	include($ini['dirWin'].'/MDBpages/hedder.php');
+?>
+<body class="drawer drawer--left">
+<?php
+	include($ini['dirWin'].'/MDBpages/navigation.php');
+	if(!isset($_GET['page'])) $_GET['page'] = "top";
+?>
+
+<!--Main Layout-->
+<div class="main-contents">
+<div class="pull-left drawer-hover"></div>
+<main class="row">
+	<?php
+		
+		
+		
+		
+		
+		
+
 	$file = readCsvFile2($ini['dirWin'].'/data/file.csv');
 	//name,furi,summary,detail,count,syurui,date,delete
 	$group = readCsvFile2($ini['dirWin'].'/data/file_group.csv');
@@ -21,7 +42,7 @@
 		<a href="./file.php?page=table_make&type=new" class="btn btn-info">V‹K</a>@
 		<button onclick="location.reload()" class="btn btn-primary">Ä“Ç‚İ‚İ</button>
 		<div class='table-responsive container-fluid'>
-			<table class='table table-striped table-hover ' id='datatable'>
+			<table class='table table-striped table-hover ' id='smarttable'>
 				<thead>
 					<tr>
 						<th class="col-3">ƒƒ‚</th>
@@ -64,3 +85,49 @@
 		</div>
 	</div>
 	
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+</main>
+</div>
+<!--Main Layout-->
+<?php
+	include($ini['dirWin'].'/MDBpages/footer.php');
+?>
+
+<script>
+	$(document).ready(function() {
+		document.getElementsByClassName('todonav')[0].classList.add('activenav');
+		navOnload();
+	});
+</script>
+
+</body>
+</html>

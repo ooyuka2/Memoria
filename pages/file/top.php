@@ -34,7 +34,7 @@
 				<div class='tab-pane fade active in' id='home'>
 					<div class="bs-docs-section" style="margin:0">
 					<a href="./file.php?page=new" class="btn btn-info">V‹K</a>@
-					<a href="./file.php?page=reset" class="btn btn-primary">Ä“Ç‚Ýž‚Ý</a>
+					<button onclick="location.reload()" class="btn btn-primary">Ä“Ç‚Ýž‚Ý</button>
 					<p></p>
 					<div class='container-fluid'>
 						<div class="bs-component table-responsive">

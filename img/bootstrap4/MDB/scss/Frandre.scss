@@ -56,7 +56,7 @@ tr:nth-child(odd), .table-striped tbody tr:nth-of-type(odd){
 }
 
 thead tr {
-	background: #f4b3c2 !important;
+	background: #ed6d46 !important;
 }
 /*テキストの色*/
 
@@ -89,16 +89,24 @@ thead tr {
 	box-shadow: none !important;
 }
 
-.btn-default, .btn-default.dropdown-toggle {
+.btn-default, .btn-default.dropdown-toggle, .show>.btn-default.dropdown-toggle {
 	color: #fff !important;
-	background-color: #aea79f !important;
-	border-color: #aea79f !important;
+	background-color: #d70035 !important;
+	border-color: #d70035 !important;
+	&:not([disabled]):not(.disabled):active {
+		background-color: #e95464 !important;
+	}
 }
 
 .btn-primary, .btn-primary.dropdown-toggle {
 	color: #fff !important;
 	background-color: #dd4814 !important;
 	border-color: #dd4814 !important;
+	&:not([disabled]):not(.disabled):active {
+		color: #fff;
+		background-color: #b33e5c !important;
+		border-color: #b33e5c !important;
+	}
 }
 
 .btn-secondary, .btn-secondary.dropdown-toggle {
@@ -133,7 +141,7 @@ thead tr {
 
 
 .btn-outline-default {
-	color: #aea79f !important;
+	color: #d70035 !important;
 	background-color: transparent !important;
 	background-image: none !important;
 	border-color: #aea79f !important;

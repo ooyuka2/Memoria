@@ -32,6 +32,7 @@ function resize_textarea() {
 		.blur(function(e) {
 		//$(this).css("height", "auto");
 	});
+	
 }
 
 document.onkeydown = 
@@ -287,7 +288,7 @@ function changeMempPanel(file, element, min, lock) {
 		type: "POST",
 		scriptCharset:'Shift_JIS',
 		url: "/Memoria/pages/todo/changeMemo.php",
-		data: {"file":file,"do":"readform"},
+		data: {"file":file,"doMemo":"readform"},
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 
@@ -306,6 +307,7 @@ function changeMempPanel(file, element, min, lock) {
 		makebotton.prepend("<div id='memobotton'><button type='button' id='memosave' class='btn btn-info pull-right' onclick='saveMemoPanel()'>保存</button><span class='pull-right'>　</span><button type='button' id='memocancel' class='btn btn-default pull-right' onclick='reReadMemoPanel()'>キャンセル</button></div>");
 		
 		//window.location.hash = "#"+file;
+		//resize_textarea();
 		
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
@@ -338,7 +340,7 @@ function reReadMemoPanel(){
 		type: "POST",
 		scriptCharset:'Shift_JIS',
 		url: "/Memoria/pages/todo/changeMemo.php",
-		data: {"file":file,"do":"readtxt"},
+		data: {"file":file,"doMemo":"readtxt"},
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 		
@@ -385,7 +387,7 @@ function saveMemoPanel() {
 		type: "POST",
 		scriptCharset:'Shift_JIS',
 		url: "/Memoria/pages/todo/changeMemo.php",
-		data: {"file":file,"do":"change","txt":text,"min":min,"lockmemo":lockmemo},
+		data: {"file":file,"doMemo":"change","txt":text,"min":min,"lockmemo":lockmemo},
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 
@@ -413,7 +415,7 @@ function deleteMemoPanel(path, file) {
 	ret = confirm(file + "を本当に削除しますか？よろしいですか？");
 	if (ret == true){
 		document.getElementById(file).style.display="none";
-		location.href = "/Memoria/pages/todo/changeMemo.php?path="+path+"&do=delete";
+		location.href = "/Memoria/pages/todo/changeMemo.php?path="+path+"&doMemo=delete";
 	}
 
 
@@ -442,7 +444,154 @@ function changeMemoform() {
 		}
 	}
 
+// ##############################################################################################################################
+//
+//            todoの中身変更用の関数
+//
+// ##############################################################################################################################
 
+function changeTodoPanel(element, id, what) {
+	//location.href = path;
+	//var data = {'memoform' : $('#memoform').val()};
+	
+	if(document.getElementById("memoform") != null) {
+		ret = confirm(file + "を保存しますか？");
+		if (ret == true){
+			saveTodoPanel();
+		} else {
+			return false;
+		}
+	}
+	
+	var makeform = $(element).prev();
+	var makebotton = $(element).next();
+	
+	var h = makeform.height();
+	
+	makeform.height(h).css('background','url(\"/Memoria/img/grid-gray.svg\") center center no-repeat').css('background-size','20% auto');
+
+	
+	$.ajax({
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+		},
+		type: "POST",
+		scriptCharset:'Shift_JIS',
+		url: "/Memoria/pages/todo/changeMemo.php",
+		data: {"id":id, "what":what, "doTodo":"readform"},
+	}).done(function(data, dataType) {
+		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+
+
+		
+		makeform.html("<textarea id='memoform' class='form-control input-normal input-sml' onKeyPress='changeMemoform()'>"+data+"</textarea><input type='hidden' value='"+id+"'></input><input type='hidden' value='"+what+"'></input>").height("auto").css('background','');
+		//alert(data);
+		var textarea = document.getElementById("memoform");
+		if( textarea.scrollHeight > textarea.offsetHeight ){
+			textarea.style.height = textarea.scrollHeight+'px';
+		}
+		makebotton.prepend("<div id='memobotton'><button type='button' id='memosave' class='btn btn-info pull-right' onclick='saveTodoPanel()'>保存</button><span class='pull-right'>　</span><button type='button' id='memocancel' class='btn btn-default pull-right' onclick='reReadTodoPanel()'>キャンセル</button></div>");
+		
+		//window.location.hash = "#"+file;
+		//resize_textarea();
+		
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+
+		// this;
+		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+
+		// エラーメッセージの表示
+		//alert('Error : ' + errorThrown);
+		changeTodoPanel(element, id, what);
+	});
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}
+
+
+
+function reReadTodoPanel(){
+
+	id = $("#memoform").next().val();
+	what = $("#memoform").next().next().val();
+	var makeTodoPanel = $("#memoform").parent();
+	var h = makeTodoPanel.height();
+	makeTodoPanel.height(h).css('background','url(\"/Memoria/img/grid-gray.svg\") center center no-repeat').css('background-size','20% auto');
+	
+	
+	$.ajax({
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+		},
+		type: "POST",
+		scriptCharset:'Shift_JIS',
+		url: "/Memoria/pages/todo/changeMemo.php",
+		data: {"id":id, "what":what, "doTodo":"readtxt"},
+	}).done(function(data, dataType) {
+		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+		
+		// PHPから返ってきたデータの表示
+		makeTodoPanel.html(data).height("auto").css('background','').css('min-height','23px');
+		$("#memobotton").remove();
+		
+		//window.location.hash = "#"+file;
+
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+
+		// this;
+		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+
+		// エラーメッセージの表示
+		//alert('Error : ' + errorThrown);
+		reReadTodoPanel();
+	});
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}
+
+function saveTodoPanel() {
+	id = $("#memoform").next().val();
+	what = $("#memoform").next().next().val();
+	var makeTodoPanel = $("#memoform").parent();
+	var text = $("#memoform").val();
+	
+	var h = makeTodoPanel.height();
+
+	makeTodoPanel.height(h).css('background','url(\"/Memoria/img/grid-gray.svg\") center center no-repeat').css('background-size','20% auto');
+
+	
+	$.ajax({
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+		},
+		type: "POST",
+		scriptCharset:'Shift_JIS',
+		url: "/Memoria/pages/todo/changeMemo.php",
+		data: {"id":id, "what":what,"doTodo":"change", "txt":text},
+	}).done(function(data, dataType) {
+		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+
+		// PHPから返ってきたデータの表示
+		makeTodoPanel.html(data).height("auto").css('background','').css('min-height','23px');
+		$("#memobotton").remove();
+		
+		//window.location.hash = "#"+file;
+
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+
+		// this;
+		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+
+		// エラーメッセージの表示
+		//alert('Error : ' + errorThrown);
+		saveTodoPanel();
+	});
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}
 
 // ##############################################################################################################################
 //

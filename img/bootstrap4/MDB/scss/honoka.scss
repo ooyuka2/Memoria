@@ -89,10 +89,13 @@ thead tr {
 	box-shadow: none !important;
 }
 
-.btn-default, .btn-default.dropdown-toggle {
+.btn-default, .btn-default.dropdown-toggle, .show>.btn-default.dropdown-toggle {
 	color: #fff !important;
 	background-color: #ffd700 !important;
 	border-color: #ffd700 !important;
+	&:not([disabled]):not(.disabled):active {
+		background-color: #ffa500 !important;
+	}
 }
 
 .btn-primary, .btn-primary.dropdown-toggle {

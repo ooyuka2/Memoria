@@ -105,8 +105,8 @@
 	</div>
 <?php
 	} else if($todo[$_GET['p']]['èää¥'] != "" && $todo[$_GET['p']]['èää¥'] != "no comment" ) {
-		echo "</div></div><div class='row'><div class='form-group col-sm-9'><textarea class='form-control input-normal input-sm' name='note' id='note'>{$todo[$_GET['p']]['èää¥']}</textarea></div></div>";
-	} else echo "</div><div class='row'><div class='form-group  col-sm-9'><textarea class='form-control input-normal input-sm' name='note' placeholder='{$todo[$_GET['p']]['èää¥']}' id='note'></textarea></div></div>";
+		echo "</div><div class='row'><div class='form-group col-sm-9'><textarea class='form-control input-normal input-sm' name='note' id='note'>" .str_replace('<br>', '&#10;',$todo[$_GET['p']]['èää¥']) . "</textarea></div></div>";
+	} else echo "</div><div class='row'><div class='form-group  col-sm-9'><textarea class='form-control input-normal input-sm' name='note' placeholder='" .str_replace('<br>', '&#10;',$todo[$_GET['p']]['èää¥']) . "' id='note'></textarea></div></div>";
 ?>
 	<div class='row'>
 	<div class='form-group col-sm-4'>

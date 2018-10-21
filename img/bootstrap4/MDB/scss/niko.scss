@@ -105,7 +105,7 @@ thead tr {
 	color: #fff !important;
 	background-color: #ff92cb !important;
 	border-color: #ff92cb !important;
-	&:hover {
+	&:not([disabled]):not(.disabled):active {
 		color: #fff;
 		background-color: #ff80c1 !important;
 		border-color: #ff80c1 !important;
@@ -304,7 +304,7 @@ thead tr {
 .border-info {
 	border-color: #17a2b8 !important;
 	.card-header {
-		background-color: rgba(110, 174, 184, 0.15);
+		background-color: rgba(161, 216, 230, 0.5);
 	}
 }
 

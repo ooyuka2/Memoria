@@ -1,5 +1,6 @@
 <?php
 	header("Content-type: text/plain; charset=SJIS-win");
+	if(isset($_POST['pagetype'])) $pagetype = $_POST['pagetype'];
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\..\data\config.ini');
 	include($ini['dirWin'].'/pages/function.php');
 	
@@ -52,14 +53,14 @@
 			}
 		}
 		
-		
-		echo "<div class = 'col-xs-6'>";
+		echo "<div class='row'>";
+		echo "<div class = 'col-xs-6 col-6'>";
 		echo_panel("テキストエリアAのみ", $compareA, "info");
-		echo "</div><div class = 'col-xs-6'>";
+		echo "</div><div class = 'col-xs-6 col-6'>";
 		echo_panel("テキストエリアBのみ", $compareB, "success");
-		echo "</div><div class = 'col-xs-12'>";
+		echo "</div><div class = 'col-xs-12 col-12'>";
 		echo_panel("共通", $compareAB, "warning");
-		echo "</div>";
+		echo "</div></div>";
 
 	} else {
 		echo "データが足りません。";

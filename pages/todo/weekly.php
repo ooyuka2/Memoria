@@ -160,7 +160,7 @@
 						
 					}
 					if(count($ary)==0) echo "　　　なし<br>";
-					echo "<br>以上、よろしくお願い致します。</p>";
+					echo "<br>以上、よろしくお願いいたします。</p>";
 				?>
 			</div>
 		</fieldset>
@@ -186,9 +186,9 @@
 	<table class='table table-striped table-condensed'>
 		<thead>
 			<tr>
-				<th class="col-md-3">テーマ</th>
+				<th class="col-md-2">テーマ</th>
 				<th class="col-md-1"></th>
-				<th class="col-md-4">週報</th>
+				<th class="col-md-5">週報</th>
 				<th class="col-md-4">週報ヒント</th>
 			</tr>
 		</thead>

@@ -13,7 +13,7 @@
 <div class="pull-left drawer-hover"></div>
 <main class="row">
 	<?php
-		$pass = $link_pages_Win . "file/".$_GET['page'].".php";
+		$pass = $link_pages_Win . "mail/".$_GET['page'].".php";
 		include($pass);
 	?>
 </main>
@@ -25,7 +25,7 @@
 
 <script>
 	$(document).ready(function() {
-		document.getElementsByClassName('filenav')[0].classList.add('activenav');
+		document.getElementsByClassName('mailnav')[0].classList.add('activenav');
 		navOnload();
 	});
 </script>

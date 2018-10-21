@@ -20,7 +20,7 @@
 		<?php
 			echo '<a href="'.$link_pages_html.'todo/whatTodayDo.php?auto=OK" class="btn btn-warning btn-lg last-release-download-link"><i class="fa fa-github-alt"></i>ˆê“ú‚ÌŽn‚Ü‚è</a>';
 			echo '<a href="'.$link_pages_html.'todo.php" class="btn btn-default btn-lg last-release-download-link"><i class="fa fa-github-alt"></i>‚â‚é‚±‚ÆƒŠƒXƒg</a>';
-			echo '<a href="'.$ini['dirhtml'].'/MDBpages/dictionary.php" class="btn btn-primary btn-lg"><i class="fa fa-play"></i> Watch Dictionary</a>';
+			echo '<a href="'.$ini['dirhtml'].'/MDBpages/file.php" class="btn btn-primary btn-lg"><i class="fa fa-play"></i> Watch Link</a>';
 		?>
 		</div>
 	</div>

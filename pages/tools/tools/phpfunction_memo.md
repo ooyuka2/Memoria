@@ -3,6 +3,7 @@ phpの関数などのメモ
 ### ファイルパスの取得と関数読み込み
 	header("Content-type: text/html; charset=SJIS-win");
 	if(!isset($ini)) $ini = parse_ini_file(dirname ( __FILE__ ).'\data\config.ini');
+	if(isset($_POST['pagetype'])) $pagetype = $_POST['pagetype'];
 	include_once($ini['dirWin'].'/pages/function.php');
 
 ---
@@ -35,7 +36,7 @@ phpの関数などのメモ
 
 
 ---
-### 文字列検索
+### 文字列検索(文字列を含むか否か)
 	serch_word_str($word, $searchtext)
 
 ---

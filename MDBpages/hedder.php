@@ -52,7 +52,7 @@
 	<?php
 		echo '<link href="' . $link_style_css . $updatefiletime .'" rel="stylesheet">';
 		
-		if(date('H')==12) echo '<link href="' . $link_css . 'fairly.css'. $updatefiletime . '" rel="stylesheet">';
+		if(date('H')==12) echo '<link id="sampleLink" href="' . $link_css . 'fairly.css'. $updatefiletime . '" rel="stylesheet">';
 		else echo '<link id="sampleLink" href="' . $link_color_css . $updatefiletime .'" rel="stylesheet">';
 	?>
 	
