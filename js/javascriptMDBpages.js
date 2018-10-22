@@ -468,7 +468,7 @@ $(document).ready(function(){
 				// 件数切替の値を10～50の10刻みにする
 				lengthMenu: [ 25, 50, 100, 150, 200, 250, 300, 500, 750, 1000 ],
 				// 件数のデフォルトの値を50にする
-				displayLength: 25,  
+				displayLength: 100,  
 				//stateSave: true,
 				columnDefs: [
 				],
