@@ -6,7 +6,7 @@
 		<ul class="drawer-menu">
 			<li><a class="drawer-brand" style="height:65px">@</a></li>
 			<li class="drawer-dropdown todonav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-check-square-o pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_todo_html; ?>'">todo</span><span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-tasks pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_todo_html; ?>'">todo</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?page=weekly">T•ñ</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?page=keeper">ŠÔŠÇ—</a></li>
@@ -48,7 +48,18 @@
 					?>
 				</ul>
 			</li>
-			
+			<li class="drawer-dropdown tablesnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
+				<span class="fa fa-table pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_tables_html; ?>'">tables</span><span class="fa fa-angle-down pull-right"></span></a>
+				<ul>
+					<li><a class="drawer-menu-item" href="<?php echo $link_tables_html; ?>">Top</a></li>
+					<?php
+						$tables = readCsvFile2($ini['dirWin'].'/data/tables.csv');
+						for($i=1; $i<count($tables); $i++) {
+							echo '<li><a class="drawer-menu-item" href="' . $link_tables_html . '?page=tables&table=' . str_replace(".csv","",$tables[$i]['filename'] ) . '">' . $tables[$i]['tablename'] . '</a></li>';
+						}
+					?>
+				</ul>
+			</li>
 			<li class="drawer-dropdown mailnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
 				<span class="fa fa-envelope-o pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_mail_html; ?>'">mail</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>

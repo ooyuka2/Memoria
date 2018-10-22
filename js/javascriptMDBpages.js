@@ -454,6 +454,33 @@ $(document).ready(function(){
 		
 	}
 });
+$(document).ready(function(){
+	
+	if($("#tables").length) {
+
+		jQuery(function($){
+			$.extend( $.fn.dataTable.defaults, { 
+				language: {
+					url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+				} 
+			}); 
+			$('#tables').dataTable({
+				// 件数切替の値を10～50の10刻みにする
+				lengthMenu: [ 25, 50, 100, 150, 200, 250, 300, 500, 750, 1000 ],
+				// 件数のデフォルトの値を50にする
+				displayLength: 25,  
+				//stateSave: true,
+				columnDefs: [
+				],
+				responsive: true, order: [[0, 'asc']],
+				scrollX: true,
+				scrollY: 800
+			});
+
+		});
+		
+	}
+});
 if($("#furi").length && $("#name").length) {
 	$(function() {
 		$.fn.autoKana('#name', '#furi', {

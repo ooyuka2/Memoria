@@ -42,7 +42,7 @@
 							echo "</td><td>";
 							echo $dictionary[$i]['furi'];
 							echo "</td><td>";
-							echo "<h4 class='text-primary'>".$dictionary[$i]['summary']."</h4>";
+							echo "<h5 class='text-primary'>".$dictionary[$i]['summary']."</h5>";
 							if($dictionary[$i]['detail']!="")
 							//echo "<span style='float: right;'><a href='./dictionary.php?page=detail&p=".$i."'>è⁄ç◊</span></td><td>";
 							echo "<br>{$dictionary[$i]['detail']}</td><td>";

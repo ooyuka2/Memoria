@@ -98,6 +98,10 @@
 	$link_tools_html = $link_pages_html . "tools.php";
 	$link_tools_Win = $link_pages_Win . "tools.php";
 	
+	//tablesページへのリンク
+	$link_tables_html = $link_pages_html . "tables.php";
+	$link_tables_Win = $link_pages_Win . "tables.php";
+	
 	//mailページへのリンク
 	$link_mail_html = $link_pages_html . "mail.php";
 	$link_mail_Win = $link_pages_Win . "mail.php";
