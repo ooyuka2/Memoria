@@ -51,7 +51,6 @@
 			<li class="drawer-dropdown tablesnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
 				<span class="fa fa-table pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_tables_html; ?>'">tables</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
-					<li><a class="drawer-menu-item" href="<?php echo $link_tables_html; ?>">Top</a></li>
 					<?php
 						$tables = readCsvFile2($ini['dirWin'].'/data/tables.csv');
 						for($i=1; $i<count($tables); $i++) {
