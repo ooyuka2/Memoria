@@ -1,6 +1,6 @@
 <div class="col-12">
 	<div class='table-responsive container-fluid'>
-		<table class='table table-striped table-hover table-sm ' id='tables'>
+		<table class='table table-striped table-hover table-sm ' id='tablespage'>
 			<thead>
 				<tr>
 <?php

@@ -15,7 +15,7 @@
 					$num = count($tableslist);
 					//filename,big,type,lock
 					$tableslist[$num]['filename'] = $file;
-					$tableslist[$num]['tablename'] = '–¼Ì–¢İ’è';
+					$tableslist[$num]['tablename'] = str_replace(".csv","",$tableslist[$num]['filename'] );
 					$tableslist[$num]['detail'] = 'Ú×–¢İ’è';
 					$tableslist[$num]['memo'] = '';
 					writeCsvFile2($tablescsv, $tableslist);
@@ -26,7 +26,7 @@
 	$i=1;
 	while($i<count($tableslist)) {
 		if(file_exists ($dir.$tableslist[$i]['filename'])) {
-			$title = "<a href='./tables.php?page=tables&table=" . str_replace(".csv","",$tableslist[$num]['filename'] ) . "'>" . $tableslist[$i]['tablename'] . "</a>";
+			$title = "<a href='./tables.php?page=tables&table=" . str_replace(".csv","",$tableslist[$i]['filename'] ) . "'>" . $tableslist[$i]['tablename'] . "</a>";
 			echo_panel($title, $tableslist[$i]['detail'], "primary");
 			$i++;
 		} else {
