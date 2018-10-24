@@ -1,35 +1,34 @@
 <?php
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
+		session_start();
+		header("Content-type: text/html; charset=SJIS-win");
+	if(!isset($_SESSION['staff']['id'])) {
+		header( "Location: ".$ini['dirhtml']."/prototype/login.php" );
+		exit();
+	}
 	$pagetype = "MDBpages";
 	include_once($ini['dirWin'].'/pages/function.php');
 
 	if(isset($_POST["csstype"])) {
-		$ini['csstype'] = $_POST['csstype'];
-		write_ini_file($ini['dirWin'].'/data/config.ini', $ini);
-		header( "Location: ".$ini['dirhtml']."/MDBpages/settings.php" );
-		exit();
-	} else if(isset($_POST["default-ini"])) {
-		$ini['myname'] = $_POST['myname'];
-		$ini['weeklyTo'] = $_POST['weeklyTo'];
-		$ini['thema1'] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['thema1']);
-		$ini['incidentID'] = $_POST['incidentID'];
-		$ini['incidentKPI'] = $_POST['incidentKPI'];
-		$ini['servicesID'] = $_POST['servicesID'];
-		$ini['incidentTheme'] = $_POST['incidentTheme'];
-		$ini['servicesTheme'] = $_POST['servicesTheme'];
-		//$ini['servicesKPI'] = $_POST['servicesKPI'];
+		$_SESSION['staff']['style'] = $_POST['csstype'];
 		
-		write_ini_file($ini['dirWin'].'/data/config.ini', $ini);
-		header( "Location: ".$ini['dirhtml']."/MDBpages/settings.php" );
+		$staff = readCsvFile2($ini['dirWin'].'/prototype/data/staff.csv');
+		for($i=1; $i<count($staff);$i++) {
+			if($_SESSION['staff']['id'] == $staff[$i]['id']) {
+				$staff[$i]['style'] = $_POST['csstype'];
+			}
+		}
+		writeCsvFile($ini['dirWin'].'/prototype/data/staff.csv', $staff);
+		header( "Location: ".$ini['dirhtml']."/prototype/settings.php" );
 		exit();
-	} 
+	}
 
-	include($ini['dirWin'].'/MDBpages/hedder.php');
+	include($ini['dirWin'].'/prototype/hedder.php');
 ?>
 
 <body class="drawer drawer--left">
 <?php
-	include($ini['dirWin'].'/MDBpages/navigation.php');
+	include($ini['dirWin'].'/prototype/navigation.php');
 	if(!isset($_GET['page'])) $_GET['page'] = "top";
 ?>
 
@@ -55,13 +54,13 @@
 		$txt .= "<button type='button' class=\"btn\" onclick=\"setHref('/Memoria/img/bootstrap4/MDB/css/frandre.css'); setValue('frandre')\" style='margin: 0 5px auto; background-color: #dd4814;'>赤色</button>";
 		$txt .= "<button type='button' class=\"btn\" onclick=\"setHref(''); setValue('white')\" style='margin: 0 5px auto; background-color: #000;'>モノクロ</button>";
 		$txt .= '</div><div class="form-group pull-right">';
-		$txt .= "<button type='submit' value='" . $ini['csstype'] . "' class='btn btn-danger' id='csstype' name='csstype' style='margin: 0 10px auto'>確定</button></div>";
+		$txt .= "<button type='submit' value='niko' class='btn btn-danger' id='csstype' name='csstype' style='margin: 0 10px auto'>確定</button></div>";
 		$txt .= "</form>";
 		
 		echo_panel("Memoriaのテーマ編集", $txt, "info");
 		
 
-		
+		/*
 		//基本的な設定項目の更新
 		$keeper_theme = readCsvFile2($ini['dirWin'].'/data/todo_keeper_theme.csv');
 		$txt = "<form class='form-horizontal' method='post' action='./settings.php'>";
@@ -147,6 +146,7 @@
 			}
 		}
 		echo_panel("dataファイルの更新", $txt, "info");
+		*/
 	?>
 	
 	<!--
@@ -154,44 +154,44 @@
 		<span class="last-version"></span>todo.csvの更新ver+Order<span class="base-version"></span>
 	</div>
 	<div id="sampleWrap">
-		<a href="/Memoria/MDBpages/settings/PlusOrder.php" class="btn btn-danger btn-block btn-sm">更新</a>
+		<a href="/Memoria/prototype/settings/PlusOrder.php" class="btn btn-danger btn-block btn-sm">更新</a>
 	</div>
 	<div class="basedon small">
 		<span class="last-version"></span>working.csvの更新ver+periodically<span class="base-version"></span>
 	</div>
 	<div id="sampleWrap">
-		<a href="/Memoria/MDBpages/settings/xxx_20171022.php" class="btn btn-danger btn-block btn-sm">更新</a>
+		<a href="/Memoria/prototype/settings/xxx_20171022.php" class="btn btn-danger btn-block btn-sm">更新</a>
 	</div>
 	<div class="basedon small">
 		<span class="last-version"></span>todo.csvの更新ver+今日やること<span class="base-version"></span>
 	</div>
 	<div id="sampleWrap">
-		<a href="/Memoria/MDBpages/settings/PlusTodayDo.php" class="btn btn-danger btn-block btn-sm">更新</a>
+		<a href="/Memoria/prototype/settings/PlusTodayDo.php" class="btn btn-danger btn-block btn-sm">更新</a>
 	</div>
 	<div class="basedon small">
 		<span class="last-version"></span>todo.csvの更新ver+テーマ対応、テーマ概要<span class="base-version"></span>
 	</div>
 	<div id="sampleWrap">
-		<a href="/Memoria/MDBpages/settings/xxx_20180507.php" class="btn btn-danger btn-block btn-sm">更新</a>
+		<a href="/Memoria/prototype/settings/xxx_20180507.php" class="btn btn-danger btn-block btn-sm">更新</a>
 	</div>
 	
 	<div class="basedon small">
 		<span class="last-version"></span>todoリストを分ける<span class="base-version"></span>
 	</div>
 	<div id="sampleWrap">
-		<a href="/Memoria/MDBpages/settings/makeBK.php" class="btn btn-danger btn-block btn-sm">更新</a>
+		<a href="/Memoria/prototype/settings/makeBK.php" class="btn btn-danger btn-block btn-sm">更新</a>
 	</div>
 	<div class="basedon small">
 		<span class="last-version"></span>担当追加<span class="base-version"></span>
 	</div>
 	<div id="sampleWrap">
-		<a href="/Memoria/MDBpages/settings/Pluspeople.php" class="btn btn-danger btn-block btn-sm">更新</a>
+		<a href="/Memoria/prototype/settings/Pluspeople.php" class="btn btn-danger btn-block btn-sm">更新</a>
 	</div>
 	<div class="basedon small">
 		<span class="last-version"></span>週報情報修正<span class="base-version"></span>
 	</div>
 	<div id="sampleWrap">
-		<a href="/Memoria/MDBpages/settings/makeWeeklycsv.php" class="btn btn-danger btn-block btn-sm">更新</a>
+		<a href="/Memoria/prototype/settings/makeWeeklycsv.php" class="btn btn-danger btn-block btn-sm">更新</a>
 	</div>
 	-->
 </div>
@@ -200,7 +200,7 @@
 </div>
 <!--Main Layout-->
 <?php
-	include($ini['dirWin'].'/MDBpages/footer.php');
+	include($ini['dirWin'].'/prototype/footer.php');
 ?>
 
 <script>

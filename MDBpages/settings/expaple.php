@@ -1,5 +1,5 @@
 <div class="container">
-<h1 class="co-12">•\Ž¦—á</h1>
+<h1 class="co-12 text-primary">•\Ž¦—á</h1>
 
   <!-- Typography
   ================================================== -->
