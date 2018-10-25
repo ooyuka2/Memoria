@@ -48,6 +48,7 @@
 		$link_function = $link_pages_Win . "functionpages.php";
 		
 		$link_settings_html = $link_pages_html . "settings.php";
+		$link_system_html  = $link_pages_html . "system.php";
 
 	
 ?>

@@ -132,7 +132,7 @@
 
 <script>
 	$(document).ready(function() {
-		document.getElementsByClassName('todonav')[0].classList.add('activenav');
+		//document.getElementsByClassName('todonav')[0].classList.add('activenav');
 		navOnload();
 	});
 </script>

@@ -25,6 +25,7 @@
 		if($temp2 >= 0) $noki->modify('+ '.$temp2.' days');
 		else $noki->modify('- '.abs($temp2).' days');
 		
+
 		$todo[$id]['id'] = $id;
 		$todo[$id]['タイトル'] = $theme[$i]['テーマ'];
 		$todo[$id]['作業内容'] = $theme[$i]['テーマ']."の作業内容";

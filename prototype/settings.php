@@ -205,7 +205,7 @@
 
 <script>
 	$(document).ready(function() {
-		document.getElementsByClassName('settingsnav')[0].classList.add('activenav');
+		//document.getElementsByClassName('settingsnav')[0].classList.add('activenav');
 		navOnload();
 	});
 	

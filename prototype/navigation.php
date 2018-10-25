@@ -19,13 +19,15 @@
 			<li class="drawer-dropdown systemnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
 				<span class="fa fa-table pull-left drawer-menu-icon"></span><span>設備情報</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=weekly">設備概要</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=mashine">設備概要</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=weekly">設備一覧</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=keeper">IPアドレス一覧</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=new">ソフトウェア一覧</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">ライセンス一覧</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">保守一覧</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">ユーザー一覧</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=weekly">導入予定機器</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=weekly">撤去予定機器</a></li>
 				</ul>
 			</li>
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
@@ -44,27 +46,13 @@
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">ライセンス一覧</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">保守一覧</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">ユーザー一覧</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=weekly">設備導入</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=weekly">設備撤去</a></li>
 				</ul>
 			</li>
-			
-			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-envelope-o pull-left drawer-menu-icon"></span><span>mail</span><span class="fa fa-angle-down pull-right"></span></a>
-				<ul>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=weekly">設備一覧</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=keeper">IPアドレス一覧</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=new">ソフトウェア一覧</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">ライセンス一覧</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">保守一覧</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">ユーザー一覧</a></li>
-				</ul>
+			<li class="drawer-dropdown settingsnav"><a class="drawer-menu-item parent" onclick="location.href='<?php echo $link_settings_html; ?>'">
+				<span class="fa fa-cogs pull-left drawer-menu-icon"></span><span onclick="">settings</span></a>
 			</li>
-			<li class="drawer-dropdown settingsnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-cogs pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_settings_html; ?>'">settings</span><span class="fa fa-angle-down pull-right"></span></a>
-			</li>
-			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-user-o pull-left drawer-menu-icon"></span><span onclick="location.href='/Memoria/prototype/logoff.php'">ログオフ</span><span class="fa fa-angle-down pull-right"></span></a>
+			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="location.href='/Memoria/prototype/logoff.php'">
+				<span class="fa fa-user-o pull-left drawer-menu-icon"></span><span onclick="">ログオフ</span></a>
 			</li>
 		</ul>
 	</nav>
