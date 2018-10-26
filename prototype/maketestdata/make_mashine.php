@@ -59,18 +59,25 @@
 		$tmp = 0;
 		for($j=1; $j<count($mashine); $j++) {
 			//echo $mashine[$j]['hostname'];
-			if(equal_word_str($mashine[$j]['hostname'], $kiban[$tmpkiban][1] . $type[$tmptype][1] . $tmpkyoten[$tmpkyoten][1])) $tmp++;
+			if(serch_word_str($mashine[$j]['hostname'], $kiban[$tmpkiban][1] . $type[$tmptype][1] . $tmpkyoten[$tmpkyoten][1])) $tmp++;
 		}
 		
 		$mashine[$i]['mashineID'] = "m" . sprintf('%06d', $i);
 		$mashine[$i]['‹’“_'] = $kyoten[$tmpkyoten][0];
 		$mashine[$i]['hostname'] = $kiban[$tmpkiban][1] . $type[$tmptype][1] . $tmpkyoten[$tmpkyoten][1] . sprintf('%03d', ($tmp+1));
-		$mashine[$i]['ipaddress'] = "10.2.21." . ($i+1);
+		$mashine[$i]['ipaddress'] = "10.2.45." . ($i+1);
 		$mashine[$i]['ipaddress2'] = "";
 		$mashine[$i]['ipaddress3'] = "";
 		$mashine[$i]['whattodo'] = $kiban[$tmpkiban][0].$type[$tmptype][0];
 		$mashine[$i]['detail'] = "";
-		$mashine[$i]['status'] = "‰Ò“­’†";
+		$tnp = $tmptype = mt_rand(0, 24);
+		if($tnp <= 3) $mashine[$i]['status'] = "“±“ü’†";
+		else if($tnp <= 15) $mashine[$i]['status'] = "‰Ò“­’†";
+		else if($tnp <= 18) $mashine[$i]['status'] = "‰Ò“­’†(Žc‰Û‘è‚ ‚è)";
+		else if($tnp <= 20) $mashine[$i]['status'] = "‰Ò“­’†i‹ßX’âŽ~—\’èj";
+		else if($tnp <= 21) $mashine[$i]['status'] = "’âŽ~’†";
+		else if($tnp <= 23) $mashine[$i]['status'] = "“P‹Žì‹Æ’†";
+		else if($tnp <= 24) $mashine[$i]['status'] = "“P‹ŽE•Ô‹pE”pŠüÏ‚Ý";
 		$mashine[$i]['os'] = $type[$tmptype][2];
 		$mashine[$i]['macaddress'] = sprintf('%02d', mt_rand(0, 99)) . "-" . sprintf('%02d', mt_rand(0, 99)) . "-" . sprintf('%02d', mt_rand(0, 99)) . "-" . sprintf('%02d', mt_rand(0, 99)) . "-" . sprintf('%02d', mt_rand(0, 99));
 		$mashine[$i]['•”'] = "Šî”Õ•”";

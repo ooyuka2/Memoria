@@ -19,8 +19,8 @@
 			<li class="drawer-dropdown systemnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
 				<span class="fa fa-table pull-left drawer-menu-icon"></span><span>設備情報</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=mashine">設備概要</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=weekly">設備一覧</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=about">設備概要</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=mashine">設備一覧</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=keeper">IPアドレス一覧</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=new">ソフトウェア一覧</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">ライセンス一覧</a></li>
