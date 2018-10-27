@@ -8,10 +8,10 @@
 		$staff = readCsvFile2("./data/staff.csv");
 		$login = false;
 		for($i=1; $i<count($staff);$i++) {
-			if($_POST['userID'] == $staff[$i]['id'] && password_verify($_POST['password'], $staff[$i]['password'])) {
+			if($_POST['userID'] == $staff[$i]['社員ID'] && password_verify($_POST['password'], $staff[$i]['パスワード'])) {
 				$login = true;
 				/*
-				$_SESSION['staff']['id'] = $_POST['userID'];
+				$_SESSION['staff']['id'] = $_POST['社員ID'];
 				$_SESSION['staff']['name'] = $staff[$i][0];
 				$_SESSION['staff']['authority'] = $staff[$i][3];
 				*/
@@ -23,6 +23,7 @@
 			exit();
 		 }
 	}
+	
 ?>
 <?php
 	include($ini['dirWin'].'/prototype/hedder.php');
@@ -42,6 +43,7 @@
 		<h1>ログイン画面</h1>
 		
 <?php
+		print_r_pre($_SESSION['staff']);
 		if(isset($login) && !$login) { 
 			echo "ログイン失敗<br>"; 
 			echo password_hash("rasmuslerdorf", PASSWORD_DEFAULT)."\n";

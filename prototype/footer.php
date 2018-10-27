@@ -35,6 +35,7 @@
 	<?php
 		echo '<script type="text/javascript" src="' . $link_javascript_js . $updatefiletime . '"></script>';
 		echo '<script type="text/javascript" src="' . $link_javascriptpages_js . $updatefiletime . '"></script>';
+		echo '<script type="text/javascript" src="' . $ini['dirhtml'] . "/js/javascriptPrototypepages.js" . $updatefiletime . '"></script>';
 	?>
 
 	

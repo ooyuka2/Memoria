@@ -19,13 +19,13 @@
 			<li class="drawer-dropdown systemnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
 				<span class="fa fa-table pull-left drawer-menu-icon"></span><span>設備情報</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=about">設備概要</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>">設備概要</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=mashine">設備一覧</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=keeper">IPアドレス一覧</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=new">ソフトウェア一覧</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">ライセンス一覧</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">保守一覧</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">ユーザー一覧</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=norerece">ソフトウェア一覧</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=norerece">ライセンス一覧</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=norerece">保守一覧</a></li>
+					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=norerece">ユーザー一覧</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=weekly">導入予定機器</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=weekly">撤去予定機器</a></li>
 				</ul>
@@ -39,13 +39,7 @@
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
 				<span class="fa fa-comments-o pull-left drawer-menu-icon"></span><span>チャット</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=weekly">設備概要</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=weekly">設備一覧</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?page=keeper">IPアドレス一覧</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=new">ソフトウェア一覧</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">ライセンス一覧</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">保守一覧</a></li>
-					<li><a class="drawer-menu-item" href="<?php echo $link_system_html; ?>?d=calendar">ユーザー一覧</a></li>
+					
 				</ul>
 			</li>
 			<li class="drawer-dropdown settingsnav"><a class="drawer-menu-item parent" onclick="location.href='<?php echo $link_settings_html; ?>'">
@@ -68,7 +62,7 @@
 		</div>
 		<?php 
 			if(isset($_SESSION['staff']))
-			echo "<div class='float-right' style='margin-right:50px'><i class='fa fa-user-circle-o fa-3x' aria-hidden='true'></i><span style='color:#fff;font-size:1.5rem;'>" . $_SESSION['staff']['staff'] . "さん</span></div>";
+			echo "<div class='float-right' style='margin-right:50px'><i class='fa fa-user-circle-o fa-3x text-white' aria-hidden='true'></i>　<span style='color:#fff;font-size:1.5rem;'>" . $_SESSION['staff']['苗字'] . "さん</span></div>";
 		
 		?>
 		<!-- Search form -->

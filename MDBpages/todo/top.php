@@ -20,9 +20,9 @@
 
 	if(isset($_GET['d']) && (($_GET['d']=="renew" && isset($_GET['p'])) || ($_GET['d']=="new") || ($_GET['d']=="change" && isset($_GET['p'])))) {
 		
-		echo '<div class="order-sm-last order-md-first col-md-2 col-xl-3 "><div id="todo_memo_comp"></div><div id="todo_keeper_comp"></div></div>';
+		echo '<div class="order-md-last order-lg-first col-lg-2 col-xl-3 "><div id="todo_memo_comp"></div><div id="todo_keeper_comp"></div></div>';
 		
-		echo '<div class="col-12 col-md-9 col-xl-8 offset-md-1 offset-xl-1"  id="todo_space_comp">';
+		echo '<div class="col-md-12 col-lg-9 col-xl-8 offset-xl-1 offset-lg-1"  id="todo_space_comp">';
 		include('todo/todo_make.php');
 		echo '</div>';
 	} else {

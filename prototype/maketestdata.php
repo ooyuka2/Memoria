@@ -21,7 +21,7 @@
 <div class="pull-left drawer-hover"></div>
 <main class="row">
 	<?php
-		$pass = $link_pages_Win . "system/".$_GET['page'].".php";
+		$pass = $link_pages_Win . "maketestdata/".$_GET['page'].".php";
 		include($pass);
 	?>
 </main>
@@ -33,7 +33,7 @@
 
 <script>
 	$(document).ready(function() {
-		document.getElementsByClassName('systemnav')[0].classList.add('activenav');
+		//document.getElementsByClassName('systemnav')[0].classList.add('activenav');
 		navOnload();
 	});
 </script>

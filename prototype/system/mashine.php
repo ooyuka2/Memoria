@@ -1,27 +1,23 @@
 <?php
-	$file = readCsvFile2($ini['dirWin'].'/prototype/data/mashine.csv');
-	//name,furi,summary,detail,count,syurui,date,delete
-	//$group = readCsvFile2($ini['dirWin'].'/data/file_group.csv');
-	//group,abc,detail
+	$file = readCsvFile2($ini['dirWin'].'/prototype/data/equipment.csv');
+	
+	$os = readCsvFile2($ini['dirWin'].'/prototype/data/os.csv');
+	$kiban = readCsvFile2($ini['dirWin'].'/prototype/data/kiban.csv');
+	$equipmentStatus = readCsvFile2($ini['dirWin'].'/prototype/data/equipmentStatus.csv');
+	$equipmentStatus2 = readCsvFile2($ini['dirWin'].'/prototype/data/equipmentStatus2.csv');
+	$domain  = readCsvFile2($ini['dirWin'].'/prototype/data/domain.csv');
+	$equipmentType = readCsvFile2($ini['dirWin'].'/prototype/data/equipmentType.csv');
+	$where = readCsvFile2($ini['dirWin'].'/prototype/data/where.csv');
+	$connext = readCsvFile2($ini['dirWin'].'/prototype/data/connext.csv');
+	$Department = readCsvFile2($ini['dirWin'].'/prototype/data/Department.csv');
 
-	//変更動作についての文章。
-	if(isset($_SESSION['change'])) {
-		echo "<div class='alert alert-dismissible alert-info col-12'><button type='button' class='close' data-dismiss='alert'>&times;</button><p>{$_SESSION['change']}</p></div>";
-		unset($_SESSION['change']);
-	}
-	//削除動作についての文章。
-	//print_r($_SESSION);
-	if(isset($_SESSION['delete'])) {
-		echo "<div class='alert alert-dismissible alert-warning col-12'><button type='button' class='close' data-dismiss='alert'>&times;</button><p class='text-danger'>{$_SESSION['delete']}</p></div>";
-		unset($_SESSION['delete']);
-	}
 ?>
 
 	<div class="col-12">
 		<a href="./file.php?page=table_make&type=new" class="btn btn-info">新規</a>　
 		<button onclick="location.reload()" class="btn btn-primary">再読み込み</button>
 		<div class='table-responsive container-fluid'>
-			<table class='table table-striped table-hover ' id='tablespage' cellspacing="0" width="100%">
+			<table class='table table-striped table-hover table-sm' id='tablespage' cellspacing="0" width="100%">
 				<thead>
 					<tr>
 						<th class="th-sm">詳細</th>
@@ -38,17 +34,17 @@
 				<?php
 					for($i = 1; $i<count($file); $i++) {
 						echo "<tr>";
-						echo "<td><button class='btn btn-info'>詳細</button></td>";
-						echo "<td>" . $file[$i]['拠点'] . "</td>";
-						echo "<td>" . $file[$i]['status'] . "</td>";
-						echo "<td>" . $file[$i]['hostname'] . "</td>";
-						echo "<td>" . $file[$i]['ipaddress'] . "</td>";
-						echo "<td>" . $file[$i]['whattodo'] . "</td>";
-						echo "<td>" . $file[$i]['os'] . "</td>";
-						echo "<td>" . $file[$i]['部署'] . "</td>";
+						echo "<td><button class='btn btn-light btn-sm'>詳細</button></td>";
+						echo "<td>" . $where[$file[$i]['拠点ID']]['名前'] . "</td>";
+						echo "<td>" . $equipmentStatus[$file[$i]['設備ステータスID']]['ステータス名'] . "</td>";
+						echo "<td>" . $file[$i]['マシン名'] . "</td>";
+						echo "<td>" . $file[$i]['IPアドレス'] . "</td>";
+						echo "<td>" . $file[$i]['用途'] . "</td>";
+						if($file[$i]['OSID'] == "") echo "<td></td>";
+						else echo "<td>" . $os[$file[$i]['OSID']]['OS名'] . "</td>";
+						echo "<td>" . $Department[$file[$i]['設備管理部門']]['部署名'] . "</td>";
 						echo "</tr>";
 					}
-					
 				?>
 				</tbody>
 			</table>

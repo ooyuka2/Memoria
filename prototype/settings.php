@@ -2,7 +2,7 @@
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
 		session_start();
 		header("Content-type: text/html; charset=SJIS-win");
-	if(!isset($_SESSION['staff']['id'])) {
+	if(!isset($_SESSION['staff']['社員ID'])) {
 		header( "Location: ".$ini['dirhtml']."/prototype/login.php" );
 		exit();
 	}
@@ -59,7 +59,11 @@
 		
 		echo_panel("Memoriaのテーマ編集", $txt, "info");
 		
-
+		$txt = "<a href='./maketestdata.php'>テストデータ作成ページ</a><br>";
+		$txt .= "<a href='./data/er/ER.png'>ER図</a>";
+		echo_panel("プロトタイプ作成に関するあれこれ", $txt, "warning");
+		
+		
 		/*
 		//基本的な設定項目の更新
 		$keeper_theme = readCsvFile2($ini['dirWin'].'/data/todo_keeper_theme.csv');

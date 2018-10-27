@@ -2,7 +2,7 @@
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
 		session_start();
 		header("Content-type: text/html; charset=SJIS-win");
-	if(!isset($_SESSION['staff']['id'])) {
+	if(!isset($_SESSION['staff']['ŽÐˆõID'])) {
 		header( "Location: ".$ini['dirhtml']."/prototype/login.php" );
 		exit();
 	}
