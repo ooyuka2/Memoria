@@ -45,6 +45,28 @@
 			echo_panel("最近のインシデント作業", $txt, "danger");
 		?>
 	</div>
+	<div class="col-lg-6 col-12"> <!-- container-fluid -->
+		
+		<?php
+			$mashine = readCsvFile2($ini['dirWin'].'/prototype/data/equipment.csv');
+			$txt = "<ui>";
+			for($i = (count($incident)-1); $i >= (count($incident)-6); $i--) $txt .= "<li>" .$incident[$i]['インシデント発生日'] . '　：　<a style="color:#008db7" onclick="">' . $mashine[mt_rand(0, (count($mashine)-1))]['マシン名'] . '監視システム一時停止予定</a></li>';
+			$txt .= "</ui><span class='pull-right'><a style=\"color:#008db7\" onclick=\"\">etc……</a></span>";
+			echo_panel("監視システム一時停止のお知らせ", $txt, "warning");
+		?>
+	</div>
+	<div class="col-lg-6 col-12"> <!-- container-fluid -->
+		
+		<?php
+			$work = readCsvFile2($ini['dirWin'].'/prototype/data/work.csv');
+			$txt = "<ui>";
+			for($i = (count($work)-1); $i >= (count($work)-6); $i--) {
+				//$txt .= "<li>" . $work[$i]['作業予定開始日時'] . "　：　" . $work[$i]['作業タイトル'] . "</li>";
+			}
+			$txt .= "</ui>";
+			echo_panel("あなたへのお知らせ", $txt, "info");
+		?>
+	</div>
 	<!--Panel
 	<div class="col-sm-6">
 		<div class="card">
