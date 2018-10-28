@@ -9,12 +9,12 @@
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
 				<span class="fa fa-tasks pull-left drawer-menu-icon"></span><span>作業申請</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
-					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>?page=weekly">新規申請</a></li>
-					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>?d=calendar">申請書の回覧</a></li>
-					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>?page=keeper">作業前</a></li>
-					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>?d=new">作業中</a></li>
-					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>?d=calendar">監視システムのメンテナンス予定</a></li>
-					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>?d=calendar">作業完了・報告書</a></li>
+					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>">新規申請</a></li>
+					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>">申請書の回覧</a></li>
+					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>">作業前</a></li>
+					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>">作業中</a></li>
+					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>">監視システムのメンテナンス予定</a></li>
+					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>">作業完了・報告書</a></li>
 				</ul>
 			</li>
 			<li class="drawer-dropdown systemnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
@@ -29,6 +29,7 @@
 					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>?page=norerece">ユーザー一覧</a></li>
 					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>?page=weekly">導入予定機器</a></li>
 					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>?page=weekly">撤去予定機器</a></li>
+					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_system_html; ?>?page=weekly">他ツールからの連携</a></li>
 				</ul>
 			</li>
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
@@ -38,7 +39,7 @@
 				</ul>
 			</li>
 			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-info pull-left drawer-menu-icon"></span><span>電算メンテナンス</span><span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-info pull-left drawer-menu-icon"></span><span>メンテナンス</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item"style="font-size:12px" href="">今月メンテナンス時の業務停止予定</a></li>
 					<li><a class="drawer-menu-item"style="font-size:12px" href="">定期メンテナンス予定</a></li>
