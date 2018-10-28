@@ -19,13 +19,30 @@
 <div class="main-contents">
 <div class="pull-left drawer-hover"></div>
 <main class="row">
-	<div class="container-fluid col-12">
+	<div class="col-12">
 		<h1>プロトタイプ</h1>
-		<p>設備の管理全般をまとめてできるとうれしいですよね！！！</p>
+	</div>
+	<div class="col-lg-6 col-12"> <!-- container-fluid -->
+		
 		<?php
-			//echo '<a href="'.$link_pages_html.'todo/whatTodayDo.php?auto=OK" class="btn btn-warning btn-lg last-release-download-link"><i class="fa fa-github-alt"></i>一日の始まり</a>';
-			//echo '<a href="'.$link_pages_html.'todo.php" class="btn btn-default btn-lg last-release-download-link"><i class="fa fa-github-alt"></i>やることリスト</a>';
-			//echo '<a href="'.$ini['dirhtml'].'/MDBpages/file.php" class="btn btn-primary btn-lg"><i class="fa fa-play"></i> Watch Link</a>';
+			$work = readCsvFile2($ini['dirWin'].'/prototype/data/work.csv');
+			$txt = "<ui>";
+			for($i = (count($work)-1); $i >= (count($work)-6); $i--) {
+				$txt .= "<li>" . $work[$i]['作業予定開始日時'] . "　：　" . $work[$i]['作業タイトル'] . "</li>";
+			}
+			$txt .= "</ui><span class='pull-right'>etc……</span>";
+			echo_panel("最近の設備に対する変更作業", $txt, "info");
+		?>
+	</div>
+	<div class="col-lg-6 col-12"> <!-- container-fluid -->
+		
+		<?php
+			$incident = readCsvFile2($ini['dirWin'].'/prototype/data/incident.csv');
+			$incidentStatus = readCsvFile2($ini['dirWin'].'/prototype/data/incidentStatus.csv');
+			$txt = "<ui>";
+			for($i = (count($incident)-1); $i >= (count($incident)-6); $i--) $txt .= "<li>" .$incident[$i]['インシデント発生日'] . "　：　【" . $incidentStatus[$incident[$i]['インシデントステータスID']]['ステータス'] . '】<a style="color:#008db7" onclick="alert(\'レッドマインと連携すると便利かなと思います\')">' . $incident[$i]['インシデント内容'] . "</a></li>";
+			$txt .= "</ui><span class='pull-right'><a style=\"color:#008db7\" onclick=\"alert('レッドマインと連携すると便利かなと思います')\">etc……</a></span>";
+			echo_panel("最近のインシデント作業", $txt, "danger");
 		?>
 	</div>
 	<!--Panel

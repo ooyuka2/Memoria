@@ -21,7 +21,7 @@
 		<a href="./dictionary.php?page=table_make&type=new" class="btn btn-info">V‹K</a>@
 		<button onclick="location.reload()" class="btn btn-primary">Ä“Ç‚Ýž‚Ý</button>
 		<div class='table-responsive container-fluid'>
-			<table class='table table-striped table-hover ' id='datatable'>
+			<table class='table table-striped table-hover table-sm' id='datatable'>
 				<thead>
 					<tr>
 						<th class="col-3">ƒƒ‚</th>

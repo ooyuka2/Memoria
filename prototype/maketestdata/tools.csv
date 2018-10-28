@@ -1,3 +1,4 @@
 ファイル名,説明,種類,拡張子
 make_mashine.php,１．マシン一覧にマシン追加,,php
 make_work.php,２．作業履歴を追加,,php
+make_incident.php,３．インシデント情報を追加,,php

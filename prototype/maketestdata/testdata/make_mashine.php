@@ -10,12 +10,124 @@
 	$mashine = array();
 	$mashine[0] = $tmp;
 	
+	
+	//設備情報のダミーデータ作成
 	//print_r_pre($mashine);
 	$mashine = makemashin($mashine, 1, "10.2.1.");
 	$mashine = makemashin($mashine, count($mashine), "10.2.45.");
 	$mashine = makemashin($mashine, count($mashine), "10.2.60.");
 	
 	writeCsvFile2($ini['dirWin'].'/prototype/data/equipment.csv', $mashine);
+	
+	
+	$mashineChange = readCsvFile2($ini['dirWin'].'/prototype/data/equipmentChange.csv');
+	$staff = readCsvFile2($ini['dirWin'].'/prototype/data/staff.csv');
+	$tmp = $mashineChange[0];
+	$mashineChange = array();
+	$mashineChange[0] = $tmp;
+	
+	
+	//設備情報更新時の履歴のダミーデータ作成
+	for($i=1; $i<count($mashine); $i++) {
+		//設備変更履歴ID,変更内容,社員ID,設備ID,変更日時
+		$id = count($mashineChange);
+		$mashineChange[$id]['設備変更履歴ID'] = $id;
+		$mashineChange[$id]['変更内容'] = "新規登録";
+		$mashineChange[$id]['社員ID'] = $staff[mt_rand(1, 3)]['社員ID'];
+		$mashineChange[$id]['設備ID'] = $i;
+		$mashineChange[$id]['変更日時'] = date($mashine[$i]['導入日'], strtotime("- 14 days"));
+		
+		if($mashine[$i]['設備ステータスID'] > 3) {
+			$id = count($mashineChange);
+			$mashineChange[$id]['設備変更履歴ID'] = $id;
+			$mashineChange[$id]['変更内容'] = "リリース許可";
+			$mashineChange[$id]['社員ID'] = $staff[mt_rand(4, 6)]['社員ID'];
+			$mashineChange[$id]['設備ID'] = $i;
+			$mashineChange[$id]['変更日時'] = date($mashine[$i]['導入日'], strtotime("+ 7 days"));
+			
+			$tmp = mt_rand(0, 20);
+			
+			for($j=0; $j<$tmp; $j++) {
+				$id = count($mashineChange);
+				$mashineChange[$id]['設備変更履歴ID'] = $id;
+				$mashineChange[$id]['変更内容'] = "○○を変更。▲▲⇒■■";
+				$mashineChange[$id]['社員ID'] = $staff[mt_rand(1, 3)]['社員ID'];
+				$mashineChange[$id]['設備ID'] = $i;
+				$mashineChange[$id]['変更日時'] = date("Y/m/d H:i:s", mt_rand(strtotime($mashine[$i]['導入日']), strtotime( "now" )));
+			}
+			
+			if($mashine[$i]['設備ステータスID'] == 7) {
+				$id = count($mashineChange);
+				$mashineChange[$id]['設備変更履歴ID'] = $id;
+				$mashineChange[$id]['変更内容'] = "撤去完了確認";
+				$mashineChange[$id]['社員ID'] = $staff[mt_rand(4, 6)]['社員ID'];
+				$mashineChange[$id]['設備ID'] = $i;
+				$mashineChange[$id]['変更日時'] = $mashine[$i]['撤去日'];
+			}
+		}
+	}
+	/*
+	for($i=1; $i<count($mashineChange); $i++) {
+		if (strtotime('2011-08-12') > strtotime('2011-01-12')) {
+		
+		}
+	}*/
+	foreach ((array) $mashineChange as $key => $value) {
+		$sort[$key] = $value['変更日時'];
+	}
+
+	array_multisort($sort, SORT_ASC, $mashineChange);
+	$num = (count($mashineChange)-1);
+	$tmp = array();
+	$tmp[0] = $mashineChange[$num];
+	$mashineChange = array_merge($tmp, $mashineChange);
+	
+	$num = (count($mashineChange)-1);
+	$mashineChange[$num] = array();
+	
+	writeCsvFile2($ini['dirWin'].'/prototype/data/equipmentChange.csv', $mashineChange);
+	
+	
+	
+	//OS基本情報のダミーデータ作成
+	//設備ID,設備タイプID,OS導入,バックアップ設定,不要ソフトウェアの削除,ホスト名設定,IPアドレス設定,セキュリティ対策ソフト導入,アクセスログソフト導入,監視ソフトウェア導入,指紋認証装置導入,デバイス制御ソフト導入
+	$basicEquipmentSetting = readCsvFile2($ini['dirWin'].'/prototype/data/basicEquipmentSetting.csv');
+	$tmp = $basicEquipmentSetting[0];
+	$basicEquipmentSetting = array();
+	$basicEquipmentSetting[0] = $tmp;
+	
+	for($i=1; $i<count($mashine); $i++) {
+	
+		if($mashine[$i]['設備タイプID'] == 1) {
+			$basicEquipmentSetting[$i]['設備ID'] = $mashine[$i]['設備ID'];
+			$basicEquipmentSetting[$i]['設備タイプID'] = 1;
+			$basicEquipmentSetting[$i]['OS導入'] = 1;
+			$basicEquipmentSetting[$i]['バックアップ設定'] = 1;
+			$basicEquipmentSetting[$i]['不要ソフトウェアの削除'] = 1;
+			$basicEquipmentSetting[$i]['ホスト名設定'] = 1;
+			$basicEquipmentSetting[$i]['IPアドレス設定'] = 1;
+			if($mashine[$i]['設備ステータスID'] == 3) {
+				$basicEquipmentSetting[$i]['セキュリティ対策ソフト導入'] = 1;
+				$basicEquipmentSetting[$i]['アクセスログソフト導入'] = 1;
+				$basicEquipmentSetting[$i]['監視ソフトウェア導入'] = 1;
+				$basicEquipmentSetting[$i]['指紋認証装置導入'] = 1;
+				$basicEquipmentSetting[$i]['デバイス制御ソフト導入'] = 1;
+			} else {
+				$basicEquipmentSetting[$i]['セキュリティ対策ソフト導入'] = 1;
+				$basicEquipmentSetting[$i]['アクセスログソフト導入'] = 1;
+				$basicEquipmentSetting[$i]['監視ソフトウェア導入'] = 0;
+				$basicEquipmentSetting[$i]['指紋認証装置導入'] = 1;
+				$basicEquipmentSetting[$i]['デバイス制御ソフト導入'] = 1;
+			}
+		}
+	
+	}
+	
+	writeCsvFile2($ini['dirWin'].'/prototype/data/basicEquipmentSetting.csv', $basicEquipmentSetting);
+	
+	
+	
+	
 	
 	echo "<h4>finish!</h4>";
 	print_r_pre($mashine);
@@ -71,7 +183,7 @@
 			$mashine[$i]['IPアドレス3'] = "";
 			$mashine[$i]['用途'] = $kiban[$tmpkiban]['説明'] . $youto . $tmp . "号機";
 			$mashine[$i]['MACアドレス'] = sprintf('%02d', mt_rand(0, 99)) . "-" . sprintf('%02d', mt_rand(0, 99)) . "-" . sprintf('%02d', mt_rand(0, 99)) . "-" . sprintf('%02d', mt_rand(0, 99)) . "-" . sprintf('%02d', mt_rand(0, 99));
-			$mashine[$i]['導入日'] = date("Y/m/d", mt_rand($start, $end));
+			$mashine[$i]['導入日'] = date("Y/m/d H:i:s", mt_rand($start, $end));
 			$mashine[$i]['撤去日'] = "";
 			$mashine[$i]['設備詳細説明'] = "";
 			$mashine[$i]['OSID'] = $tmptype;
@@ -96,7 +208,7 @@
 			else if($tnp <= 23) $mashine[$i]['設備ステータスID'] = 6;
 			else if($tnp <= 24) {
 				$mashine[$i]['設備ステータスID'] = 7;
-				$mashine[$i]['撤去日'] = date("Y/m/d", mt_rand(strtotime($mashine[$i]['導入日']), $end));
+				$mashine[$i]['撤去日'] = date("Y/m/d H:i:s", mt_rand(strtotime($mashine[$i]['導入日']), $end));
 			}
 			
 			if($tnp == 23 || $tnp == 24 || $tnp == 20 ) $mashine[$i]['設備ステータス2ID'] = 2;
@@ -119,7 +231,7 @@
 		$mashine[$i]['IPアドレス3'] = "";
 		$mashine[$i]['用途'] = "ファイヤーウォール" . $tmp . "号機";
 		$mashine[$i]['MACアドレス'] = sprintf('%02d', mt_rand(0, 99)) . "-" . sprintf('%02d', mt_rand(0, 99)) . "-" . sprintf('%02d', mt_rand(0, 99)) . "-" . sprintf('%02d', mt_rand(0, 99)) . "-" . sprintf('%02d', mt_rand(0, 99));
-		$mashine[$i]['導入日'] = date("Y/m/d", mt_rand($start, $end));
+		$mashine[$i]['導入日'] = date("Y/m/d H:i:s", mt_rand($start, $end));
 		$mashine[$i]['撤去日'] = "";
 		$mashine[$i]['設備詳細説明'] = "";
 		$mashine[$i]['OSID'] = "";

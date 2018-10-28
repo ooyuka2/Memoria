@@ -21,7 +21,7 @@
 		<a href="./mail.php?page=table_make&type=new" class="btn btn-info">新規</a>　
 		<button onclick="location.reload()" class="btn btn-primary">再読み込み</button>
 		<div class='table-responsive container-fluid'>
-			<table class='table table-striped table-hover ' id='datatable'>
+			<table class='table table-striped table-hover table-sm' id='datatable'>
 				<thead>
 					<tr>
 						<th class="col-3">タイトル</th>
