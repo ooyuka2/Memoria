@@ -49,7 +49,7 @@
 	$workStaff = readCsvFile2($ini['dirWin'].'/prototype/data/workStaff.csv');
 	$workEquipment = readCsvFile2($ini['dirWin'].'/prototype/data/workEquipment.csv');
 	
-	
+	$sort = array(); 
 	foreach ((array) $work as $key => $value) {
 		$sort[$key] = $value['ì‹ÆI—¹“ú'];
 	}
@@ -61,12 +61,16 @@
 	$work = array_merge($tmp, $work);
 	
 	$num = (count($work)-1);
-	$work[$num] = array();
 	
+	
+	
+	for($i=1; $i<count($work); $i++) {
+		$work[$i]['ì‹Æ\¿‘ID'] = $i;
+	}
+	unset($work[$num]);
 	writeCsvFile2($ini['dirWin'].'/prototype/data/work.csv', $work);
-	
-	echo "<h4>finish!</h4>";
-	print_r_pre($work);
+	echo "<h4>finishì‹Æî•ñ!</h4>";
+	//print_r_pre($work);
 	
 	
 function make_work_data($work, $workUser, $workStaff, $workEquipment, $ini, $workTypenum) {

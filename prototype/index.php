@@ -18,7 +18,7 @@
 <!--Main Layout-->
 <div class="main-contents">
 <div class="pull-left drawer-hover"></div>
-<main class="row">
+<main class="row row-eq-height">
 	<div class="col-12">
 		<h1>プロトタイプ</h1>
 	</div>
@@ -31,7 +31,7 @@
 				$txt .= "<li>" . date("Y/m/d", strtotime($work[$i]['作業予定開始日時'])) . "　：　" . $work[$i]['作業タイトル'] . "</li>";
 			}
 			$txt .= "</ui><span class='pull-right'>etc……</span>";
-			echo_panel("最近の設備に対する変更作業", $txt, "info");
+			echo_panel_h100("最近の設備に対する変更作業", $txt, "info");
 		?>
 	</div>
 	<div class="col-lg-6 col-xl-3 col-12"> <!-- container-fluid -->
@@ -42,7 +42,7 @@
 			$txt = "<ui>";
 			for($i = (count($incident)-1); $i >= (count($incident)-6); $i--) $txt .= "<li>" .date("Y/m/d", strtotime($incident[$i]['インシデント発生日'])) . "　：【" . $incidentStatus[$incident[$i]['インシデントステータスID']]['ステータス'] . '】<a style="color:#008db7" onclick="alert(\'レッドマインと連携すると便利かなと思います\')">' . $incident[$i]['インシデント内容'] . "</a></li>";
 			$txt .= "</ui><span class='pull-right'><a style=\"color:#008db7\" onclick=\"alert('レッドマインと連携すると便利かなと思います')\">etc……</a></span>";
-			echo_panel("最近のインシデント作業", $txt, "danger");
+			echo_panel_h100("最近のインシデント作業", $txt, "danger");
 		?>
 	</div>
 	<div class="col-lg-6 col-xl-3 col-12"> <!-- container-fluid -->
@@ -52,7 +52,7 @@
 			$txt = "<ui>";
 			for($i = (count($incident)-1); $i >= (count($incident)-6); $i--) $txt .= "<li>" . date("Y/m/d", strtotime($incident[$i]['インシデント発生日'])) . '　：　<a style="color:#008db7" onclick="">' . $mashine[mt_rand(0, (count($mashine)-1))]['マシン名'] . '監視システム一時停止予定</a></li>';
 			$txt .= "</ui><span class='pull-right'><a style=\"color:#008db7\" onclick=\"\">etc……</a></span>";
-			echo_panel("監視システム一時停止のお知らせ", $txt, "warning");
+			echo_panel_h100("監視システム一時停止のお知らせ", $txt, "warning");
 		?>
 	</div>
 	<div class="col-lg-6 col-xl-3 col-12"> <!-- container-fluid -->
@@ -64,7 +64,7 @@
 				//$txt .= "<li>" . $work[$i]['作業予定開始日時'] . "　：　" . $work[$i]['作業タイトル'] . "</li>";
 			}
 			$txt .= "</ui>";
-			echo_panel("あなたへのお知らせ", $txt, "info");
+			echo_panel_h100("あなたへのお知らせ", $txt, "info");
 		?>
 	</div>
 	<!--Panel

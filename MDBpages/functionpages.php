@@ -164,4 +164,17 @@ function echo_panel($title, $txt, $pattern) {
 	
 }
 
+function echo_panel_h100($title, $txt, $pattern) {
+			echo "<div class='card h-100 border-{$pattern}' style='text-align:start;'>";
+			
+			echo "<div class='card-header'>";
+			echo "<h3 class='card-title'>{$title}</h3>";
+			echo "</div>";
+			echo "<div class='card-body'>";
+			echo $txt;
+			echo "</div>";
+			echo "</div>";
+	
+}
+
 ?>

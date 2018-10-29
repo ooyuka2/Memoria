@@ -83,8 +83,11 @@
 	$mashineChange = array_merge($tmp, $mashineChange);
 	
 	$num = (count($mashineChange)-1);
-	$mashineChange[$num] = array();
 	
+	for($i=1; $i<count($mashineChange); $i++) {
+		$mashineChange[$i]['İ”õ•ÏX—š—ğID'] = $i;
+	}
+	unset($mashineChange[$num]);
 	writeCsvFile2($ini['dirWin'].'/prototype/data/equipmentChange.csv', $mashineChange);
 	
 	
@@ -129,8 +132,8 @@
 	
 	
 	
-	echo "<h4>finish!</h4>";
-	print_r_pre($mashine);
+	echo "<h4>finishİ”õî•ñ!</h4>";
+	//print_r_pre($mashine);
 	
 	
 	function makemashin($mashine, $i, $ipaddress) {

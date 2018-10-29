@@ -17,7 +17,7 @@
 	
 	$incident = make_incident($incident, $incidentEquipment, $ini);
 	writeCsvFile2($ini['dirWin'].'/prototype/data/incident.csv', $incident);
-	echo "<h4>finish!</h4>";
+	echo "<h4>finishインシデント情報!</h4>";
 	
 	
 function make_incident($incident, $incidentEquipment, $ini) {
@@ -48,7 +48,7 @@ function make_incident($incident, $incidentEquipment, $ini) {
 		$incidentEquipment[$ide]['設備ID'] = $tmpmashine;
 		$incidentEquipment[$ide]['インシデントID'] = $id;
 	}
-	
+	$sort = array(); 
 	foreach ((array) $incident as $key => $value) {
 		$sort[$key] = $value['インシデント発生日'];
 	}
@@ -60,13 +60,15 @@ function make_incident($incident, $incidentEquipment, $ini) {
 	$incident = array_merge($tmp, $incident);
 	
 	$num = (count($incident)-1);
-	$incident[$num] = array();
+	
 	
 	//writeCsvFile2($ini['dirWin'].'/prototype/data/work.csv', $incident);
 	
+	for($i=1; $i<count($incident); $i++) {
+		$incident[$i]['インシデントID'] = $i;
+	}
 	
-	
-	
+	unset($incident[$num]);
 	writeCsvFile2($ini['dirWin'].'/prototype/data/incidentEquipment.csv', $incidentEquipment);
 	return $incident;
 }

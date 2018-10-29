@@ -43,7 +43,7 @@
 		<h1>ログイン画面</h1>
 		
 <?php
-		print_r_pre($_SESSION['staff']);
+		//print_r_pre($_SESSION['staff']);
 		if(isset($login) && !$login) { 
 			echo "ログイン失敗<br>"; 
 			echo password_hash("rasmuslerdorf", PASSWORD_DEFAULT)."\n";
