@@ -4,7 +4,7 @@
 			<thead>
 				<tr>
 <?php
-
+	ini_set('display_errors', 0);
 	$table = readCsvFile($ini['dirWin'].'/data/tables/' . $_GET['table'] . '.csv');
 
 	for($i = 0; $i<count($table[0]); $i++) {
