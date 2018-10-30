@@ -22,45 +22,45 @@
 	<div class="col-12">
 		<h1>プロトタイプ</h1>
 	</div>
-	<div class="col-lg-6 col-xl-3 col-12"> <!-- container-fluid -->
+	<div class="col-lg-3 col-xl-3 col-12"> <!-- container-fluid -->
 		
 		<?php
 			$work = readCsvFile2($ini['dirWin'].'/prototype/data/work.csv');
 			$txt = "<ui>";
-			for($i = (count($work)-1); $i >= (count($work)-6); $i--) {
+			for($i = (count($work)-1); $i >= (count($work)-3); $i--) {
 				$txt .= "<li>" . date("Y/m/d", strtotime($work[$i]['作業予定開始日時'])) . "　：　" . $work[$i]['作業タイトル'] . "</li>";
 			}
 			$txt .= "</ui><span class='pull-right'>etc……</span>";
 			echo_panel_h100("最近の設備に対する変更作業", $txt, "info");
 		?>
 	</div>
-	<div class="col-lg-6 col-xl-3 col-12"> <!-- container-fluid -->
+	<div class="col-lg-3 col-xl-3 col-12"> <!-- container-fluid -->
 		
 		<?php
 			$incident = readCsvFile2($ini['dirWin'].'/prototype/data/incident.csv');
 			$incidentStatus = readCsvFile2($ini['dirWin'].'/prototype/data/incidentStatus.csv');
 			$txt = "<ui>";
-			for($i = (count($incident)-1); $i >= (count($incident)-6); $i--) $txt .= "<li>" .date("Y/m/d", strtotime($incident[$i]['インシデント発生日'])) . "　：【" . $incidentStatus[$incident[$i]['インシデントステータスID']]['ステータス'] . '】<a style="color:#008db7" onclick="alert(\'レッドマインと連携すると便利かなと思います\')">' . $incident[$i]['インシデント内容'] . "</a></li>";
+			for($i = (count($incident)-1); $i >= (count($incident)-3); $i--) $txt .= "<li>" .date("Y/m/d", strtotime($incident[$i]['インシデント発生日'])) . "　：【" . $incidentStatus[$incident[$i]['インシデントステータスID']]['ステータス'] . '】<a style="color:#008db7" onclick="alert(\'レッドマインと連携すると便利かなと思います\')">' . $incident[$i]['インシデント内容'] . "</a></li>";
 			$txt .= "</ui><span class='pull-right'><a style=\"color:#008db7\" onclick=\"alert('レッドマインと連携すると便利かなと思います')\">etc……</a></span>";
 			echo_panel_h100("最近のインシデント作業", $txt, "danger");
 		?>
 	</div>
-	<div class="col-lg-6 col-xl-3 col-12"> <!-- container-fluid -->
+	<div class="col-lg-3 col-xl-3 col-12"> <!-- container-fluid -->
 		
 		<?php
 			$mashine = readCsvFile2($ini['dirWin'].'/prototype/data/equipment.csv');
 			$txt = "<ui>";
-			for($i = (count($incident)-1); $i >= (count($incident)-6); $i--) $txt .= "<li>" . date("Y/m/d", strtotime($incident[$i]['インシデント発生日'])) . '　：　<a style="color:#008db7" onclick="">' . $mashine[mt_rand(0, (count($mashine)-1))]['マシン名'] . '監視システム一時停止予定</a></li>';
+			for($i = (count($incident)-1); $i >= (count($incident)-3); $i--) $txt .= "<li>" . date("Y/m/d", strtotime($incident[$i]['インシデント発生日'])) . '　：　<a style="color:#008db7" onclick="">' . $mashine[mt_rand(0, (count($mashine)-1))]['マシン名'] . '監視システム一時停止予定</a></li>';
 			$txt .= "</ui><span class='pull-right'><a style=\"color:#008db7\" onclick=\"\">etc……</a></span>";
 			echo_panel_h100("監視システム一時停止のお知らせ", $txt, "warning");
 		?>
 	</div>
-	<div class="col-lg-6 col-xl-3 col-12"> <!-- container-fluid -->
+	<div class="col-lg-3 col-xl-3 col-12"> <!-- container-fluid -->
 		
 		<?php
 			$work = readCsvFile2($ini['dirWin'].'/prototype/data/work.csv');
 			$txt = "<ui><br><br><br><br><br><br><br>";
-			for($i = (count($work)-1); $i >= (count($work)-6); $i--) {
+			for($i = (count($work)-1); $i >= (count($work)-3); $i--) {
 				//$txt .= "<li>" . $work[$i]['作業予定開始日時'] . "　：　" . $work[$i]['作業タイトル'] . "</li>";
 			}
 			$txt .= "</ui>";
@@ -68,7 +68,7 @@
 		?>
 	</div>
 	<!--Panel
-	<div class="col-sm-6">
+	<div class="col-sm-3">
 		<div class="card">
 			<div class="card-body">
 				<h3 class="card-title">Special title treatment</h3>

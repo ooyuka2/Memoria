@@ -22,7 +22,15 @@
 		<button onclick="location.reload()" class="btn btn-primary">Ä“Ç‚Ýž‚Ý</button>
 		<div class='table-responsive container-fluid'>
 			<table class='table table-striped table-hover table-sm' id='datatable'>
-				<thead>
+				<thead><!--
+					<tr>
+						<th class="col-3"><input type="text" class="form-control form-control-sm" style="width:100%"/></th>
+						<th><input type="text" class="form-control form-control-sm" style="width:100%" /></th>
+						<th class="col-8"><input type="text" class="form-control form-control-sm" style="width:100%" /></th>
+						<th><input type="text" class="form-control form-control-sm" style="width:100%" /></th>
+						<th><input type="text" class="form-control form-control-sm" style="width:100%" /></th>
+						<th><input type="text" class="form-control form-control-sm" style="width:100%" /></th>
+					</tr>-->
 					<tr>
 						<th class="col-3">ƒƒ‚</th>
 						<th>‚Ó‚è‚ª‚È</th>
@@ -60,6 +68,16 @@
 					
 				?>
 				</tbody>
+				<tfoot>
+					<tr>
+						<th class="col-3">ƒƒ‚</th>
+						<th>‚Ó‚è‚ª‚È</th>
+						<th class="col-8">“à—e</th>
+						<th>“o˜^“úŽž</th>
+						<th>•ÒW</th>
+						<th>íœ</th>
+					</tr>
+				</tfoot>
 			</table>
 		</div>
 	</div>

@@ -15,7 +15,7 @@ function last_todo_panel($todo, $i, $pattern, $file) {
 				if($pattern=='warning') echo "style='color:#fa8072;'";
 				else if($pattern=='info') echo "style='color:#87ceeb;'";
 				echo ">";
-				echo "<h3 class='panel-title' oncontextmenu='tree_menu({$todo[$i]['id']}, {$todo[$i]['top']}, {$todo[$i]['パーセンテージ']}, {$todo[$i]['child']}, {$todo[$i]['保留']}, \"{$file}\");return false' >{$todo[$i]['タイトル']}</h3>";
+				echo "<h3 class='panel-title' oncontextmenu='tree_menu({$todo[$i]['id']}, {$todo[$i]['top']}, {$todo[$i]['パーセンテージ']}, {$todo[$i]['child']}, {$todo[$i]['保留']}, {$todo[$i]['今日やること']}, \"{$file}\");return false' >{$todo[$i]['タイトル']}</h3>";
 			}
 			else {
 				//$b = $todo[$i]['top'];
@@ -25,7 +25,7 @@ function last_todo_panel($todo, $i, $pattern, $file) {
 				if($pattern=='warning') echo "style='color:#fa8072;'";
 				else if($pattern=='info') echo "style='color:#87ceeb;'";
 				echo ">";
-				echo "<h3 class='panel-title' oncontextmenu='tree_menu({$todo[$i]['id']}, {$todo[$i]['top']}, {$todo[$i]['パーセンテージ']}, {$todo[$i]['child']}, {$todo[$i]['保留']}, \"{$file}\");return false'>{$todo[$i]['タイトル']}<span class='pull-right'>{$todo[$todo[$i]['top']]['タイトル']}</span></h3>";
+				echo "<h3 class='panel-title' oncontextmenu='tree_menu({$todo[$i]['id']}, {$todo[$i]['top']}, {$todo[$i]['パーセンテージ']}, {$todo[$i]['child']}, {$todo[$i]['保留']}, {$todo[$i]['今日やること']}, \"{$file}\");return false'>{$todo[$i]['タイトル']}<span class='pull-right'>{$todo[$todo[$i]['top']]['タイトル']}</span></h3>";
 			}
 			echo "</a></div>";
 			echo "<div class='panel-body'>";

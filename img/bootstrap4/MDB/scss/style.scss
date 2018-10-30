@@ -30,6 +30,11 @@ pre {
 	border-radius: 2px;
 }
 
+thead tr, tfoot tr {
+	background: #898989;
+}
+
+
 tr:nth-child(odd){
 	background: rgba(0,0,0,0.1);
 }

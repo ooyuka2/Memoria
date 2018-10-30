@@ -55,7 +55,7 @@ tr:nth-child(odd), .table-striped tbody tr:nth-of-type(odd){
 	background: rgba(255,240,245,0.9);
 }
 
-thead tr {
+thead tr, tfoot tr {
 	background: #f4b3c2 !important;
 }
 /*テキストの色*/
