@@ -36,7 +36,11 @@ thead tr, tfoot tr {
 
 
 tr:nth-child(odd){
-	background: rgba(0,0,0,0.1);
+	background: rgba(0,0,0,0.2);
+}
+
+.highlight{
+	background: rgba(0,0,0,0.03);
 }
 
 .table-xs {
