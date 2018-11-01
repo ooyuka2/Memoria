@@ -11,7 +11,7 @@
 			if( filetype( $path = $dir . $file ) == "file" ) {
 				// ファイル名$file ファイルパス$path
 				$num = check2array($tableslist, $file, "filename");
-				if($num == -1) {
+				if($num == -1 && serch_word_str($file, ".csv")) {
 					$num = count($tableslist);
 					//filename,big,type,lock
 					$tableslist[$num]['filename'] = $file;

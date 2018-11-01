@@ -20,6 +20,7 @@ $(document).ready(function(){
 				columnDefs: [
 				],
 				responsive: true, order: [[0, 'asc']],
+				//"serverSide": true,
 				"ajax" : "/Memoria/data/tables/<?php echo $_GET['table']; ?>.json",
 			});
 		$('#tablespage_json th input').each( function () {
