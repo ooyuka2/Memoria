@@ -17,7 +17,7 @@
 		for($i = 1; $i<count($json); $i++) {
 			$value .= "		[\r\n";
 			foreach ($json[$i] as $key => $val) {
-				$value .= "			\"" . $json[$i][$key] . "\",\r\n"; //	
+				$value .= "			\"" . str_replace("	","Å@Å@", $json[$i][$key] ) . "\",\r\n"; //	
 			}
 			$value = substr_replace($value, '', -3, -2);
 			$value .= "		],\r\n";

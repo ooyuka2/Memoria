@@ -63,14 +63,16 @@
             <div class="modal-body">
                 <div class="md-form mb-5">
                     <i class="fa fa-calendar prefix grey-text"></i>
-                    <input type="text" id="form3" class="form-control validate kaisi form-control-success">
+                    <input type="text" id="form3" class="form-control validate kaisi">
+                    <a type="button" class="btn btn btn-amber waves-effect">‚±‚Ì“ú‚ÉŠæ’£‚é <i class="fa fa-paper-plane-o ml-1"></i></a>
+                    <a type="button" class="btn btn btn-amber waves-effect">‚»‚Ì‚¤‚¿Šæ’£‚é <i class="fa fa-paper-plane-o ml-1"></i></a>
                     <!-- <label data-error="wrong" data-success="right" for="form3">Your name</label> -->
                 </div>
             </div>
 
             <!--Footer-->
             <div class="modal-footer justify-content-center">
-                <a type="button" class="btn btn btn-amber waves-effect">Send <i class="fa fa-paper-plane-o ml-1"></i></a>
+                
             </div>
         </div>
         <!--/.Content-->

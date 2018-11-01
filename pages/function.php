@@ -476,6 +476,7 @@ function whatTodayDo_Registration($ini) {
 					}
 				}
 				
+				
 				if($todo[$sa[$i]]['ç°ì˙Ç‚ÇÈÇ±Ç∆'] != 0 || $flug == 1) {
 					$pid = $pid . "@". $sa[$i];
 				}
