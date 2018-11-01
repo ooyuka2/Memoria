@@ -456,6 +456,7 @@ $(document).ready(function(){
 });
 $(document).ready(function(){
 	if($("#datatable").length) {
+		/*
 		var filterNum = $('#datatable thead th').length;
 		var filterInput = "<tr>";
 		for (var i=0; i<filterNum; i++) {
@@ -463,7 +464,7 @@ $(document).ready(function(){
 		}
 		filterInput += "</tr>";
 		$('#datatable thead').prepend(filterInput);
-
+		*/
 		var table = $('#datatable').DataTable({
 					language: {
 						url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
@@ -480,6 +481,7 @@ $(document).ready(function(){
 					],
 					responsive: true, order: [[3, 'desc']],
 				});
+		/*
 		$('#datatable th input').each( function () {
 			var index = $('#datatable th input').index(this);
 			//alert(index);
@@ -491,6 +493,7 @@ $(document).ready(function(){
 					.draw();
 			} );
 		} );
+		*/
 	}
 });
 
@@ -513,13 +516,13 @@ $(document).ready(function(){
 					// 件数切替の値を10～50の10刻みにする
 					lengthMenu: [ 25, 50, 100, 150, 200, 250, 300, 500, 750, 1000 ],
 					// 件数のデフォルトの値を50にする
-					displayLength: 100,  
+					displayLength: 25,  
 					//stateSave: true,
 					columnDefs: [
 					],
 					responsive: true, order: [[0, 'asc']],
-					scrollX: true,
-					scrollY: 600
+					//scrollX: true,
+					//scrollY: 600
 				});
 		$('#tablespage th input').each( function () {
 			var index = $('#tablespage th input').index(this);

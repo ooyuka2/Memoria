@@ -21,6 +21,7 @@
 <!--Main Layout-->
 <?php
 	include($ini['dirWin'].'/MDBpages/footer.php');
+	select_script_page($link_pages_Win . "tables", $_GET['page']);
 ?>
 
 <script>
