@@ -1,4 +1,4 @@
-<meta http-equiv="refresh" content="5;URL=./index.php">
+<meta http-equiv="refresh" content="5;URL=/Memoria/prototype/index.php">
 <?php
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\data\config.ini');
 	include($ini['dirWin'].'/MDBpages/hedder.php');

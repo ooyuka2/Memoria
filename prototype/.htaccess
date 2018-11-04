@@ -1,0 +1,26 @@
+<Files ~ "^\.(htaccess|htpasswd)$">
+deny from all
+</Files>
+Options -Indexes
+ErrorDocument 400 /Memoria/prototype/Error.php
+ErrorDocument 401 /Memoria/prototype/Error.php
+ErrorDocument 402 /Memoria/prototype/Error.php
+ErrorDocument 403 /Memoria/prototype/Error.php
+ErrorDocument 404 /Memoria/prototype/Error.php
+ErrorDocument 405 /Memoria/prototype/Error.php
+ErrorDocument 406 /Memoria/prototype/Error.php
+ErrorDocument 407 /Memoria/prototype/Error.php
+ErrorDocument 408 /Memoria/prototype/Error.php
+ErrorDocument 409 /Memoria/prototype/Error.php
+ErrorDocument 410 /Memoria/prototype/Error.php
+ErrorDocument 411 /Memoria/prototype/Error.php
+ErrorDocument 412 /Memoria/prototype/Error.php
+ErrorDocument 413 /Memoria/prototype/Error.php
+ErrorDocument 414 /Memoria/prototype/Error.php
+ErrorDocument 500 /Memoria/prototype/Error.php
+ErrorDocument 501 /Memoria/prototype/Error.php
+ErrorDocument 502 /Memoria/prototype/Error.php
+ErrorDocument 503 /Memoria/prototype/Error.php
+ErrorDocument 504 /Memoria/prototype/Error.php
+ErrorDocument 505 /Memoria/prototype/Error.php
+order deny,allow

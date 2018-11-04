@@ -47,34 +47,31 @@
 	</div>
 </div>
 <div id="todo_tree_menu"></div>
-<div class="modal fade" id="orangeModalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-side modal-bottom-left modal-notify modal-info " role="document">
-        <!--Content-->
-        <div class="modal-content">
-            <!--Header-->
-            <div class="modal-header text-center">
-                <h4 class="modal-title white-text w-100 font-weight-bold py-2">Ç¢Ç¬äÊí£ÇÈÅH</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="white-text">&times;</span>
-                </button>
-            </div>
+<div class="modal fade" id="DoAfterDay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-side modal-bottom-left modal-notify modal-primary " role="document">
+		<!--Content-->
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header text-center">
+				<h4 class="modal-title white-text w-100 font-weight-bold py-2">Ç¢Ç¬äÊí£ÇÈÅH</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true" class="white-text">&times;</span>
+				</button>
+			</div>
 
-            <!--Body-->
-            <div class="modal-body">
-                <div class="md-form mb-5">
-                    <i class="fa fa-calendar prefix grey-text"></i>
-                    <input type="text" id="form3" class="form-control validate kaisi">
-                    <a type="button" class="btn btn btn-amber waves-effect">Ç±ÇÃì˙Ç…äÊí£ÇÈ <i class="fa fa-paper-plane-o ml-1"></i></a>
-                    <a type="button" class="btn btn btn-amber waves-effect">ÇªÇÃÇ§ÇøäÊí£ÇÈ <i class="fa fa-paper-plane-o ml-1"></i></a>
-                    <!-- <label data-error="wrong" data-success="right" for="form3">Your name</label> -->
-                </div>
-            </div>
+			<!--Body-->
+			<div class="modal-body">
+				<div class="md-form mb-5 row">
+					<i class="fa fa-calendar prefix grey-text col-1"></i>
+					<input type="text" class="form-control validate kaisi col-12" style="padding-left:10px" id="DoAfterDay_day">
+					<input type="hidden" value="" id="DoAfterDay_id">
+					<a type="button" class="btn btn btn-primary waves-effect col-6" onclick="check_todo_tree_wait()" data-dismiss="modal" aria-label="Close">Ç±ÇÃì˙Ç…äÊí£ÇÈ <i class="fa fa-paper-plane-o ml-1"></i></a>
+					<a type="button" class="btn btn btn-primary waves-effect col-5" onclick="todo_tree_wait(document.getElementById('DoAfterDay_id').value, 'turn', 0)" data-dismiss="modal" aria-label="Close">ç°ìxäÊí£ÇÈ <i class="fa fa-paper-plane-o ml-1"></i></a>
+					<!-- <label data-error="wrong" data-success="right" for="form3">Your name</label> -->
+				</div>
+			</div>
 
-            <!--Footer-->
-            <div class="modal-footer justify-content-center">
-                
-            </div>
-        </div>
-        <!--/.Content-->
-    </div>
+		</div>
+		<!--/.Content-->
+	</div>
 </div>

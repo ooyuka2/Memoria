@@ -25,29 +25,32 @@
 	$workEquipment = array();
 	$workEquipment[0] = $tmp;
 	
-	$work = make_work_data($work, $workUser, $workStaff, $workEquipment, $ini, 1);
+	for($i=0; $i<10; $i++) {
+		
+		$work = make_work_data($work, $workUser, $workStaff, $workEquipment, $ini, 1);
 
-	$workUser = readCsvFile2($ini['dirWin'].'/prototype/data/workUser.csv');
-	$workStaff = readCsvFile2($ini['dirWin'].'/prototype/data/workStaff.csv');
-	$workEquipment = readCsvFile2($ini['dirWin'].'/prototype/data/workEquipment.csv');
-	
-	$work = make_work_data($work, $workUser, $workStaff, $workEquipment, $ini, 2);
+		$workUser = readCsvFile2($ini['dirWin'].'/prototype/data/workUser.csv');
+		$workStaff = readCsvFile2($ini['dirWin'].'/prototype/data/workStaff.csv');
+		$workEquipment = readCsvFile2($ini['dirWin'].'/prototype/data/workEquipment.csv');
+		
+		$work = make_work_data($work, $workUser, $workStaff, $workEquipment, $ini, 2);
 
-	$workUser = readCsvFile2($ini['dirWin'].'/prototype/data/workUser.csv');
-	$workStaff = readCsvFile2($ini['dirWin'].'/prototype/data/workStaff.csv');
-	$workEquipment = readCsvFile2($ini['dirWin'].'/prototype/data/workEquipment.csv');
-	
-	$work = make_work_data($work, $workUser, $workStaff, $workEquipment, $ini, 3);
+		$workUser = readCsvFile2($ini['dirWin'].'/prototype/data/workUser.csv');
+		$workStaff = readCsvFile2($ini['dirWin'].'/prototype/data/workStaff.csv');
+		$workEquipment = readCsvFile2($ini['dirWin'].'/prototype/data/workEquipment.csv');
+		
+		$work = make_work_data($work, $workUser, $workStaff, $workEquipment, $ini, 3);
 
-	$workUser = readCsvFile2($ini['dirWin'].'/prototype/data/workUser.csv');
-	$workStaff = readCsvFile2($ini['dirWin'].'/prototype/data/workStaff.csv');
-	$workEquipment = readCsvFile2($ini['dirWin'].'/prototype/data/workEquipment.csv');
-	
-	$work = make_work_data($work, $workUser, $workStaff, $workEquipment, $ini, 4);
+		$workUser = readCsvFile2($ini['dirWin'].'/prototype/data/workUser.csv');
+		$workStaff = readCsvFile2($ini['dirWin'].'/prototype/data/workStaff.csv');
+		$workEquipment = readCsvFile2($ini['dirWin'].'/prototype/data/workEquipment.csv');
+		
+		$work = make_work_data($work, $workUser, $workStaff, $workEquipment, $ini, 4);
 
-	$workUser = readCsvFile2($ini['dirWin'].'/prototype/data/workUser.csv');
-	$workStaff = readCsvFile2($ini['dirWin'].'/prototype/data/workStaff.csv');
-	$workEquipment = readCsvFile2($ini['dirWin'].'/prototype/data/workEquipment.csv');
+		$workUser = readCsvFile2($ini['dirWin'].'/prototype/data/workUser.csv');
+		$workStaff = readCsvFile2($ini['dirWin'].'/prototype/data/workStaff.csv');
+		$workEquipment = readCsvFile2($ini['dirWin'].'/prototype/data/workEquipment.csv');
+	}
 	
 	$sort = array(); 
 	foreach ((array) $work as $key => $value) {

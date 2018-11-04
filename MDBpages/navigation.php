@@ -6,7 +6,7 @@
 		<ul class="drawer-menu">
 			<li><a class="drawer-brand" style="height:65px">Å@</a></li>
 			<li class="drawer-dropdown todonav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-tasks pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_todo_html; ?>'">todo</span><span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-tasks pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_todo_html; ?>'" oncontextmenu="window.open('<?php echo $link_todo_html; ?>');return false">todo</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?page=weekly">èTïÒ</a></li>
 					<li><a class="drawer-menu-item" href="<?php echo $link_todo_html; ?>?page=keeper">éûä‘ä«óù</a></li>
@@ -15,7 +15,7 @@
 				</ul>
 			</li>
 			<li class="drawer-dropdown filenav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-link pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_link_html; ?>'">link</span><span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-link pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_link_html; ?>'" oncontextmenu="window.open('<?php echo $link_link_html; ?>');return false">link</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="<?php echo $link_link_html; ?>">Top</a></li>
 					<?php
@@ -27,7 +27,7 @@
 				</ul>
 			</li>
 			<li class="drawer-dropdown toolsnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-wrench pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_tools_html; ?>'">tools</span><span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-wrench pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_tools_html; ?>'" oncontextmenu="window.open('<?php echo $link_tools_html; ?>');return false">tools</span><span class="fa fa-angle-down pull-right"></span></a>
 				<!--
 				<ul>
 					<li><a class="drawer-menu-item" href="<?php echo $link_tools_html; ?>">Top</a></li>
@@ -37,7 +37,7 @@
 				-->
 			</li>
 			<li class="drawer-dropdown dictionarynav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-graduation-cap pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_dictionary_html; ?>'">dictionary</span><span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-graduation-cap pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_dictionary_html; ?>'" oncontextmenu="window.open('<?php echo $link_dictionary_html; ?>');return false">dictionary</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="<?php echo $link_dictionary_html; ?>">Top</a></li>
 					<?php
@@ -49,7 +49,7 @@
 				</ul>
 			</li>
 			<li class="drawer-dropdown tablesnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-table pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_tables_html; ?>'">tables</span><span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-table pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_tables_html; ?>'" oncontextmenu="window.open('<?php echo $link_tables_html; ?>');return false">tables</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<?php
 						$tables = readCsvFile2($ini['dirWin'].'/data/tables.csv');
@@ -60,7 +60,7 @@
 				</ul>
 			</li>
 			<li class="drawer-dropdown mailnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-envelope-o pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_mail_html; ?>'">mail</span><span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-envelope-o pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_mail_html; ?>'" oncontextmenu="window.open('<?php echo $link_mail_html; ?>');return false">mail</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
 					<li><a class="drawer-menu-item" href="<?php echo $link_mail_html; ?>">Top</a></li>
 					<?php
@@ -72,7 +72,7 @@
 				</ul>
 			</li>
 			<li class="drawer-dropdown settingsnav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
-				<span class="fa fa-cogs pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_settings_html; ?>'">settings</span><span class="fa fa-angle-down pull-right"></span></a>
+				<span class="fa fa-cogs pull-left drawer-menu-icon"></span><span onclick="location.href='<?php echo $link_settings_html; ?>'" oncontextmenu="window.open('<?php echo $link_settings_html; ?>');return false">settings</span><span class="fa fa-angle-down pull-right"></span></a>
 				<!--
 				<ul>
 					<li><a class="drawer-menu-item" href="#">Top</a></li>

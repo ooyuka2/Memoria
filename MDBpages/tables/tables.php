@@ -10,14 +10,17 @@
 		for($i = 0; $i<count($table); $i++) {
 			$json[$i] = $table[$i];
 		}
-		
+		for($i = 0; $i<count($json); $i++) {
+			mb_convert_variables('UTF-8','SJIS-win',$json[$i]);
+		}
 		//print_r_pre($json);
 		$value = "{\r\n	\"data\": [\r\n";
 		//echo $value;
 		for($i = 1; $i<count($json); $i++) {
 			$value .= "		[\r\n";
 			foreach ($json[$i] as $key => $val) {
-				$value .= "			\"" . str_replace("	","　　", $json[$i][$key] ) . "\",\r\n"; //	
+				$value .= "			\"" . str_replace("\\","\\\\", str_replace("	","　　", $json[$i][$key] ) ) . "\",\r\n";
+				//	htmlspecialchars($json[$i][$key], ENT_QUOTES)stripslashes( 
 			}
 			$value = substr_replace($value, '', -3, -2);
 			$value .= "		],\r\n";
@@ -25,7 +28,7 @@
 		$value = substr_replace($value, '', -3, -2);
 		$value .= "	]\r\n}";
 		//echo $value;
-		$value = mb_convert_encoding($value, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
+		//$value = mb_convert_encoding($value, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
 		//require( $ini['dirWin'].'/js/ssp.class.php' );
 		//$value = json_encode($value, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 		file_put_contents($tablejson , $value);
@@ -35,14 +38,14 @@
 ?>
 <div class="col-12">
 	<div class='table-responsive container-fluid'>
-		<table class='table table-striped table-hover table-sm' id='tablespage_json'>
+		<table class='table table-striped table-hover table-sm' id='tablespage_json'  style='overflow-x:auto'>
 			<thead>
 				<tr>
 <?php
 
 
 	foreach ($table[0] as $key => $val) {
-		echo "<th>". $table[0][$key] . "</th>";
+		echo "<th style='min-width:100px'>". $table[0][$key] . "</th>";
 	}
 ?>
 

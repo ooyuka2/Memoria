@@ -506,6 +506,10 @@ select::-ms-expand {
 	font-size: 10pt;
 }
 
+.modal-dialog.modal-notify.modal-primary .fa {
+	color: #eb6ea0;
+}
+
 /* ##############################################################################################################################
 //
 //            ドラック時のテキスト背景色
@@ -522,3 +526,4 @@ select::-ms-expand {
 	background:#fff0f5; /* Firefox */
 	color: #a22041 !important;
 }
+

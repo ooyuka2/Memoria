@@ -203,7 +203,13 @@ function tree_menu(id, top, pre, child, wait, whatdotoday, todofile) {
 	menu = menu + "<a href='todo.php?d=detail&p="+top+"&file="+todofile+"' class='btn btn-default btn-xs btn-sm btn-block'>フィルター</a>";
 	if((whatdotoday == 0 || whatdotoday == 2) && pre!=100) menu = menu + "<button class='btn btn-default btn-xs btn-sm btn-block' onclick='todo_tree_wait("+top+", \"turn\", 1)'>今日頑張る</button>";
 	menu = menu + "<button class='btn btn-default btn-xs btn-sm btn-block' onclick='todo_tree_wait("+top+", \"turn\", 2)'>明日頑張る</button>";
-	menu = menu + "<button class='btn btn-default btn-xs btn-sm btn-block' onclick='todo_tree_wait("+top+", \"turn\", 0)'>今度頑張る</button>";
+	
+	//menu = menu + "<button class='btn btn-default btn-xs btn-sm btn-block' onclick='todo_tree_wait("+top+", \"turn\", 0)'>今度頑張る</button>";
+	
+	menu = menu + "<button class='btn btn-default btn-xs btn-sm btn-block' onclick='document.getElementById(\"DoAfterDay_id\").value="+top+"' data-toggle='modal' data-target='#DoAfterDay'>今度頑張る</button>";
+	//echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#DoAfterDay">Launch demo modal</button>';
+	
+	
 	if(wait == 0 && pre!=100) menu = menu + "<button class='btn btn-default btn-xs btn-sm btn-block' onclick='todo_tree_wait("+id+", \"wait\", 0)'>保留設定</button></div>";
 	else if(pre!=100) //menu = menu + "<a href='todo.php?page=wait&p="+id+"&file="+todofile+"' class='btn btn-default btn-xs btn-sm btn-block'>解除設定</a></div>";
 	menu = menu + "<button class='btn btn-default btn-xs btn-sm btn-block' onclick='todo_tree_wait("+id+", \"wait\", 0)'>解除設定</button></div>";
@@ -251,6 +257,11 @@ function todo_tree_wait(p, type, turn) {
 	});
 	// サブミット後、ページをリロードしないようにする
 	return false;
+}
+function check_todo_tree_wait() {
+	if(document.getElementById('DoAfterDay_day').value != "") todo_tree_wait(document.getElementById('DoAfterDay_id').value, 'turn', document.getElementById('DoAfterDay_day').value);
+	else todo_tree_wait(document.getElementById('DoAfterDay_id').value, 'turn', 0);
+	document.getElementById('DoAfterDay_day').value = "";
 }
 
 

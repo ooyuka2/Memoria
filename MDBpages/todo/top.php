@@ -1,8 +1,6 @@
-<!--
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orangeModalSubscription">
-  Launch demo modal
-</button>
--->
+
+
+
 <?php
 	$ini = parse_ini_file(dirname ( __FILE__ ).'\..\..\data\config.ini');
 	include_once($ini['dirWin'].'/pages/function.php');
@@ -28,6 +26,7 @@
 	} else {
 	
 		echo '<div class="col-md-4 col-xl-3">';
+			//echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#DoAfterDay">Launch demo modal</button>';
 			echo '<div id="todo_tree_comp"></div>';
 		echo '</div>';
 		echo '<div class="col-md-8 col-xl-7">';

@@ -67,18 +67,10 @@
 			echo_panel_h100("‚ ‚È‚½‚Ö‚Ì‚¨’m‚ç‚¹", $txt, "info");
 		?>
 	</div>
-	<!--Panel
-	<div class="col-sm-3">
-		<div class="card">
-			<div class="card-body">
-				<h3 class="card-title">Special title treatment</h3>
-				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-				<a href="#" class="btn btn-primary">Go somewhere</a>
-			</div>
-		</div>
+	<div class="col-12">
+		<div id="chart_work_incident" class="container-fluid" style="margin-top:20px"></div>
 	</div>
-	<!--/.Panel-->
-	<div class="col-12" style="height: 2000px"></div>
+	<!--<div class="col-12" style="height: 2000px"></div>-->
 </main>
 </div>
 <!--Main Layout-->

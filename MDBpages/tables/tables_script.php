@@ -19,9 +19,18 @@ $(document).ready(function(){
 				//stateSave: true,
 				columnDefs: [
 				],
+				//dom: 'Bfrtip',
+				/*buttons: [
+					{
+					extend: 'csvHtml5',
+					//text: 'Copy all data',
+					}
+				],*/
+				
 				responsive: true, order: [[0, 'asc']],
 				//"serverSide": true,
-				"ajax" : "/Memoria/data/tables/<?php echo $_GET['table']; ?>.json",
+				//"ajax" : "/Memoria/data/tables/<?php echo $_GET['table']; ?>.json",
+				"ajax" : "/Memoria/MDBpages/tables/echojson.php?table=<?php echo $_GET['table']; ?>",
 			});
 		$('#tablespage_json th input').each( function () {
 			var index = $('#tablespage_json th input').index(this);
@@ -30,7 +39,7 @@ $(document).ready(function(){
 				//alert(table.columns().indexes);
 				table
 					.columns( index )
-					.search( this.value )
+					.search(this.value)
 					.draw();
 			} );
 		} );
@@ -41,5 +50,6 @@ $(document).ready(function(){
 			$( table.cells().nodes() ).removeClass( 'highlight' );
 			$( table.column( colIdx ).nodes() ).addClass( 'highlight' );
 		} );
+	//table.buttons().container().appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
 });
 </script>

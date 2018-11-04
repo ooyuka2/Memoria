@@ -520,7 +520,7 @@ $(document).ready(function(){
 					//stateSave: true,
 					columnDefs: [
 					],
-					responsive: true, order: [[0, 'asc']],
+					//responsive: true, order: [[0, 'asc']],
 					//scrollX: true,
 					//scrollY: 600
 				});

@@ -217,7 +217,7 @@
 			if($tnp == 23 || $tnp == 24 || $tnp == 20 ) $mashine[$i]['設備ステータス2ID'] = 2;
 			
 			
-			$ip += mt_rand(0, 10);
+			$ip += mt_rand(1, 10);
 			$i++;
 		}
 		

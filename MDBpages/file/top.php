@@ -21,7 +21,7 @@
 		<a href="./file.php?page=table_make&type=new" class="btn btn-info">新規</a>　
 		<button onclick="location.reload()" class="btn btn-primary">再読み込み</button>
 		<div class='table-responsive container-fluid'>
-			<table class='table table-striped table-hover table-sm' id='datatable'>
+			<table class='table table-striped table-hover table-sm' id='datatable' style='overflow-x:auto'>
 				<thead><!--
 					<tr>
 						<th class="col-3"><input type="text" class="form-control form-control-sm" style="width:100%"/></th>
@@ -60,8 +60,8 @@
 							echo "<br>{$file[$i]['detail']}</td><td>";
 							else { echo "</td><td>"; }
 							echo $file[$i]['count'];
-							echo "</td><td><a href='./file.php?page=table_make&type=change&p=".$i."' class='btn btn-info'>編集</a>";
-							echo "</td><td><button class='btn btn-danger' onclick='delete_check(\"".$file[$i]['name']."\", ".$i.", \"file\")' style='margin:0'>削除</button>";
+							echo "</td><td><a href='./file.php?page=table_make&type=change&p=".$i."' class='btn btn-info btn-sm'>編集</a>";
+							echo "</td><td><button class='btn btn-danger btn-sm' onclick='delete_check(\"".$file[$i]['name']."\", ".$i.", \"file\")' style='margin:0'>削除</button>";
 							echo "</td></tr>";
 						}
 					}
