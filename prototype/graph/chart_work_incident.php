@@ -47,7 +47,7 @@
 <script>
 
 var ctx = document.getElementById("graph_work_incident").getContext('2d');
-var myLineChart = new Chart(ctx, {
+var work_incidentChart = new Chart(ctx, {
 	type: 'line',
 	lineJoin: 'miter',
 	data: {
