@@ -239,7 +239,7 @@
 		$mashine[$i]['設備詳細説明'] = "";
 		$mashine[$i]['OSID'] = "";
 		$mashine[$i]['基盤ID'] = $tmpkiban;
-		$mashine[$i]['設備ステータスID'] = 0;
+		$mashine[$i]['設備ステータスID'] = 5;
 		$mashine[$i]['設備ステータス2ID'] = 1;
 		$mashine[$i]['ドメイン名'] = "";
 		$mashine[$i]['特権ユーザー'] = "admin";

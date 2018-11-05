@@ -82,7 +82,7 @@
 					}
 					if($flug == 0) {
 						echo "<tr>";
-						echo "<td>10.2.1.".$i. "</td>";
+						echo "<td>10.2.45.".$i. "</td>";
 						echo "<td>-</td>";
 						
 						echo "<td>-</td>";
@@ -114,7 +114,7 @@
 					}
 					if($flug == 0) {
 						echo "<tr>";
-						echo "<td>10.2.1.".$i. "</td>";
+						echo "<td>10.2.60.".$i. "</td>";
 						echo "<td>-</td>";
 						
 						echo "<td>-</td>";

@@ -37,8 +37,8 @@
 	}
 ?>
 <div class="col-12">
-	<div class='table-responsive container-fluid'>
-		<table class='table table-striped table-hover table-sm' id='tablespage_json'  style='overflow-x:auto'>
+	<div class='table-responsive container-fluid text-nowrap'>
+		<table class='table table-striped table-hover table-sm w-auto' id='tablespage_json'  style='overflow-x:auto'>
 			<thead>
 				<tr>
 <?php
