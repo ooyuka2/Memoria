@@ -29,8 +29,8 @@ $(document).ready(function(){
 				
 				responsive: true, order: [[0, 'asc']],
 				//"serverSide": true,
-				//"ajax" : "/Memoria/data/tables/<?php echo $_GET['table']; ?>.json",
-				"ajax" : "/Memoria/MDBpages/tables/echojson.php?table=<?php echo $_GET['table']; ?>",
+				"ajax" : "/Memoria/data/tables/<?php echo $_GET['table']; ?>.json",
+				//"ajax" : "/Memoria/MDBpages/tables/echojson.php?table=<?php echo $_GET['table']; ?>",
 			});
 		$('#tablespage_json th input').each( function () {
 			var index = $('#tablespage_json th input').index(this);

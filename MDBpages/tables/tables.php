@@ -19,7 +19,7 @@
 		for($i = 1; $i<count($json); $i++) {
 			$value .= "		[\r\n";
 			foreach ($json[$i] as $key => $val) {
-				$value .= "			\"" . str_replace("\\","\\\\", str_replace("	","　　", $json[$i][$key] ) ) . "\",\r\n";
+				$value .= "			\"" . str_replace(array("\r\n", "\n"),"<br>", str_replace("\\","\\\\", str_replace("	","　　", $json[$i][$key] ) ) ) . "\",\r\n";
 				//	htmlspecialchars($json[$i][$key], ENT_QUOTES)stripslashes( 
 			}
 			$value = substr_replace($value, '', -3, -2);

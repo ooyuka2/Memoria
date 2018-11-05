@@ -38,23 +38,25 @@ function readCsvFile2($filepath) {	//ƒtƒ@ƒCƒ‹“Ç‚Ýž‚ñ‚Å”z—ñ‚É“ü‚ê‚é
 		$file->setFlags(SplFileObject::READ_CSV); 
 		foreach ($file as $line) {
 			if(!is_null($line[0])){
+				//mb_convert_variables('UTF-8','SJIS-win',$line);
 				$records[] = $line;
 			}
 		}
 		//mb_convert_variables('SJIS-win',"SJIS, SJIS-win, UTF-8, Unicode",$records);
 		//mb_convert_variables('UTF-8',"auto",$records);
 		for($i=0;$i<count($records);$i++) {
-			/*echo "<pre>";
-			print_r($records[$i]);
-			echo "</pre>";*/
 			for($j=0;$j<count($records[0]);$j++) {
-				$ary[$i][$records[0][$j]] = $records[$i][$j];
+				$ary[$i][$records[0][$j]] = str_replace_magicquotes($records[$i][$j]);
 			}
 		}
 	}else {
 		$ary = null;
 	}
-	//print_r($ary);
+	/*
+	for($i = 0; $i<count($records); $i++) {
+		mb_convert_variables('SJIS-win','UTF-8',$ary[$i]);
+	}*/
+	//print_r_pre($ary);
 	//mb_convert_variables('SJIS-win',"SJIS, SJIS-win, UTF-8, Unicode",$ary);
 	return $ary;
 }
@@ -717,5 +719,14 @@ function validateDate($date, $format = 'Y-m-d H:i:s') {
 	return $d && $d->format($format) == $date;
 }
 
+function str_replace_magicquotes($str) {
+	
+	$last = mb_substr($str, -1);
+	if($last == "\\" || $last == "•\\" || $last == "–\\" || $last == "—\\" || $last == "˜\\" || $last == "™\\" || $last == "š\\" || $last == "›\\" || $last == "œ\\" || $last == "\\" || $last == "ž\\" || $last == "Ÿ\\" || $last == "à\\" || $last == "á\\" || $last == "â\\" || $last == "ã\\" || $last == "ä\\" || $last == "å\\" || $last == "æ\\" || $last == "ç\\" || $last == "è\\" || $last == "é\\" || $last == "ê\\" || $last == "ƒ\\" || $last == "„\\" || $last == "‡\\" || $last == "‰\\" || $last == "Š\\" || $last == "‹\\" || $last == "Œ\\" || $last == "\\" || $last == "Ž\\" || $last == "\\" || $last == "\\" || $last == "‘\\" || $last == "’\\" || $last == "“\\" || $last == "”\\") $str .= " ";
+	
+	return $str;
+}
+
+// || $last == "úx\" || $last == "ûx\"
 ?>
 

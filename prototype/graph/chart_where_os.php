@@ -21,12 +21,17 @@
 	<div class='card-body row justify-content-center' style='padding-bottom:0'>
 		<h2 class="col-12">拠点別マシン数</h2>
 		<?php
-			for($i = 1; $i<count($where); $i++) {
-				echo "<div class='col-5'>";
-				echo "<h4>" . $where[$i]['名前'] . "拠点</h4>";
+			for($i = 0; $i<count($where); $i++) {
+				if($i==0) {
+					echo "<div class='col-8'>";
+				} else {
+					echo "<div class='col-5'>";
+					echo "<h4>" . $where[$i]['名前'] . "拠点</h4>";
+				}
 				echo "<canvas id='graph_where_os" . $where[$i]['拠点ID'] . "'></canvas></div>";
 			}
 		?>
+		<!--
 		<table class='table table-striped table-hover table-sm col-8'>
 			<thead>
 				<tr>
@@ -70,7 +75,7 @@
 					echo "</tr>";
 				?>
 			</tbody>
-		</table>
+		</table>-->
 	</div>
 </div>
 
@@ -88,31 +93,43 @@
 		if($mashine[$i]['OSID'] != "" && $mashine[$i]['設備ステータスID'] > 2 && $mashine[$i]['設備ステータスID'] < 7)
 			$array[$mashine[$i]['OSID']][$mashine[$i]['拠点ID']]++;
 	}
-	for($i = 1; $i<count($where); $i++) {
+	for($i = 0; $i<count($where); $i++) {
 		echo "var ctx" . $where[$i]['拠点ID'] . " = document.getElementById('graph_where_os" . $where[$i]['拠点ID'] . "').getContext('2d');\r\n";
 		echo "var where_os" . $where[$i]['拠点ID'] . "Chart = new Chart(ctx" . $where[$i]['拠点ID'] . ", {";
 ?>
 
 	type: 'doughnut',
 	data: {
-		labels: [
 		<?php
-			for($j = 1; $j<count($os); $j++) {
-				echo "'" . $os[$j]['OS名'] . "',";
-			}
+			echo "labels: [";
+				for($j = 1; $j<count($os); $j++) {
+					echo "'" . $os[$j]['OS名'] . "',";
+				}
+			echo "],";
 		?>
-		],
 		datasets: [
 			{
 				data: [
 				<?php
-					for($j = 1; $j<count($os); $j++) {
-						echo "'" . $array[$j][$i] . "',";
+					if($i==0) {
+						for($j = 1; $j<count($os); $j++) {
+							$tmp = 0;
+							for($h = 1; $h<count($where); $h++) {
+								$tmp += $array[$j][$h];
+							}
+							echo "'" . $tmp . "',";
+						}
+					} else {
+						for($j = 1; $j<count($os); $j++) {
+							echo "'" . $array[$j][$i] . "',";
+						}
 					}
 				?>
 				],
-				backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360", "#F7464A", "#46BFBD", "#FDB45C",],
-				hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774", "#FF5A5E", "#5AD3D1", "#FFC870", ]
+				backgroundColor: ['rgba(234,85,80,0.4)', 'rgba(238,120,0,0.4)', 'rgba(255,220,0,0.4)', 'rgba(156,187,28,0.4)', 'rgba(0,148,122,0.4)',
+					'rgba(0,175,204,0.4)', 'rgba(0,104,183,0.4)', 'rgba(90,68,152,0.4)', ],
+				hoverBackgroundColor: ['rgba(234,85,80,0.8)', 'rgba(238,120,0,0.8)', 'rgba(255,220,0,0.8)', 'rgba(156,187,28,0.8)', 'rgba(0,148,122,0.8)',
+					'rgba(0,175,204,0.8)', 'rgba(0,104,183,0.8)', 'rgba(90,68,152,0.8)', ],
 			}
 		]
 	},
@@ -125,4 +142,5 @@
 <?php
 	}
 ?>
+
 </script>
