@@ -92,8 +92,12 @@
 
 var ctx = document.getElementById("how_hour").getContext('2d');
 var work_incidentChart = new Chart(ctx, {
-	type: 'line',
-	lineJoin: 'miter',
+	
+<?php
+	if(count($graphdata)<10) echo "type: 'line',";
+	else echo "type: 'bar',";
+?>
+	//lineJoin: 'miter',
 	data: {
 		labels: [//"January", "February", "March", "April", "May", "June", "July"
 <?php
@@ -114,10 +118,18 @@ var work_incidentChart = new Chart(ctx, {
 
 				],
 				backgroundColor: [
-					'rgba(0, 0, 0, 0)',
+<?php
+	for($i=count($graphdata); $i>0; $i--) {
+		echo "'rgba(230, 175, 207, .7)',";
+	}
+?>
 				],
 				borderColor: [
-					'rgba(200, 99, 132, .7)',
+<?php
+	for($i=count($graphdata); $i>0; $i--) {
+		echo "'rgba(230, 175, 207, .7)',";
+	}
+?>
 				],
 				borderWidth: 2
 			},
