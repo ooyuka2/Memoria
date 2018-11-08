@@ -39,7 +39,7 @@
 	</div>
 	
 	<!--/.Panel-->
-	<div class="col-8" id="how_hour_comp" style="width: 1000px"></div>
+	<div class="col-8" id="how_hour_comp"></div>
 	<div class="col-12" style="height: 2000px"></div>
 </main>
 </div>

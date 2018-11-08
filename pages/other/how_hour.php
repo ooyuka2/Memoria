@@ -82,6 +82,10 @@
 	$graphdata[$day]['time'] = $interval->format('%h');
 
 	//print_r_pre($graphdata);
+	$overtime = 0;
+	for($i=count($graphdata); $i>0; $i--) {
+		$overtime += intval($graphdata[$i]['time']) -8;
+	}
 ?>
 <canvas id="how_hour" style=""></canvas>
 <script>
@@ -99,7 +103,7 @@ var work_incidentChart = new Chart(ctx, {
 ?>
 		],
 		datasets: [{
-				label: "d–ŠÔ",
+				label: <?php echo "'c‹ÆŠÔF–ñ". $overtime . "ŠÔ'"; ?>,
 				cubicInterpolationMode: "monotone",
 				data: [
 <?php
