@@ -94,7 +94,7 @@ var ctx = document.getElementById("how_hour").getContext('2d');
 var work_incidentChart = new Chart(ctx, {
 	
 <?php
-	if(count($graphdata)<10) echo "type: 'line',";
+	if(count($graphdata)<7) echo "type: 'line',";
 	else echo "type: 'bar',";
 ?>
 	//lineJoin: 'miter',
