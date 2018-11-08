@@ -36,6 +36,10 @@ $(document).ready(function(){
 		read_tool_php('/Memoria/pages/tools/tools.php', 'toolstab');
 	}
 	
+	if($("#how_hour_comp").length) {
+		read_how_hour();
+	}
+	
 	/*
 	DD = new Date();
 	if(DD.getHours() == 12) {
@@ -771,4 +775,33 @@ function smartTable_hidden(name, all, n) {
 	$( name + " tr > td:nth-child(" + all + "n + " + n + ")" ).addClass("d-none");
 	//$("#smarttable td:nth-child(6n+1)").addClass("d-none");
 }
+// ##############################################################################################################################
+//
+//            今月の仕事時間の表示用の関数
+//
+// ##############################################################################################################################
 
+function read_how_hour(){
+	$("#how_hour_comp").css('background','url(\"../img/grid-gray.svg\") center center no-repeat').css('background-size','20% auto').css('min-height','100px').css('max-width','100px');
+	$.ajax({
+		beforeSend: function(xhr){
+			xhr.overrideMimeType('text/html;charset=Shift_JIS');
+		},
+		type: "GET",
+		scriptCharset:'Shift_JIS',
+		url: '/Memoria/pages/other/how_hour.php',
+	}).done(function(data, dataType) {
+		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
+		// PHPから返ってきたデータの表示
+		$("#how_hour_comp").html(data).css('background','').css('min-height','').css('max-width','');
+	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
+		// this;
+		// thisは他のコールバック関数同様にAJAX通信時のオプションを示します。
+		// エラーメッセージの表示
+		alert("エラー");
+		//read_how_hour();
+	});
+	// サブミット後、ページをリロードしないようにする
+	return false;
+}

@@ -17,13 +17,13 @@
 	<div class="card-body">
 		<div id='keeper' class="table-responsive">
 		<?php
-			if(isset($_GET['day']) && !equal_word_str($_GET['day'], '1')) {
+			if((isset($_GET['day']) && !equal_word_str($_GET['day'], '1')) || !isset($_GET['day'])) {
 		?>
 			<div class='clearfix'>
-				<button style='margin:10px 0' class='btn btn-default pull-right btn-sm' onClick='location.href = "/Memoria/MDBpages/todo.php?d=keeper&day=all"'>‚·‚×‚Ä</button>
-				<button style='margin:10px 10px' class='btn btn-default pull-right btn-sm' onClick='location.href = "/Memoria/MDBpages/todo.php?d=keeper&day=31"'>31“úŠÔ</button>
-				<button style='margin:10px 10px' class='btn btn-default pull-right btn-sm' onClick='location.href = "/Memoria/MDBpages/todo.php?d=keeper&day=7"'>7“úŠÔ</button>
-				<button style='margin:10px 0' class='btn btn-default pull-right btn-sm' onClick='location.href = "/Memoria/MDBpages/todo.php?d=keeper&day=old201804working"'>201804‚Ü‚Å</button>
+				<button style='margin:10px 0' class='btn btn-default pull-right btn-sm' onClick='location.href = "/Memoria/MDBpages/todo.php?page=keeper&day=all"'>‚·‚×‚Ä</button>
+				<button style='margin:10px 10px' class='btn btn-default pull-right btn-sm' onClick='location.href = "/Memoria/MDBpages/todo.php?page=keeper&day=31"'>31“úŠÔ</button>
+				<button style='margin:10px 10px' class='btn btn-default pull-right btn-sm' onClick='location.href = "/Memoria/MDBpages/todo.php?page=keeper&day=7"'>7“úŠÔ</button>
+				<button style='margin:10px 0' class='btn btn-default pull-right btn-sm' onClick='location.href = "/Memoria/MDBpages/todo.php?page=keeper&day=old201804working"'>201804‚Ü‚Å</button>
 			</div>
 			<br><div class='clearfix'><a href='{$ini['keeperpage']}' class='pull-right'>ŽžŠÔŠÇ—</a></div>
 		<?php } ?>

@@ -22,6 +22,7 @@
 			$dictionary[$_GET['toroku']]['syurui'] = $_POST['syurui'];
 			if($flug == "new") $dictionary[$_GET['toroku']]['date'] = date('Y/m/d H:i:s');
 			$dictionary[$_GET['toroku']]['delete'] = 0;
+			$dictionary[$_GET['toroku']]['no'] = 0;
 		}
 		if($flug == "new") $_SESSION['change'] = "『{$_POST['name']}』を追加しました。";
 		else $_SESSION['change'] = "『{$_POST['name']}』を変更しました。";

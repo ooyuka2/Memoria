@@ -14,12 +14,25 @@
 function readCsvFile($filepath) {	//ファイル読み込んで配列に入れる
 	mb_internal_encoding("SJIS-win");
 	if (is_readable($filepath)) {
-		$file = new SplFileObject($filepath); 
+		$data = file_get_contents($filepath);
+		$data = mb_convert_encoding($data, 'UTF-8', 'SJIS-win');
+		$temp = tmpfile();
+		$meta = stream_get_meta_data($temp);
+		fwrite($temp, $data);
+		rewind($temp);
+		
+		$file = new SplFileObject($meta['uri'], 'rb'); 
 		$file->setFlags(SplFileObject::READ_CSV); 
 		foreach ($file as $line) {
 			if(!is_null($line[0])){
 				$records[] = $line;
 			}
+		}
+		for($i=0;$i<count($records);$i++) {
+			for($j=0;$j<count($records[0]);$j++) {
+				$records[$i][$j] = str_replace_magicquotes($records[$i][$j]);
+			}
+			mb_convert_variables('SJIS-win','UTF-8',$records[$i]);
 		}
 	}else {
 		$records = null;
@@ -34,7 +47,14 @@ function readCsvFile($filepath) {	//ファイル読み込んで配列に入れる
 function readCsvFile2($filepath) {	//ファイル読み込んで配列に入れる
 	mb_internal_encoding("SJIS-win");
 	if (is_readable($filepath)) {
-		$file = new SplFileObject($filepath); 
+		$data = file_get_contents($filepath);
+		$data = mb_convert_encoding($data, 'UTF-8', 'SJIS-win');
+		$temp = tmpfile();
+		$meta = stream_get_meta_data($temp);
+		fwrite($temp, $data);
+		rewind($temp);
+		
+		$file = new SplFileObject($meta['uri'], 'rb'); 
 		$file->setFlags(SplFileObject::READ_CSV); 
 		foreach ($file as $line) {
 			if(!is_null($line[0])){
@@ -42,6 +62,14 @@ function readCsvFile2($filepath) {	//ファイル読み込んで配列に入れる
 				$records[] = $line;
 			}
 		}
+		for($i=0;$i<count($records);$i++) {
+			for($j=0;$j<count($records[0]);$j++) {
+				$records[$i][$j] = str_replace_magicquotes($records[$i][$j]);
+			}
+			
+			mb_convert_variables('SJIS-win','UTF-8',$records[$i]);
+		}
+		
 		//mb_convert_variables('SJIS-win',"SJIS, SJIS-win, UTF-8, Unicode",$records);
 		//mb_convert_variables('UTF-8',"auto",$records);
 		for($i=0;$i<count($records);$i++) {
@@ -484,7 +512,30 @@ function whatTodayDo_Registration($ini) {
 				}
 			}
 		}
-	//echo $pid;
+		//table用にjsonファイルを新規作成
+		$dir = $ini['dirWin']."/data/tables/";
+		$tablescsv = $ini['dirWin'].'/data/tables.csv';
+		$tableslist = readCsvFile2($tablescsv);
+		
+		$i=1;
+		while($i<count($tableslist)) {
+			if(file_exists ($dir.$tableslist[$i]['filename'])) {
+				
+				$tablecsv = $dir.$tableslist[$i]['filename'];
+				$tablejson = str_replace(".csv",".json", $tablecsv);
+				if(!file_exists ( $tablejson ) || filemtime ( $tablejson ) < filemtime ( $tablecsv )) {
+					$table = readCsvFile2($tablecsv);
+					make_jsonfile($table, $tablecsv, $tablejson);
+				}
+
+				$i++;
+			} else {
+				unset($tableslist[$i]);
+				$tableslist = array_values($tableslist);
+				writeCsvFile2($tablescsv, $tableslist);
+			}
+		}
+		
 		header( "Location: ./whatTodayDo.php?pid=".$pid );
 		exit();
 	}
@@ -611,7 +662,42 @@ function write_weekly($todo, $working, $weekly, $i, $weeklyid, $workK) {
 	
 }
 
+//##################################################################
+//				datatables表示のためのjson作成用の関数
+//##################################################################
 
+function make_jsonfile($table, $tablecsv, $tablejson) {
+	if(!file_exists ( $tablejson ) || filemtime ( $tablejson ) < filemtime ( $tablecsv )) { //
+	
+		for($i = 0; $i<count($table); $i++) {
+			$json[$i] = $table[$i];
+		}
+		for($i = 0; $i<count($json); $i++) {
+			mb_convert_variables('UTF-8','SJIS-win',$json[$i]);
+		}
+		//print_r_pre($json);
+		$value = "{\r\n	\"data\": [\r\n";
+		//echo $value;
+		for($i = 1; $i<count($json); $i++) {
+			$value .= "		[\r\n";
+			foreach ($json[$i] as $key => $val) {
+				$value .= "			\"" . str_replace(array("\r\n", "\n"),"<br>", str_replace("\\","\\\\", str_replace("	","　　", $json[$i][$key] ) ) ) . "\",\r\n";
+				//	htmlspecialchars($json[$i][$key], ENT_QUOTES)stripslashes( 
+			}
+			$value = substr_replace($value, '', -3, -2);
+			$value .= "		],\r\n";
+		}
+		$value = substr_replace($value, '', -3, -2);
+		$value .= "	]\r\n}";
+		//echo $value;
+		//$value = mb_convert_encoding($value, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
+		//require( $ini['dirWin'].'/js/ssp.class.php' );
+		//$value = json_encode($value, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+		file_put_contents($tablejson , $value);
+		//var_dump(mb_convert_encoding($value, "SJIS-win", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode"));
+		
+	}
+}
 
 //##################################################################
 //				デバッグ用関数
@@ -709,6 +795,22 @@ function time_diff($time_from, $time_to) {
 	return "{$dif_days}days {$dif_time}";
 }
 
+function day_diff($date1, $date2) {
+
+	// 日付をUNIXタイムスタンプに変換
+	$timestamp1 = strtotime($date1);
+	$timestamp2 = strtotime($date2);
+
+	// 何秒離れているかを計算
+	$seconddiff = abs($timestamp2 - $timestamp1);
+
+	// 日数に変換
+	$daydiff = $seconddiff / (60 * 60 * 24);
+
+	// 戻り値
+	return $daydiff;
+
+}
 
 
 //##################################################################
