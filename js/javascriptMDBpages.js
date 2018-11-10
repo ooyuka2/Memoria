@@ -37,7 +37,8 @@ $(document).ready(function(){
 	}
 	
 	if($("#how_hour_comp").length) {
-		read_how_hour();
+		if($("#how_hour_comp").width() < 380) read_how_hour("no");
+		else read_how_hour("ok");
 	}
 	
 	/*
@@ -781,7 +782,7 @@ function smartTable_hidden(name, all, n) {
 //
 // ##############################################################################################################################
 
-function read_how_hour(){
+function read_how_hour(line){
 	$("#how_hour_comp").css('background','url(\"../img/grid-gray.svg\") center center no-repeat').css('background-size','20% auto').css('min-height','100px').css('max-width','100px');
 	$.ajax({
 		beforeSend: function(xhr){
@@ -790,6 +791,7 @@ function read_how_hour(){
 		type: "GET",
 		scriptCharset:'Shift_JIS',
 		url: '/Memoria/pages/other/how_hour.php',
+		data: {"line":line},
 	}).done(function(data, dataType) {
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 		// PHPから返ってきたデータの表示

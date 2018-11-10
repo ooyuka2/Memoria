@@ -19,17 +19,20 @@
 ?>
 <div class="card h-100">
 	<div class='card-body row justify-content-center' style='padding-bottom:0'>
-		<h2 class="col-12">拠点別マシン数</h2>
+		<h2 class="col-12">OS別マシン数</h2>
 		<?php
+			/*
 			for($i = 0; $i<count($where); $i++) {
 				if($i==0) {
 					echo "<div class='col-8'>";
 				} else {
-					echo "<div class='col-5'>";
-					echo "<h4>" . $where[$i]['名前'] . "拠点</h4>";
+					//echo "<div class='col-5'>";
+					//echo "<h4>" . $where[$i]['名前'] . "拠点</h4>";
 				}
-				echo "<canvas id='graph_where_os" . $where[$i]['拠点ID'] . "'></canvas></div>";
+				//echo "<canvas id='graph_where_os" . $where[$i]['拠点ID'] . "'></canvas></div>";
 			}
+			*/
+			echo "<div class='col-8'><canvas id='graph_where_os" . $where[0]['拠点ID'] . "'></canvas></div>";
 		?>
 		<!--
 		<table class='table table-striped table-hover table-sm col-8'>

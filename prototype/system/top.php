@@ -16,11 +16,11 @@
 <div class="col-md-12" style="margin-top:20px" id="chart_where_os">
 </div>
 
-<div class="col-md-6" style="margin-top:20px">
+<div class="col-md-12" style="margin-top:20px">
 	<div class="card h-100">
-		<div class='card-body' style='padding-bottom:0;'>
-			<h2><?php echo $where[1]['名前'];?>拠点・基盤別マシン数</h2>
-			<table class='table table-striped table-hover table-sm'>
+		<div class='card-body row' style='padding-bottom:0;'>
+			<h2 class="col-md-12"><?php echo $where[1]['名前'];?>拠点・基盤別マシン数</h2>
+			<table class='table table-striped table-hover table-sm col-md-6'>
 				<thead>
 					<tr>
 						<th></th>
@@ -64,15 +64,21 @@
 					?>
 				</tbody>
 			</table>
+			<?php
+				echo "<div class='col-md-6'><canvas id='graph_where_os" . $where[1]['拠点ID'] . "'></canvas></div>";
+			?>
 		</div>
 	</div>
 </div>
 
-<div class="col-md-6" style="margin-top:20px">
+<div class="col-md-12" style="margin-top:20px">
 	<div class="card h-100">
-		<div class='card-body' style='padding-bottom:0;'>
-			<h2><?php echo $where[2]['名前'];?>拠点・基盤別マシン数</h2>
-			<table class='table table-striped table-hover table-sm'>
+		<div class='card-body row' style='padding-bottom:0;'>
+			<h2 class="col-md-12"><?php echo $where[2]['名前'];?>拠点・基盤別マシン数</h2>
+			<?php
+				echo "<div class='col-md-6'><canvas id='graph_where_os" . $where[2]['拠点ID'] . "'></canvas></div>";
+			?>
+			<table class='table table-striped table-hover table-sm col-md-6'>
 				<thead>
 					<tr>
 						<th></th>
@@ -120,11 +126,11 @@
 	</div>
 </div>
 
-<div class="col-md-6" style="margin-top:20px">
+<div class="col-md-12" style="margin-top:20px">
 	<div class="card h-100">
-		<div class='card-body' style='padding-bottom:0;'>
-			<h2><?php echo $where[3]['名前'];?>拠点・基盤別マシン数</h2>
-			<table class='table table-striped table-hover table-sm'>
+		<div class='card-body row' style='padding-bottom:0;'>
+			<h2 class="col-md-12"><?php echo $where[3]['名前'];?>拠点・基盤別マシン数</h2>
+			<table class='table table-striped table-hover table-sm col-md-6'>
 				<thead>
 					<tr>
 						<th></th>
@@ -168,15 +174,21 @@
 					?>
 				</tbody>
 			</table>
+			<?php
+				echo "<div class='col-md-6'><canvas id='graph_where_os" . $where[3]['拠点ID'] . "'></canvas></div>";
+			?>
 		</div>
 	</div>
 </div>
 
-<div class="col-md-6" style="margin-top:20px">
+<div class="col-md-12" style="margin-top:20px">
 	<div class="card h-100">
-		<div class='card-body' style='padding-bottom:0;'>
-			<h2><?php echo $where[4]['名前'];?>拠点・基盤別マシン数</h2>
-			<table class='table table-striped table-hover table-sm'>
+		<div class='card-body row' style='padding-bottom:0;'>
+			<h2 class="col-md-12"><?php echo $where[4]['名前'];?>拠点・基盤別マシン数</h2>
+			<?php
+				echo "<div class='col-md-6'><canvas id='graph_where_os" . $where[4]['拠点ID'] . "'></canvas></div>";
+			?>
+			<table class='table table-striped table-hover table-sm col-md-6'>
 				<thead>
 					<tr>
 						<th></th>

@@ -526,6 +526,7 @@ function whatTodayDo_Registration($ini) {
 				if(!file_exists ( $tablejson ) || filemtime ( $tablejson ) < filemtime ( $tablecsv )) {
 					$table = readCsvFile2($tablecsv);
 					make_jsonfile($table, $tablecsv, $tablejson);
+					unset($table);
 				}
 
 				$i++;
@@ -681,7 +682,7 @@ function make_jsonfile($table, $tablecsv, $tablejson) {
 		for($i = 1; $i<count($json); $i++) {
 			$value .= "		[\r\n";
 			foreach ($json[$i] as $key => $val) {
-				$value .= "			\"" . str_replace(array("\r\n", "\n"),"<br>", str_replace("\\","\\\\", str_replace("	","　　", $json[$i][$key] ) ) ) . "\",\r\n";
+				$value .= "			\"" . str_replace(array("\r\n", "\n"),"<br>", str_replace("\"","'", str_replace("\\","\\\\", str_replace("	","　　", $json[$i][$key] ) ) ) ) . "\",\r\n";
 				//	htmlspecialchars($json[$i][$key], ENT_QUOTES)stripslashes( 
 			}
 			$value = substr_replace($value, '', -3, -2);
@@ -695,7 +696,6 @@ function make_jsonfile($table, $tablecsv, $tablejson) {
 		//$value = json_encode($value, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 		file_put_contents($tablejson , $value);
 		//var_dump(mb_convert_encoding($value, "SJIS-win", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode"));
-		
 	}
 }
 
