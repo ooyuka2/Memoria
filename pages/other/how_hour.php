@@ -12,12 +12,22 @@
 	$todo = readCsvFile2($ini['dirWin'].'/data/todo.csv');
 	//echo date("Y-m-d", strtotime("now"));
 	
-	if(strtotime(date("Y-m-d"), strtotime("now")) > strtotime(date("Y-m-11", time()))) $lastday = date("Y-m-11", time());
-	else $lastday = date("Y-m-11",strtotime("-1 month"));
+	if(strtotime(date("Y-m-d"), strtotime("now")) > strtotime(date("Y-m-11", strtotime("now")))) {
+		$flug = 0;
+		for($i=count($working)-1; $i>0; $i--) {
+			if($working[$i]['id']=="periodically" && $working[$i]['keeper']==1 && $flug == 0) $flug = 1;
+			else if($working[$i]['id']=="periodically" && $working[$i]['keeper']==1 && $flug == 1) {
+				$tmpday = $working[$i]['day'];
+				break;
+			}
+		}
+		if(strtotime($tmpday) > strtotime(date("Y-m-11", time()))) $lastday = date("Y-m-11", time());
+		else $lastday = date("Y-m-11",strtotime("-1 month"));
+	} else $lastday = date("Y-m-11",strtotime("-1 month"));
 	
 	//echo "<br>".$lastday;
 	
-	$countday = day_diff($lastday, date('Y-m-d'));
+	$countday = day_diff($lastday, date('Y-m-d'))+1;
 	
 	$when = new DateTime($working[(count($working)-1)]['day']);
 	$when = $when->format('Y/m/d');
@@ -122,11 +132,7 @@
 
 var ctx = document.getElementById("how_hour").getContext('2d');
 var work_incidentChart = new Chart(ctx, {
-	
-<?php
-	if(count($graphdata)<7) echo "type: 'line',";
-	else echo "type: 'bar',";
-?>
+	type: 'bar',
 	//lineJoin: 'miter',
 	data: {
 		labels: [//"January", "February", "March", "April", "May", "June", "July"

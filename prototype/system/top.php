@@ -15,11 +15,16 @@
 
 <div class="col-md-12" style="margin-top:20px" id="chart_where_os">
 </div>
-
+<?php
+	for($k=1; $k<count($where); $k++) {
+?>
 <div class="col-md-12" style="margin-top:20px">
 	<div class="card h-100">
 		<div class='card-body row' style='padding-bottom:0;'>
-			<h2 class="col-md-12"><?php echo $where[1]['名前'];?>拠点・基盤別マシン数</h2>
+			<h2 class="col-md-12"><?php echo $where[$k]['名前'];?>拠点・基盤別マシン数</h2>
+			<?php
+				if($k % 2 == 0) echo "<div class='col-md-6'><canvas id='graph_where_os" . $where[$k]['拠点ID'] . "'></canvas></div>";
+			?>
 			<table class='table table-striped table-hover table-sm col-md-6'>
 				<thead>
 					<tr>
@@ -28,6 +33,7 @@
 							for($i = 1; $i<count($kiban); $i++) {
 								echo "<th>" . $kiban[$i]['説明'] . "</th>";
 							}
+							echo "<th>合計</th>";
 						?>
 					</tr>
 				</thead>
@@ -40,37 +46,46 @@
 							}
 						}
 						for($i = 1; $i<count($mashine); $i++) {
-							if($mashine[$i]['OSID'] != "" && $mashine[$i]['拠点ID'] == 1 && $mashine[$i]['設備ステータスID'] > 2 && $mashine[$i]['設備ステータスID'] < 7)
+							if($mashine[$i]['OSID'] != "" && $mashine[$i]['拠点ID'] == $k && $mashine[$i]['設備ステータスID'] > 2 && $mashine[$i]['設備ステータスID'] < 7)
 								$array[$mashine[$i]['OSID']][$mashine[$i]['基盤ID']]++;
 						}
 						
 						
 						for($i = 1; $i<count($os); $i++) {
 							echo "<tr><th>" . $os[$j]['OS名'] . "</th>";
+								$temp = 0;
 								for($j = 1; $j<count($kiban); $j++) {
 									echo "<td>" . $array[$i][$j] . "台</td>";
+									$temp += $array[$i][$j];
 								}
+							echo "<td>" . $temp . "台</td>";
 							echo "</tr>";
 						}
 						echo "<tr><th>合計</th>";
+							$temp = 0;
 							for($i = 1; $i<count($kiban); $i++) {
 								$tmp = 0;
 								for($j = 1; $j<count($os); $j++) {
 									$tmp += $array[$j][$i];
 								}
 								echo "<td>" . $tmp . "台</td>";
+								$temp += $tmp;
 							}
+						echo "<td>" . $temp . "台</td>";
 						echo "</tr>";
 					?>
 				</tbody>
 			</table>
 			<?php
-				echo "<div class='col-md-6'><canvas id='graph_where_os" . $where[1]['拠点ID'] . "'></canvas></div>";
+				if($k % 2 == 1) echo "<div class='col-md-6'><canvas id='graph_where_os" . $where[$k]['拠点ID'] . "'></canvas></div>";
 			?>
 		</div>
 	</div>
 </div>
-
+<?php
+	}
+?>
+<!--
 <div class="col-md-12" style="margin-top:20px">
 	<div class="card h-100">
 		<div class='card-body row' style='padding-bottom:0;'>
@@ -234,7 +249,7 @@
 		</div>
 	</div>
 </div>
-
+-->
 <div class="form-group" style="margin-bottom:0; position: fixed; top: 80px;right:0;width:250px;">
 	<button type="submit" class="btn btn-default btn-block waves-effect waves-light" style="margin-right:30px" data-toggle="modal" data-target="#centralModalInfo">このページの説明</button>
 </div>
