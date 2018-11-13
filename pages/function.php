@@ -501,17 +501,18 @@ function whatTodayDo_Registration($ini) {
 				
 				if(validateDate($todo[$sa[$i]]['今日やること'], 'Y/m/d')) {
 					$workday = new DateTime($todo[$sa[$i]]['今日やること']);
-					if($today->diff($workday)->format('%r%a 日') == 0) {
+					if($today->diff($workday)->format('%r%a 日') <= 0) {
 						$flug = 1;
 					}
 				}
 				
 				
-				if($todo[$sa[$i]]['今日やること'] != 0 || $flug == 1) {
+				if($todo[$sa[$i]]['今日やること'] == 1 || $todo[$sa[$i]]['今日やること'] == 2 || $flug == 1) {
 					$pid = $pid . "@". $sa[$i];
 				}
 			}
 		}
+		/*
 		//table用にjsonファイルを新規作成
 		$dir = $ini['dirWin']."/data/tables/";
 		$tablescsv = $ini['dirWin'].'/data/tables.csv';
@@ -535,7 +536,7 @@ function whatTodayDo_Registration($ini) {
 				$tableslist = array_values($tableslist);
 				writeCsvFile2($tablescsv, $tableslist);
 			}
-		}
+		}*/
 		
 		header( "Location: ./whatTodayDo.php?pid=".$pid );
 		exit();
@@ -778,6 +779,27 @@ function allequal_word_str($word, $searchtext) {
 	
 	if( strcmp($word, $searchtext) == 0 ) return true;
 	else return false;
+}
+
+
+//##################################################################
+//				整数と少数を分ける関数
+//##################################################################
+
+
+function NumberSplit($chk_number, $returnUnsigned = false){
+	$negative_num = 1;
+
+	if ($chk_number < 0){
+		$negative_num = -1;
+		$chk_number *= -1;
+	}
+
+	if ($returnUnsigned){
+		return array(floor($chk_number),($chk_number - floor($chk_number)));
+	}
+
+    return array(floor($chk_number) * $negative_num, ($chk_number - floor($chk_number)) * $negative_num);
 }
 
 //##################################################################

@@ -111,6 +111,11 @@
 	for($i=count($graphdata); $i>$graphday; $i--) {
 		$overtime = doubleval($overtime) + doubleval($graphdata[$i]['time']) -8;
 	}
+	
+	$tmparray = NumberSplit($overtime);
+	$overtime = $tmparray[0] . "時間". $tmparray[0] . "分";
+	$tmparray = array();
+	
 	$keeperorder = array();
 	for($k=1; $k<count($todo_keeper_theme); $k++) {
 		$keeperorder[$k]['id'] = $todo_keeper_theme[$k]['id'];
@@ -124,7 +129,6 @@
 		$sort[$key] = $value['時間合計'];
 	}
 	array_multisort($sort, SORT_DESC, $keeperorder);
-	
 	//print_r_pre($keeperorder);
 ?>
 <canvas id="how_hour" style=""></canvas>
@@ -143,7 +147,7 @@ var work_incidentChart = new Chart(ctx, {
 ?>
 		],
 		datasets: [{
-				label: <?php echo "'残業時間：約". doubleval($overtime) . "時間'"; ?>,
+				label: <?php echo "'残業時間：". $overtime . "くらい'"; ?>,
 				cubicInterpolationMode: "monotone",
 				data: [
 <?php
@@ -171,6 +175,10 @@ var work_incidentChart = new Chart(ctx, {
 			},
 <?php
 	if($_GET['line'] == "ok") {
+		$tmparray = array();
+		for($i=5; $i>0; $i--) {
+			$tmparray[$i] = 0;
+		}
 		for($k=0; $k<5 && $k<count($todo_keeper_theme); $k++) {
 			echo "{label: '";
 			for($i=1; $i<count($todo_keeper_theme); $i++) {
@@ -182,7 +190,8 @@ var work_incidentChart = new Chart(ctx, {
 			echo "',data: [";
 
 			for($i=count($graphdata); $i>$graphday; $i--) {
-				echo $graphdata[$i][$todo_keeper_theme[$id]['id']] . ",";
+				$tmparray[$i] += $graphdata[$i][$todo_keeper_theme[$id]['id']];
+				echo $tmparray[$i] . ",";
 			}
 
 			echo "],borderColor: [";
