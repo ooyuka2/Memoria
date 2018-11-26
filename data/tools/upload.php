@@ -1,10 +1,10 @@
 <?php
- 
+ header("Content-type: text/html; charset=SJIS-win");
 if (is_uploaded_file($_FILES["file"]["tmp_name"])) {
 	$_FILES["file"]["name"] = mb_convert_encoding($_FILES["file"]["name"],'SJIS-win','UTF-8');
-  if (move_uploaded_file($_FILES["file"]["tmp_name"], "C:Users/yukako/Desktop/data/" . $_FILES["file"]["name"])) {
+  if (move_uploaded_file($_FILES["file"]["tmp_name"], "C:/xampp/htdocs/Memoria/pages/tools/tools/" . $_FILES["file"]["name"])) {
     echo $_FILES["file"]["name"] . "をアップロードしました。";
-    $filepath = "C:Users/yukako/Desktop/data/" . $_FILES["file"]["name"];
+    $filepath = "C:/xampp/htdocs/Memoria/pages/tools/tools/" . $_FILES["file"]["name"];
     $file = readCsvFile($filepath);
     writeCsvFile($filepath, $file);
     
