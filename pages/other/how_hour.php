@@ -179,7 +179,7 @@ var work_incidentChart = new Chart(ctx, {
 		for($i=count($graphdata); $i>0; $i--) {
 			$tmparray[$i] = 0;
 		}
-		for($k=0; $k<count($graphdata) && $k<count($todo_keeper_theme); $k++) {
+		for($k=0; $k<5 && $k<count($todo_keeper_theme); $k++) {
 			echo "{label: '";
 			for($i=1; $i<count($todo_keeper_theme); $i++) {
 				if($todo_keeper_theme[$i]['id'] == $keeperorder[$k]['id']) {

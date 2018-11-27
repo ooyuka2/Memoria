@@ -77,6 +77,10 @@ margin-right:5px;
 <br><br>
 <div id="status1"></div>
 <script>
+$(document).ready(function(){
+	readfiledropdown();
+});
+/*
 function sendFileToServer(formData,status)
 {
     var uploadURL ="./upload.php"; //Upload URL
@@ -175,7 +179,8 @@ function handleFileUpload(files,obj)
         sendFileToServer(fd,status);
   
    }
-}
+}*/
+/*
 $(document).ready(function()
 {
 var obj = $("#dragandrophandler");
@@ -218,6 +223,7 @@ $(document).on('drop', function (e)
 });
   
 });
+*/
 </script>
 </body>
 </html>

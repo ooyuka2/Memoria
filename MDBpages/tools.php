@@ -20,7 +20,10 @@
 </div>
 <!--Main Layout-->
 <?php
+	
 	include($ini['dirWin'].'/MDBpages/footer.php');
+	echo '<script type="text/javascript" src="' . $ini['dirhtml'].'/data/tools.js"></script>';
+	
 ?>
 
 <script>
