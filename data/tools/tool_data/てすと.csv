@@ -1,2 +1,6 @@
-name,furi,summary,detail,syurui,date,delete
-消すうさぎ兎,消すうさぎ兎,teat,test,2,"2018/10/22 23:13:13",0
+group,abc,detail
+一般,public,一般的な言葉
+IT,it,IT用語
+会社,kaisya,会社の言葉
+ファイル,file,フォルダの場所
+資料,shiryo,資料の場所

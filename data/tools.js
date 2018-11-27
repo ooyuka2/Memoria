@@ -1,5 +1,5 @@
 function sendFileToServer(formData,status){
-    var uploadURL ="/Memoria/data/tools/upload.php"; //Upload URL
+    var uploadURL ="/Memoria/data/tools/fileupload_for_MakeUsers.php"; //Upload URL
     var extraData ={}; //Extra Data.
     var jqXHR=$.ajax({
     		beforeSend: function(xhr){
