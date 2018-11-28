@@ -3,7 +3,9 @@
 ?>
 
 <div class="col-lg-12">
-	
+	<?php
+	if(!isset($_GET['pages']) || !file_exists( $ini['dirWin'] . "/data/tools/" . $_GET['pages'] . ".php" ) ) { //
+	?>
 	<div class="bs-component">
 		<ul class="nav nav-tabs">
 		<?php
@@ -26,4 +28,9 @@
 			</div>
 		</div>
 	</div>
+	<?php
+	} else {
+		include($ini['dirWin'] . "/data/tools/" . $_GET['pages'] . ".php");
+	}
+	?>
 </div>
