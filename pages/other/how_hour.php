@@ -21,7 +21,7 @@
 				break;
 			}
 		}
-		if(strtotime($tmpday) > strtotime(date("Y-m-11", time()))) $lastday = date("Y-m-11", time());
+		if(isset($tmpday) && strtotime($tmpday) > strtotime(date("Y-m-11", time()))) $lastday = date("Y-m-11", time());
 		else $lastday = date("Y-m-11",strtotime("-1 month"));
 	} else $lastday = date("Y-m-11",strtotime("-1 month"));
 	
@@ -93,6 +93,7 @@
 		$day ++;
 		}
 	}
+	//print_r_pre($graphdata);
 	/*
 	if($day > $countday) $day--;
 	$day1 = new DateTime($lastTime);

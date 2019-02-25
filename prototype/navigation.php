@@ -6,10 +6,11 @@
 		<ul class="drawer-menu">
 			<li><a class="drawer-brand" style="height:65px">　</a></li>
 			
-			<li class="drawer-dropdown"><a class="drawer-menu-item parent" onclick="navToggle(this)">
+			<li class="drawer-dropdown worknav"><a class="drawer-menu-item parent" onclick="navToggle(this)">
 				<span class="fa fa-tasks pull-left drawer-menu-icon"></span><span>作業申請</span><span class="fa fa-angle-down pull-right"></span></a>
 				<ul>
-					<li><a class="drawer-menu-item"style="font-size:12px" onclick="alert('未実装')">新規申請</a></li>
+					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_work_html; ?>">申請一覧</a></li>
+					<li><a class="drawer-menu-item"style="font-size:12px" href="<?php echo $link_work_html; ?>?page=makeWork&type=new">新規申請</a></li>
 					<li><a class="drawer-menu-item"style="font-size:12px" onclick="alert('未実装')">申請書の回覧</a></li>
 					<li><a class="drawer-menu-item"style="font-size:12px" onclick="alert('未実装')">作業前</a></li>
 					<li><a class="drawer-menu-item"style="font-size:12px" onclick="alert('未実装')">作業中</a></li>

@@ -49,6 +49,7 @@
 		
 		$link_settings_html = $link_pages_html . "settings.php";
 		$link_system_html  = $link_pages_html . "system.php";
+		$link_work_html  = $link_pages_html . "work.php";
 
 	
 ?>

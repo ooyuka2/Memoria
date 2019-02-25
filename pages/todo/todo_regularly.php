@@ -43,7 +43,7 @@
 	
 	}
 	if($txt != "") echo_panel("定期的なもの", $txt, "success");
-	
+	/*
 	$txt = "";
 	$txt = $txt . '<h4>登録：<form class="form-inline"><div class="form-group"><button type="button" class="btn btn-warning btn-sm" onclick=\'change_todo_regularly_privateuser("user_Registration", ' . ((int)$ini['user_Registration']-1) . ')\' style="padding: 10px">▼</button>';
 	$txt = $txt . '<input type="number" class="form-control form-control-sm" min="0" value="' . $ini['user_Registration'] . '" size="2" style="width:50px" readonly>';
@@ -60,6 +60,6 @@
 	$txt = $txt . "";
 	*/
 	
-	echo_panel("個人ユーザー登録", $txt, "primary");
+	//echo_panel("個人ユーザー登録", $txt, "primary");
 	
 ?>
