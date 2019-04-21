@@ -33,7 +33,11 @@ $(document).ready(function(){
 	}
 	
 	if($("#tools").length) {
-		read_tool_php('/Memoria/pages/tools/tools.php', 'toolstab');
+		if(getParam('tab') == "compare") {
+			read_tool_php("/Memoria/pages/tools/tools/compare_form.php", "comparetab");
+		} else {
+			read_tool_php('/Memoria/pages/tools/tools.php', 'toolstab');
+		}
 	}
 	
 	if($("#how_hour_comp").length) {

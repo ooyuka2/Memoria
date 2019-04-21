@@ -110,8 +110,9 @@
 			</div>
 		</div>
 		
-		<div class='form-group col-12'>
-			<label for="exampleInputFile">“Y•tŽ‘—¿</label>
+		<label for="staticEmail" class="col-2 col-form-label">“Y•tŽ‘—¿F</label>
+		<div class='form-group col-4'>
+			<label for="exampleInputFile"></label>
 			<div class='input-group'>
 				<input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
 			</div>
