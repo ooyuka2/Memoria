@@ -50,8 +50,8 @@
         </Gesture>
         <button6>16</button6>
         <button6_etcKey></button6_etcKey>
-        <button7>27</button7>
-        <button7_etcKey></button7_etcKey>
+        <button7>37</button7>
+        <button7_etcKey>PrintScreen</button7_etcKey>
         <button8>5</button8>
         <button8_etcKey></button8_etcKey>
     </profile>
@@ -118,6 +118,61 @@
         <button6_etcKey></button6_etcKey>
         <button7>37</button7>
         <button7_etcKey>左Ctrl+R</button7_etcKey>
+        <button8>5</button8>
+        <button8_etcKey></button8_etcKey>
+    </profile>
+    <profile>
+        <profname>エクスプローラ</profname>
+        <lbutton>1</lbutton>
+        <lbutton_etcKey></lbutton_etcKey>
+        <rbutton>2</rbutton>
+        <rbutton_etcKey></rbutton_etcKey>
+        <tbutton>9</tbutton>
+        <tbutton_etcKey></tbutton_etcKey>
+        <button4>37</button4>
+        <button4_etcKey>左Alt+←</button4_etcKey>
+        <button5>37</button5>
+        <button5_etcKey>左Alt+→</button5_etcKey>
+        <scrolls>5</scrolls>
+        <tiltleft>33</tiltleft>
+        <tiltleft_etcKey></tiltleft_etcKey>
+        <tiltright>34</tiltright>
+        <tiltright_etcKey></tiltright_etcKey>
+        <hspeed>5</hspeed>
+        <hlotate>5</hlotate>
+        <hcount>1</hcount>
+        <Application>
+            <name>explorer.exe</name>
+            <path>C:\Windows\explorer.exe</path>
+        </Application>
+        <Gesture>
+            <Key>R</Key>
+            <Function>10</Function>
+            <Memo></Memo>
+            <EtcKey></EtcKey>
+        </Gesture>
+        <Gesture>
+            <Key>L</Key>
+            <Function>12</Function>
+            <Memo></Memo>
+            <EtcKey></EtcKey>
+        </Gesture>
+        <Gesture>
+            <Key>U</Key>
+            <Function>13</Function>
+            <Memo></Memo>
+            <EtcKey></EtcKey>
+        </Gesture>
+        <Gesture>
+            <Key>D</Key>
+            <Function>14</Function>
+            <Memo></Memo>
+            <EtcKey></EtcKey>
+        </Gesture>
+        <button6>37</button6>
+        <button6_etcKey>左Alt+↑</button6_etcKey>
+        <button7>37</button7>
+        <button7_etcKey>左Alt+Enter</button7_etcKey>
         <button8>5</button8>
         <button8_etcKey></button8_etcKey>
     </profile>
