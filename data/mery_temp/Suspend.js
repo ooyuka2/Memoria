@@ -8,6 +8,8 @@
 //  2. 矩形選択は維持されない
 // -----------------------------------------------------------------------------
 
+
+
 var fso = new ActiveXObject("Scripting.FileSystemObject");
 var shell = new ActiveXObject("WScript.Shell");
 var saveDir  = fso.BuildPath(shell.SpecialFolders("Appdata"), "Mery\\Suspend");

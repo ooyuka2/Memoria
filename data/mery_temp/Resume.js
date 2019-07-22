@@ -1,4 +1,5 @@
 #title = "Mery 再開"
+#begingroup = true
 // Mery 再開マクロ
 // 中断マクロで Mery を終了していた場合，その終了前の状態に復帰する
 // ※起動時実行マクロ専用
@@ -80,7 +81,7 @@ if (isNewDoc) {
 
 // データ削除
 if (fso.FolderExists(saveDir)) {
-	fso.DeleteFolder(saveDir, true);
+	//fso.DeleteFolder(saveDir, true);
 }
 
 // エラーがあった場合は表示
