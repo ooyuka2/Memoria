@@ -28,6 +28,7 @@
 		document.getElementsByClassName('dictionarynav')[0].classList.add('activenav');
 		navOnload();
 	});
+	document.title="dictionary:Memoria";
 </script>
 
 </body>

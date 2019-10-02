@@ -31,6 +31,7 @@
 		document.getElementsByClassName('toolsnav')[0].classList.add('activenav');
 		navOnload();
 	});
+	document.title="tools:Memoria";
 </script>
 
 </body>

@@ -28,6 +28,7 @@
 		document.getElementsByClassName('filenav')[0].classList.add('activenav');
 		navOnload();
 	});
+	document.title="link:Memoria";
 </script>
 
 </body>

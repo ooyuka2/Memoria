@@ -28,6 +28,7 @@
 		document.getElementsByClassName('mailnav')[0].classList.add('activenav');
 		navOnload();
 	});
+	document.title="mail:Memoria";
 </script>
 
 </body>

@@ -28,6 +28,7 @@
 		document.getElementsByClassName('todonav')[0].classList.add('activenav');
 		navOnload();
 	});
+	document.title="todo:Memoria";
 </script>
 
 </body>

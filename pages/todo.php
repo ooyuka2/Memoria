@@ -25,6 +25,7 @@
 	padding: 0 20px;
 }
 </style>
+
 <body>
 <?php
 	include($ini['dirWin'].'/pages/navigation.php');

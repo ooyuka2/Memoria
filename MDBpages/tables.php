@@ -29,6 +29,7 @@
 		document.getElementsByClassName('tablesnav')[0].classList.add('activenav');
 		navOnload();
 	});
+	document.title="tables:Memoria";
 </script>
 
 </body>

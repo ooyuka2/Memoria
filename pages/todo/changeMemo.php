@@ -59,7 +59,7 @@
 			} else if($_POST['doTodo']=="change") {
 				
 				$_POST['txt'] = mb_convert_encoding($_POST['txt'], "SJIS-win", "ASCII,JIS,UTF-8,EUC-JP,SJIS, SJIS-win, Unicode");
-				if( $_POST['txt'] != "" && $todo[$_POST['id']][$_POST['what']] != "no comment") $todo[$_POST['id']][$_POST['what']] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['txt']);
+				if( $_POST['txt'] != "" /*&& $todo[$_POST['id']][$_POST['what']] != "no comment"*/) $todo[$_POST['id']][$_POST['what']] = str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['txt']);
 				writeCsvFile2($link_data . 'todo.csv', $todo);
 				
 				if( $todo[$_POST['id']][$_POST['what']] == "no comment") echo "";

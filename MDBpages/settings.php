@@ -251,6 +251,7 @@ var myBarChart = new Chart(ctxB, {
         }
     }
 });
+document.title="ê›íË:Memoria";
 </script>
 
 </body>
