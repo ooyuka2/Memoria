@@ -18,6 +18,8 @@
 ?>
 
 	<div class="col-12">
+		<?php include $ini['dirWin'].'/data/file.html'; ?>
+		<br>
 		<a href="./file.php?page=table_make&type=new" class="btn btn-info">V‹K</a>@
 		<button onclick="location.reload()" class="btn btn-primary">Ä“Ç‚Ýž‚Ý</button>
 		<div class='table-responsive container-fluid'>
