@@ -211,6 +211,8 @@ function read_memo(){
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 		// PHPから返ってきたデータの表示
 		$("#todo_space_comp").html(data).css('background','');
+		
+		//Crtl + Sで一つ目のパネルを編集モードにする
 		document.onkeydown = 
 			function (e) {
 				if (event.ctrlKey ){

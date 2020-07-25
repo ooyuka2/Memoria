@@ -319,6 +319,9 @@ function changeMempPanel(file, element, min, lock) {
 		
 		//window.location.hash = "#"+file;
 		//resize_textarea();
+		
+		//Crtl + Sで保存する
+		//Crtl + Dでキャンセルする
 		document.onkeydown = 
 			function (e) {
 				if (event.ctrlKey ){
@@ -326,6 +329,12 @@ function changeMempPanel(file, element, min, lock) {
 						//alert("Crtl + S");
 						event.keyCode = 0;
 						saveMemoPanel();
+						return false;
+					 }
+					 if (event.keyCode == 68){
+						//alert("Crtl + S");
+						event.keyCode = 0;
+						reReadMemoPanel();
 						return false;
 					 }
 				}
@@ -371,6 +380,19 @@ function reReadMemoPanel(){
 		$("#memobotton").remove();
 		
 		//window.location.hash = "#"+file;
+
+		//Crtl + Sで一つ目のパネルを編集モードにする
+		document.onkeydown = 
+			function (e) {
+				if (event.ctrlKey ){
+					 if (event.keyCode == 83){
+						//alert("Crtl + S");
+						event.keyCode = 0;
+						$('.changeMempPanel').eq(0).click();
+						return false;
+					 }
+				}
+			}
 
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
@@ -418,7 +440,19 @@ function saveMemoPanel() {
 		$("#memobotton").remove();
 		
 		//window.location.hash = "#"+file;
-
+		
+		//Crtl + Sで一つ目のパネルを編集モードにする
+		document.onkeydown = 
+			function (e) {
+				if (event.ctrlKey ){
+					 if (event.keyCode == 83){
+						//alert("Crtl + S");
+						event.keyCode = 0;
+						$('.changeMempPanel').eq(0).click();
+						return false;
+					 }
+				}
+			}
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
 
