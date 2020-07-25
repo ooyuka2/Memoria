@@ -139,7 +139,7 @@ function makeMemoCard($path, $memo, $memolist) {
 	if($memolist['lock'] == "n") echo "<div class='card-footer'>";
 	else echo "<div class='card-footer' style='display:none;'>";
 	echo '<span class="pull-right">Å@</span><button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="deleteMemoPanel(\''.$path.'\', \''.$memolist['filename'].'\')"><span class="fa fa-trash" aria-hidden="true"></span></button>';
-	echo '<span class="pull-right">Å@</span><button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="changeMempPanel(\''.$memolist['filename'].'\', this, \''.$memolist['big'].'\', \''.$memolist['lock'].'\')"><span class="fa fa-pencil" aria-hidden="true"></span></button>';
+	echo '<span class="pull-right">Å@</span><button type="button" class="close changeMempPanel" data-dismiss="modal" aria-hidden="true" onclick="changeMempPanel(\''.$memolist['filename'].'\', this, \''.$memolist['big'].'\', \''.$memolist['lock'].'\')"><span class="fa fa-pencil" aria-hidden="true"></span></button>';
 
 	echo "</div>";
 	echo "</div>";

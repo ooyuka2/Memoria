@@ -3,9 +3,9 @@
 //			読み込み時の関数
 //
 // ##############################################################################################################################
-//$("#todo_tree_comp")があれば読み込む関数
+
 $(document).ready(function(){
-	
+	//$("#todo_tree_comp")があれば読み込む関数
 	if($("#todo_tree_comp").length) {
 		if(getParam('d') == "detail" || getParam('d') == null  || getParam('d') == "todo") {
 			if(getParam('d') != null) var d = getParam('d');
@@ -211,6 +211,17 @@ function read_memo(){
 		// doneのブロック内は、Ajax通信が成功した場合に呼び出される
 		// PHPから返ってきたデータの表示
 		$("#todo_space_comp").html(data).css('background','');
+		document.onkeydown = 
+			function (e) {
+				if (event.ctrlKey ){
+					 if (event.keyCode == 83){
+						//alert("Crtl + S");
+						event.keyCode = 0;
+						$('.changeMempPanel').eq(0).click();
+						return false;
+					 }
+				}
+			}
 	}).fail(function(XMLHttpRequest, textStatus, errorThrown) {
 		// 通常はここでtextStatusやerrorThrownの値を見て処理を切り分けるか、単純に通信に失敗した際の処理を記述します。
 		// this;

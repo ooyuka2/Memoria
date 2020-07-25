@@ -3,11 +3,8 @@ PHP Markdown
 ============  
 C:\Users\yukako oya\AppData\Local\Android\Sdk  
   
-  ううう  
-### 右クリックメニューにｔｏｄｏfile名入れる  
   
-    sss  
-    ssss  
+### 右クリックメニューにｔｏｄｏfile名入れる  
   
 #エクセルVBA高速化のためのヒント  
 ・処理前後に以下を入れる  

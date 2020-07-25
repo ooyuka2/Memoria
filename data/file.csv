@@ -9,7 +9,7 @@ name,furi,summary,detail,count,syurui,date,delete
 うさぎ,うさぎ,http://localhost/Memoria/pages/file.php,,0,3,"2017/3/28 20:08",
 うさぎ,うさぎ,http://localhost/Memoria/pages/file.php,,0,3,"2017/3/28 20:08",
 VBA基礎文法最速マスター,VBAきそぶんぽうさいそくますたー,http://d.hatena.ne.jp/nattou_curry_2/20100129/1264787849,,0,3,"2017/4/2 19:24",0
-データ,でーた,"C:\xampp\htdocs\Memoria\data",,7,2,"2017/5/2 18:10",0
+データ,でーた,"C:\xampp\htdocs\Memoria\data",,8,2,"2017/5/2 18:10",0
 ページ1,ぺーじ,"C:\xampp\htdocs\Memoria\pages",,0,2,"2017/5/2 18:10",0
 ページ2,ぺーじ,"C:\xampp\htdocs\Memoria\pages",,0,2,"2017/5/2 18:10",0
 ページ3,ぺーじ,"C:\xampp\htdocs\Memoria\pages",,1,2,"2017/5/2 18:10",0
@@ -23,7 +23,7 @@ favicon.ico,favicon.ico,アイコン,アイコン用の画像ファイル,0,2,"2017/3/28 0:31",
 Apple,Apple,macやiphone等を製造・販売している会社,,0,2,"2017/3/28 15:43",
 犬,いぬ,ワンワンと鳴く生き物,,0,2,"2017/3/28 19:57",
 チョコ,ちょこ,お菓子,,0,2,"2017/3/28 20:07",
-todoリスト,りすと,やることリスト作らなきゃ,おー！,2,2,"2017/3/29 16:22",
+todoリスト,りすと,やることリスト作らなきゃ,おー！,3,2,"2017/3/29 16:22",
 テスト,てすと,これはテストです。<br>これはテストです。<br>これはテストです。,"これはテストです。<br>これはテストです。<br>これはテストです。<br><a href=''# target='_blank'>参考WEBサイト</a>",0,2,"2017/4/1 9:16",1
 VBA基礎文法最速マスター,VBAきそぶんぽうさいそくますたー,http://d.hatena.ne.jp/nattou_curry_2/20100129/1264787849,,2,3,"2017/4/2 19:24",0
 DateTimeクラス,DateTimeクラス,DateTimeクラスは日付時間を扱うオブジェクトです,,0,2,"2017/4/14 4:05",0

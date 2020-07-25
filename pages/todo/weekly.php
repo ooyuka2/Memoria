@@ -54,7 +54,7 @@
 							}
 						}
 					}
-					
+					/*
 					echo "KPIÅF{$ini['incidentKPI']}<br>";
 					if($flug == 1) echo "Åú".$ini['servicesTheme']."<br>";
 					else echo "ÅZ".$ini['servicesTheme']."<br>";
@@ -82,7 +82,7 @@
 							}
 						}
 					}
-					
+					*/
 					echo "KPIÅF{$ini['incidentKPI']}<br>";
 					if($flug == 1) echo "Åú".$ini['incidentTheme']."<br>";
 					else echo "ÅZ".$ini['incidentTheme']."<br>";
