@@ -40,7 +40,7 @@
 	$when = new DateTime($working[(count($working)-1)]['day']);
 	$when = $when->format('Y/m/d');
 	if(isset($_GET['day']) && !equal_word_str($_GET['day'], '1')) {
-		$tableHeadder = "<table class='table table-condensed table-striped table-hover table-sm'><thead class='thead-dark'><tr><th class='col-md-2'>開始時間-終了時間</th><th class='col-md-8'>タイトル</th><th class='col-md-2'>ざっくり時間</th></tr></thead><tbody>";
+		$tableHeadder = "<table class='table table-condensed table-striped table-hover table-sm'><thead class='thead-dark'><tr><th class='col-md-1'>開始時間-終了時間</th><th class='col-md-4'>タイトル</th><th class='col-md-2'>ざっくり時間</th><th class='col-md-2'>場所</th><th class='col-md-3'>接触者</th></tr></thead><tbody>";
 	} else {
 		$tableHeadder = "<table class='table table-condensed table-striped table-hover table-xs table-sm'><thead class='thead-dark'><tr><th class='col-md-3'>作業時間</th><th class='col-md-6'>タイトル</th><th class='col-md-3'>時間</th></tr></thead><tbody>";
 	}
@@ -79,6 +79,14 @@
 				if($working[$j]['id'] == "periodically") {
 					$keeper .= "<td><span>{$working[$j]['note']}</span></td>";
 					$keeper .= "<td>".$interval->format('%H時%i分')."</td>";
+					
+					//場所と接触者の追加欄
+					if(isset($_GET['day']) && !equal_word_str($_GET['day'], '1')) {
+						$keeper .= "<td>{$working[$j]['place']}</td>";
+						$keeper .= "<td>{$working[$j]['people']}</td>";
+					}
+					//場所と接触者の追加欄ここまで
+					
 					$keeper .= "</tr>";
 					if(strpos($working[$j]['note'], '<br>') !== false){
 						$note = str_replace("<br>", "\\n", "&quot".$working[$j]['note']."&quot");//\\\'
@@ -87,15 +95,34 @@
 				} else if($working[$j]['file'] == "todo") {
 					$keeper .= "<td><span onClick='goto_detail({$todo[$working[$j]['id']]['top']})'>{$todo[$todo[$working[$j]['id']]['top']]['タイトル']}</span></td>";
 					$keeper .= "<td>".$interval->format('%H時%i分')."</td>";
+					
+					//場所と接触者の追加欄
+					if(isset($_GET['day']) && !equal_word_str($_GET['day'], '1')) {
+						$keeper .= "<td>{$working[$j]['place']}</td>";
+						$keeper .= "<td>{$working[$j]['people']}</td>";
+					}
+					//場所と接触者の追加欄ここまで
+					
 					$keeper .= "</tr>";
 					$copytext .= $todo[$todo[$working[$j]['id']]['top']]['タイトル'] . "	" . $todo[$todo[$working[$j]['id']]['top']]['時間管理テーマ']. "\\n	";
 				} else if($working[$j]['file'] == "old201804") {
 					$keeper .= "<td><span onClick='goto_detail({$old201804todo[$working[$j]['id']]['top']})'>{$old201804todo[$old201804todo[$working[$j]['id']]['top']]['タイトル']}</span></td>";
 					$keeper .= "<td>".$interval->format('%H時%i分')."</td>";
+					
+					//場所と接触者の追加欄
+					if(isset($_GET['day']) && !equal_word_str($_GET['day'], '1')) {
+						$keeper .= "<td>{$working[$j]['place']}</td>";
+						$keeper .= "<td>{$working[$j]['people']}</td>";
+					}
+					//場所と接触者の追加欄ここまで
+					
 					$keeper .= "</tr>";
 					$copytext .= $old201804todo[$old201804todo[$working[$j]['id']]['top']]['タイトル'] . "	" . $old201804todo[$old201804todo[$working[$j]['id']]['top']]['時間管理テーマ']. "\\n	";
 					//$old201804todo
 				}
+				
+
+				
 			}
 			if($i!=1 && $day != $countday) {
 				$keeper .= "</tbody></table>";

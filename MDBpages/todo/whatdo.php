@@ -77,13 +77,13 @@
 		for($i=1; $i<count($periodically); $i++) {
 			echo "<option value='{$periodically[$i]['title']}'>{$periodically[$i]['内容']}</option>";
 		}
-		echo "</select></span></div></div><div class='row'><div class='form-group  col-sm-9'><textarea class='form-control input-normal input-sm' name='note' id='note' onChange='checkNote()'>事務作業（メール対応etc）</textarea></div></div>";
+		echo "</select></span></div></div><div class='row'><div class='form-group  col-sm-9'><textarea class='form-control input-normal input-sm' name='note' id='note' onChange='checkNote()'>事務作業（メール/Teams確認etc）</textarea></div></div>";
 ?>
 	<div class='row'>
 		<div class="form-group checkbox-wrap text-center col-sm-8">
 			<label class="label-checkbox">
 				<input type="checkbox" name="work_mail" checked="checked" id="work_mail" onclick="toggleMail()">
-				<span class="lever">メール対応</span>
+				<span class="lever">メール/Teams確認</span>
 			</label>
 			<label class="label-checkbox">
 				<input type="checkbox" name="work_doc" id="work_doc" onclick="toggleDoc()">
@@ -108,6 +108,32 @@
 		echo "</div><div class='row'><div class='form-group col-sm-9'><textarea class='form-control input-normal input-sm' name='note' id='note'>" .str_replace('<br>', '&#10;',$todo[$_GET['p']]['所感']) . "</textarea></div></div>";
 	} else echo "</div><div class='row'><div class='form-group  col-sm-9'><textarea class='form-control input-normal input-sm' name='note' placeholder='" .str_replace('<br>', '&#10;',$todo[$_GET['p']]['所感']) . "' id='note'></textarea></div></div>";
 ?>
+
+		<!-- //場所と接触者の追加欄 -->
+<?php
+	$placetext = str_replace(',', '・', $ini['keeper place']);
+	$place_ayyar = explode(",",$ini['keeper place'].",,");
+	$peopletext = str_replace(',', '・', $ini['keeper people']);
+	$people_ayyar = explode(",",$ini['keeper people'].",,");
+	$people_commonly_ayyar = explode(",",$ini['keeper people commonly'].",,");
+?>
+	<div class="row">
+		<div class='form-group col-sm-9'>
+			<label class='' for='place'>作業場所</label>
+			<textarea class='form-control input-normal input-sm' name='place' id='place'><?php echo $placetext ?></textarea>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class='form-group col-sm-9'>
+			<label class='' for='people'>濃厚接触者（1m以内に15分以上近づいた方々）</label>
+			<textarea class='form-control input-normal input-sm' name='people' id='people'><?php echo $peopletext ?></textarea>
+		</div>
+	</div>
+
+		<!-- 場所と接触者の追加欄ここまで -->
+
+
 	<div class='row'>
 	<div class='form-group col-sm-4'>
 		<div class='keeper-btn'>

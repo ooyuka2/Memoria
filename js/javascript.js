@@ -734,15 +734,15 @@ function toggleMail() {
 	if(flug) {
 		var note = document.getElementById('note').value;
 		if (note.match(/（etc）/)) {
-			note = note.replace("（etc）", "（メール対応etc）");
+			note = note.replace("（etc）", "（メール/Teams確認etc）");
 		} else {
-			note = note.replace("etc）", "・メール対応etc）");
+			note = note.replace("etc）", "・メール/Teams確認etc）");
 		}
 		document.getElementById('note').value = note;
 	} else {
 		var note = document.getElementById('note').value;
-		note = note.replace("・メール対応", "");
-		note = note.replace("メール対応", "");
+		note = note.replace("・メール/Teams確認", "");
+		note = note.replace("メール/Teams確認", "");
 		document.getElementById('note').value = note;
 	}
 }

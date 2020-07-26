@@ -1,4 +1,4 @@
-file,id,day,per,startTime,finishTime,keeper,note,place,people
+file,id,day,per,startTime,finishTime,keeper,note,,
 old201804,11,"2017/4/2 9:08",100,0:00,0:00,0,,,
 old201804,12,"2017/4/2 9:08",100,0:00,0:00,0,,,
 old201804,8,"2017/4/2 9:10",100,0:00,0:00,0,,,

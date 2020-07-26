@@ -83,7 +83,7 @@
 						}
 					}
 					*/
-					echo "KPIÅF{$ini['incidentKPI']}<br>";
+					//echo "KPIÅF{$ini['incidentKPI']}<br>";
 					if($flug == 1) echo "Åú".$ini['incidentTheme']."<br>";
 					else echo "ÅZ".$ini['incidentTheme']."<br>";
 					for($i=1; $i<count($todo); $i++) {

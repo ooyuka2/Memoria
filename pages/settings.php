@@ -118,7 +118,7 @@
 					echo_panel("基本的な設定項目の更新(主に週報で利用)", $txt, "info");
 					
 					//dataファイルの更新
-					if($ini['datavarsion'] == "20181015") $txt = "データは最新の状態です";
+					if($ini['datavarsion'] == "20200727") $txt = "データは最新の状態です";
 					else {
 						$txt = "データの更新が必要です。今のバージョンは{$ini['datavarsion']}分です。<br><br>";
 						if($ini['datavarsion'] == "20180717") {
@@ -132,6 +132,10 @@
 						} else if($ini['datavarsion'] == "20180716") {
 							$txt .= '<div id="sampleWrap">';
 							$txt .= '<a href="/Memoria/pages/settings/20180717.php" class="btn btn-danger btn-block btn-sm">var.20180717更新</a>';
+							$txt .= '</div>';
+						} else if($ini['datavarsion'] == "20181015") {
+							$txt .= '<div id="sampleWrap">';
+							$txt .= '<a href="/Memoria/pages/settings/20200727.php" class="btn btn-danger btn-block btn-sm">var.20200727更新</a>';
 							$txt .= '</div>';
 						}
 					}

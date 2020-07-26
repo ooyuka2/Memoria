@@ -17,6 +17,10 @@
 		$ini['servicesID'] = $_POST['servicesID'];
 		$ini['incidentTheme'] = $_POST['incidentTheme'];
 		$ini['servicesTheme'] = $_POST['servicesTheme'];
+		$ini['keeper place'] = str_replace(array(", ", ",　", "、", "・"), ',', $_POST['keeperplace']);
+		$ini['keeper people'] = str_replace(array(", ", ",　", "、", "・"), ',', $_POST['keeperpeople']);
+		$ini['keeper people commonly'] = str_replace(array(", ", ",　", "、"), ',', $_POST['keeperpeoplecommonly']);
+		
 		//$ini['servicesKPI'] = $_POST['servicesKPI'];
 		
 		write_ini_file($ini['dirWin'].'/data/config.ini', $ini);
@@ -122,6 +126,22 @@
 		$txt .= '<input type="text" class="form-control" name="incidentTheme" value="'.$ini['incidentTheme'].'">';
 		$txt .= "</div>";
 		
+		$txt .= '<div class="form-group">';
+		$txt .= '<label class="control-label">よく利用する場所</label>';
+		$txt .= '<input type="text" class="form-control" name="keeperplace" value="'.$ini['keeper place'].'">';
+		$txt .= "</div>";
+		
+		$txt .= '<div class="form-group">';
+		$txt .= '<label class="control-label">よく会う人</label>';
+		$txt .= '<input type="text" class="form-control" name="keeperpeople" value="'.$ini['keeper people'].'">';
+		$txt .= "</div>";
+		
+		
+		$txt .= '<div class="form-group">';
+		$txt .= '<label class="control-label">よく会うグループ</label>';
+		$txt .= '<input type="text" class="form-control" name="keeperpeoplecommonly" value="'.$ini['keeper people commonly'].'">';
+		$txt .= "</div>";
+		
 		$txt .= '<div class="form-group pull-right">';
 		$txt .= "<button type='submit' class='btn btn-danger' id='default-ini' name='default-ini' style='margin: 0 10px auto'>更新</button></div>";
 		$txt .= "</form>";
@@ -129,7 +149,7 @@
 		echo_panel("基本的な設定項目の更新(主に週報で利用)", $txt, "info");
 		
 		//dataファイルの更新
-		if($ini['datavarsion'] == "20181015") $txt = "データは最新の状態です";
+		if($ini['datavarsion'] == "20200727") $txt = "データは最新の状態です";
 		else {
 			$txt = "データの更新が必要です。今のバージョンは{$ini['datavarsion']}分です。<br><br>";
 			if($ini['datavarsion'] == "20180717") {
@@ -143,6 +163,10 @@
 			} else if($ini['datavarsion'] == "20180716") {
 				$txt .= '<div id="sampleWrap">';
 				$txt .= '<a href="/Memoria/pages/settings/20180717.php" class="btn btn-danger btn-block btn-sm">var.20180717更新</a>';
+				$txt .= '</div>';
+			} else if($ini['datavarsion'] == "20181015") {
+				$txt .= '<div id="sampleWrap">';
+				$txt .= '<a href="/Memoria/pages/settings/20200727.php" class="btn btn-danger btn-block btn-sm">var.20200727更新</a>';
 				$txt .= '</div>';
 			}
 		}

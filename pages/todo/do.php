@@ -50,6 +50,11 @@
 			writeCsvFile2($ini['dirWin']."/data/todo.csv", $todo);
 		}
 		
+		//場所と接触者の追加欄
+		$working[$www]['place'] = str_replace(array(", ", ",　", "、", ","), "・", $_POST['place']);
+		$working[$www]['people'] = str_replace(array(", ", ",　", "、", ","), "・", $_POST['people']);
+		//場所と接触者の追加欄ここまで
+		
 		mb_convert_variables('SJIS-win',"SJIS-win, UTF-8, Unicode",$working);
 		writeWorking($working);
 	} else {
