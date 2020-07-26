@@ -873,6 +873,36 @@ function changePID() {
 }
 
 
+function togglePlace(placetext, id) {
+	var flug = document.getElementById(id).checked;
+	if(flug) {
+		var place = document.getElementById('place').value;
+			if(place=="") place = placetext;
+			else place = place + "・" + placetext;
+		document.getElementById('place').value = place;
+	} else {
+		var place = document.getElementById('place').value;
+		place = place.replace("・"+placetext, "");
+		place = place.replace(placetext, "");
+		document.getElementById('place').value = place;
+	}
+}
+
+function togglePeople(placetext, id) {
+	var flug = document.getElementById(id).checked;
+	if(flug) {
+		var place = document.getElementById('people').value;
+			if(place=="") place = placetext;
+			else place = place + "・" + placetext;
+		document.getElementById('people').value = place;
+	} else {
+		var place = document.getElementById('people').value;
+		place = place.replace("・"+placetext, "");
+		place = place.replace(placetext, "");
+		document.getElementById('people').value = place;
+	}
+}
+
 // ##############################################################################################################################
 //
 //            todo編集用の関数

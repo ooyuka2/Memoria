@@ -111,23 +111,58 @@
 
 		<!-- //場所と接触者の追加欄 -->
 <?php
-	$placetext = str_replace(',', '・', $ini['keeper place']);
 	$place_ayyar = explode(",",$ini['keeper place'].",,");
-	$peopletext = str_replace(',', '・', $ini['keeper people']);
 	$people_ayyar = explode(",",$ini['keeper people'].",,");
 	$people_commonly_ayyar = explode(",",$ini['keeper people commonly'].",,");
 ?>
 	<div class="row">
 		<div class='form-group col-sm-9'>
 			<label class='' for='place'>作業場所</label>
-			<textarea class='form-control input-normal input-sm' name='place' id='place'><?php echo $placetext ?></textarea>
+			<textarea class='form-control input-normal input-sm' name='place' id='place'><?php echo $place_ayyar[0] ?></textarea>
 		</div>
 	</div>
+	<div class='row'>
+		<div class="form-group checkbox-wrap text-center col-sm-8">
+			<?php
+				for($i=0; $i<count($place_ayyar)-2; $i++) {
+					echo "<label class='label-checkbox'>";
+					if($i==0)  echo "<input type='checkbox' checked='checked' onclick='togglePlace(\"{$place_ayyar[$i]}\", \"place_{$i}\")' id='place_{$i}'>";
+					else echo "<input type='checkbox' onclick='togglePlace(\"{$place_ayyar[$i]}\", \"place_{$i}\")' id='place_{$i}'>";
+					echo "<span class='lever'>{$place_ayyar[$i]}</span></label>";
+				}
+			?>
+		</div>
+	</div>
+	
 	
 	<div class="row">
 		<div class='form-group col-sm-9'>
 			<label class='' for='people'>濃厚接触者（1m以内に15分以上近づいた方々）</label>
-			<textarea class='form-control input-normal input-sm' name='people' id='people'><?php echo $peopletext ?></textarea>
+			<textarea class='form-control input-normal input-sm' name='people' id='people'><?php echo $people_commonly_ayyar[0] ?></textarea>
+		</div>
+	</div>
+	
+	<div class='row'>
+		<div class="form-group checkbox-wrap text-center col-sm-8">
+			<?php
+				for($i=0; $i<count($place_ayyar)-2; $i++) {
+					echo "<label class='label-checkbox'>";
+					echo "<input type='checkbox' onclick='togglePeople(\"{$people_ayyar[$i]}\", \"people_{$i}\")' id='people_{$i}'>";
+					echo "<span class='lever'>{$people_ayyar[$i]}</span></label>";
+				}
+			?>
+		</div>
+	</div>
+	<div class='row'>
+		<div class="form-group checkbox-wrap text-center col-sm-8">
+			<?php
+				for($i=0; $i<count($people_commonly_ayyar)-2; $i++) {
+					echo "<label class='label-checkbox'>";
+					if($i == 0) echo "<input type='checkbox' onclick='togglePeople(\"{$people_commonly_ayyar[$i]}\", \"people_commonly_{$i}\")' id='people_commonly_{$i}' checked='checked' >";
+					else echo "<input type='checkbox' onclick='togglePeople(\"{$people_commonly_ayyar[$i]}\", \"people_commonly_{$i}\")' id='people_commonly_{$i}'>";
+					echo "<span class='lever'>{$people_commonly_ayyar[$i]}</span></label>";
+				}
+			?>
 		</div>
 	</div>
 
