@@ -573,6 +573,8 @@ function whatTodayDo_Registration($ini) {
 			$working[$www]['finishTime'] = date('H:i', strtotime('-5 minute'));
 			$working[$www]['keeper'] = 1;
 			$working[$www]['note'] = "";
+			$working[$www]['place'] = "";
+			$working[$www]['people'] = "";
 			writeCsvFile2($ini['dirWin']."/data/working.csv", $working);
 		}
 		
@@ -625,18 +627,25 @@ function write_weekly($todo, $working, $weekly, $i, $weeklyid, $workK) {
 	else echo $ini['myname'];
 	if($todo[$i]['完了']==1) echo "【：完了】</span><br>";
 	else echo "</span><br>";
-	if($weeklyid != -1) $workdetail = str_replace('<br>', '<br>　　　', $weekly[$weeklyid]['テーマ概要']);
-	else $workdetail = str_replace('<br>', '<br>　　　', $todo[$i]['作業内容']);
+	if($weeklyid != -1) {
+		$workdetail = last_br_delete($weekly[$weeklyid]['テーマ概要']);
+		$workdetail = str_replace('<br>', '<br>　　　', $workdetail);
+	} else {
+		$workdetail = last_br_delete($todo[$i]['作業内容']);
+		$workdetail = str_replace('<br>', '<br>　　　', $workdetail);
+	}
 	echo "　＜テーマ概要＞<br>　　　{$workdetail}<br>";
 	if($weeklyid != -1 && $weekly[$weeklyid]['済み'] != "") {
 		echo "　＜済み＞<br>";
-		$workdetail = str_replace('<br>', '<br>　　　', $weekly[$weeklyid]['済み']);
+		$workdetail = last_br_delete($weekly[$weeklyid]['済み']);
+		$workdetail = str_replace('<br>', '<br>　　　', $workdetail);
 		echo "　　　{$workdetail}<br>";
 	}
 	if($flug != 0) {
 		echo "　＜進捗＞<br>";
 		if($weeklyid != -1) {
-			$workdetail = str_replace('<br>', '<br>　　　', $weekly[$weeklyid]['進捗']);
+			$workdetail = last_br_delete($weekly[$weeklyid]['進捗']);
+			$workdetail = str_replace('<br>', '<br>　　　', $workdetail);
 			echo "　　　{$workdetail}<br>";
 		} else {
 			for($j=1; $j<count($working); $j++) {
@@ -647,10 +656,11 @@ function write_weekly($todo, $working, $weekly, $i, $weeklyid, $workK) {
 			}
 		}
 	}
-	if($todo[$i]['完了'] == 0) {
+	if($todo[$i]['完了'] == 0 && $weekly[$weeklyid]['今後の予定'] != "") {
 		echo "　＜今後の予定＞<br>";
 		if($weeklyid != -1) {
-			$workdetail = str_replace('<br>', '<br>　　　', $weekly[$weeklyid]['今後の予定']);
+			$workdetail = last_br_delete($weekly[$weeklyid]['今後の予定']);
+			$workdetail = str_replace('<br>', '<br>　　　', $workdetail);
 			echo "　　　{$workdetail}<br>";
 		} else {
 			for($j=1; $j<count($todo); $j++) {
@@ -661,7 +671,6 @@ function write_weekly($todo, $working, $weekly, $i, $weeklyid, $workK) {
 			}
 		}
 	}
-	
 }
 
 //##################################################################
@@ -709,6 +718,16 @@ function print_r_pre($array) {
 	echo "</pre>";
 }
 
+//##################################################################
+//				変数の末尾が文末が<br>の場合に削除
+//##################################################################
+
+function last_br_delete($tmpStr) {
+	While(substr($tmpStr, -4) == "<br>") {
+			$tmpStr = substr_replace($tmpStr, "", -4);
+	}
+	return $tmpStr;
+}
 //##################################################################
 //				配列用関数
 //##################################################################

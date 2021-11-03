@@ -824,3 +824,44 @@ function read_how_hour(line){
 	// サブミット後、ページをリロードしないようにする
 	return false;
 }
+
+// ##############################################################################################################################
+//
+//			mm:dd形式の時間に30分追加したり減らしたりちょうどよくする用の関数
+//
+// ##############################################################################################################################
+function change_seccond(timeStr, arithmetic, sec){
+	var hh = Number(timeStr.substr(0,2));
+	var mm = Number(timeStr.substr(3,2));
+
+	if(arithmetic == "セット") { 
+		if(mm>=0 && mm<15) {
+			mm = 15;
+		} else if(mm>=15 && mm<30) {
+			mm = 30;
+		}else if(mm>=30 && mm<45) {
+			mm = 45;
+		} else {
+			hh = hh+1;
+			mm = 0;
+		}
+	} else if(arithmetic == "+" && mm+sec>=60) { 
+		hh = hh + Math.floor((mm+sec) / 60);
+		mm = ((mm+sec)%60);
+	} else if(arithmetic == "+" && mm+sec<60) {
+		mm = sec + mm;
+	} else if(arithmetic == "-" && mm>sec) {
+		mm = mm - sec;
+	} else if(arithmetic == "-" && mm<=sec && mm-(sec%60)>=0) {
+		hh = hh - Math.floor(1+(sec-mm) / 60);
+		mm = mm-(sec%60) ;
+		a = 1;
+	} else if(arithmetic == "-" && mm<=sec && mm-(sec%60)<0) {
+		hh = hh - Math.floor(1+(sec-mm) / 60);
+		mm = 60+mm-(sec%60) ;
+	}
+	return ( '00' + hh).slice( -2 ) + ":" + ( '00' + mm).slice( -2 );
+}
+//return ( '00' + hh).slice( -2 ); + ":" + ( '00' + mm).slice( -2 );
+//change_seccond(timeStr, "+", 30)
+//change_seccond(timeStr, "-", 30)

@@ -31,7 +31,7 @@
 		$link_function = $link_pages_Win . "functionpages.php";
 		
 	} else if($pagetype == "MDBpages") {
-		if($_SERVER['SERVER_ADDR'] != $_SERVER['REMOTE_ADDR']) {
+		if($_SERVER['SERVER_ADDR'] != $_SERVER['REMOTE_ADDR'] && gethostbyaddr($_SERVER['REMOTE_ADDR']) != "ノートPCのマシン名") {
 			$ini['csstype'] = "umi";
 		}
 		//cssファイルのルート

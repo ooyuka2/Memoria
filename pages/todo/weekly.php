@@ -54,10 +54,10 @@
 							}
 						}
 					}
-					/*
-					echo "KPI：{$ini['incidentKPI']}<br>";
+					
+					//echo "KPI：{$ini['incidentKPI']}<br>";
 					if($flug == 1) echo "●".$ini['servicesTheme']."<br>";
-					else echo "〇".$ini['servicesTheme']."<br>";
+					//else echo "〇".$ini['servicesTheme']."<br>";
 					for($i=1; $i<count($todo); $i++) {
 						$weeklyid = check2array($weekly, $i, "todoid");
 						if($todo[$i]['時間管理テーマ'] == $ini['servicesID'] && $weeklyid != -1 && $weekly[$weeklyid]['表示'] == 0) {
@@ -65,7 +65,7 @@
 						}
 						
 					}
-					echo "<br><br>";
+					//echo "<br><br>";
 					
 					$flug = 0;
 					for($i=1; $i<count($todo); $i++) {
@@ -82,10 +82,10 @@
 							}
 						}
 					}
-					*/
+					
 					//echo "KPI：{$ini['incidentKPI']}<br>";
 					if($flug == 1) echo "●".$ini['incidentTheme']."<br>";
-					else echo "〇".$ini['incidentTheme']."<br>";
+					//else echo "〇".$ini['incidentTheme']."<br>";
 					for($i=1; $i<count($todo); $i++) {
 						$weeklyid = check2array($weekly, $i, "todoid");
 						if($todo[$i]['時間管理テーマ'] == $ini['incidentID'] && $weeklyid != -1 && $weekly[$weeklyid]['表示'] == 0) {
@@ -93,7 +93,7 @@
 						}
 						
 					}
-					echo "<br><br>";
+					if($flug == 1) echo "<br><br>";
 					
 					$ary = array();
 					$c = 0;
@@ -154,13 +154,13 @@
 							//		}
 							//	}
 							//}
-							echo "<br><br>";
+							echo "<br>";
 							$c++;
 						}
 						
 					}
 					if(count($ary)==0) echo "　　　なし<br>";
-					echo "<br>以上、よろしくお願いいたします。</p>";
+					echo "<br>以上、よろしくお願い致します。</p>";
 				?>
 			</div>
 		</fieldset>
@@ -183,12 +183,12 @@
 <form class='form-horizontal container-fluid' method='post' action='todo/weekly.php?change=go' >
 <div class="form-group">
 <div class="bs-component table-responsive">
-	<table class='table table-striped table-condensed'>
+	<table class='table table-striped table-hover table-condensed'>
 		<thead>
 			<tr>
-				<th class="col-md-2">テーマ</th>
+				<th class="col-md-3">テーマ</th>
 				<th class="col-md-1"></th>
-				<th class="col-md-5">週報</th>
+				<th class="col-md-4">週報</th>
 				<th class="col-md-4">週報ヒント</th>
 			</tr>
 		</thead>
@@ -309,11 +309,11 @@
 </div>
 </div>
 
-	<div class="form-group row" style="margin-bottom:0; position: fixed; bottom: 20px;right:0;width:500px;">
-	    <div class="col-xs-offset-3 col-xs-3 offset-3 col-3">
+	<div class="form-group" style="margin-bottom:0; position: fixed; bottom: 20px;right:0;width:500px;">
+	    <div class="col-xs-offset-3 col-xs-3">
 	        <button type="reset" class="btn btn-default btn-block">Reset</button>
 	    </div>
-		<div class="col-xs-offset-1 col-xs-3 offset-1 col-3">
+		<div class="col-xs-3">
 	        <button type="submit" class="btn btn-primary btn-block">Submit</button>
 	    </div>
 	</div>
