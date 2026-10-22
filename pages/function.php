@@ -13,6 +13,7 @@
 
 function readCsvFile($filepath) {	//ファイル読み込んで配列に入れる
 	mb_internal_encoding("SJIS-win");
+	$records = array();
 	if (is_readable($filepath)) {
 		$data = file_get_contents($filepath);
 		$data = mb_convert_encoding($data, 'UTF-8', 'SJIS-win');
@@ -22,6 +23,7 @@ function readCsvFile($filepath) {	//ファイル読み込んで配列に入れる
 		rewind($temp);
 		
 		$file = new SplFileObject($meta['uri'], 'rb'); 
+		$file->setCsvControl(",", '"', "\\");
 		$file->setFlags(SplFileObject::READ_CSV); 
 		foreach ($file as $line) {
 			if(!is_null($line[0])){
@@ -30,12 +32,12 @@ function readCsvFile($filepath) {	//ファイル読み込んで配列に入れる
 		}
 		for($i=0;$i<count($records);$i++) {
 			for($j=0;$j<count($records[0]);$j++) {
-				$records[$i][$j] = str_replace_magicquotes($records[$i][$j]);
+				$records[$i][$j] = str_replace_magicquotes($records[$i][$j] ?? "");
 			}
 			mb_convert_variables('SJIS-win','UTF-8',$records[$i]);
 		}
 	}else {
-		$records = null;
+		throw new RuntimeException("Unable to read CSV: " . $filepath);
 	}
 	//mb_convert_variables('SJIS-win',"SJIS, SJIS-win, UTF-8, Unicode",$records);
 	//mb_convert_variables('UTF-8',"auto",$records);
@@ -46,6 +48,8 @@ function readCsvFile($filepath) {	//ファイル読み込んで配列に入れる
 
 function readCsvFile2($filepath) {	//ファイル読み込んで配列に入れる
 	mb_internal_encoding("SJIS-win");
+	$records = array();
+	$ary = array();
 	if (is_readable($filepath)) {
 		$data = file_get_contents($filepath);
 		$data = mb_convert_encoding($data, 'UTF-8', 'SJIS-win');
@@ -55,6 +59,7 @@ function readCsvFile2($filepath) {	//ファイル読み込んで配列に入れる
 		rewind($temp);
 		
 		$file = new SplFileObject($meta['uri'], 'rb'); 
+		$file->setCsvControl(",", '"', "\\");
 		$file->setFlags(SplFileObject::READ_CSV); 
 		foreach ($file as $line) {
 			if(!is_null($line[0])){
@@ -64,7 +69,7 @@ function readCsvFile2($filepath) {	//ファイル読み込んで配列に入れる
 		}
 		for($i=0;$i<count($records);$i++) {
 			for($j=0;$j<count($records[0]);$j++) {
-				$records[$i][$j] = str_replace_magicquotes($records[$i][$j]);
+				$records[$i][$j] = str_replace_magicquotes($records[$i][$j] ?? "");
 			}
 			
 			mb_convert_variables('SJIS-win','UTF-8',$records[$i]);
@@ -74,11 +79,11 @@ function readCsvFile2($filepath) {	//ファイル読み込んで配列に入れる
 		//mb_convert_variables('UTF-8',"auto",$records);
 		for($i=0;$i<count($records);$i++) {
 			for($j=0;$j<count($records[0]);$j++) {
-				$ary[$i][$records[0][$j]] = str_replace_magicquotes($records[$i][$j]);
+				$ary[$i][$records[0][$j]] = str_replace_magicquotes($records[$i][$j] ?? "");
 			}
 		}
 	}else {
-		$ary = null;
+		throw new RuntimeException("Unable to read CSV: " . $filepath);
 	}
 	/*
 	for($i = 0; $i<count($records); $i++) {
@@ -94,12 +99,13 @@ function writeCsvFile($filepath, $records) {	//csvファイル書き込み
 	//mb_convert_variables('SJIS-win','UTF-8',$records);
 	$fp = fopen($filepath, 'w');
 	foreach ($records as $fields) {
-		fputcsv($fp, $fields);
+		fputcsv($fp, $fields, ",", '"', "\\");
 	}
 	fclose($fp);
 }
 
-function writeCsvFile2($filepath, $records) {	//csvファイル書き込み
+function writeCsvFile2($filepath, $records) {
+	$line = array();	//csvファイル書き込み
 	//print_r($records);
 	//echo "<br><br>";
 	//$line[] = array_keys($records[0]);
@@ -113,7 +119,7 @@ function writeCsvFile2($filepath, $records) {	//csvファイル書き込み
 	//mb_convert_variables('SJIS-win','UTF-8',$line);
 	$fp = fopen($filepath, 'w');
 	foreach ($line as $fields) {
-		fputcsv($fp, $fields);
+		fputcsv($fp, $fields, ",", '"', "\\");
 	}
 	fclose($fp);
 }
@@ -331,11 +337,11 @@ function check_todo_color($todo, $id , $date) {
 			$color = 'success';
 		} else if($todo[$id]['保留'] == 1) {
 			$color = 'muted';
-		} else if($interval->format('%r%a 日')<0) { //未来
+		} else if($interval->format('%r%a')<0) { //未来
 			$color = 'future';
-		} else if($finishday->diff($day2->modify('+1 day'))->format('%r%a 日') >= 0) {
+		} else if($finishday->diff($day2->modify('+1 day'))->format('%r%a') >= 0) {
 			$color = 'danger';
-		}else if($finishday->diff($today->modify('+7 day'))->format('%r%a 日') >= 0) {
+		}else if($finishday->diff($today->modify('+7 day'))->format('%r%a') >= 0) {
 			$color = 'warning';
 		} else {
 			$color = 'primary';
@@ -491,7 +497,7 @@ function whatTodayDo_Registration($ini) {
 					if($todo[$j]['top'] == $sa[$i]) {
 						$workday = new DateTime($todo[$j]['開始予定日']);
 
-						if($today->diff($workday)->format('%r%a 日') == 0) {
+						if($today->diff($workday)->format('%r%a') == 0) {
 							$flug = 1;
 							break;
 						}
@@ -501,7 +507,7 @@ function whatTodayDo_Registration($ini) {
 				
 				if(validateDate($todo[$sa[$i]]['今日やること'], 'Y/m/d')) {
 					$workday = new DateTime($todo[$sa[$i]]['今日やること']);
-					if($today->diff($workday)->format('%r%a 日') <= 0) {
+					if($today->diff($workday)->format('%r%a') <= 0) {
 						$flug = 1;
 					}
 				}

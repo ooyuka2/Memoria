@@ -1,5 +1,5 @@
 <Files ~ "^\.(htaccess|htpasswd)$">
-deny from all
+Require all denied
 </Files>
 Options -Indexes
 ErrorDocument 400 /Memoria/MDBpages/Error.php
@@ -23,4 +23,4 @@ ErrorDocument 502 /Memoria/MDBpages/Error.php
 ErrorDocument 503 /Memoria/MDBpages/Error.php
 ErrorDocument 504 /Memoria/MDBpages/Error.php
 ErrorDocument 505 /Memoria/MDBpages/Error.php
-order deny,allow
+# Apache 2.4 authorization uses Require.

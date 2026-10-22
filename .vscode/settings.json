@@ -1,0 +1,8 @@
+{
+  "files.encoding": "shiftjis",
+  "files.autoGuessEncoding": true,
+  "files.candidateGuessEncodings": [
+    "utf8",
+    "shiftjis"
+  ]
+}

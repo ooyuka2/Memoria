@@ -43,9 +43,9 @@
 					$day2 = new DateTime(date('Y/m/d'));
 					$finishday = new DateTime($todo[$todo[$top]['id']]['”[Šú']);
 					$today = new DateTime(date('Y/m/d'));
-					if($finishday->diff($day2->modify('+1 day'))->format('%r%a “ú') >= 0) {
+					if($finishday->diff($day2->modify('+1 day'))->format('%r%a') >= 0) {
 						last_todo_panel($todo, $todo[$top]['id'],'primary', $file);
-					}else if($finishday->diff($today->modify('+3 day'))->format('%r%a “ú') >= 0) {
+					}else if($finishday->diff($today->modify('+3 day'))->format('%r%a') >= 0) {
 						last_todo_panel($todo, $todo[$top]['id'],'warning', $file);
 					} else {
 						last_todo_panel($todo, $todo[$top]['id'],'danger', $file);

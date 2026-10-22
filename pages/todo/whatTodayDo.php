@@ -32,7 +32,7 @@
 							if($todo[$j]['top'] == $sa[$i]) {
 								$workday = new DateTime($todo[$j]['ŠJŽn—\’è“ú']);
 
-								if($today->diff($workday)->format('%r%a “ú') == 0) {
+								if($today->diff($workday)->format('%r%a') == 0) {
 									$flug = 1;
 									break;
 								}

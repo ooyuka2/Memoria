@@ -35,8 +35,8 @@ function panel_child($todo, $todoid, $working, $file) {
 	echo "<div class='card border-{$color} row col-12' style='padding:0'>";
 	/*
 	if($todo[$todoid]['level']==1) echo "<div class='card border-primary row col-12' style='padding:0'>";
-	else if($finishday->diff($today->modify('+1 day'))->format('%r%a “ú') >= 0) { echo "<div class='card border-success row col-12' style='padding:0'>"; }
-	else if($finishday->diff($today->modify('+3 day'))->format('%r%a “ú') >= 0) { echo "<div class='card border-warning row col-12' style='padding:0'>"; }
+	else if($finishday->diff($today->modify('+1 day'))->format('%r%a') >= 0) { echo "<div class='card border-success row col-12' style='padding:0'>"; }
+	else if($finishday->diff($today->modify('+3 day'))->format('%r%a') >= 0) { echo "<div class='card border-warning row col-12' style='padding:0'>"; }
 	else echo "<div class='card border-danger row col-12' style='padding:0'>";
 	*/
 	echo "<div class='card-header' id='todoid{$todo[$todoid]['id']}'>";

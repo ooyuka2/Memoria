@@ -1,38 +1,39 @@
 
 <?php
+$todoFormMode = in_array($_GET['d'] ?? '', array('change', 'renew'), true) ? $_GET['d'] : 'new';
 	//$todo = readCsvFile2('../data/todo.csv');
 	$todo_theme = readCsvFile2('../data/todo_theme.csv');
 	$todo_keeper_theme = readCsvFile2('../data/todo_keeper_theme.csv');
 	$weekly = readCsvFile2('../data/weekly.csv');
-	if((!isset($_GET['p']) || $todo[$_GET['p']]['level']!=1) && $_GET['d']!="new") {
+	if((!isset($_GET['p']) || $todo[$_GET['p']]['level']!=1) && $todoFormMode!="new") {
 		echo "<button>もどれ</button>";
 	}
-	if (isset($_GET['file']) && $_GET['file'] == "old201804" && $_GET['d']=="change") echo '<meta http-equiv="refresh" content="1;URL=./todo.php">';
+	if (isset($_GET['file']) && $_GET['file'] == "old201804" && $todoFormMode=="change") echo '<meta http-equiv="refresh" content="1;URL=./todo.php">';
 ?>
 
 <div class="col-xs-1"></div>
 <div class="col-xs-10">
 <?php
-	if($_GET['d'] != "change") {
+	if($todoFormMode != "change") {
 		echo "<form class='form-horizontal' method='post' action='todo/toroku.php'>";
 		$id = count($todo);
 		if(isset($_GET['file']) && $_GET['file'] != "todo") {
 			$temp = readCsvFile2('../data/todo.csv');
 			$id = count($temp);
 		}
-		if($_GET['d'] == "new") todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 1, $_GET['d'], $id, 0, 0, $weekly);
-		else todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 1, $_GET['d'], $id, $_GET['p'], 0, $weekly);
+		if($todoFormMode == "new") todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 1, $todoFormMode, $id, 0, 0, $weekly);
+		else todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 1, $todoFormMode, $id, $_GET['p'], 0, $weekly);
 	} else {
 		echo "<form class='form-horizontal' method='post' action='todo/toroku2.php' name='changetodo'>";
 		$id = $_GET['p'];
-		todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 1, $_GET['d'], $id, $id, 0, $weekly);
+		todo_fieldset($todo, $todo_theme, $todo_keeper_theme, 1, $todoFormMode, $id, $id, 0, $weekly);
 	}
 ?>
 
 
 		<div class="new" >
 <?php
-	if($_GET['d'] != "new") {
+	if($todoFormMode != "new") {
 		$count = todo_make_child($todo, $todo_theme, $todo_keeper_theme, 1, $_GET['p'], $weekly);
 	}
 	
@@ -108,7 +109,7 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 	else $time_theme = 0;
 	
 	date_default_timezone_set('Asia/Tokyo');
-	if($_GET['d'] == "new" || $type=="new_field") {
+	if($type == "new" || $type=="new_field") {
 		$title = "";
 		$detail = "";
 		$mono = "";
@@ -130,7 +131,7 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 		$count = $todo[$p]['順番'];
 		$make_weekly = $_GET['p'];
 		
-		if ($_GET['d'] == "renew") $finish = 0;
+		if ($type == "renew") $finish = 0;
 		else $finish = $todo[$p]['完了'];
 		
 		$weeklyid = check2array($weekly, $make_weekly, "todoid");
@@ -138,7 +139,7 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 		
 		if($weeklyid != -1 &&$weekly[$weeklyid]["表示"] == 0) $make_weekly_select = " checked/";
 		else $make_weekly_select = "";
-		if($_GET['d'] == "renew") {
+		if($type == "renew") {
 			$today = date('Y/m/d');
 			$noki = $today;
 			$noki_time = '18:00';
@@ -163,7 +164,7 @@ function todo_fieldset($todo, $todo_theme, $todo_keeper_theme, $level, $type, $i
 	
 	if($level == 1) {
 		echo "<div class='col-xs-12' style='margin-bottom:5px'>";
-		if($_GET['d'] != "change")
+		if($type != "change")
 		echo '<select class="form-control input-normal input-sm theme" name="theme[]" onChange="select_theme(this.options[this.options.selectedIndex].value)">';
 		else echo '<select class="form-control input-normal input-sm theme" name="theme[]">';
 		echo "<option value='0'>テーマの選択</option>";

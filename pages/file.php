@@ -14,9 +14,9 @@
 	<div class='bkcolor'>
 	<div class="container" style="padding:0 0 50px 0">
 		<?php
-			$file = readCsvFile2($ini['dirWin'].'/../data/file.csv');
+			$file = readCsvFile2($ini['dirWin'].'/data/file.csv');
 			//name,furi,summary,detail,count,syurui,date,delete
-			$group = readCsvFile2($ini['dirWin'].'/../data/file_group.csv');
+			$group = readCsvFile2($ini['dirWin'].'/data/file_group.csv');
 			//group,abc,detail
 			select_page($link_pages_Win . "file", $_GET['page']);
 		?>
